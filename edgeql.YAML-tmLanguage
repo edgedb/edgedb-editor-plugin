@@ -1,0 +1,236 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: EdgeQLSchema
+scopeName: source.edgeqlschema
+fileTypes: ['edges', 'edgeschema', 'eschema']
+uuid: a560aad6-9c13-49c5-a369-5fb272c8ec1a
+
+patterns:
+  - include: '#scope'
+  - include: '#all'
+
+repository:
+  all:
+    patterns:
+      - include: '#comments'
+      - include: '#keywords'
+      - include: '#mappings'
+      - include: '#operators'
+      - include: '#names'
+      - include: '#values'
+
+  scope12:
+    patterns:
+    - name: meta.scope.s12.edgeqlschema
+      begin: '^ {12}(?=\S)'
+      end: '^(?= {,12}\S)'
+      patterns:
+        - include: '#eql-string12'
+        - include: '#all'
+
+  scope10:
+    patterns:
+    - include: '#scope12'
+    - name: meta.scope.s10.edgeqlschema
+      begin: '^ {10}(?=\S)'
+      end: '^(?= {,10}\S)'
+      patterns:
+        - include: '#scope12'
+        - include: '#eql-string10'
+        - include: '#all'
+
+  scope8:
+    patterns:
+    - include: '#scope10'
+    - name: meta.scope.s8.edgeqlschema
+      begin: '^ {8}(?=\S)'
+      end: '^(?= {,8}\S)'
+      patterns:
+        - include: '#scope10'
+        - include: '#eql-string8'
+        - include: '#all'
+
+  scope6:
+    patterns:
+    - include: '#scope8'
+    - name: meta.scope.s6.edgeqlschema
+      begin: '^ {6}(?=\S)'
+      end: '^(?= {,6}\S)'
+      patterns:
+        - include: '#scope8'
+        - include: '#eql-string6'
+        - include: '#all'
+
+  scope4:
+    patterns:
+    - include: '#scope6'
+    - name: meta.scope.s4.edgeqlschema
+      begin: '^ {4}(?=\S)'
+      end: '^(?= {,4}\S)'
+      patterns:
+        - include: '#scope6'
+        - include: '#eql-string4'
+        - include: '#all'
+
+  scope2:
+    patterns:
+    - include: '#scope4'
+    - name: meta.scope.s2.edgeqlschema
+      begin: '^ {2}(?=\S)'
+      end: '^(?= {,2}\S)'
+      patterns:
+        - include: '#scope4'
+        - include: '#eql-string2'
+        - include: '#all'
+
+  scope:
+    patterns:
+      - include: '#scope2'
+
+  comments:
+    patterns:
+    - name: comment.line.note.edgeqlschema
+      match: (#)\s*(BUG|FIXME|TODO|XXX).*$\n?
+      captures:
+        '1': {name: punctuation.definition.comment.edgeqlschema}
+        '2': {name: comment.line.note.notation.edgeqlschema}
+    - name: comment.line.number-sign.edgeqlschema
+      match: (#).*$\n?
+      captures:
+        '1': {name: punctuation.definition.comment.edgeqlschema}
+
+  keywords:
+    patterns:
+    - name: support.type.abstract.edgeqlschema
+      match: ^(abstract)\b
+
+    - name: support.type.required.edgeqlschema
+      match: \b(required)\b
+
+    - name: keyword.other.declaration.edgeqlschema
+      match: \b(concept|link|atom|constraint)\b
+
+    - name: keyword.operator.edgeqlschema
+      match: \b(is)\b
+
+    - name: constant.language.boolean.true.edgeqlschema
+      match: \b(true|True|Yes|yes)\b
+
+    - name: constant.language.boolean.false.edgeqlschema
+      match: \b(false|False|No|no)\b
+
+  mappings:
+    name: variable.parameter.mapping.edgeqlschema
+    match: \b(readonly|default|mapping)(?=\s*:)
+
+  operators:
+    name: keyword.operator.edgeqlschema
+    match: (->|:(?!=))
+
+  names:
+    patterns:
+    - name: support.type.builtin.edgeqlschema
+      match: \b(builtins|int|str|datetime)\b
+
+  values:
+    patterns:
+      - name: constant.language.mapping.edgeqlschema
+        match: (11|1\*|\*1|\*\*)
+
+      - include: '#number'
+      - include: '#eql-string-oneline'
+
+  number:
+    name: constant.numeric.edgeqlschema
+    patterns:
+      - include: '#number-dec'
+
+  number-dec:
+    name: constant.numeric.dec.edgeqlschema
+    match: |
+      (?x)
+          (?:
+            #decimal part
+            \.(_*)(?:[0-9](?:[0-9_]*[0-9])?)
+            |
+            # integer part
+            \b(?:[1-9](?:[0-9_]*[0-9])?|0)
+              (?:\.(_*)[0-9](?:[0-9_]*[0-9])?)?
+          )
+          ((_*)([eE][\+\-]?)(_*)[0-9](?:[0-9_]*[0-9])?)?
+
+        (_*)
+        \b
+    captures:
+      '1': {name: invalid.illegal.dec.edgeqlschema}
+      '2': {name: invalid.illegal.dec.edgeqlschema}
+      '4': {name: invalid.illegal.dec.edgeqlschema}
+      '5': {name: storage.type.number.edgeqlschema}
+      '6': {name: invalid.illegal.dec.edgeqlschema}
+      '7': {name: invalid.illegal.dec.edgeqlschema}
+
+  eql-string-oneline:
+    name: meta.raw.oneline.edgeqlschema
+    begin: (:=)\s*(?=\S)
+    end: $
+
+    beginCaptures:
+      '1': {name: 'keyword.operator.edgeqlschema'}
+    patterns:
+        - include: 'source.sql'
+
+  eql-string4:
+    patterns:
+    - name: meta.raw.s4.edgeqlschema
+      begin: (:=)\s*$
+      end: '^(?= {,4}\S)'
+      beginCaptures:
+        '1': {name: 'keyword.operator.edgeqlschema'}
+
+      patterns:
+        - include: 'source.sql'
+
+  eql-string6:
+    patterns:
+    - name: meta.raw.s6.edgeqlschema
+      begin: (:=)\s*$
+      end: '^(?= {,6}\S)'
+      beginCaptures:
+        '1': {name: 'keyword.operator.edgeqlschema'}
+
+      patterns:
+        - include: 'source.sql'
+
+  eql-string8:
+    patterns:
+    - name: meta.raw.s8.edgeqlschema
+      begin: (:=)\s*$
+      end: '^(?= {,8}\S)'
+      beginCaptures:
+        '1': {name: 'keyword.operator.edgeqlschema'}
+
+      patterns:
+        - include: 'source.sql'
+
+  eql-string10:
+    patterns:
+    - name: meta.raw.s4.edgeqlschema
+      begin: (:=)\s*$
+      end: '^(?= {,10}\S)'
+      beginCaptures:
+        '1': {name: 'keyword.operator.edgeqlschema'}
+
+      patterns:
+        - include: 'source.sql'
+
+  eql-string12:
+    patterns:
+    - name: meta.raw.s4.edgeqlschema
+      begin: (:=)\s*$
+      end: '^(?= {,12}\S)'
+      beginCaptures:
+        '1': {name: 'keyword.operator.edgeqlschema'}
+
+      patterns:
+        - include: 'source.sql'
+...
