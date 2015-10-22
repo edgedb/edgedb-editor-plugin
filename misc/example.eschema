@@ -67,3 +67,72 @@ concept Issue is builtins.NamedObject, OwnedObject, Text:
 
     link related_to -> Issue:
         mapping: **
+
+
+#### module
+
+action cut:
+    title: ''
+
+event something:
+    actions: cut
+
+####
+
+
+link time_spent_log -> LogEntry:
+    mapping: 1*
+    # 1* -- one-to-many mapping.
+    on delete self: ignore
+    on delete source: restrict
+    on delete target: restrict
+
+    on module.something: module.cut
+
+
+policy for time_spent_log:
+    on copy: cascade
+
+
+# edgeql query (currently using SQL to highlight)
+
+SELECT
+    Issue[
+        number,
+        name,
+        owner[
+            name
+            # Extract the related User object and
+            # include the value of the name link.
+        ],
+        watchers[
+            name
+        ],
+        priority[
+            name
+        ],
+        status[
+            name
+        ],
+        total_time_spent := (
+            SELECT agg::sum(
+                Issue.time_spent_log.spent_time
+            )
+            # The value of total_time_spent attribute
+            # is computed dynamically as a sum of all
+            # spen_time values in all LogEntries
+            # subordinate to this issue.
+        ),
+        start_date,
+        due_date,
+        related_to[
+            number,
+            name,
+            priority[
+                name
+            ]
+        ]
+    ]
+WHERE
+    Issue.number = $number
+    # $number is a named query argument.

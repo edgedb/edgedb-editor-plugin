@@ -19,10 +19,6 @@
     <array>
       <dict>
         <key>include</key>
-        <string>#scope</string>
-      </dict>
-      <dict>
-        <key>include</key>
         <string>#all</string>
       </dict>
     </array>
@@ -56,205 +52,9 @@
             <key>include</key>
             <string>#values</string>
           </dict>
-        </array>
-      </dict>
-      <key>scope12</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>name</key>
-            <string>meta.scope.s12.edgeqlschema</string>
-            <key>begin</key>
-            <string>^ {12}(?=\S)</string>
-            <key>end</key>
-            <string>^(?= {,12}\S)</string>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#eql-string12</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#all</string>
-              </dict>
-            </array>
-          </dict>
-        </array>
-      </dict>
-      <key>scope10</key>
-      <dict>
-        <key>patterns</key>
-        <array>
           <dict>
             <key>include</key>
-            <string>#scope12</string>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>meta.scope.s10.edgeqlschema</string>
-            <key>begin</key>
-            <string>^ {10}(?=\S)</string>
-            <key>end</key>
-            <string>^(?= {,10}\S)</string>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#scope12</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#eql-string10</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#all</string>
-              </dict>
-            </array>
-          </dict>
-        </array>
-      </dict>
-      <key>scope8</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#scope10</string>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>meta.scope.s8.edgeqlschema</string>
-            <key>begin</key>
-            <string>^ {8}(?=\S)</string>
-            <key>end</key>
-            <string>^(?= {,8}\S)</string>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#scope10</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#eql-string8</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#all</string>
-              </dict>
-            </array>
-          </dict>
-        </array>
-      </dict>
-      <key>scope6</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#scope8</string>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>meta.scope.s6.edgeqlschema</string>
-            <key>begin</key>
-            <string>^ {6}(?=\S)</string>
-            <key>end</key>
-            <string>^(?= {,6}\S)</string>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#scope8</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#eql-string6</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#all</string>
-              </dict>
-            </array>
-          </dict>
-        </array>
-      </dict>
-      <key>scope4</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#scope6</string>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>meta.scope.s4.edgeqlschema</string>
-            <key>begin</key>
-            <string>^ {4}(?=\S)</string>
-            <key>end</key>
-            <string>^(?= {,4}\S)</string>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#scope6</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#eql-string4</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#all</string>
-              </dict>
-            </array>
-          </dict>
-        </array>
-      </dict>
-      <key>scope2</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#scope4</string>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>meta.scope.s2.edgeqlschema</string>
-            <key>begin</key>
-            <string>^ {2}(?=\S)</string>
-            <key>end</key>
-            <string>^(?= {,2}\S)</string>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#scope4</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#eql-string2</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#all</string>
-              </dict>
-            </array>
-          </dict>
-        </array>
-      </dict>
-      <key>scope</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#scope2</string>
+            <string>#eql</string>
           </dict>
         </array>
       </dict>
@@ -317,19 +117,25 @@
             <key>name</key>
             <string>keyword.other.declaration.edgeqlschema</string>
             <key>match</key>
-            <string>\b(concept|link|atom|constraint)\b</string>
+            <string>\b(concept|link|atom|constraint|action|event|policy)\b</string>
           </dict>
           <dict>
             <key>name</key>
             <string>keyword.operator.edgeqlschema</string>
             <key>match</key>
-            <string>\b(is)\b</string>
+            <string>\b(is|on|delete|for)\b</string>
           </dict>
           <dict>
             <key>name</key>
             <string>constant.language.boolean.true.edgeqlschema</string>
             <key>match</key>
             <string>\b(true|True|Yes|yes)\b</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>support.other.edgeqlschema</string>
+            <key>match</key>
+            <string>\b(self|source|target|yes)\b</string>
           </dict>
           <dict>
             <key>name</key>
@@ -344,7 +150,7 @@
         <key>name</key>
         <string>variable.parameter.mapping.edgeqlschema</string>
         <key>match</key>
-        <string>\b(readonly|default|mapping)(?=\s*:)</string>
+        <string>\b(readonly|default|mapping|actions|title)(?=\s*:)</string>
       </dict>
       <key>operators</key>
       <dict>
@@ -382,6 +188,10 @@
           <dict>
             <key>include</key>
             <string>#eql-string-oneline</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#eql-string</string>
           </dict>
         </array>
       </dict>
@@ -474,148 +284,47 @@
           </dict>
         </array>
       </dict>
-      <key>eql-string4</key>
+      <key>eql-string</key>
       <dict>
+        <key>begin</key>
+        <string>(:=)</string>
+        <key>end</key>
+        <string>(?&lt;!,)(\s*$)</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.edgeqlschema</string>
+          </dict>
+        </dict>
         <key>patterns</key>
         <array>
           <dict>
-            <key>name</key>
-            <string>meta.raw.s4.edgeqlschema</string>
-            <key>begin</key>
-            <string>(:=)\s*$</string>
-            <key>end</key>
-            <string>^(?= {,4}\S)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>keyword.operator.edgeqlschema</string>
-              </dict>
-            </dict>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>source.sql</string>
-              </dict>
-            </array>
+            <key>include</key>
+            <string>source.sql</string>
           </dict>
         </array>
       </dict>
-      <key>eql-string6</key>
+      <key>eql</key>
       <dict>
-        <key>patterns</key>
-        <array>
+        <key>begin</key>
+        <string>(?=SELECT)</string>
+        <key>end</key>
+        <string>(^\s*$)</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
           <dict>
             <key>name</key>
-            <string>meta.raw.s6.edgeqlschema</string>
-            <key>begin</key>
-            <string>(:=)\s*$</string>
-            <key>end</key>
-            <string>^(?= {,6}\S)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>keyword.operator.edgeqlschema</string>
-              </dict>
-            </dict>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>source.sql</string>
-              </dict>
-            </array>
+            <string>keyword.operator.edgeqlschema</string>
           </dict>
-        </array>
-      </dict>
-      <key>eql-string8</key>
-      <dict>
+        </dict>
         <key>patterns</key>
         <array>
           <dict>
-            <key>name</key>
-            <string>meta.raw.s8.edgeqlschema</string>
-            <key>begin</key>
-            <string>(:=)\s*$</string>
-            <key>end</key>
-            <string>^(?= {,8}\S)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>keyword.operator.edgeqlschema</string>
-              </dict>
-            </dict>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>source.sql</string>
-              </dict>
-            </array>
-          </dict>
-        </array>
-      </dict>
-      <key>eql-string10</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>name</key>
-            <string>meta.raw.s4.edgeqlschema</string>
-            <key>begin</key>
-            <string>(:=)\s*$</string>
-            <key>end</key>
-            <string>^(?= {,10}\S)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>keyword.operator.edgeqlschema</string>
-              </dict>
-            </dict>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>source.sql</string>
-              </dict>
-            </array>
-          </dict>
-        </array>
-      </dict>
-      <key>eql-string12</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>name</key>
-            <string>meta.raw.s4.edgeqlschema</string>
-            <key>begin</key>
-            <string>(:=)\s*$</string>
-            <key>end</key>
-            <string>^(?= {,12}\S)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>keyword.operator.edgeqlschema</string>
-              </dict>
-            </dict>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>source.sql</string>
-              </dict>
-            </array>
+            <key>include</key>
+            <string>source.sql</string>
           </dict>
         </array>
       </dict>

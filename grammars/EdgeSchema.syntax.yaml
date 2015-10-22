@@ -6,7 +6,6 @@ fileTypes: ['edges', 'edgeschema', 'eschema']
 uuid: a560aad6-9c13-49c5-a369-5fb272c8ec1a
 
 patterns:
-  - include: '#scope'
   - include: '#all'
 
 repository:
@@ -18,74 +17,7 @@ repository:
       - include: '#operators'
       - include: '#names'
       - include: '#values'
-
-  scope12:
-    patterns:
-    - name: meta.scope.s12.edgeqlschema
-      begin: '^ {12}(?=\S)'
-      end: '^(?= {,12}\S)'
-      patterns:
-        - include: '#eql-string12'
-        - include: '#all'
-
-  scope10:
-    patterns:
-    - include: '#scope12'
-    - name: meta.scope.s10.edgeqlschema
-      begin: '^ {10}(?=\S)'
-      end: '^(?= {,10}\S)'
-      patterns:
-        - include: '#scope12'
-        - include: '#eql-string10'
-        - include: '#all'
-
-  scope8:
-    patterns:
-    - include: '#scope10'
-    - name: meta.scope.s8.edgeqlschema
-      begin: '^ {8}(?=\S)'
-      end: '^(?= {,8}\S)'
-      patterns:
-        - include: '#scope10'
-        - include: '#eql-string8'
-        - include: '#all'
-
-  scope6:
-    patterns:
-    - include: '#scope8'
-    - name: meta.scope.s6.edgeqlschema
-      begin: '^ {6}(?=\S)'
-      end: '^(?= {,6}\S)'
-      patterns:
-        - include: '#scope8'
-        - include: '#eql-string6'
-        - include: '#all'
-
-  scope4:
-    patterns:
-    - include: '#scope6'
-    - name: meta.scope.s4.edgeqlschema
-      begin: '^ {4}(?=\S)'
-      end: '^(?= {,4}\S)'
-      patterns:
-        - include: '#scope6'
-        - include: '#eql-string4'
-        - include: '#all'
-
-  scope2:
-    patterns:
-    - include: '#scope4'
-    - name: meta.scope.s2.edgeqlschema
-      begin: '^ {2}(?=\S)'
-      end: '^(?= {,2}\S)'
-      patterns:
-        - include: '#scope4'
-        - include: '#eql-string2'
-        - include: '#all'
-
-  scope:
-    patterns:
-      - include: '#scope2'
+      - include: '#eql'
 
   comments:
     patterns:
@@ -108,20 +40,23 @@ repository:
       match: \b(required)\b
 
     - name: keyword.other.declaration.edgeqlschema
-      match: \b(concept|link|atom|constraint)\b
+      match: \b(concept|link|atom|constraint|action|event|policy)\b
 
     - name: keyword.operator.edgeqlschema
-      match: \b(is)\b
+      match: \b(is|on|delete|for)\b
 
     - name: constant.language.boolean.true.edgeqlschema
       match: \b(true|True|Yes|yes)\b
+
+    - name: support.other.edgeqlschema
+      match: \b(self|source|target|yes)\b
 
     - name: constant.language.boolean.false.edgeqlschema
       match: \b(false|False|No|no)\b
 
   mappings:
     name: variable.parameter.mapping.edgeqlschema
-    match: \b(readonly|default|mapping)(?=\s*:)
+    match: \b(readonly|default|mapping|actions|title)(?=\s*:)
 
   operators:
     name: keyword.operator.edgeqlschema
@@ -139,6 +74,7 @@ repository:
 
       - include: '#number'
       - include: '#eql-string-oneline'
+      - include: '#eql-string'
 
   number:
     name: constant.numeric.edgeqlschema
@@ -179,58 +115,20 @@ repository:
     patterns:
         - include: 'source.sql'
 
-  eql-string4:
+  eql-string:
+    begin: (:=)
+    end: (?<!,)(\s*$)
+    beginCaptures:
+      '1': {name: 'keyword.operator.edgeqlschema'}
     patterns:
-    - name: meta.raw.s4.edgeqlschema
-      begin: (:=)\s*$
-      end: '^(?= {,4}\S)'
-      beginCaptures:
-        '1': {name: 'keyword.operator.edgeqlschema'}
+      - include: 'source.sql'
 
-      patterns:
-        - include: 'source.sql'
 
-  eql-string6:
+  eql:
+    begin: (?=SELECT)
+    end: (^\s*$)
+    beginCaptures:
+      '1': {name: 'keyword.operator.edgeqlschema'}
     patterns:
-    - name: meta.raw.s6.edgeqlschema
-      begin: (:=)\s*$
-      end: '^(?= {,6}\S)'
-      beginCaptures:
-        '1': {name: 'keyword.operator.edgeqlschema'}
-
-      patterns:
-        - include: 'source.sql'
-
-  eql-string8:
-    patterns:
-    - name: meta.raw.s8.edgeqlschema
-      begin: (:=)\s*$
-      end: '^(?= {,8}\S)'
-      beginCaptures:
-        '1': {name: 'keyword.operator.edgeqlschema'}
-
-      patterns:
-        - include: 'source.sql'
-
-  eql-string10:
-    patterns:
-    - name: meta.raw.s4.edgeqlschema
-      begin: (:=)\s*$
-      end: '^(?= {,10}\S)'
-      beginCaptures:
-        '1': {name: 'keyword.operator.edgeqlschema'}
-
-      patterns:
-        - include: 'source.sql'
-
-  eql-string12:
-    patterns:
-    - name: meta.raw.s4.edgeqlschema
-      begin: (:=)\s*$
-      end: '^(?= {,12}\S)'
-      beginCaptures:
-        '1': {name: 'keyword.operator.edgeqlschema'}
-
-      patterns:
-        - include: 'source.sql'
+      - include: 'source.sql'
 ...
