@@ -78,7 +78,7 @@ repository:
       }
       {
         name: "keyword.operator.edgeqlschema"
-        match: "\\b(is|on|delete|for)\\b"
+        match: "\\b(to|on|for)\\b"
       }
       {
         name: "constant.language.boolean.true.edgeqlschema"
@@ -98,7 +98,7 @@ repository:
     match: "\\b(readonly|default|mapping|actions|title)(?=\\s*:)"
   operators:
     name: "keyword.operator.edgeqlschema"
-    match: "(->|:(?!=))"
+    match: "(:(?!=))"
   names:
     patterns: [
       {

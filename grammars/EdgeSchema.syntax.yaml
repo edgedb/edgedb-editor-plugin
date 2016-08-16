@@ -47,7 +47,7 @@ repository:
         )\b
 
     - name: keyword.operator.edgeqlschema
-      match: \b(is|on|delete|for)\b
+      match: \b(to|on|for)\b
 
     - name: constant.language.boolean.true.edgeqlschema
       match: \b(true|True|Yes|yes)\b
@@ -64,7 +64,7 @@ repository:
 
   operators:
     name: keyword.operator.edgeqlschema
-    match: (->|:(?!=))
+    match: (:(?!=))
 
   names:
     patterns:

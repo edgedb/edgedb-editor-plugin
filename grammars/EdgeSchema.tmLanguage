@@ -127,7 +127,7 @@
             <key>name</key>
             <string>keyword.operator.edgeqlschema</string>
             <key>match</key>
-            <string>\b(is|on|delete|for)\b</string>
+            <string>\b(to|on|for)\b</string>
           </dict>
           <dict>
             <key>name</key>
@@ -161,7 +161,7 @@
         <key>name</key>
         <string>keyword.operator.edgeqlschema</string>
         <key>match</key>
-        <string>(-&gt;|:(?!=))</string>
+        <string>(:(?!=))</string>
       </dict>
       <key>names</key>
       <dict>
