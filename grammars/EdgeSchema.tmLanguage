@@ -105,7 +105,7 @@
             <key>name</key>
             <string>support.type.abstract.edgeqlschema</string>
             <key>match</key>
-            <string>^(abstract)\b</string>
+            <string>\b(abstract|final)\b</string>
           </dict>
           <dict>
             <key>name</key>
@@ -117,7 +117,11 @@
             <key>name</key>
             <string>keyword.other.declaration.edgeqlschema</string>
             <key>match</key>
-            <string>\b(concept|link|atom|constraint|action|event|policy)\b</string>
+            <string>(?x) \b(
+  concept | link | atom | constraint | action |
+  event | policy | extends | linkproperty
+)\b
+</string>
           </dict>
           <dict>
             <key>name</key>

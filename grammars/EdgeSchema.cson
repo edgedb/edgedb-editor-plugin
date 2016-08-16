@@ -60,7 +60,7 @@ repository:
     patterns: [
       {
         name: "support.type.abstract.edgeqlschema"
-        match: "^(abstract)\\b"
+        match: "\\b(abstract|final)\\b"
       }
       {
         name: "support.type.required.edgeqlschema"
@@ -68,7 +68,13 @@ repository:
       }
       {
         name: "keyword.other.declaration.edgeqlschema"
-        match: "\\b(concept|link|atom|constraint|action|event|policy)\\b"
+        match: '''
+          (?x) \\b(
+            concept | link | atom | constraint | action |
+            event | policy | extends | linkproperty
+          )\\b
+          
+        '''
       }
       {
         name: "keyword.operator.edgeqlschema"
