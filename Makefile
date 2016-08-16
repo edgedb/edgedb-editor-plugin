@@ -11,4 +11,5 @@ devenv:
 
 release:
 	./node_modules/.bin/syntaxdev build-plist --in grammars/EdgeSchema.syntax.yaml --out grammars/EdgeSchema.tmLanguage
+	./node_modules/.bin/syntaxdev build-cson --in grammars/EdgeSchema.syntax.yaml --out grammars/EdgeSchema.cson
 	./node_modules/.bin/syntaxdev scopes --syntax grammars/EdgeSchema.syntax.yaml > misc/schema_scopes
