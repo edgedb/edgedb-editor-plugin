@@ -1,0 +1,17 @@
+abstract concept OwnedObject:
+    required link owner to User
+
+
+
+
+abstract      : source.edgedbschema, support.type.abstract.edgedbschema
+              : source.edgedbschema
+concept       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ OwnedObject: : source.edgedbschema
+              : source.edgedbschema
+required      : source.edgedbschema, support.type.required.edgedbschema
+              : source.edgedbschema
+link          : keyword.other.declaration.edgedbschema, source.edgedbschema
+ owner        : source.edgedbschema
+to            : keyword.operator.edgedbschema, source.edgedbschema
+ User         : source.edgedbschema

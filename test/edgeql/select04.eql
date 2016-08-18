@@ -1,0 +1,38 @@
+SELECT
+    {mod2::Person}{
+        id,
+        name,
+        groups{
+            id,
+            name,
+        }
+    }
+
+
+
+SELECT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
+              : meta.query.edgeql, source.edgeql
+{             : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
+mod2          : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
+::            : entity.name.edgeql, entity.name.function.path.edgeql, keyword.operator.namespace.edgeql, meta.query.edgeql, source.edgeql
+Person        : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
+}             : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+{             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.begin.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+id            : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+name          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+groups        : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+{             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+id            : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+name          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+}             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
+    }         : source.edgeql

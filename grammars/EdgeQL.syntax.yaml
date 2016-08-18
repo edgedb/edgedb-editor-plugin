@@ -1,0 +1,241 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: EdgeQL
+scopeName: source.edgeql
+fileTypes: ['edgeql', 'eql']
+uuid: a560aad6-9c13-49c5-a369-5fb272c8ec1a
+
+patterns:
+  - include: '#all'
+
+repository:
+  all:
+    patterns:
+      - include: '#comments'
+      - include: '#keywords'
+      - include: '#operators'
+      - include: '#builtins'
+      - include: '#types'
+      - include: '#queries'
+      - include: '#names'
+      - include: '#values'
+      - include: '#variables'
+      - name: punctuation.statement.delimiter.edgeql
+        match: (;)
+
+  comments:
+    patterns:
+      - name: comment.line.note.edgeql
+        match: (#)\s*(BUG|FIXME|TODO|XXX).*$\n?
+        captures:
+          '1': {name: punctuation.definition.comment.edgeql}
+          '2': {name: comment.line.note.notation.edgeql}
+      - name: comment.line.number-sign.edgeql
+        match: (#).*$\n?
+        captures:
+          '1': {name: punctuation.definition.comment.edgeql}
+
+  keywords:
+    patterns:
+      - name: keyword.other.declaration.edgeql
+        match: |
+          (?ix) \b(
+            abstract | action | after | all | alter | and | any | as |
+            asc | atom | attribute | before | by | cast | commit |
+            concept | constraint | create | database | delete | delta |
+            desc | distinct | drop | except | exists | event |
+            filter | final | first | for | from | function | group |
+            ilike | in | index | inherit | inheriting | inout |
+            intersect | is | last | like | limit | link | mod |
+            module | namespace | no | none | nones | not | of | offset |
+            operator | or | order | out | over | partition | policy |
+            property | required | rename | returning | set |
+            some | target | to | union | using | where |
+            with
+          )\b
+
+      - name: constant.language.boolean.true.edgeql
+        match: (?i)\b(true)\b
+
+      - name: constant.language.boolean.false.edgeql
+        match: (?i)\b(false)\b
+
+  operators:
+    name: keyword.operator.edgeql
+    match: |
+      (?x)
+        = | @@! | @@ | := |
+
+        # EdgeQL-specific multi-char ops
+        (?<opchar_edgeql>[~!\#&|`?])
+          ((?<opchar>[~!\#&|`?+\-*/^<>=]) (?!/\*|--))+
+        |
+        (\g<opchar> (?!/\*|--))+ \g<opchar_edgeql> (\g<opchar> (?!/\*|--))*
+        |
+        # SQL-only multi-char ops cannot end in + or -
+        ((?<opchar_sql>[+\-*/^<>=]) (?!/\*|--))+ [*/^<>=]
+        |
+        # single char edgeql operator
+        \g<opchar_edgeql>
+        |
+        # single char sql operator
+        \g<opchar_sql>
+
+  names:
+    patterns:
+      - include: '#quoted-name'
+
+  builtins:
+    patterns:
+      - name: support.type.builtin.edgeql
+        match: |
+          (?x) \b(
+            std | any | typeref | atomref | conceptref | bytes |
+            datetime | uuid | str | timedelta | date | time | int | none |
+            float | bool | pattern | sequence
+          )\b
+
+      - name: support.function.constraint.builtin.edgeql
+        match: |
+          (?x) \b(
+            constraint | max | enum | min | minexclusive | length |
+            minlength | regexp | maxlength | maxexclusive | unique
+          )\b
+
+  types:
+    name: storage.type.edgeql
+    match: (list|map)(?=\s*<)
+
+  variables:
+    name: constant.language.variable.edgeql
+    begin: (\$)(?=[[:alnum:]_{])
+    end: (?<=[[:alnum:]_}])
+    patterns:
+      - include: '#identifier'
+      - include: '#names'
+
+  link-properties:
+    name: support.other.linkproperty.edgeql
+    begin: (\@)
+    end: (?<=[[:alnum:]_}])
+    patterns:
+      - include: '#identifier'
+      - include: '#names'
+
+  identifier:
+    match: ([[:alnum:]_]+)
+
+  quoted-name:
+    name: entity.name.edgeql
+    begin: (\{)(?!\s)
+    end: (\})
+    beginCaptures:
+      '1': {name: punctuation.definition.name.begin.edgeql}
+    endCaptures:
+      '1': {name: punctuation.definition.name.end.edgeql}
+    patterns:
+      - include: '#string'
+      - include: '#builtins'
+      - name: keyword.operator.namespace.edgeql
+        match: (::)
+
+  values:
+    patterns:
+      - include: '#number'
+      - include: '#string'
+
+  number:
+    name: constant.numeric.edgeql
+    patterns:
+      - include: '#number-dec'
+
+  number-dec:
+    name: constant.numeric.dec.edgeql
+    match: |
+      (?x)
+          (?:
+            #decimal part
+            \.(_*)(?:[0-9](?:[0-9_]*[0-9])?)
+            |
+            # integer part
+            \b(?:[1-9](?:[0-9_]*[0-9])?|0)
+              (?:\.(_*)[0-9](?:[0-9_]*[0-9])?)?
+          )
+          ((_*)([eE][\+\-]?)(_*)[0-9](?:[0-9_]*[0-9])?)?
+
+        (_*)
+        \b
+    captures:
+      '1': {name: invalid.illegal.dec.edgeql}
+      '2': {name: invalid.illegal.dec.edgeql}
+      '4': {name: invalid.illegal.dec.edgeql}
+      '5': {name: storage.type.number.edgeql}
+      '6': {name: invalid.illegal.dec.edgeql}
+      '7': {name: invalid.illegal.dec.edgeql}
+
+  string:
+    patterns:
+      - name: string.quoted.edgeql
+        begin: (['"])
+        end: (\1)
+        beginCaptures:
+          '1': {name: punctuation.definition.string.begin.edgeql}
+        endCaptures:
+          '1': {name: punctuation.definition.string.end.edgeql}
+        patterns:
+          - include: '#string-escapes'
+
+      - name: string.dollar.edgeql
+        begin: (\$([[:alpha:]_][[:alnum:]]*)*\$)
+        end: (\1)
+        beginCaptures:
+          '1': {name: punctuation.definition.string.begin.edgeql}
+        endCaptures:
+          '1': {name: punctuation.definition.string.end.edgeql}
+
+  string-escapes:
+    name: constant.character.escape.edgeql
+    match: (\\['"])
+
+  links:
+    name: variable.parameter.shape.edgeql
+    begin: (?=[[:alnum:]_]|{[[:alnum:]_])
+    end: (?=[\s,{])
+    patterns:
+      - include: '#identifier'
+      - include: '#quoted-name'
+
+  queries:
+    name: meta.query.edgeql
+    begin: |
+      (?xi) (SELECT | INSERT | UPDATE )
+    end: (?=WHERE|RETURNING|;)|(?<=\})(?!\s*\{)|(?<=\))
+    beginCaptures:
+      '1': {name: keyword.other.query.edgeql}
+    patterns:
+      - include: '#path'
+      - include: '#shape'
+
+  path:
+    # name: entity.name.function.path.edgeql
+    contentName: entity.name.function.path.edgeql
+    begin: (?=[[:alnum:]_]|{[[:alnum:]_])
+    end: (?<=[[:alnum:]_}])
+    patterns:
+      - include: '#identifier'
+      - include: '#quoted-name'
+
+  shape:
+    name: meta.shape.edgeql
+    begin: (\{)(?=\s)
+    end: (\})
+    beginCaptures:
+      '1': {name: punctuation.definition.shape.begin.edgeql}
+    endCaptures:
+      '1': {name: punctuation.definition.shape.end.edgeql}
+    patterns:
+      - include: '#links'
+      - include: '#link-properties'
+      - include: '#variables'
+
+...

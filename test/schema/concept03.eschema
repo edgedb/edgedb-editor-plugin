@@ -1,0 +1,26 @@
+abstract concept Text:
+    required link body to std::str:
+        constraint maxlength:
+            10000
+
+
+abstract      : source.edgedbschema, support.type.abstract.edgedbschema
+              : source.edgedbschema
+concept       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ Text:        : source.edgedbschema
+              : source.edgedbschema
+required      : source.edgedbschema, support.type.required.edgedbschema
+              : source.edgedbschema
+link          : keyword.other.declaration.edgedbschema, source.edgedbschema
+ body         : source.edgedbschema
+to            : keyword.operator.edgedbschema, source.edgedbschema
+              : source.edgedbschema
+std           : source.edgedbschema, support.type.builtin.edgedbschema
+::            : keyword.operator.namespace.edgedbschema, source.edgedbschema
+str           : source.edgedbschema, support.type.builtin.edgedbschema
+:             : source.edgedbschema
+              : source.edgedbschema
+constraint    : keyword.other.declaration.edgedbschema, source.edgedbschema
+ maxlength:   : source.edgedbschema
+              : source.edgedbschema
+10000         : constant.numeric.dec.edgedbschema, source.edgedbschema

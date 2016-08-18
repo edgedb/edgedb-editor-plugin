@@ -1,0 +1,48 @@
+concept Issue extends foo.bar::NamedObject, Text:
+    link watchers to User:
+        mapping: **
+
+    link time_spent_log to LogEntry:
+        mapping: 1*
+
+    link owner to User:
+        mapping: *1
+
+
+
+
+concept       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ Issue        : source.edgedbschema
+extends       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ foo.bar      : source.edgedbschema
+::            : keyword.operator.namespace.edgedbschema, source.edgedbschema
+NamedObject, Text: : source.edgedbschema
+              : source.edgedbschema
+link          : keyword.other.declaration.edgedbschema, source.edgedbschema
+ watchers     : source.edgedbschema
+to            : keyword.operator.edgedbschema, source.edgedbschema
+ User:        : source.edgedbschema
+              : meta.attribute.edgedbschema, source.edgedbschema
+mapping       : meta.attribute.edgedbschema, source.edgedbschema, variable.parameter.attribute.edgedbschema
+:             : source.edgedbschema
+**            : constant.language.mapping.edgedbschema, source.edgedbschema
+              : source.edgedbschema
+              : source.edgedbschema
+link          : keyword.other.declaration.edgedbschema, source.edgedbschema
+ time_spent_log  : source.edgedbschema
+to            : keyword.operator.edgedbschema, source.edgedbschema
+ LogEntry:    : source.edgedbschema
+              : meta.attribute.edgedbschema, source.edgedbschema
+mapping       : meta.attribute.edgedbschema, source.edgedbschema, variable.parameter.attribute.edgedbschema
+:             : source.edgedbschema
+1*            : constant.language.mapping.edgedbschema, source.edgedbschema
+              : source.edgedbschema
+              : source.edgedbschema
+link          : keyword.other.declaration.edgedbschema, source.edgedbschema
+ owner        : source.edgedbschema
+to            : keyword.operator.edgedbschema, source.edgedbschema
+ User:        : source.edgedbschema
+              : meta.attribute.edgedbschema, source.edgedbschema
+mapping       : meta.attribute.edgedbschema, source.edgedbschema, variable.parameter.attribute.edgedbschema
+:             : source.edgedbschema
+*1            : constant.language.mapping.edgedbschema, source.edgedbschema

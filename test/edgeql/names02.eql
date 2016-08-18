@@ -1,0 +1,54 @@
+CREATE DATABASE {"mytest\"db\""};
+CREATE DATABASE {'mytest\'db\''};
+CREATE DATABASE {"CREATE"};
+CREATE DATABASE {$$CREATE$$};
+
+
+
+
+CREATE        : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+DATABASE      : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+{             : entity.name.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
+"             : entity.name.edgeql, punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
+mytest        : entity.name.edgeql, source.edgeql, string.quoted.edgeql
+\"            : constant.character.escape.edgeql, entity.name.edgeql, source.edgeql, string.quoted.edgeql
+db            : entity.name.edgeql, source.edgeql, string.quoted.edgeql
+\"            : constant.character.escape.edgeql, entity.name.edgeql, source.edgeql, string.quoted.edgeql
+"             : entity.name.edgeql, punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
+}             : entity.name.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+CREATE        : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+DATABASE      : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+{             : entity.name.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
+'             : entity.name.edgeql, punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
+mytest        : entity.name.edgeql, source.edgeql, string.quoted.edgeql
+\'            : constant.character.escape.edgeql, entity.name.edgeql, source.edgeql, string.quoted.edgeql
+db            : entity.name.edgeql, source.edgeql, string.quoted.edgeql
+\'            : constant.character.escape.edgeql, entity.name.edgeql, source.edgeql, string.quoted.edgeql
+'             : entity.name.edgeql, punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
+}             : entity.name.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+CREATE        : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+DATABASE      : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+{             : entity.name.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
+"             : entity.name.edgeql, punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
+CREATE        : entity.name.edgeql, source.edgeql, string.quoted.edgeql
+"             : entity.name.edgeql, punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
+}             : entity.name.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+CREATE        : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+DATABASE      : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+{             : entity.name.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
+$$            : entity.name.edgeql, punctuation.definition.string.begin.edgeql, source.edgeql, string.dollar.edgeql
+CREATE        : entity.name.edgeql, source.edgeql, string.dollar.edgeql
+$$            : entity.name.edgeql, punctuation.definition.string.end.edgeql, source.edgeql, string.dollar.edgeql
+}             : entity.name.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql

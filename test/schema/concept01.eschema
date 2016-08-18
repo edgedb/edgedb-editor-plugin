@@ -1,0 +1,11 @@
+concept User extends std::NamedObject
+
+
+
+concept       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ User         : source.edgedbschema
+extends       : keyword.other.declaration.edgedbschema, source.edgedbschema
+              : source.edgedbschema
+std           : source.edgedbschema, support.type.builtin.edgedbschema
+::            : keyword.operator.namespace.edgedbschema, source.edgedbschema
+NamedObject   : source.edgedbschema

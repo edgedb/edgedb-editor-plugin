@@ -1,0 +1,54 @@
+SELECT
+    {test::NamedObject} {
+        abc,
+        defd,
+        name {
+            @lang
+        }
+    }
+WHERE
+    {test::$$NamedObject$$}.name = 'Test';
+
+
+
+
+SELECT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
+              : meta.query.edgeql, source.edgeql
+{             : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
+test          : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
+::            : entity.name.edgeql, entity.name.function.path.edgeql, keyword.operator.namespace.edgeql, meta.query.edgeql, source.edgeql
+NamedObject   : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
+}             : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+              : meta.query.edgeql, source.edgeql
+{             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.begin.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+abc           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+defd          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+name          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+ {            : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+@             : meta.query.edgeql, meta.shape.edgeql, source.edgeql, support.other.linkproperty.edgeql
+lang          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, support.other.linkproperty.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+}             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
+    }         : source.edgeql
+WHERE         : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+{             : entity.name.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
+test          : entity.name.edgeql, source.edgeql
+::            : entity.name.edgeql, keyword.operator.namespace.edgeql, source.edgeql
+$$            : entity.name.edgeql, punctuation.definition.string.begin.edgeql, source.edgeql, string.dollar.edgeql
+NamedObject   : entity.name.edgeql, source.edgeql, string.dollar.edgeql
+$$            : entity.name.edgeql, punctuation.definition.string.end.edgeql, source.edgeql, string.dollar.edgeql
+}             : entity.name.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+.name         : source.edgeql
+=             : keyword.operator.edgeql, source.edgeql
+              : source.edgeql
+'             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
+Test          : source.edgeql, string.quoted.edgeql
+'             : punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql

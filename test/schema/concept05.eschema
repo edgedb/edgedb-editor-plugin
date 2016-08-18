@@ -1,0 +1,16 @@
+concept LogEntry extends OwnedObject, Text:
+   link start_date:= SELECT datetime::current_datetime()
+
+
+
+
+concept       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ LogEntry     : source.edgedbschema
+extends       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ OwnedObject, Text: : source.edgedbschema
+              : source.edgedbschema
+link          : keyword.other.declaration.edgedbschema, source.edgedbschema
+ start_date   : source.edgedbschema
+:=            : keyword.operator.edgedbschema, meta.raw.oneline.edgedbschema, source.edgedbschema
+              : meta.raw.oneline.edgedbschema, source.edgedbschema
+SELECT datetime::current_datetime() : meta.raw.oneline.edgedbschema, source.edgedbschema

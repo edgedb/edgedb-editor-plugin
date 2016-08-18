@@ -1,0 +1,19 @@
+concept LogEntry extends OwnedObject, Text:
+    required link spent_time to int
+
+
+
+
+
+concept       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ LogEntry     : source.edgedbschema
+extends       : keyword.other.declaration.edgedbschema, source.edgedbschema
+ OwnedObject, Text: : source.edgedbschema
+              : source.edgedbschema
+required      : source.edgedbschema, support.type.required.edgedbschema
+              : source.edgedbschema
+link          : keyword.other.declaration.edgedbschema, source.edgedbschema
+ spent_time   : source.edgedbschema
+to            : keyword.operator.edgedbschema, source.edgedbschema
+              : source.edgedbschema
+int           : source.edgedbschema, support.type.builtin.edgedbschema
