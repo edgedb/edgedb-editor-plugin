@@ -61,25 +61,29 @@ repository:
         match: (?i)\b(false)\b
 
   operators:
-    name: keyword.operator.edgeql
-    match: |
-      (?x)
-        = | @@! | @@ | := |
+    patterns:
+      - name: keyword.operator.edgeql
+        match: |
+          (?x)
+            = | @@! | @@ | := |
 
-        # EdgeQL-specific multi-char ops
-        (?<opchar_edgeql>[~!\#&|`?])
-          ((?<opchar>[~!\#&|`?+\-*/^<>=]) (?!/\*|--))+
-        |
-        (\g<opchar> (?!/\*|--))+ \g<opchar_edgeql> (\g<opchar> (?!/\*|--))*
-        |
-        # SQL-only multi-char ops cannot end in + or -
-        ((?<opchar_sql>[+\-*/^<>=]) (?!/\*|--))+ [*/^<>=]
-        |
-        # single char edgeql operator
-        \g<opchar_edgeql>
-        |
-        # single char sql operator
-        \g<opchar_sql>
+            # EdgeQL-specific multi-char ops
+            (?<opchar_edgeql>[~!\#&|`?])
+              ((?<opchar>[~!\#&|`?+\-*/^<>=]) (?!/\*|--))+
+            |
+            (\g<opchar> (?!/\*|--))+ \g<opchar_edgeql> (\g<opchar> (?!/\*|--))*
+            |
+            # SQL-only multi-char ops cannot end in + or -
+            ((?<opchar_sql>[+\-*/^<>=]) (?!/\*|--))+ [*/^<>=]
+            |
+            # single char edgeql operator
+            \g<opchar_edgeql>
+            |
+            # single char sql operator
+            [@+\-*/%^<>=]
+
+      - name: keyword.operator.namespace.edgeql
+        match: (::)
 
   names:
     patterns:

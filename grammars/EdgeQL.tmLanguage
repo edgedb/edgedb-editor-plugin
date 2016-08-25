@@ -150,10 +150,13 @@
       </dict>
       <key>operators</key>
       <dict>
-        <key>name</key>
-        <string>keyword.operator.edgeql</string>
-        <key>match</key>
-        <string>(?x)
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.edgeql</string>
+            <key>match</key>
+            <string>(?x)
   = | @@! | @@ | := |
 
   # EdgeQL-specific multi-char ops
@@ -169,8 +172,16 @@
   \g&lt;opchar_edgeql&gt;
   |
   # single char sql operator
-  \g&lt;opchar_sql&gt;
+  [@+\-*/%^&lt;&gt;=]
 </string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.namespace.edgeql</string>
+            <key>match</key>
+            <string>(::)</string>
+          </dict>
+        </array>
       </dict>
       <key>names</key>
       <dict>
