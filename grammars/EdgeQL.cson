@@ -15,6 +15,19 @@ repository:
   all:
     patterns: [
       {
+        include: "#queries"
+      }
+      {
+        include: "#expressions"
+      }
+      {
+        name: "punctuation.statement.delimiter.edgeql"
+        match: "(;)"
+      }
+    ]
+  expressions:
+    patterns: [
+      {
         include: "#comments"
       }
       {
@@ -30,10 +43,7 @@ repository:
         include: "#types"
       }
       {
-        include: "#queries"
-      }
-      {
-        include: "#names"
+        include: "#quoted-name"
       }
       {
         include: "#values"
@@ -42,8 +52,25 @@ repository:
         include: "#variables"
       }
       {
-        name: "punctuation.statement.delimiter.edgeql"
-        match: "(;)"
+        include: "#parenthesised"
+      }
+    ]
+  parenthesised:
+    name: "meta.shape.edgeql"
+    begin: "(\\()"
+    end: "(\\))"
+    beginCaptures:
+      "1":
+        name: "punctuation.parenthesis.begin.edgeql"
+    endCaptures:
+      "1":
+        name: "punctuation.parenthesis.end.edgeql"
+    patterns: [
+      {
+        include: "#queries"
+      }
+      {
+        include: "#expressions"
       }
     ]
   comments:
@@ -70,19 +97,19 @@ repository:
       {
         name: "keyword.other.declaration.edgeql"
         match: '''
-          (?ix) \\b(
+          (?ix) \\b(?<![:\\.])(
             abstract | action | after | all | alter | and | any | as |
-            asc | atom | attribute | before | by | cast | commit |
+            asc | atom | attribute | before | by | commit |
             concept | constraint | create | database | delete | delta |
             desc | distinct | drop | except | exists | event |
             filter | final | first | for | from | function | group |
             ilike | in | index | inherit | inheriting | inout |
             intersect | is | last | like | limit | link | mod |
-            module | namespace | no | none | nones | not | of | offset |
+            module | no | not | nulls | of | offset |
             operator | or | order | out | over | partition | policy |
-            property | required | rename | returning | set |
-            some | target | to | union | using | where |
-            with
+            property | required | rename | returning | rollback | set |
+            single | some | start | target | then | to | transaction |
+            union | using | where | with
           )\\b
           
         '''
@@ -95,6 +122,10 @@ repository:
         name: "constant.language.boolean.false.edgeql"
         match: "(?i)\\b(false)\\b"
       }
+      {
+        name: "constant.language.null.edgeql"
+        match: "(?i)\\b(null)\\b"
+      }
     ]
   operators:
     patterns: [
@@ -105,8 +136,8 @@ repository:
             = | @@! | @@ | := |
           
             # EdgeQL-specific multi-char ops
-            (?<opchar_edgeql>[~!\\#&|`?])
-              ((?<opchar>[~!\\#&|`?+\\-*/^<>=]) (?!/\\*|--))+
+            (?<opchar_edgeql>[~!\\#&|?])
+              ((?<opchar>[~!\\#&|?+\\-*/^<>=]) (?!/\\*|--))+
             |
             (\\g<opchar> (?!/\\*|--))+ \\g<opchar_edgeql> (\\g<opchar> (?!/\\*|--))*
             |
@@ -126,18 +157,12 @@ repository:
         match: "(::)"
       }
     ]
-  names:
-    patterns: [
-      {
-        include: "#quoted-name"
-      }
-    ]
   builtins:
     patterns: [
       {
         name: "support.type.builtin.edgeql"
         match: '''
-          (?x) \\b(
+          (?x) \\b(?<![:\\.])(
             std | any | typeref | atomref | conceptref | bytes |
             datetime | uuid | str | timedelta | date | time | int | none |
             float | bool | pattern | sequence
@@ -148,7 +173,7 @@ repository:
       {
         name: "support.function.constraint.builtin.edgeql"
         match: '''
-          (?x) \\b(
+          (?x) \\b(?<![:\\.])(
             constraint | max | enum | min | minexclusive | length |
             minlength | regexp | maxlength | maxexclusive | unique
           )\\b
@@ -161,52 +186,33 @@ repository:
     match: "(list|map)(?=\\s*<)"
   variables:
     name: "constant.language.variable.edgeql"
-    begin: "(\\$)(?=[[:alnum:]_{])"
-    end: "(?<=[[:alnum:]_}])"
+    begin: "(\\$)(?=[[:alpha:]_]|`)"
+    end: "(?<=[[:alnum:]_`])"
     patterns: [
       {
         include: "#identifier"
       }
       {
-        include: "#names"
+        include: "#quoted-name"
       }
     ]
   "link-properties":
     name: "support.other.linkproperty.edgeql"
     begin: "(\\@)"
-    end: "(?<=[[:alnum:]_}])"
+    end: "(?<=[[:alnum:]_`])"
     patterns: [
       {
         include: "#identifier"
       }
       {
-        include: "#names"
+        include: "#quoted-name"
       }
     ]
   identifier:
-    match: "([[:alnum:]_]+)"
+    match: "([[:alpha:]_][[:alnum:]_]*)"
   "quoted-name":
-    name: "entity.name.edgeql"
-    begin: "(\\{)(?!\\s)"
-    end: "(\\})"
-    beginCaptures:
-      "1":
-        name: "punctuation.definition.name.begin.edgeql"
-    endCaptures:
-      "1":
-        name: "punctuation.definition.name.end.edgeql"
-    patterns: [
-      {
-        include: "#string"
-      }
-      {
-        include: "#builtins"
-      }
-      {
-        name: "keyword.operator.namespace.edgeql"
-        match: "(::)"
-      }
-    ]
+    name: "string.interpolated.edgeql"
+    match: "(`.*?`)"
   values:
     patterns: [
       {
@@ -289,8 +295,8 @@ repository:
     match: "(\\\\['\"])"
   links:
     name: "variable.parameter.shape.edgeql"
-    begin: "(?=[[:alnum:]_]|{[[:alnum:]_])"
-    end: "(?=[\\s,{])"
+    begin: "(?=[[:alpha:]_]|`)"
+    end: "(?=[\\s,:{})])"
     patterns: [
       {
         include: "#identifier"
@@ -319,8 +325,8 @@ repository:
     ]
   path:
     contentName: "entity.name.function.path.edgeql"
-    begin: "(?=[[:alnum:]_]|{[[:alnum:]_])"
-    end: "(?<=[[:alnum:]_}])"
+    begin: "(?=[[:alpha:]_]|`)"
+    end: "(?<=[[:alnum:]_`])"
     patterns: [
       {
         include: "#identifier"
@@ -331,7 +337,7 @@ repository:
     ]
   shape:
     name: "meta.shape.edgeql"
-    begin: "(\\{)(?=\\s)"
+    begin: "(\\{)"
     end: "(\\})"
     beginCaptures:
       "1":
@@ -348,5 +354,11 @@ repository:
       }
       {
         include: "#variables"
+      }
+      {
+        include: "#shape"
+      }
+      {
+        include: "#expressions"
       }
     ]

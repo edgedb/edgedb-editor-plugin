@@ -1,38 +1,46 @@
-SELECT
-    {mod2::Person}{
-        id,
-        name,
-        groups{
-            id,
-            name,
-        }
-    }
+SELECT Foo {
+    <bar: {
+        baz:= (SELECT Doo {foo}),
+        spam,
+    },
+    ham,
+};
+
 
 
 
 SELECT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
               : meta.query.edgeql, source.edgeql
-{             : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
-mod2          : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
-::            : entity.name.edgeql, entity.name.function.path.edgeql, keyword.operator.namespace.edgeql, meta.query.edgeql, source.edgeql
-Person        : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
-}             : entity.name.edgeql, entity.name.function.path.edgeql, meta.query.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+Foo           : entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
+              : meta.query.edgeql, source.edgeql
 {             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.begin.edgeql, source.edgeql
               : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-id            : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+<             : keyword.operator.edgeql, meta.query.edgeql, meta.shape.edgeql, source.edgeql
+bar           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+:             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+{             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.begin.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+baz           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+:=            : keyword.operator.edgeql, meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+(             : meta.query.edgeql, meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
+SELECT        : keyword.other.query.edgeql, meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+Doo           : entity.name.function.path.edgeql, meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+{             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.begin.edgeql, source.edgeql
+foo           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+}             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
+)             : meta.query.edgeql, meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
 ,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
               : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-name          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
-,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-groups        : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
-{             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-id            : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
-,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-name          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+spam          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
 ,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
               : meta.query.edgeql, meta.shape.edgeql, source.edgeql
 }             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
-    }         : source.edgeql
+,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+ham           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
+,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
+}             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql

@@ -1,0 +1,9 @@
+FALSE
+NULL
+TRUE
+
+
+
+FALSE         : constant.language.boolean.false.edgeql, source.edgeql
+NULL          : constant.language.null.edgeql, source.edgeql
+TRUE          : constant.language.boolean.true.edgeql, source.edgeql

@@ -1,7 +1,7 @@
 CREATE DATABASE mytestdb;
-CREATE DATABASE {mytestdb};
-CREATE DATABASE {SET};
-CREATE DATABASE {CREATE};
+CREATE DATABASE `mytestdb`;
+CREATE DATABASE `SET`;
+CREATE DATABASE `CREATE`;
 
 
 
@@ -15,23 +15,17 @@ CREATE        : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
 DATABASE      : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
-{             : entity.name.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
-mytestdb      : entity.name.edgeql, source.edgeql
-}             : entity.name.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+`mytestdb`    : source.edgeql, string.interpolated.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
 CREATE        : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
 DATABASE      : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
-{             : entity.name.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
-SET           : entity.name.edgeql, source.edgeql
-}             : entity.name.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+`SET`         : source.edgeql, string.interpolated.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
 CREATE        : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
 DATABASE      : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
-{             : entity.name.edgeql, punctuation.definition.name.begin.edgeql, source.edgeql
-CREATE        : entity.name.edgeql, source.edgeql
-}             : entity.name.edgeql, punctuation.definition.name.end.edgeql, source.edgeql
+`CREATE`      : source.edgeql, string.interpolated.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql

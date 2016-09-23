@@ -29,6 +29,26 @@
         <array>
           <dict>
             <key>include</key>
+            <string>#queries</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#expressions</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>punctuation.statement.delimiter.edgeql</string>
+            <key>match</key>
+            <string>(;)</string>
+          </dict>
+        </array>
+      </dict>
+      <key>expressions</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
             <string>#comments</string>
           </dict>
           <dict>
@@ -49,11 +69,7 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#queries</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#names</string>
+            <string>#quoted-name</string>
           </dict>
           <dict>
             <key>include</key>
@@ -64,10 +80,44 @@
             <string>#variables</string>
           </dict>
           <dict>
+            <key>include</key>
+            <string>#parenthesised</string>
+          </dict>
+        </array>
+      </dict>
+      <key>parenthesised</key>
+      <dict>
+        <key>name</key>
+        <string>meta.shape.edgeql</string>
+        <key>begin</key>
+        <string>(\()</string>
+        <key>end</key>
+        <string>(\))</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
             <key>name</key>
-            <string>punctuation.statement.delimiter.edgeql</string>
-            <key>match</key>
-            <string>(;)</string>
+            <string>punctuation.parenthesis.begin.edgeql</string>
+          </dict>
+        </dict>
+        <key>endCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.parenthesis.end.edgeql</string>
+          </dict>
+        </dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#queries</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#expressions</string>
           </dict>
         </array>
       </dict>
@@ -118,19 +168,19 @@
             <key>name</key>
             <string>keyword.other.declaration.edgeql</string>
             <key>match</key>
-            <string>(?ix) \b(
+            <string>(?ix) \b(?&lt;![:\.])(
   abstract | action | after | all | alter | and | any | as |
-  asc | atom | attribute | before | by | cast | commit |
+  asc | atom | attribute | before | by | commit |
   concept | constraint | create | database | delete | delta |
   desc | distinct | drop | except | exists | event |
   filter | final | first | for | from | function | group |
   ilike | in | index | inherit | inheriting | inout |
   intersect | is | last | like | limit | link | mod |
-  module | namespace | no | none | nones | not | of | offset |
+  module | no | not | nulls | of | offset |
   operator | or | order | out | over | partition | policy |
-  property | required | rename | returning | set |
-  some | target | to | union | using | where |
-  with
+  property | required | rename | returning | rollback | set |
+  single | some | start | target | then | to | transaction |
+  union | using | where | with
 )\b
 </string>
           </dict>
@@ -146,6 +196,12 @@
             <key>match</key>
             <string>(?i)\b(false)\b</string>
           </dict>
+          <dict>
+            <key>name</key>
+            <string>constant.language.null.edgeql</string>
+            <key>match</key>
+            <string>(?i)\b(null)\b</string>
+          </dict>
         </array>
       </dict>
       <key>operators</key>
@@ -160,8 +216,8 @@
   = | @@! | @@ | := |
 
   # EdgeQL-specific multi-char ops
-  (?&lt;opchar_edgeql&gt;[~!\#&amp;|`?])
-    ((?&lt;opchar&gt;[~!\#&amp;|`?+\-*/^&lt;&gt;=]) (?!/\*|--))+
+  (?&lt;opchar_edgeql&gt;[~!\#&amp;|?])
+    ((?&lt;opchar&gt;[~!\#&amp;|?+\-*/^&lt;&gt;=]) (?!/\*|--))+
   |
   (\g&lt;opchar&gt; (?!/\*|--))+ \g&lt;opchar_edgeql&gt; (\g&lt;opchar&gt; (?!/\*|--))*
   |
@@ -183,16 +239,6 @@
           </dict>
         </array>
       </dict>
-      <key>names</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#quoted-name</string>
-          </dict>
-        </array>
-      </dict>
       <key>builtins</key>
       <dict>
         <key>patterns</key>
@@ -201,7 +247,7 @@
             <key>name</key>
             <string>support.type.builtin.edgeql</string>
             <key>match</key>
-            <string>(?x) \b(
+            <string>(?x) \b(?&lt;![:\.])(
   std | any | typeref | atomref | conceptref | bytes |
   datetime | uuid | str | timedelta | date | time | int | none |
   float | bool | pattern | sequence
@@ -212,7 +258,7 @@
             <key>name</key>
             <string>support.function.constraint.builtin.edgeql</string>
             <key>match</key>
-            <string>(?x) \b(
+            <string>(?x) \b(?&lt;![:\.])(
   constraint | max | enum | min | minexclusive | length |
   minlength | regexp | maxlength | maxexclusive | unique
 )\b
@@ -232,9 +278,9 @@
         <key>name</key>
         <string>constant.language.variable.edgeql</string>
         <key>begin</key>
-        <string>(\$)(?=[[:alnum:]_{])</string>
+        <string>(\$)(?=[[:alpha:]_]|`)</string>
         <key>end</key>
-        <string>(?&lt;=[[:alnum:]_}])</string>
+        <string>(?&lt;=[[:alnum:]_`])</string>
         <key>patterns</key>
         <array>
           <dict>
@@ -243,7 +289,7 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#names</string>
+            <string>#quoted-name</string>
           </dict>
         </array>
       </dict>
@@ -254,7 +300,7 @@
         <key>begin</key>
         <string>(\@)</string>
         <key>end</key>
-        <string>(?&lt;=[[:alnum:]_}])</string>
+        <string>(?&lt;=[[:alnum:]_`])</string>
         <key>patterns</key>
         <array>
           <dict>
@@ -263,56 +309,21 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#names</string>
+            <string>#quoted-name</string>
           </dict>
         </array>
       </dict>
       <key>identifier</key>
       <dict>
         <key>match</key>
-        <string>([[:alnum:]_]+)</string>
+        <string>([[:alpha:]_][[:alnum:]_]*)</string>
       </dict>
       <key>quoted-name</key>
       <dict>
         <key>name</key>
-        <string>entity.name.edgeql</string>
-        <key>begin</key>
-        <string>(\{)(?!\s)</string>
-        <key>end</key>
-        <string>(\})</string>
-        <key>beginCaptures</key>
-        <dict>
-          <key>1</key>
-          <dict>
-            <key>name</key>
-            <string>punctuation.definition.name.begin.edgeql</string>
-          </dict>
-        </dict>
-        <key>endCaptures</key>
-        <dict>
-          <key>1</key>
-          <dict>
-            <key>name</key>
-            <string>punctuation.definition.name.end.edgeql</string>
-          </dict>
-        </dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#string</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#builtins</string>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>keyword.operator.namespace.edgeql</string>
-            <key>match</key>
-            <string>(::)</string>
-          </dict>
-        </array>
+        <string>string.interpolated.edgeql</string>
+        <key>match</key>
+        <string>(`.*?`)</string>
       </dict>
       <key>values</key>
       <dict>
@@ -466,9 +477,9 @@
         <key>name</key>
         <string>variable.parameter.shape.edgeql</string>
         <key>begin</key>
-        <string>(?=[[:alnum:]_]|{[[:alnum:]_])</string>
+        <string>(?=[[:alpha:]_]|`)</string>
         <key>end</key>
-        <string>(?=[\s,{])</string>
+        <string>(?=[\s,:{})])</string>
         <key>patterns</key>
         <array>
           <dict>
@@ -515,9 +526,9 @@
         <key>contentName</key>
         <string>entity.name.function.path.edgeql</string>
         <key>begin</key>
-        <string>(?=[[:alnum:]_]|{[[:alnum:]_])</string>
+        <string>(?=[[:alpha:]_]|`)</string>
         <key>end</key>
-        <string>(?&lt;=[[:alnum:]_}])</string>
+        <string>(?&lt;=[[:alnum:]_`])</string>
         <key>patterns</key>
         <array>
           <dict>
@@ -535,7 +546,7 @@
         <key>name</key>
         <string>meta.shape.edgeql</string>
         <key>begin</key>
-        <string>(\{)(?=\s)</string>
+        <string>(\{)</string>
         <key>end</key>
         <string>(\})</string>
         <key>beginCaptures</key>
@@ -567,6 +578,14 @@
           <dict>
             <key>include</key>
             <string>#variables</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#shape</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#expressions</string>
           </dict>
         </array>
       </dict>
