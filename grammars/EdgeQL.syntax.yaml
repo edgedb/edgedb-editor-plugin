@@ -57,8 +57,8 @@ repository:
       - name: keyword.other.declaration.edgeql
         match: |
           (?ix) \b(?<![:\.])(
-            abstract | action | after | all | alter | and | any | as |
-            asc | atom | attribute | before | by | commit |
+            abstract | action | after | aggregate | all | alter | and | any |
+            as | asc | atom | attribute | before | by | commit |
             concept | constraint | create | database | delete | delta |
             desc | distinct | drop | except | exists | event |
             filter | final | first | for | from | function | group |

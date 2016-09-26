@@ -1,6 +1,7 @@
 ABSTRACT
 ACTION
 AFTER
+AGGREGATE
 ALL
 ALTER
 AND
@@ -78,6 +79,7 @@ WITH
 ABSTRACT      : keyword.other.declaration.edgeql, source.edgeql
 ACTION        : keyword.other.declaration.edgeql, source.edgeql
 AFTER         : keyword.other.declaration.edgeql, source.edgeql
+AGGREGATE     : keyword.other.declaration.edgeql, source.edgeql
 ALL           : keyword.other.declaration.edgeql, source.edgeql
 ALTER         : keyword.other.declaration.edgeql, source.edgeql
 AND           : keyword.other.declaration.edgeql, source.edgeql
