@@ -9,7 +9,6 @@
     <string>source.edgeql</string>
     <key>fileTypes</key>
     <array>
-      <string>edgeql</string>
       <string>eql</string>
     </array>
     <key>uuid</key>
