@@ -11,38 +11,38 @@ concept Issue extends foo.bar::NamedObject, Text:
 
 
 
-concept       : keyword.other.declaration.edgedbschema, source.edgedbschema
- Issue        : source.edgedbschema
-extends       : keyword.other.declaration.edgedbschema, source.edgedbschema
- foo.bar      : source.edgedbschema
-::            : keyword.operator.namespace.edgedbschema, source.edgedbschema
-NamedObject, Text: : source.edgedbschema
-              : source.edgedbschema
-link          : keyword.other.declaration.edgedbschema, source.edgedbschema
- watchers     : source.edgedbschema
-to            : keyword.operator.edgedbschema, source.edgedbschema
- User:        : source.edgedbschema
-              : meta.attribute.edgedbschema, source.edgedbschema
-mapping       : meta.attribute.edgedbschema, source.edgedbschema, variable.parameter.attribute.edgedbschema
-:             : source.edgedbschema
-**            : constant.language.mapping.edgedbschema, source.edgedbschema
-              : source.edgedbschema
-              : source.edgedbschema
-link          : keyword.other.declaration.edgedbschema, source.edgedbschema
- time_spent_log  : source.edgedbschema
-to            : keyword.operator.edgedbschema, source.edgedbschema
- LogEntry:    : source.edgedbschema
-              : meta.attribute.edgedbschema, source.edgedbschema
-mapping       : meta.attribute.edgedbschema, source.edgedbschema, variable.parameter.attribute.edgedbschema
-:             : source.edgedbschema
-1*            : constant.language.mapping.edgedbschema, source.edgedbschema
-              : source.edgedbschema
-              : source.edgedbschema
-link          : keyword.other.declaration.edgedbschema, source.edgedbschema
- owner        : source.edgedbschema
-to            : keyword.operator.edgedbschema, source.edgedbschema
- User:        : source.edgedbschema
-              : meta.attribute.edgedbschema, source.edgedbschema
-mapping       : meta.attribute.edgedbschema, source.edgedbschema, variable.parameter.attribute.edgedbschema
-:             : source.edgedbschema
-*1            : constant.language.mapping.edgedbschema, source.edgedbschema
+concept       : keyword.other.declaration.eschema, source.eschema
+ Issue        : source.eschema
+extends       : keyword.other.declaration.eschema, source.eschema
+ foo.bar      : source.eschema
+::            : keyword.operator.namespace.eschema, source.eschema
+NamedObject, Text: : source.eschema
+              : source.eschema
+link          : keyword.other.declaration.eschema, source.eschema
+ watchers     : source.eschema
+to            : keyword.operator.eschema, source.eschema
+ User:        : source.eschema
+              : meta.attribute.eschema, source.eschema
+mapping       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+:             : source.eschema
+**            : constant.language.mapping.eschema, source.eschema
+              : source.eschema
+              : source.eschema
+link          : keyword.other.declaration.eschema, source.eschema
+ time_spent_log  : source.eschema
+to            : keyword.operator.eschema, source.eschema
+ LogEntry:    : source.eschema
+              : meta.attribute.eschema, source.eschema
+mapping       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+:             : source.eschema
+1*            : constant.language.mapping.eschema, source.eschema
+              : source.eschema
+              : source.eschema
+link          : keyword.other.declaration.eschema, source.eschema
+ owner        : source.eschema
+to            : keyword.operator.eschema, source.eschema
+ User:        : source.eschema
+              : meta.attribute.eschema, source.eschema
+mapping       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+:             : source.eschema
+*1            : constant.language.mapping.eschema, source.eschema

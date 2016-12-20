@@ -6,11 +6,9 @@
     <key>name</key>
     <string>EdgeDBSchema</string>
     <key>scopeName</key>
-    <string>source.edgedbschema</string>
+    <string>source.eschema</string>
     <key>fileTypes</key>
     <array>
-      <string>edgedbs</string>
-      <string>edgedbschema</string>
       <string>eschema</string>
     </array>
     <key>uuid</key>
@@ -64,7 +62,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>comment.line.note.edgedbschema</string>
+            <string>comment.line.note.eschema</string>
             <key>match</key>
             <string>(#)\s*(BUG|FIXME|TODO|XXX).*$\n?</string>
             <key>captures</key>
@@ -72,18 +70,18 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>punctuation.definition.comment.edgedbschema</string>
+                <string>punctuation.definition.comment.eschema</string>
               </dict>
               <key>2</key>
               <dict>
                 <key>name</key>
-                <string>comment.line.note.notation.edgedbschema</string>
+                <string>comment.line.note.notation.eschema</string>
               </dict>
             </dict>
           </dict>
           <dict>
             <key>name</key>
-            <string>comment.line.number-sign.edgedbschema</string>
+            <string>comment.line.number-sign.eschema</string>
             <key>match</key>
             <string>(#).*$\n?</string>
             <key>captures</key>
@@ -91,7 +89,7 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>punctuation.definition.comment.edgedbschema</string>
+                <string>punctuation.definition.comment.eschema</string>
               </dict>
             </dict>
           </dict>
@@ -103,19 +101,19 @@
         <array>
           <dict>
             <key>name</key>
-            <string>support.type.abstract.edgedbschema</string>
+            <string>support.type.abstract.eschema</string>
             <key>match</key>
             <string>\b(abstract|final)\b</string>
           </dict>
           <dict>
             <key>name</key>
-            <string>support.type.required.edgedbschema</string>
+            <string>support.type.required.eschema</string>
             <key>match</key>
             <string>\b(required)\b</string>
           </dict>
           <dict>
             <key>name</key>
-            <string>keyword.other.declaration.edgedbschema</string>
+            <string>keyword.other.declaration.eschema</string>
             <key>match</key>
             <string>(?x) \b(
   action | atom | attribute | concept | constraint | event |
@@ -125,19 +123,19 @@
           </dict>
           <dict>
             <key>name</key>
-            <string>keyword.operator.edgedbschema</string>
+            <string>keyword.operator.eschema</string>
             <key>match</key>
             <string>\b(as|import|on|to)\b</string>
           </dict>
           <dict>
             <key>name</key>
-            <string>constant.language.boolean.true.edgedbschema</string>
+            <string>constant.language.boolean.true.eschema</string>
             <key>match</key>
             <string>\b(true)\b</string>
           </dict>
           <dict>
             <key>name</key>
-            <string>constant.language.boolean.false.edgedbschema</string>
+            <string>constant.language.boolean.false.eschema</string>
             <key>match</key>
             <string>\b(false)\b</string>
           </dict>
@@ -149,7 +147,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>meta.attribute.edgedbschema</string>
+            <string>meta.attribute.eschema</string>
             <key>match</key>
             <string>(?x)
   ^\s+
@@ -161,13 +159,13 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>variable.parameter.attribute.edgedbschema</string>
+                <string>variable.parameter.attribute.eschema</string>
               </dict>
             </dict>
           </dict>
           <dict>
             <key>name</key>
-            <string>meta.attributes.edgedbschema</string>
+            <string>meta.attributes.eschema</string>
             <key>match</key>
             <string>(?x)
   ^\s+
@@ -179,7 +177,7 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>constant.language.computable.edgedbschema</string>
+                <string>constant.language.computable.eschema</string>
               </dict>
             </dict>
           </dict>
@@ -191,7 +189,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>keyword.operator.namespace.edgedbschema</string>
+            <string>keyword.operator.namespace.eschema</string>
             <key>match</key>
             <string>(::)</string>
           </dict>
@@ -203,7 +201,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>support.type.builtin.edgedbschema</string>
+            <string>support.type.builtin.eschema</string>
             <key>match</key>
             <string>(?x) \b(
   std | any | typeref | atomref | conceptref | bytes |
@@ -220,7 +218,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>constant.language.mapping.edgedbschema</string>
+            <string>constant.language.mapping.eschema</string>
             <key>match</key>
             <string>(11|1\*|\*1|\*\*)</string>
           </dict>
@@ -249,7 +247,7 @@
       <key>number</key>
       <dict>
         <key>name</key>
-        <string>constant.numeric.edgedbschema</string>
+        <string>constant.numeric.eschema</string>
         <key>patterns</key>
         <array>
           <dict>
@@ -261,7 +259,7 @@
       <key>number-dec</key>
       <dict>
         <key>name</key>
-        <string>constant.numeric.dec.edgedbschema</string>
+        <string>constant.numeric.dec.eschema</string>
         <key>match</key>
         <string>(?x)
     (?:
@@ -282,32 +280,32 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>invalid.illegal.dec.edgedbschema</string>
+            <string>invalid.illegal.dec.eschema</string>
           </dict>
           <key>2</key>
           <dict>
             <key>name</key>
-            <string>invalid.illegal.dec.edgedbschema</string>
+            <string>invalid.illegal.dec.eschema</string>
           </dict>
           <key>4</key>
           <dict>
             <key>name</key>
-            <string>invalid.illegal.dec.edgedbschema</string>
+            <string>invalid.illegal.dec.eschema</string>
           </dict>
           <key>5</key>
           <dict>
             <key>name</key>
-            <string>storage.type.number.edgedbschema</string>
+            <string>storage.type.number.eschema</string>
           </dict>
           <key>6</key>
           <dict>
             <key>name</key>
-            <string>invalid.illegal.dec.edgedbschema</string>
+            <string>invalid.illegal.dec.eschema</string>
           </dict>
           <key>7</key>
           <dict>
             <key>name</key>
-            <string>invalid.illegal.dec.edgedbschema</string>
+            <string>invalid.illegal.dec.eschema</string>
           </dict>
         </dict>
       </dict>
@@ -317,7 +315,7 @@
         <array>
           <dict>
             <key>name</key>
-            <string>string.quoted.edgedbschema</string>
+            <string>string.quoted.eschema</string>
             <key>begin</key>
             <string>(['"])</string>
             <key>end</key>
@@ -327,7 +325,7 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>punctuation.definition.string.begin.edgedbschema</string>
+                <string>punctuation.definition.string.begin.eschema</string>
               </dict>
             </dict>
             <key>endCaptures</key>
@@ -335,7 +333,7 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>punctuation.definition.string.end.edgedbschema</string>
+                <string>punctuation.definition.string.end.eschema</string>
               </dict>
             </dict>
             <key>patterns</key>
@@ -348,7 +346,7 @@
           </dict>
           <dict>
             <key>name</key>
-            <string>string.dollar.edgedbschema</string>
+            <string>string.dollar.eschema</string>
             <key>begin</key>
             <string>(\$([[:alpha:]_][[:alnum:]]*)*\$)</string>
             <key>end</key>
@@ -358,7 +356,7 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>punctuation.definition.string.begin.edgedbschema</string>
+                <string>punctuation.definition.string.begin.eschema</string>
               </dict>
             </dict>
             <key>endCaptures</key>
@@ -366,7 +364,7 @@
               <key>1</key>
               <dict>
                 <key>name</key>
-                <string>punctuation.definition.string.end.edgedbschema</string>
+                <string>punctuation.definition.string.end.eschema</string>
               </dict>
             </dict>
           </dict>
@@ -375,7 +373,7 @@
       <key>string-escapes</key>
       <dict>
         <key>name</key>
-        <string>constant.character.escape.edgedbschema</string>
+        <string>constant.character.escape.eschema</string>
         <key>match</key>
         <string>(\\['"])</string>
       </dict>
@@ -390,7 +388,7 @@
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>punctuation.definition.list.begin.edgedbschema</string>
+            <string>punctuation.definition.list.begin.eschema</string>
           </dict>
         </dict>
         <key>endCaptures</key>
@@ -398,7 +396,7 @@
           <key>0</key>
           <dict>
             <key>name</key>
-            <string>punctuation.definition.list.end.edgedbschema</string>
+            <string>punctuation.definition.list.end.eschema</string>
           </dict>
         </dict>
         <key>patterns</key>
@@ -412,7 +410,7 @@
       <key>eql-string-oneline</key>
       <dict>
         <key>name</key>
-        <string>meta.raw.oneline.edgedbschema</string>
+        <string>meta.raw.oneline.eschema</string>
         <key>begin</key>
         <string>(:=)\s*(?=\S)</string>
         <key>end</key>
@@ -422,7 +420,7 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>keyword.operator.edgedbschema</string>
+            <string>keyword.operator.eschema</string>
           </dict>
         </dict>
         <key>patterns</key>
@@ -444,7 +442,7 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>keyword.operator.edgedbschema</string>
+            <string>keyword.operator.eschema</string>
           </dict>
         </dict>
         <key>patterns</key>
@@ -458,7 +456,7 @@
       <key>eql</key>
       <dict>
         <key>name</key>
-        <string>meta.raw.oneline.edgedbschema</string>
+        <string>meta.raw.oneline.eschema</string>
         <key>begin</key>
         <string>(?=SELECT)</string>
         <key>end</key>
@@ -468,7 +466,7 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>keyword.operator.edgeqlschema</string>
+            <string>keyword.operator.eschema</string>
           </dict>
         </dict>
         <key>patterns</key>

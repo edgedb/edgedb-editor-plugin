@@ -1,8 +1,8 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
 ---
 name: EdgeDBSchema
-scopeName: source.edgedbschema
-fileTypes: ['edgedbs', 'edgedbschema', 'eschema']
+scopeName: source.eschema
+fileTypes: ['eschema']
 uuid: a560aad6-9c13-49c5-a369-5fb272c8ec1a
 
 patterns:
@@ -21,68 +21,68 @@ repository:
 
   comments:
     patterns:
-    - name: comment.line.note.edgedbschema
+    - name: comment.line.note.eschema
       match: (#)\s*(BUG|FIXME|TODO|XXX).*$\n?
       captures:
-        '1': {name: punctuation.definition.comment.edgedbschema}
-        '2': {name: comment.line.note.notation.edgedbschema}
-    - name: comment.line.number-sign.edgedbschema
+        '1': {name: punctuation.definition.comment.eschema}
+        '2': {name: comment.line.note.notation.eschema}
+    - name: comment.line.number-sign.eschema
       match: (#).*$\n?
       captures:
-        '1': {name: punctuation.definition.comment.edgedbschema}
+        '1': {name: punctuation.definition.comment.eschema}
 
   keywords:
     patterns:
-    - name: support.type.abstract.edgedbschema
+    - name: support.type.abstract.eschema
       match: \b(abstract|final)\b
 
-    - name: support.type.required.edgedbschema
+    - name: support.type.required.eschema
       match: \b(required)\b
 
-    - name: keyword.other.declaration.edgedbschema
+    - name: keyword.other.declaration.eschema
       match: |
         (?x) \b(
           action | atom | attribute | concept | constraint | event |
           extends | index | link | linkproperty | properties
         )\b
 
-    - name: keyword.operator.edgedbschema
+    - name: keyword.operator.eschema
       match: \b(as|import|on|to)\b
 
-    - name: constant.language.boolean.true.edgedbschema
+    - name: constant.language.boolean.true.eschema
       match: \b(true)\b
 
-    - name: constant.language.boolean.false.edgedbschema
+    - name: constant.language.boolean.false.eschema
       match: \b(false)\b
 
   attributes:
     patterns:
-      - name: meta.attribute.edgedbschema
+      - name: meta.attribute.eschema
         match: |
           (?x)
             ^\s+
               ([[:alpha:]_][[:alnum:]_]*)
                 (?=\s*:([^=]|\n))
         captures:
-          '1': {name: variable.parameter.attribute.edgedbschema}
+          '1': {name: variable.parameter.attribute.eschema}
 
-      - name: meta.attributes.edgedbschema
+      - name: meta.attributes.eschema
         match: |
           (?x)
             ^\s+
               ([[:alpha:]_][[:alnum:]_]*)
                 (?=\s*:=)
         captures:
-          '1': {name: constant.language.computable.edgedbschema}
+          '1': {name: constant.language.computable.eschema}
 
   operators:
     patterns:
-    - name: keyword.operator.namespace.edgedbschema
+    - name: keyword.operator.namespace.eschema
       match: (::)
 
   names:
     patterns:
-    - name: support.type.builtin.edgedbschema
+    - name: support.type.builtin.eschema
       match: |
         (?x) \b(
           std | any | typeref | atomref | conceptref | bytes |
@@ -92,7 +92,7 @@ repository:
 
   values:
     patterns:
-      - name: constant.language.mapping.edgedbschema
+      - name: constant.language.mapping.eschema
         match: (11|1\*|\*1|\*\*)
 
       - include: '#list'
@@ -102,12 +102,12 @@ repository:
       - include: '#eql-string'
 
   number:
-    name: constant.numeric.edgedbschema
+    name: constant.numeric.eschema
     patterns:
       - include: '#number-dec'
 
   number-dec:
-    name: constant.numeric.dec.edgedbschema
+    name: constant.numeric.dec.eschema
     match: |
       (?x)
           (?:
@@ -123,54 +123,54 @@ repository:
         (_*)
         \b
     captures:
-      '1': {name: invalid.illegal.dec.edgedbschema}
-      '2': {name: invalid.illegal.dec.edgedbschema}
-      '4': {name: invalid.illegal.dec.edgedbschema}
-      '5': {name: storage.type.number.edgedbschema}
-      '6': {name: invalid.illegal.dec.edgedbschema}
-      '7': {name: invalid.illegal.dec.edgedbschema}
+      '1': {name: invalid.illegal.dec.eschema}
+      '2': {name: invalid.illegal.dec.eschema}
+      '4': {name: invalid.illegal.dec.eschema}
+      '5': {name: storage.type.number.eschema}
+      '6': {name: invalid.illegal.dec.eschema}
+      '7': {name: invalid.illegal.dec.eschema}
 
   string:
     patterns:
-    - name: string.quoted.edgedbschema
+    - name: string.quoted.eschema
       begin: (['"])
       end: (\1)
       beginCaptures:
-        '1': {name: punctuation.definition.string.begin.edgedbschema}
+        '1': {name: punctuation.definition.string.begin.eschema}
       endCaptures:
-        '1': {name: punctuation.definition.string.end.edgedbschema}
+        '1': {name: punctuation.definition.string.end.eschema}
       patterns:
         - include: '#string-escapes'
 
-    - name: string.dollar.edgedbschema
+    - name: string.dollar.eschema
       begin: (\$([[:alpha:]_][[:alnum:]]*)*\$)
       end: (\1)
       beginCaptures:
-        '1': {name: punctuation.definition.string.begin.edgedbschema}
+        '1': {name: punctuation.definition.string.begin.eschema}
       endCaptures:
-        '1': {name: punctuation.definition.string.end.edgedbschema}
+        '1': {name: punctuation.definition.string.end.eschema}
 
   string-escapes:
-    name: constant.character.escape.edgedbschema
+    name: constant.character.escape.eschema
     match: (\\['"])
 
   list:
     begin: \[
     end: \]
     beginCaptures:
-      '0': {name: punctuation.definition.list.begin.edgedbschema}
+      '0': {name: punctuation.definition.list.begin.eschema}
     endCaptures:
-      '0': {name: punctuation.definition.list.end.edgedbschema}
+      '0': {name: punctuation.definition.list.end.eschema}
     patterns:
       - include: '#values'
 
   eql-string-oneline:
-    name: meta.raw.oneline.edgedbschema
+    name: meta.raw.oneline.eschema
     begin: (:=)\s*(?=\S)
     end: $
 
     beginCaptures:
-      '1': {name: 'keyword.operator.edgedbschema'}
+      '1': {name: 'keyword.operator.eschema'}
     patterns:
       - include: 'source.edgeql'
 
@@ -178,17 +178,17 @@ repository:
     begin: (:=)
     end: (?<!,=)(\s*$)
     beginCaptures:
-      '1': {name: 'keyword.operator.edgedbschema'}
+      '1': {name: 'keyword.operator.eschema'}
     patterns:
       - include: 'source.edgeql'
 
 
   eql:
-    name: meta.raw.oneline.edgedbschema
+    name: meta.raw.oneline.eschema
     begin: (?=SELECT)
     end: (^\s*$)|(?=\s*)(?!SELECT)
     beginCaptures:
-      '1': {name: 'keyword.operator.edgeqlschema'}
+      '1': {name: 'keyword.operator.eschema'}
     patterns:
       - include: 'source.edgeql'
 

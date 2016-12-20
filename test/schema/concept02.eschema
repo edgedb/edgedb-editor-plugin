@@ -4,14 +4,14 @@ abstract concept OwnedObject:
 
 
 
-abstract      : source.edgedbschema, support.type.abstract.edgedbschema
-              : source.edgedbschema
-concept       : keyword.other.declaration.edgedbschema, source.edgedbschema
- OwnedObject: : source.edgedbschema
-              : source.edgedbschema
-required      : source.edgedbschema, support.type.required.edgedbschema
-              : source.edgedbschema
-link          : keyword.other.declaration.edgedbschema, source.edgedbschema
- owner        : source.edgedbschema
-to            : keyword.operator.edgedbschema, source.edgedbschema
- User         : source.edgedbschema
+abstract      : source.eschema, support.type.abstract.eschema
+              : source.eschema
+concept       : keyword.other.declaration.eschema, source.eschema
+ OwnedObject: : source.eschema
+              : source.eschema
+required      : source.eschema, support.type.required.eschema
+              : source.eschema
+link          : keyword.other.declaration.eschema, source.eschema
+ owner        : source.eschema
+to            : keyword.operator.eschema, source.eschema
+ User         : source.eschema
