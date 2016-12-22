@@ -52,6 +52,10 @@
           </dict>
           <dict>
             <key>include</key>
+            <string>#code</string>
+          </dict>
+          <dict>
+            <key>include</key>
             <string>#keywords</string>
           </dict>
           <dict>
@@ -81,6 +85,88 @@
           <dict>
             <key>include</key>
             <string>#parenthesised</string>
+          </dict>
+        </array>
+      </dict>
+      <key>code</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>begin</key>
+            <string>(?xi)
+  \b(FROM) \s+
+  (SQL) \s+
+  (\$\w?\$)
+</string>
+            <key>end</key>
+            <string>(\3)</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.declaration.edgeql</string>
+              </dict>
+              <key>3</key>
+              <dict>
+                <key>name</key>
+                <string>string.quoted.edgeql</string>
+              </dict>
+            </dict>
+            <key>endCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>string.quoted.edgeql</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>source.sql</string>
+              </dict>
+            </array>
+          </dict>
+          <dict>
+            <key>begin</key>
+            <string>(?xi)
+  \b(FROM) \s+
+  (EDGEQL) \s+
+  (\$\w?\$)
+</string>
+            <key>end</key>
+            <string>(\3)</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.declaration.edgeql</string>
+              </dict>
+              <key>3</key>
+              <dict>
+                <key>name</key>
+                <string>string.quoted.edgeql</string>
+              </dict>
+            </dict>
+            <key>endCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>string.quoted.edgeql</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>source.edgeql</string>
+              </dict>
+            </array>
           </dict>
         </array>
       </dict>

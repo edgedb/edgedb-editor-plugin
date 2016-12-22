@@ -30,6 +30,9 @@ repository:
         include: "#comments"
       }
       {
+        include: "#code"
+      }
+      {
         include: "#keywords"
       }
       {
@@ -52,6 +55,55 @@ repository:
       }
       {
         include: "#parenthesised"
+      }
+    ]
+  code:
+    patterns: [
+      {
+        begin: '''
+          (?xi)
+            \\b(FROM) \\s+
+            (SQL) \\s+
+            (\\$\\w?\\$)
+          
+        '''
+        end: "(\\3)"
+        beginCaptures:
+          "1":
+            name: "keyword.other.declaration.edgeql"
+          "3":
+            name: "string.quoted.edgeql"
+        endCaptures:
+          "1":
+            name: "string.quoted.edgeql"
+        patterns: [
+          {
+            include: "source.sql"
+          }
+        ]
+      }
+      {
+        begin: '''
+          (?xi)
+            \\b(FROM) \\s+
+            (EDGEQL) \\s+
+            (\\$\\w?\\$)
+          
+        '''
+        end: "(\\3)"
+        beginCaptures:
+          "1":
+            name: "keyword.other.declaration.edgeql"
+          "3":
+            name: "string.quoted.edgeql"
+        endCaptures:
+          "1":
+            name: "string.quoted.edgeql"
+        patterns: [
+          {
+            include: "source.edgeql"
+          }
+        ]
       }
     ]
   parenthesised:

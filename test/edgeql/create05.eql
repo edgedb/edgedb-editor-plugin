@@ -1,0 +1,47 @@
+CREATE FUNCTION test::my_edgeql_func2(std::str)
+    RETURNING schema::Concept
+    FROM EdgeQL $$
+        SELECT
+            schema::Concept
+        WHERE schema::Concept.name = $1
+    $$;
+
+
+
+CREATE        : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+FUNCTION      : keyword.other.declaration.edgeql, source.edgeql
+ test         : source.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+my_edgeql_func2 : source.edgeql
+(             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
+std           : meta.shape.edgeql, source.edgeql, support.type.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, meta.shape.edgeql, source.edgeql
+str           : meta.shape.edgeql, source.edgeql
+)             : meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
+              : source.edgeql
+RETURNING     : keyword.other.declaration.edgeql, source.edgeql
+ schema       : source.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+Concept       : source.edgeql
+              : source.edgeql
+FROM          : keyword.other.declaration.edgeql, source.edgeql
+ EdgeQL       : source.edgeql
+$$            : source.edgeql, string.quoted.edgeql
+              : source.edgeql
+SELECT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
+              : meta.query.edgeql, source.edgeql
+schema        : entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
+::            : meta.query.edgeql, source.edgeql
+Concept       : entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
+              : meta.query.edgeql, source.edgeql
+WHERE         : keyword.other.declaration.edgeql, source.edgeql
+ schema       : source.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+Concept.name  : source.edgeql
+=             : keyword.operator.edgeql, source.edgeql
+ $            : source.edgeql
+1             : constant.numeric.dec.edgeql, source.edgeql
+              : source.edgeql
+$$            : source.edgeql, string.quoted.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql

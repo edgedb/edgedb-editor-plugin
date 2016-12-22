@@ -1,0 +1,46 @@
+CREATE FUNCTION std::len(array<std::any>) RETURNING std::int
+    FROm Sql $a$
+        SELECT array_length($1, 1)::bigint
+    $a$;
+array<std::any>  # back to edgeql
+
+
+
+CREATE        : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+FUNCTION      : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+std           : source.edgeql, support.type.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+len           : source.edgeql
+(             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
+array         : meta.shape.edgeql, source.edgeql, storage.type.edgeql
+<             : keyword.operator.edgeql, meta.shape.edgeql, source.edgeql
+std           : meta.shape.edgeql, source.edgeql, support.type.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, meta.shape.edgeql, source.edgeql
+any           : meta.shape.edgeql, source.edgeql
+>             : keyword.operator.edgeql, meta.shape.edgeql, source.edgeql
+)             : meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
+              : source.edgeql
+RETURNING     : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+std           : source.edgeql, support.type.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+int           : source.edgeql
+              : source.edgeql
+FROm          : keyword.other.declaration.edgeql, source.edgeql
+ Sql          : source.edgeql
+$a$           : source.edgeql, string.quoted.edgeql
+        SELECT array_length($1, 1)::bigint : source.edgeql
+              : source.edgeql
+$a$           : source.edgeql, string.quoted.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+array         : source.edgeql, storage.type.edgeql
+<             : keyword.operator.edgeql, source.edgeql
+std           : source.edgeql, support.type.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+any           : source.edgeql
+>             : keyword.operator.edgeql, source.edgeql
+              : source.edgeql
+#             : comment.line.number-sign.edgeql, punctuation.definition.comment.edgeql, source.edgeql
+ back to edgeql : comment.line.number-sign.edgeql, source.edgeql
