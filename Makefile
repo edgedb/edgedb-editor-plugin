@@ -8,7 +8,7 @@ test: release
 	./node_modules/.bin/syntaxdev test --tests test/**/*.eql --syntax grammars/EdgeQL.syntax.yaml
 
 devenv:
-	npm install syntaxdev@0.0.10
+	npm install syntaxdev@0.0.11
 
 release:
 	./node_modules/.bin/syntaxdev build-plist --in grammars/EdgeDBSchema.syntax.yaml --out grammars/EdgeDBSchema.tmLanguage
