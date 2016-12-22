@@ -182,7 +182,7 @@ repository:
     ]
   types:
     name: "storage.type.edgeql"
-    match: "(list|map)(?=\\s*<)"
+    match: "(array|map)(?=\\s*<)"
   variables:
     name: "constant.language.variable.edgeql"
     begin: "(\\$)(?=[[:alpha:]_]|`)"
