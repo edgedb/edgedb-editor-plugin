@@ -88,28 +88,30 @@ repository:
       - name: keyword.other.declaration.edgeql
         match: |
           (?ix) \b(?<![:\.])(
-            abstract | action | after | aggregate | all | alter | and | any |
-            as | asc | atom | attribute | before | by | commit |
-            concept | constraint | create | database | delete | delta |
-            desc | distinct | drop | except | exists | event |
-            filter | final | first | for | from | function | group |
-            ilike | in | index | inherit | inheriting | inout |
-            intersect | is | last | like | limit | link | mod |
-            module | no | not | nulls | of | offset |
-            operator | or | order | out | over | partition | policy |
-            property | required | rename | returning | rollback | set |
-            single | some | start | target | then | to | transaction |
-            union | using | where | with
+            ABSTRACT | ACTION | AFTER | AGGREGATE | ALL |
+            ALTER | AND | ANY | AS | ASC | ATOM | ATTRIBUTE |
+            BEFORE | BY | COMMIT | CONCEPT | CONSTRAINT |
+            CREATE | DATABASE | DELETE | DESC | DISTINCT |
+            DROP | ELSE | EXCEPT | EXISTS | EVENT |
+            FILTER | FINAL | FIRST | FOR | FROM |
+            FUNCTION | GET | GROUP | IF | ILIKE | IN | INDEX |
+            INHERIT | INHERITING | INSERT | INTERSECT | IS |
+            LAST | LIKE | LIMIT | LINK | MIGRATION | MODULE |
+            NOT | OFFSET | OR | ORDER | OVER | PARTITION |
+            POLICY | PROPERTY | REQUIRED | RENAME | RETURNING |
+            ROLLBACK | SELECT | SET | SINGLETON | START |
+            TARGET | THEN | TO | TRANSACTION | UPDATE |
+            UNION | WITH
           )\b
 
       - name: constant.language.boolean.true.edgeql
-        match: (?i)\b(true)\b
+        match: (?i)\b(TRUE)\b
 
       - name: constant.language.boolean.false.edgeql
-        match: (?i)\b(false)\b
+        match: (?i)\b(FALSE)\b
 
-      - name: constant.language.null.edgeql
-        match: (?i)\b(null)\b
+      - name: constant.language.empty.edgeql
+        match: (?i)\b(EMPTY)\b
 
   operators:
     patterns:
@@ -249,8 +251,8 @@ repository:
   queries:
     name: meta.query.edgeql
     begin: |
-      (?xi) (SELECT | INSERT | UPDATE )
-    end: (?=WHERE|RETURNING|;)|(?<=\})(?!\s*\{)|(?<=\))
+      (?xi) (SELECT | GROUP | INSERT | UPDATE | DELETE )
+    end: (?=FILTER|RETURNING|;)|(?<=\})(?!\s*\{)|(?<=\))
     beginCaptures:
       '1': {name: keyword.other.query.edgeql}
     patterns:

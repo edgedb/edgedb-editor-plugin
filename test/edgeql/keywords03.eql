@@ -17,10 +17,10 @@ CONCEPT
 CONSTRAINT
 CREATE
 DATABASE
-DELTA
 DESC
 DISTINCT
 DROP
+ELSE
 EXCEPT
 EXISTS
 EVENT
@@ -30,47 +30,41 @@ FIRST
 FOR
 FROM
 FUNCTION
-GROUP
+GET
+IF
 ILIKE
 IN
 INDEX
 INHERIT
 INHERITING
-INOUT
 INTERSECT
 IS
 LAST
 LIKE
 LIMIT
 LINK
-MOD
+MIGRATION
 MODULE
-NO
-NULLS
 NOT
-OF
 OFFSET
-OPERATOR
 OR
 ORDER
-OUT
 OVER
 PARTITION
 POLICY
 PROPERTY
 REQUIRED
 RENAME
+RETURNING
 ROLLBACK
 SET
-SINGLE
-SOME
+SINGLETON
 START
 TARGET
 THEN
 TO
 TRANSACTION
 UNION
-WHERE
 WITH
 
 
@@ -95,10 +89,10 @@ CONCEPT       : keyword.other.declaration.edgeql, source.edgeql
 CONSTRAINT    : keyword.other.declaration.edgeql, source.edgeql
 CREATE        : keyword.other.declaration.edgeql, source.edgeql
 DATABASE      : keyword.other.declaration.edgeql, source.edgeql
-DELTA         : keyword.other.declaration.edgeql, source.edgeql
 DESC          : keyword.other.declaration.edgeql, source.edgeql
 DISTINCT      : keyword.other.declaration.edgeql, source.edgeql
 DROP          : keyword.other.declaration.edgeql, source.edgeql
+ELSE          : keyword.other.declaration.edgeql, source.edgeql
 EXCEPT        : keyword.other.declaration.edgeql, source.edgeql
 EXISTS        : keyword.other.declaration.edgeql, source.edgeql
 EVENT         : keyword.other.declaration.edgeql, source.edgeql
@@ -108,45 +102,39 @@ FIRST         : keyword.other.declaration.edgeql, source.edgeql
 FOR           : keyword.other.declaration.edgeql, source.edgeql
 FROM          : keyword.other.declaration.edgeql, source.edgeql
 FUNCTION      : keyword.other.declaration.edgeql, source.edgeql
-GROUP         : keyword.other.declaration.edgeql, source.edgeql
+GET           : keyword.other.declaration.edgeql, source.edgeql
+IF            : keyword.other.declaration.edgeql, source.edgeql
 ILIKE         : keyword.other.declaration.edgeql, source.edgeql
 IN            : keyword.other.declaration.edgeql, source.edgeql
 INDEX         : keyword.other.declaration.edgeql, source.edgeql
 INHERIT       : keyword.other.declaration.edgeql, source.edgeql
 INHERITING    : keyword.other.declaration.edgeql, source.edgeql
-INOUT         : keyword.other.declaration.edgeql, source.edgeql
 INTERSECT     : keyword.other.declaration.edgeql, source.edgeql
 IS            : keyword.other.declaration.edgeql, source.edgeql
 LAST          : keyword.other.declaration.edgeql, source.edgeql
 LIKE          : keyword.other.declaration.edgeql, source.edgeql
 LIMIT         : keyword.other.declaration.edgeql, source.edgeql
 LINK          : keyword.other.declaration.edgeql, source.edgeql
-MOD           : keyword.other.declaration.edgeql, source.edgeql
+MIGRATION     : keyword.other.declaration.edgeql, source.edgeql
 MODULE        : keyword.other.declaration.edgeql, source.edgeql
-NO            : keyword.other.declaration.edgeql, source.edgeql
-NULLS         : keyword.other.declaration.edgeql, source.edgeql
 NOT           : keyword.other.declaration.edgeql, source.edgeql
-OF            : keyword.other.declaration.edgeql, source.edgeql
 OFFSET        : keyword.other.declaration.edgeql, source.edgeql
-OPERATOR      : keyword.other.declaration.edgeql, source.edgeql
 OR            : keyword.other.declaration.edgeql, source.edgeql
 ORDER         : keyword.other.declaration.edgeql, source.edgeql
-OUT           : keyword.other.declaration.edgeql, source.edgeql
 OVER          : keyword.other.declaration.edgeql, source.edgeql
 PARTITION     : keyword.other.declaration.edgeql, source.edgeql
 POLICY        : keyword.other.declaration.edgeql, source.edgeql
 PROPERTY      : keyword.other.declaration.edgeql, source.edgeql
 REQUIRED      : keyword.other.declaration.edgeql, source.edgeql
 RENAME        : keyword.other.declaration.edgeql, source.edgeql
+RETURNING     : keyword.other.declaration.edgeql, source.edgeql
 ROLLBACK      : keyword.other.declaration.edgeql, source.edgeql
 SET           : keyword.other.declaration.edgeql, source.edgeql
-SINGLE        : keyword.other.declaration.edgeql, source.edgeql
-SOME          : keyword.other.declaration.edgeql, source.edgeql
+SINGLETON     : keyword.other.declaration.edgeql, source.edgeql
 START         : keyword.other.declaration.edgeql, source.edgeql
 TARGET        : keyword.other.declaration.edgeql, source.edgeql
 THEN          : keyword.other.declaration.edgeql, source.edgeql
 TO            : keyword.other.declaration.edgeql, source.edgeql
 TRANSACTION   : keyword.other.declaration.edgeql, source.edgeql
 UNION         : keyword.other.declaration.edgeql, source.edgeql
-WHERE         : keyword.other.declaration.edgeql, source.edgeql
 WITH          : keyword.other.declaration.edgeql, source.edgeql

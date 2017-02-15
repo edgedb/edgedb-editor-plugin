@@ -2,7 +2,7 @@ SELECT
     test::User {
         id,
     }
-WHERE
+FILTER
     ((test::User).score = $val)
 
 
@@ -20,7 +20,7 @@ id            : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.pa
 ,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
               : meta.query.edgeql, meta.shape.edgeql, source.edgeql
 }             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
-WHERE         : keyword.other.declaration.edgeql, source.edgeql
+FILTER        : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
 (             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
 (             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql

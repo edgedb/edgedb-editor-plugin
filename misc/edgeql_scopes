@@ -4,7 +4,7 @@ comment.line.number-sign.edgeql
 constant.character.escape.edgeql
 constant.language.boolean.false.edgeql
 constant.language.boolean.true.edgeql
-constant.language.null.edgeql
+constant.language.empty.edgeql
 constant.language.variable.edgeql
 constant.numeric.dec.edgeql
 constant.numeric.edgeql

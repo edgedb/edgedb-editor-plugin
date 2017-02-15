@@ -6,7 +6,7 @@ SELECT
             @lang
         }
     }
-WHERE
+FILTER
     test::`NamedObject`.name = 'Test';
 
 
@@ -36,7 +36,7 @@ lang          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, support.oth
 }             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
               : meta.query.edgeql, meta.shape.edgeql, source.edgeql
 }             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
-WHERE         : keyword.other.declaration.edgeql, source.edgeql
+FILTER        : keyword.other.declaration.edgeql, source.edgeql
     test      : source.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 `NamedObject` : source.edgeql, string.interpolated.edgeql
