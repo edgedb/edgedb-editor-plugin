@@ -69,7 +69,8 @@ repository:
         match: '''
           (?x) \\b(
             action | atom | attribute | concept | constraint | event |
-            extends | index | link | linkproperty | properties
+            extends | index | initial | link | linkproperty | properties |
+            value
           )\\b
           
         '''

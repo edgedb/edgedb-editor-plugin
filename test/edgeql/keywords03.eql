@@ -37,6 +37,7 @@ IN
 INDEX
 INHERIT
 INHERITING
+INITIAL
 INTERSECT
 IS
 LAST
@@ -66,6 +67,7 @@ TO
 TRANSACTION
 UNION
 WITH
+VALUE
 
 
 
@@ -109,6 +111,7 @@ IN            : keyword.other.declaration.edgeql, source.edgeql
 INDEX         : keyword.other.declaration.edgeql, source.edgeql
 INHERIT       : keyword.other.declaration.edgeql, source.edgeql
 INHERITING    : keyword.other.declaration.edgeql, source.edgeql
+INITIAL       : keyword.other.declaration.edgeql, source.edgeql
 INTERSECT     : keyword.other.declaration.edgeql, source.edgeql
 IS            : keyword.other.declaration.edgeql, source.edgeql
 LAST          : keyword.other.declaration.edgeql, source.edgeql
@@ -138,3 +141,4 @@ TO            : keyword.other.declaration.edgeql, source.edgeql
 TRANSACTION   : keyword.other.declaration.edgeql, source.edgeql
 UNION         : keyword.other.declaration.edgeql, source.edgeql
 WITH          : keyword.other.declaration.edgeql, source.edgeql
+VALUE         : keyword.other.declaration.edgeql, source.edgeql

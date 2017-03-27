@@ -95,13 +95,13 @@ repository:
             DROP | ELSE | EXCEPT | EXISTS | EVENT |
             FILTER | FINAL | FIRST | FOR | FROM |
             FUNCTION | GET | GROUP | IF | ILIKE | IN | INDEX |
-            INHERIT | INHERITING | INSERT | INTERSECT | IS |
+            INHERIT | INHERITING | INITIAL | INSERT | INTERSECT | IS |
             LAST | LIKE | LIMIT | LINK | MIGRATION | MODULE |
             NOT | OFFSET | OR | ORDER | OVER | PARTITION |
             POLICY | PROPERTY | REQUIRED | RENAME | RETURNING |
             ROLLBACK | SELECT | SET | SINGLETON | START |
             TARGET | THEN | TO | TRANSACTION | UPDATE |
-            UNION | WITH
+            UNION | WITH | VALUE
           )\b
 
       - name: constant.language.boolean.true.edgeql
