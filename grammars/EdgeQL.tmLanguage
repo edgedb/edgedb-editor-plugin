@@ -584,7 +584,9 @@
         <key>name</key>
         <string>meta.query.edgeql</string>
         <key>begin</key>
-        <string>(?xi) (SELECT | GROUP | INSERT | UPDATE | DELETE )
+        <string>(?ix) \b(?&lt;![:\.])(
+  SELECT | GROUP | INSERT | UPDATE | DELETE
+)\b
 </string>
         <key>end</key>
         <string>(?=FILTER|RETURNING|;)|(?&lt;=\})(?!\s*\{)|(?&lt;=\))</string>

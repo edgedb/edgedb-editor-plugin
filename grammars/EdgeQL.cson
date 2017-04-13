@@ -361,7 +361,9 @@ repository:
   queries:
     name: "meta.query.edgeql"
     begin: '''
-      (?xi) (SELECT | GROUP | INSERT | UPDATE | DELETE )
+      (?ix) \\b(?<![:\\.])(
+        SELECT | GROUP | INSERT | UPDATE | DELETE
+      )\\b
       
     '''
     end: "(?=FILTER|RETURNING|;)|(?<=\\})(?!\\s*\\{)|(?<=\\))"

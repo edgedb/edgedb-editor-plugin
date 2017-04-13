@@ -1,0 +1,12 @@
+CREATE EVENT std::delete_pointer;
+
+
+
+CREATE        : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+EVENT         : keyword.other.declaration.edgeql, source.edgeql
+              : source.edgeql
+std           : source.edgeql, support.type.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+delete_pointer : source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
