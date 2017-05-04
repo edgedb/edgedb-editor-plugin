@@ -7,11 +7,11 @@ CREATE        : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
 AGGREGATE     : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
-std           : source.edgeql, support.type.builtin.edgeql
+std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 array_agg     : source.edgeql
 (             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
-std           : meta.shape.edgeql, source.edgeql, support.type.builtin.edgeql
+std           : meta.shape.edgeql, source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, meta.shape.edgeql, source.edgeql
 any           : meta.shape.edgeql, source.edgeql
 )             : meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
@@ -20,7 +20,7 @@ RETURNING     : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
 array         : source.edgeql, storage.type.edgeql
 <             : keyword.operator.edgeql, source.edgeql
-std           : source.edgeql, support.type.builtin.edgeql
+std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 any           : source.edgeql
 >             : keyword.operator.edgeql, source.edgeql

@@ -254,20 +254,22 @@
             <string>keyword.other.declaration.edgeql</string>
             <key>match</key>
             <string>(?ix) \b(?&lt;![:\.])(
-  ABSTRACT | ACTION | AFTER | AGGREGATE | ALL |
-  ALTER | AND | ANY | AS | ASC | ATOM | ATTRIBUTE |
-  BEFORE | BY | COMMIT | CONCEPT | CONSTRAINT |
-  CREATE | DATABASE | DELETE | DESC | DISTINCT |
-  DROP | ELSE | EXCEPT | EXISTS | EVENT |
-  FILTER | FINAL | FIRST | FOR | FROM |
-  FUNCTION | GET | GROUP | IF | ILIKE | IN | INDEX |
-  INHERIT | INHERITING | INITIAL | INSERT | INTERSECT | IS |
-  LAST | LIKE | LIMIT | LINK | MIGRATION | MODULE |
-  NOT | OFFSET | OR | ORDER | OVER | PARTITION |
-  POLICY | PROPERTY | REQUIRED | RENAME | RETURNING |
+  (?# unreserved)
+  ABSTRACT | ACTION | AFTER | AS | ASC | ATOM |
+  ATTRIBUTE | BEFORE | BY | CONCEPT | CONSTRAINT | DATABASE |
+  DESC | EVENT | FINAL | FIRST | FOR | FROM | INDEX |
+  INHERIT | INHERITING | INITIAL | LAST | LINK |
+  MIGRATION | OF | POLICY | PROPERTY | REQUIRED | RENAME |
+  TARGET | THEN | TO | TRANSACTION | VALUE |
+
+  (?# reserved)
+  AGGREGATE | ALL | ALTER | AND | ANY | COMMIT | CREATE |
+  DELETE | DISTINCT | DROP | ELSE | EXCEPT | EXISTS |
+  FILTER | FUNCTION | GET | GROUP | IF | ILIKE |
+  IN | INSERT | INTERSECT | IS | LIKE | LIMIT | MODULE | NOT |
+  OFFSET | OR | ORDER | OVER | PARTITION | RETURNING |
   ROLLBACK | SELECT | SET | SINGLETON | START |
-  TARGET | THEN | TO | TRANSACTION | UPDATE |
-  UNION | WITH | VALUE
+  UPDATE | UNION | WITH
 )\b
 </string>
           </dict>
@@ -297,32 +299,21 @@
         <array>
           <dict>
             <key>name</key>
-            <string>keyword.operator.edgeql</string>
-            <key>match</key>
-            <string>(?x)
-  = | @@! | @@ | := |
-
-  # EdgeQL-specific multi-char ops
-  (?&lt;opchar_edgeql&gt;[~!\#&amp;|?])
-    ((?&lt;opchar&gt;[~!\#&amp;|?+\-*/^&lt;&gt;=]) (?!/\*|--))+
-  |
-  (\g&lt;opchar&gt; (?!/\*|--))+ \g&lt;opchar_edgeql&gt; (\g&lt;opchar&gt; (?!/\*|--))*
-  |
-  # SQL-only multi-char ops cannot end in + or -
-  ((?&lt;opchar_sql&gt;[+\-*/^&lt;&gt;=]) (?!/\*|--))+ [*/^&lt;&gt;=]
-  |
-  # single char edgeql operator
-  \g&lt;opchar_edgeql&gt;
-  |
-  # single char sql operator
-  [@+\-*/%^&lt;&gt;=]
-</string>
-          </dict>
-          <dict>
-            <key>name</key>
             <string>keyword.operator.namespace.edgeql</string>
             <key>match</key>
             <string>(::)</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>keyword.operator.edgeql</string>
+            <key>match</key>
+            <string>(?x)
+  # EdgeQL-specific multi-char ops
+  @@ | &gt;= | &lt;= | != | ~\* | ~ | \?= | \?!= | := |
+
+  # single char operators
+  [@+\-*/%^&lt;&gt;=]
+</string>
           </dict>
         </array>
       </dict>
@@ -332,22 +323,30 @@
         <array>
           <dict>
             <key>name</key>
-            <string>support.type.builtin.edgeql</string>
+            <string>support.function.builtin.edgeql</string>
             <key>match</key>
-            <string>(?x) \b(?&lt;![:\.])(
-  std | any | typeref | atomref | conceptref | bytes |
-  datetime | uuid | str | timedelta | date | time | int | none |
-  float | bool | pattern | sequence
-)\b
+            <string>(?x) \b(?&lt;!::|\.)(
+  lower | sum | count | array_agg | is_distinct | array_unpack |
+  array_enumerate | len | random | to_tsquery | to_tsvector
+)(?=\s*\()\b
 </string>
           </dict>
           <dict>
             <key>name</key>
             <string>support.function.constraint.builtin.edgeql</string>
             <key>match</key>
-            <string>(?x) \b(?&lt;![:\.])(
+            <string>(?x) \b(?&lt;!::|\.)(
   constraint | max | enum | min | minexclusive | length |
   minlength | regexp | maxlength | maxexclusive | unique
+)\b
+</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>support.other.module.builtin.edgeql</string>
+            <key>match</key>
+            <string>(?x) \b(?&lt;!::|\.)(
+  std | stdattrs | schema
 )\b
 </string>
           </dict>
@@ -355,10 +354,28 @@
       </dict>
       <key>types</key>
       <dict>
-        <key>name</key>
-        <string>storage.type.edgeql</string>
-        <key>match</key>
-        <string>(array|map)(?=\s*&lt;)</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>storage.type.edgeql</string>
+            <key>match</key>
+            <string>(?x) \b(?&lt;!::|\.)(
+  array | map | tuple
+)\b
+</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>support.type.builtin.edgeql</string>
+            <key>match</key>
+            <string>(?x) \b(?&lt;!::|\.)(
+  bytes | datetime | uuid | str | json | timedelta | date |
+  time | int | float | bool | any
+)\b
+</string>
+          </dict>
+        </array>
       </dict>
       <key>variables</key>
       <dict>
@@ -581,32 +598,73 @@
       </dict>
       <key>queries</key>
       <dict>
-        <key>name</key>
-        <string>meta.query.edgeql</string>
-        <key>begin</key>
-        <string>(?ix) \b(?&lt;![:\.])(
-  SELECT | GROUP | INSERT | UPDATE | DELETE
-)\b
-</string>
-        <key>end</key>
-        <string>(?=FILTER|RETURNING|;)|(?&lt;=\})(?!\s*\{)|(?&lt;=\))</string>
-        <key>beginCaptures</key>
-        <dict>
-          <key>1</key>
-          <dict>
-            <key>name</key>
-            <string>keyword.other.query.edgeql</string>
-          </dict>
-        </dict>
         <key>patterns</key>
         <array>
           <dict>
-            <key>include</key>
-            <string>#path</string>
+            <key>name</key>
+            <string>meta.query.edgeql</string>
+            <key>begin</key>
+            <string>(?ix) \b(?&lt;![:\.])(
+  SELECT | INSERT | DELETE
+)\b
+</string>
+            <key>end</key>
+            <string>(?x)
+  (?=FILTER | ORDER | LIMIT | OFFSET | ; | :=\s*\( )
+  |
+  (?&lt;=\})(?!\s*\{)
+  |
+  (?&lt;=\))
+</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.query.edgeql</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#keywords</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#path</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#shape</string>
+              </dict>
+            </array>
           </dict>
           <dict>
-            <key>include</key>
-            <string>#shape</string>
+            <key>name</key>
+            <string>meta.query.edgeql</string>
+            <key>begin</key>
+            <string>(?ix) \b(?&lt;![:\.])(
+  SET
+)\b (?=\s*\{)
+</string>
+            <key>end</key>
+            <string>(?=;)|(?&lt;=\})(?!\s*\{)|(?&lt;=\))</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>keyword.other.query.edgeql</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#shape</string>
+              </dict>
+            </array>
           </dict>
         </array>
       </dict>

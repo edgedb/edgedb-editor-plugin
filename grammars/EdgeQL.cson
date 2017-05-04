@@ -149,20 +149,22 @@ repository:
         name: "keyword.other.declaration.edgeql"
         match: '''
           (?ix) \\b(?<![:\\.])(
-            ABSTRACT | ACTION | AFTER | AGGREGATE | ALL |
-            ALTER | AND | ANY | AS | ASC | ATOM | ATTRIBUTE |
-            BEFORE | BY | COMMIT | CONCEPT | CONSTRAINT |
-            CREATE | DATABASE | DELETE | DESC | DISTINCT |
-            DROP | ELSE | EXCEPT | EXISTS | EVENT |
-            FILTER | FINAL | FIRST | FOR | FROM |
-            FUNCTION | GET | GROUP | IF | ILIKE | IN | INDEX |
-            INHERIT | INHERITING | INITIAL | INSERT | INTERSECT | IS |
-            LAST | LIKE | LIMIT | LINK | MIGRATION | MODULE |
-            NOT | OFFSET | OR | ORDER | OVER | PARTITION |
-            POLICY | PROPERTY | REQUIRED | RENAME | RETURNING |
+            (?# unreserved)
+            ABSTRACT | ACTION | AFTER | AS | ASC | ATOM |
+            ATTRIBUTE | BEFORE | BY | CONCEPT | CONSTRAINT | DATABASE |
+            DESC | EVENT | FINAL | FIRST | FOR | FROM | INDEX |
+            INHERIT | INHERITING | INITIAL | LAST | LINK |
+            MIGRATION | OF | POLICY | PROPERTY | REQUIRED | RENAME |
+            TARGET | THEN | TO | TRANSACTION | VALUE |
+          
+            (?# reserved)
+            AGGREGATE | ALL | ALTER | AND | ANY | COMMIT | CREATE |
+            DELETE | DISTINCT | DROP | ELSE | EXCEPT | EXISTS |
+            FILTER | FUNCTION | GET | GROUP | IF | ILIKE |
+            IN | INSERT | INTERSECT | IS | LIKE | LIMIT | MODULE | NOT |
+            OFFSET | OR | ORDER | OVER | PARTITION | RETURNING |
             ROLLBACK | SELECT | SET | SINGLETON | START |
-            TARGET | THEN | TO | TRANSACTION | UPDATE |
-            UNION | WITH | VALUE
+            UPDATE | UNION | WITH
           )\\b
           
         '''
@@ -183,60 +185,76 @@ repository:
   operators:
     patterns: [
       {
+        name: "keyword.operator.namespace.edgeql"
+        match: "(::)"
+      }
+      {
         name: "keyword.operator.edgeql"
         match: '''
           (?x)
-            = | @@! | @@ | := |
-          
             # EdgeQL-specific multi-char ops
-            (?<opchar_edgeql>[~!\\#&|?])
-              ((?<opchar>[~!\\#&|?+\\-*/^<>=]) (?!/\\*|--))+
-            |
-            (\\g<opchar> (?!/\\*|--))+ \\g<opchar_edgeql> (\\g<opchar> (?!/\\*|--))*
-            |
-            # SQL-only multi-char ops cannot end in + or -
-            ((?<opchar_sql>[+\\-*/^<>=]) (?!/\\*|--))+ [*/^<>=]
-            |
-            # single char edgeql operator
-            \\g<opchar_edgeql>
-            |
-            # single char sql operator
+            @@ | >= | <= | != | ~\\* | ~ | \\?= | \\?!= | := |
+          
+            # single char operators
             [@+\\-*/%^<>=]
           
         '''
-      }
-      {
-        name: "keyword.operator.namespace.edgeql"
-        match: "(::)"
       }
     ]
   builtins:
     patterns: [
       {
-        name: "support.type.builtin.edgeql"
+        name: "support.function.builtin.edgeql"
         match: '''
-          (?x) \\b(?<![:\\.])(
-            std | any | typeref | atomref | conceptref | bytes |
-            datetime | uuid | str | timedelta | date | time | int | none |
-            float | bool | pattern | sequence
-          )\\b
+          (?x) \\b(?<!::|\\.)(
+            lower | sum | count | array_agg | is_distinct | array_unpack |
+            array_enumerate | len | random | to_tsquery | to_tsvector
+          )(?=\\s*\\()\\b
           
         '''
       }
       {
         name: "support.function.constraint.builtin.edgeql"
         match: '''
-          (?x) \\b(?<![:\\.])(
+          (?x) \\b(?<!::|\\.)(
             constraint | max | enum | min | minexclusive | length |
             minlength | regexp | maxlength | maxexclusive | unique
           )\\b
           
         '''
       }
+      {
+        name: "support.other.module.builtin.edgeql"
+        match: '''
+          (?x) \\b(?<!::|\\.)(
+            std | stdattrs | schema
+          )\\b
+          
+        '''
+      }
     ]
   types:
-    name: "storage.type.edgeql"
-    match: "(array|map)(?=\\s*<)"
+    patterns: [
+      {
+        name: "storage.type.edgeql"
+        match: '''
+          (?x) \\b(?<!::|\\.)(
+            array | map | tuple
+          )\\b
+          
+        '''
+      }
+      {
+        name: "support.type.builtin.edgeql"
+        match: '''
+          (?x) \\b(?<!::|\\.)(
+            bytes | datetime | uuid | str | json | timedelta | date |
+            time | int | float | bool | any
+          )\\b
+          
+        '''
+      }
+    ]
   variables:
     name: "constant.language.variable.edgeql"
     begin: "(\\$)(?=[[:alpha:]_]|`)"
@@ -359,23 +377,56 @@ repository:
       }
     ]
   queries:
-    name: "meta.query.edgeql"
-    begin: '''
-      (?ix) \\b(?<![:\\.])(
-        SELECT | GROUP | INSERT | UPDATE | DELETE
-      )\\b
-      
-    '''
-    end: "(?=FILTER|RETURNING|;)|(?<=\\})(?!\\s*\\{)|(?<=\\))"
-    beginCaptures:
-      "1":
-        name: "keyword.other.query.edgeql"
     patterns: [
       {
-        include: "#path"
+        name: "meta.query.edgeql"
+        begin: '''
+          (?ix) \\b(?<![:\\.])(
+            SELECT | INSERT | DELETE
+          )\\b
+          
+        '''
+        end: '''
+          (?x)
+            (?=FILTER | ORDER | LIMIT | OFFSET | ; | :=\\s*\\( )
+            |
+            (?<=\\})(?!\\s*\\{)
+            |
+            (?<=\\))
+          
+        '''
+        beginCaptures:
+          "1":
+            name: "keyword.other.query.edgeql"
+        patterns: [
+          {
+            include: "#keywords"
+          }
+          {
+            include: "#path"
+          }
+          {
+            include: "#shape"
+          }
+        ]
       }
       {
-        include: "#shape"
+        name: "meta.query.edgeql"
+        begin: '''
+          (?ix) \\b(?<![:\\.])(
+            SET
+          )\\b (?=\\s*\\{)
+          
+        '''
+        end: "(?=;)|(?<=\\})(?!\\s*\\{)|(?<=\\))"
+        beginCaptures:
+          "1":
+            name: "keyword.other.query.edgeql"
+        patterns: [
+          {
+            include: "#shape"
+          }
+        ]
       }
     ]
   path:

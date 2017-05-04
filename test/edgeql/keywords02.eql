@@ -1,18 +1,12 @@
 DELETE;
-GROUP;
 INSERT;
 SELECT;
-UPDATE;
 
 
 
 DELETE        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
-GROUP         : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
-;             : punctuation.statement.delimiter.edgeql, source.edgeql
 INSERT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
 SELECT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
-;             : punctuation.statement.delimiter.edgeql, source.edgeql
-UPDATE        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql

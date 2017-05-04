@@ -15,13 +15,14 @@ FUNCTION      : keyword.other.declaration.edgeql, source.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 my_edgeql_func2 : source.edgeql
 (             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
-std           : meta.shape.edgeql, source.edgeql, support.type.builtin.edgeql
+std           : meta.shape.edgeql, source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, meta.shape.edgeql, source.edgeql
 str           : meta.shape.edgeql, source.edgeql
 )             : meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
               : source.edgeql
 RETURNING     : keyword.other.declaration.edgeql, source.edgeql
- schema       : source.edgeql
+              : source.edgeql
+schema        : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 Concept       : source.edgeql
               : source.edgeql
@@ -36,7 +37,8 @@ schema        : entity.name.function.path.edgeql, meta.query.edgeql, source.edge
 Concept       : entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
               : meta.query.edgeql, source.edgeql
 FILTER        : keyword.other.declaration.edgeql, source.edgeql
- schema       : source.edgeql
+              : source.edgeql
+schema        : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 Concept.name  : source.edgeql
 =             : keyword.operator.edgeql, source.edgeql

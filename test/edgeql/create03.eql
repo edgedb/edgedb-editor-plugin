@@ -10,13 +10,13 @@ CREATE        : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
 FUNCTION      : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
-std           : source.edgeql, support.type.builtin.edgeql
+std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 len           : source.edgeql
 (             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
 array         : meta.shape.edgeql, source.edgeql, storage.type.edgeql
 <             : keyword.operator.edgeql, meta.shape.edgeql, source.edgeql
-std           : meta.shape.edgeql, source.edgeql, support.type.builtin.edgeql
+std           : meta.shape.edgeql, source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, meta.shape.edgeql, source.edgeql
 any           : meta.shape.edgeql, source.edgeql
 >             : keyword.operator.edgeql, meta.shape.edgeql, source.edgeql
@@ -24,7 +24,7 @@ any           : meta.shape.edgeql, source.edgeql
               : source.edgeql
 RETURNING     : keyword.other.declaration.edgeql, source.edgeql
               : source.edgeql
-std           : source.edgeql, support.type.builtin.edgeql
+std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 int           : source.edgeql
               : source.edgeql
@@ -37,7 +37,7 @@ $$            : source.edgeql, string.quoted.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
 array         : source.edgeql, storage.type.edgeql
 <             : keyword.operator.edgeql, source.edgeql
-std           : source.edgeql, support.type.builtin.edgeql
+std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 any           : source.edgeql
 >             : keyword.operator.edgeql, source.edgeql

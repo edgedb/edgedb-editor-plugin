@@ -31,6 +31,7 @@ FOR
 FROM
 FUNCTION
 GET
+GROUP
 IF
 ILIKE
 IN
@@ -66,6 +67,7 @@ THEN
 TO
 TRANSACTION
 UNION
+UPDATE
 WITH
 VALUE
 
@@ -105,6 +107,7 @@ FOR           : keyword.other.declaration.edgeql, source.edgeql
 FROM          : keyword.other.declaration.edgeql, source.edgeql
 FUNCTION      : keyword.other.declaration.edgeql, source.edgeql
 GET           : keyword.other.declaration.edgeql, source.edgeql
+GROUP         : keyword.other.declaration.edgeql, source.edgeql
 IF            : keyword.other.declaration.edgeql, source.edgeql
 ILIKE         : keyword.other.declaration.edgeql, source.edgeql
 IN            : keyword.other.declaration.edgeql, source.edgeql
@@ -140,5 +143,6 @@ THEN          : keyword.other.declaration.edgeql, source.edgeql
 TO            : keyword.other.declaration.edgeql, source.edgeql
 TRANSACTION   : keyword.other.declaration.edgeql, source.edgeql
 UNION         : keyword.other.declaration.edgeql, source.edgeql
+UPDATE        : keyword.other.declaration.edgeql, source.edgeql
 WITH          : keyword.other.declaration.edgeql, source.edgeql
 VALUE         : keyword.other.declaration.edgeql, source.edgeql
