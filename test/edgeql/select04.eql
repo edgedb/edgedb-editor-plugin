@@ -18,7 +18,7 @@ SELECT        : keyword.declaration.edgeql, source.edgeql
 bar:          : source.edgeql
 {             : punctuation.parenthesis.begin.edgeql, source.edgeql
               : source.edgeql
-baz           : source.edgeql, variable.parameter.definition.edgeql
+baz           : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
 (             : punctuation.parenthesis.begin.edgeql, source.edgeql

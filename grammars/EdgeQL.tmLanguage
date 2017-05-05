@@ -48,10 +48,6 @@
         <array>
           <dict>
             <key>include</key>
-            <string>#definition</string>
-          </dict>
-          <dict>
-            <key>include</key>
             <string>#comments</string>
           </dict>
           <dict>
@@ -394,6 +390,10 @@
       <dict>
         <key>patterns</key>
         <array>
+          <dict>
+            <key>include</key>
+            <string>#definition</string>
+          </dict>
           <dict>
             <key>include</key>
             <string>#expressions</string>

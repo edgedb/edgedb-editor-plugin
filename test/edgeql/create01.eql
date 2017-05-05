@@ -23,9 +23,7 @@ constraint    : source.edgeql, support.function.constraint.builtin.edgeql
 {             : punctuation.parenthesis.begin.edgeql, source.edgeql
               : source.edgeql
 SET           : keyword.declaration.edgeql, source.edgeql
-              : source.edgeql
-errmessage    : source.edgeql, variable.parameter.definition.edgeql
-              : source.edgeql
+ errmessage   : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
 '             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
@@ -34,9 +32,7 @@ invalid {subject} : source.edgeql, string.quoted.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
               : source.edgeql
 SET           : keyword.declaration.edgeql, source.edgeql
-              : source.edgeql
-expr          : source.edgeql, variable.parameter.definition.edgeql
-              : source.edgeql
+ expr         : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
 (             : punctuation.parenthesis.begin.edgeql, source.edgeql

@@ -19,7 +19,6 @@ repository:
 
   expressions:
     patterns:
-      - include: '#definition'
       - include: '#comments'
       - include: '#code'
       - include: '#keywords'
@@ -156,6 +155,7 @@ repository:
 
   fncallargs:
     patterns:
+      - include: '#definition'
       - include: '#expressions'
       - name: punctuation.separator.arguments.edgeql
         match: (,)

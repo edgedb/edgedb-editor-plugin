@@ -27,9 +27,6 @@ repository:
   expressions:
     patterns: [
       {
-        include: "#definition"
-      }
-      {
         include: "#comments"
       }
       {
@@ -247,6 +244,9 @@ repository:
     ]
   fncallargs:
     patterns: [
+      {
+        include: "#definition"
+      }
       {
         include: "#expressions"
       }
