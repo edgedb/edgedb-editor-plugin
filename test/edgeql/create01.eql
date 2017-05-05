@@ -5,21 +5,27 @@ CreatE CONSTRAINT std::regexp INHERITING std::constraint {
 
 
 
-CreatE        : keyword.other.declaration.edgeql, source.edgeql
+
+CreatE        : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-CONSTRAINT    : keyword.other.declaration.edgeql, source.edgeql
-              : source.edgeql
-std           : source.edgeql, support.other.module.builtin.edgeql
-::            : keyword.operator.namespace.edgeql, source.edgeql
-regexp        : source.edgeql
-INHERITING    : keyword.other.declaration.edgeql, source.edgeql
+CONSTRAINT    : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
-constraint {  : source.edgeql
+regexp        : source.edgeql, support.function.constraint.builtin.edgeql
               : source.edgeql
-SET           : keyword.other.declaration.edgeql, source.edgeql
- errmessage   : source.edgeql
+INHERITING    : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+std           : source.edgeql, support.other.module.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+constraint    : source.edgeql, support.function.constraint.builtin.edgeql
+              : source.edgeql
+{             : punctuation.parenthesis.begin.edgeql, source.edgeql
+              : source.edgeql
+SET           : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+errmessage    : source.edgeql, variable.parameter.definition.edgeql
+              : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
 '             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
@@ -27,19 +33,21 @@ invalid {subject} : source.edgeql, string.quoted.edgeql
 '             : punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
               : source.edgeql
-SET           : keyword.other.declaration.edgeql, source.edgeql
- expr         : source.edgeql
+SET           : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+expr          : source.edgeql, variable.parameter.definition.edgeql
+              : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-(             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
-(             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
-subject       : meta.shape.edgeql, source.edgeql
-~             : keyword.operator.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.shape.edgeql, source.edgeql
-$             : constant.language.variable.edgeql, meta.shape.edgeql, source.edgeql
-param         : constant.language.variable.edgeql, meta.shape.edgeql, source.edgeql
-)             : meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
-)             : meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
+(             : punctuation.parenthesis.begin.edgeql, source.edgeql
+(             : punctuation.parenthesis.begin.edgeql, source.edgeql
+subject       : source.edgeql
+~             : keyword.operator.edgeql, source.edgeql
+              : source.edgeql
+$             : constant.language.variable.edgeql, source.edgeql
+param         : constant.language.variable.edgeql, source.edgeql
+)             : punctuation.parenthesis.end.edgeql, source.edgeql
+)             : punctuation.parenthesis.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
-}             : source.edgeql
+}             : punctuation.parenthesis.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql

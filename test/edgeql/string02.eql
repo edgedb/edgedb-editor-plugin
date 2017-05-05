@@ -5,6 +5,7 @@
 
 
 
+
 "             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
 this is a string : source.edgeql, string.quoted.edgeql
 "             : punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql

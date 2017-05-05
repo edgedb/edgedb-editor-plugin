@@ -4,9 +4,10 @@ SELECT;
 
 
 
-DELETE        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
+
+DELETE        : keyword.declaration.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
-INSERT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
+INSERT        : keyword.declaration.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
-SELECT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
+SELECT        : keyword.declaration.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql

@@ -5,21 +5,22 @@ CREATE DATABASE `some.db`;
 
 
 
-CREATE        : keyword.other.declaration.edgeql, source.edgeql
+
+CREATE        : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-DATABASE      : keyword.other.declaration.edgeql, source.edgeql
+DATABASE      : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 `mytest\"db\"` : source.edgeql, string.interpolated.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
-CREATE        : keyword.other.declaration.edgeql, source.edgeql
+CREATE        : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-DATABASE      : keyword.other.declaration.edgeql, source.edgeql
+DATABASE      : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 `mytest\'db\'` : source.edgeql, string.interpolated.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
-CREATE        : keyword.other.declaration.edgeql, source.edgeql
+CREATE        : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-DATABASE      : keyword.other.declaration.edgeql, source.edgeql
+DATABASE      : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 `some.db`     : source.edgeql, string.interpolated.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql

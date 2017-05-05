@@ -4,6 +4,7 @@ concept LogEntry extends OwnedObject, Text:
 
 
 
+
 concept       : keyword.other.declaration.eschema, source.eschema
  LogEntry     : source.eschema
 extends       : keyword.other.declaration.eschema, source.eschema

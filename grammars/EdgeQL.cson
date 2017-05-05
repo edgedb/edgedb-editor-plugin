@@ -14,7 +14,7 @@ repository:
   all:
     patterns: [
       {
-        include: "#queries"
+        include: "#fnstatement"
       }
       {
         include: "#expressions"
@@ -27,6 +27,9 @@ repository:
   expressions:
     patterns: [
       {
+        include: "#definition"
+      }
+      {
         include: "#comments"
       }
       {
@@ -34,6 +37,9 @@ repository:
       }
       {
         include: "#keywords"
+      }
+      {
+        include: "#fncalls"
       }
       {
         include: "#operators"
@@ -51,10 +57,22 @@ repository:
         include: "#values"
       }
       {
+        include: "#link-properties"
+      }
+      {
         include: "#variables"
       }
       {
-        include: "#parenthesised"
+        include: "#parentheses"
+      }
+      {
+        include: "#squarebraces"
+      }
+      {
+        include: "#curlybraces"
+      }
+      {
+        include: "#casts"
       }
     ]
   code:
@@ -70,7 +88,7 @@ repository:
         end: "(\\3)"
         beginCaptures:
           "1":
-            name: "keyword.other.declaration.edgeql"
+            name: "keyword.declaration.edgeql"
           "3":
             name: "string.quoted.edgeql"
         endCaptures:
@@ -93,7 +111,7 @@ repository:
         end: "(\\3)"
         beginCaptures:
           "1":
-            name: "keyword.other.declaration.edgeql"
+            name: "keyword.declaration.edgeql"
           "3":
             name: "string.quoted.edgeql"
         endCaptures:
@@ -106,8 +124,168 @@ repository:
         ]
       }
     ]
-  parenthesised:
-    name: "meta.shape.edgeql"
+  fnstatement:
+    begin: "(?ix) \\b(?<![:\\.])(FUNCTION|AGGREGATE)\\b"
+    end: "(?=[^\\s\\w:]|$)"
+    beginCaptures:
+      "1":
+        name: "keyword.declaration.edgeql"
+    patterns: [
+      {
+        include: "#identifier"
+      }
+      {
+        name: "keyword.operator.namespace.edgeql"
+        match: "(::)"
+      }
+    ]
+  fncalls:
+    patterns: [
+      {
+        name: "meta.function-call.edgeql"
+        begin: '''
+          (?x)
+            \\b(?<!\\.)
+            # function name
+            (?:
+              (
+                lower | sum | count | array_agg | is_distinct | array_unpack |
+                array_enumerate | len | random | to_tsquery | to_tsvector
+              )
+              |
+              ([[:alpha:]_][[:alnum:]_]*)
+              |
+              (`.*?`)
+            ) \\s*(\\()
+          
+        '''
+        end: "(\\))"
+        beginCaptures:
+          "1":
+            name: "support.function.builtin.edgeql"
+          "2":
+            name: "entity.name.function.edgeql"
+          "3":
+            name: "string.interpolated.edgeql"
+          "4":
+            name: "punctuation.definition.arguments.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "punctuation.definition.arguments.end.edgeql"
+        patterns: [
+          {
+            include: "#fncallargs"
+          }
+        ]
+      }
+      {
+        name: "meta.function-call.edgeql"
+        begin: '''
+          (?x)
+            \\b(?<!\\.)
+            # module
+            (?:
+              (
+                std | stdattrs | schema
+              )
+              |
+              (?# masking built-ins in odd ways)
+              (
+                lower | sum | count | array_agg | is_distinct | array_unpack |
+                array_enumerate | len | random | to_tsquery | to_tsvector
+              )
+              |
+              ([[:alpha:]_][[:alnum:]_]*)
+              |
+              (`.*?`)
+            )
+          
+            \\s*(::)\\s*
+          
+            # function name
+            (?:
+              (
+                lower | sum | count | array_agg | is_distinct | array_unpack |
+                array_enumerate | len | random | to_tsquery | to_tsvector
+              )
+              |
+              ([[:alpha:]_][[:alnum:]_]*)
+              |
+              (`.*?`)
+            ) \\s*(\\()
+          
+        '''
+        end: "(\\))"
+        beginCaptures:
+          "1":
+            name: "support.other.module.builtin.edgeql"
+          "2":
+            name: "support.function.builtin.edgeql"
+          "3":
+            name: "entity.name.function.edgeql"
+          "4":
+            name: "string.interpolated.edgeql"
+          "5":
+            name: "keyword.operator.namespace.edgeql"
+          "6":
+            name: "support.function.builtin.edgeql"
+          "7":
+            name: "entity.name.function.edgeql"
+          "8":
+            name: "string.interpolated.edgeql"
+          "9":
+            name: "punctuation.definition.arguments.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "punctuation.definition.arguments.end.edgeql"
+        patterns: [
+          {
+            include: "#fncallargs"
+          }
+        ]
+      }
+    ]
+  fncallargs:
+    patterns: [
+      {
+        include: "#expressions"
+      }
+      {
+        name: "punctuation.separator.arguments.edgeql"
+        match: "(,)"
+      }
+      {
+        name: "invalid.illegal.delimiter.edgeql"
+        match: "(;)"
+      }
+    ]
+  definition:
+    match: '''
+      (?x)
+        (?:
+          ([[:alpha:]_][[:alnum:]_]*)
+          |
+          ([\\.\\d]\\S*?)
+        ) (?=\\s*:=)
+      
+    '''
+    captures:
+      "1":
+        name: "variable.parameter.definition.edgeql"
+      "2":
+        name: "invalid.illegal.definition.edgeql"
+  parencommon:
+    patterns: [
+      {
+        name: "punctuation.separator.element.edgeql"
+        match: "(,)"
+      }
+      {
+        name: "invalid.illegal.delimiter.edgeql"
+        match: "(;)"
+      }
+    ]
+  parentheses:
     begin: "(\\()"
     end: "(\\))"
     beginCaptures:
@@ -118,10 +296,70 @@ repository:
         name: "punctuation.parenthesis.end.edgeql"
     patterns: [
       {
-        include: "#queries"
+        include: "#expressions"
+      }
+      {
+        include: "#parencommon"
+      }
+    ]
+  squarebraces:
+    begin: "(\\[)"
+    end: "(\\])"
+    beginCaptures:
+      "1":
+        name: "punctuation.parenthesis.begin.edgeql"
+    endCaptures:
+      "1":
+        name: "punctuation.parenthesis.end.edgeql"
+    patterns: [
+      {
+        name: "keyword.operator.edgeql"
+        match: "(^|\\b|\\s)(->)($|\\b|\\s)"
       }
       {
         include: "#expressions"
+      }
+      {
+        include: "#parencommon"
+      }
+    ]
+  curlybraces:
+    begin: "(\\{)"
+    end: "(\\})"
+    beginCaptures:
+      "1":
+        name: "punctuation.parenthesis.begin.edgeql"
+    endCaptures:
+      "1":
+        name: "punctuation.parenthesis.end.edgeql"
+    patterns: [
+      {
+        include: "#comments"
+      }
+      {
+        include: "#commandblock"
+      }
+      {
+        include: "#shape"
+      }
+    ]
+  commandblock:
+    begin: "(?=SET|CREATE|ALTER|DROP|RENAME|FROM)"
+    end: "(?=\\})"
+    patterns: [
+      {
+        include: "#all"
+      }
+    ]
+  shape:
+    begin: "(?=\\S)"
+    end: "(?=\\})"
+    patterns: [
+      {
+        include: "#expressions"
+      }
+      {
+        include: "#parencommon"
       }
     ]
   comments:
@@ -146,7 +384,7 @@ repository:
   keywords:
     patterns: [
       {
-        name: "keyword.other.declaration.edgeql"
+        name: "keyword.declaration.edgeql"
         match: '''
           (?ix) \\b(?<![:\\.])(
             (?# unreserved)
@@ -158,7 +396,7 @@ repository:
             TARGET | THEN | TO | TRANSACTION | VALUE |
           
             (?# reserved)
-            AGGREGATE | ALL | ALTER | AND | ANY | COMMIT | CREATE |
+            AGGREGATE | ALL | ALTER | AND | COMMIT | CREATE |
             DELETE | DISTINCT | DROP | ELSE | EXCEPT | EXISTS |
             FILTER | FUNCTION | GET | GROUP | IF | ILIKE |
             IN | INSERT | INTERSECT | IS | LIKE | LIMIT | MODULE | NOT |
@@ -189,6 +427,10 @@ repository:
         match: "(::)"
       }
       {
+        name: "invalid.illegal.operator.edgeql"
+        match: "(->)"
+      }
+      {
         name: "keyword.operator.edgeql"
         match: '''
           (?x)
@@ -196,7 +438,7 @@ repository:
             @@ | >= | <= | != | ~\\* | ~ | \\?= | \\?!= | := |
           
             # single char operators
-            [@+\\-*/%^<>=]
+            [+\\-*/%^<>=]
           
         '''
       }
@@ -206,7 +448,7 @@ repository:
       {
         name: "support.function.builtin.edgeql"
         match: '''
-          (?x) \\b(?<!::|\\.)(
+          (?x) \\b(?<!\\.) (
             lower | sum | count | array_agg | is_distinct | array_unpack |
             array_enumerate | len | random | to_tsquery | to_tsvector
           )(?=\\s*\\()\\b
@@ -216,7 +458,7 @@ repository:
       {
         name: "support.function.constraint.builtin.edgeql"
         match: '''
-          (?x) \\b(?<!::|\\.)(
+          (?x) \\b(?<!\\.) (
             constraint | max | enum | min | minexclusive | length |
             minlength | regexp | maxlength | maxexclusive | unique
           )\\b
@@ -236,10 +478,105 @@ repository:
   types:
     patterns: [
       {
+        begin: "\\b(?<!::|\\.)(map)\\s*(<)"
+        end: "(>)"
+        beginCaptures:
+          "1":
+            name: "storage.type.edgeql"
+          "2":
+            name: "storage.type.placeholder.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "storage.type.placeholder.end.edgeql"
+        patterns: [
+          {
+            include: "#types"
+          }
+          {
+            name: "punctuation.separator.type.edgeql"
+            match: "(,)"
+          }
+          {
+            include: "#types-common"
+          }
+        ]
+      }
+      {
+        begin: "\\b(?<!::|\\.)(tuple)\\s*(<)"
+        end: "(>)"
+        beginCaptures:
+          "1":
+            name: "storage.type.edgeql"
+          "2":
+            name: "storage.type.placeholder.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "storage.type.placeholder.end.edgeql"
+        patterns: [
+          {
+            include: "#types"
+          }
+          {
+            name: "punctuation.separator.type.edgeql"
+            match: "(,)"
+          }
+          {
+            match: "(:)"
+          }
+          {
+            include: "#types-common"
+          }
+        ]
+      }
+      {
+        begin: "\\b(?<!::|\\.)(array)\\s*(<)"
+        end: "(>)"
+        beginCaptures:
+          "1":
+            name: "storage.type.edgeql"
+          "2":
+            name: "storage.type.placeholder.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "storage.type.placeholder.end.edgeql"
+        patterns: [
+          {
+            name: "invalid.illegal.type.edgeql"
+            match: "array"
+          }
+          {
+            include: "#types"
+          }
+          {
+            include: "#array-dimensions"
+          }
+          {
+            include: "#types-common"
+          }
+        ]
+      }
+      {
+        begin: "\\b(?<!::|\\.)(any)\\s*(<)"
+        end: "(>)"
+        beginCaptures:
+          "1":
+            name: "storage.type.edgeql"
+          "2":
+            name: "storage.type.placeholder.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "storage.type.placeholder.end.edgeql"
+        patterns: [
+          {
+            include: "#types-common"
+          }
+        ]
+      }
+      {
         name: "storage.type.edgeql"
         match: '''
           (?x) \\b(?<!::|\\.)(
-            array | map | tuple
+            array | map | tuple | any
           )\\b
           
         '''
@@ -247,17 +584,46 @@ repository:
       {
         name: "support.type.builtin.edgeql"
         match: '''
-          (?x) \\b(?<!::|\\.)(
+          (?x) \\b(?<!\\.) (
             bytes | datetime | uuid | str | json | timedelta | date |
-            time | int | float | bool | any
+            time | int | float | bool | auto
           )\\b
           
         '''
       }
     ]
+  "types-common":
+    patterns: [
+      {
+        include: "#identifier"
+      }
+      {
+        name: "keyword.operator.namespace.edgeql"
+        match: "(::)"
+      }
+    ]
+  "array-dimensions":
+    begin: "(\\[)"
+    end: "(\\])"
+    beginCaptures:
+      "1":
+        name: "punctuation.parenthesis.begin.edgeql"
+    endCaptures:
+      "1":
+        name: "punctuation.parenthesis.end.edgeql"
+    patterns: [
+      {
+        name: "constant.numeric.edgeql"
+        match: "(\\d+)"
+      }
+      {
+        name: "invalid.illegal.type.edgeql"
+        match: "\\S+"
+      }
+    ]
   variables:
     name: "constant.language.variable.edgeql"
-    begin: "(\\$)(?=[[:alpha:]_]|`)"
+    begin: "(\\$)(?=[[:alnum:]_]|`)"
     end: "(?<=[[:alnum:]_`])"
     patterns: [
       {
@@ -265,6 +631,9 @@ repository:
       }
       {
         include: "#quoted-name"
+      }
+      {
+        match: "(\\d)+"
       }
     ]
   "link-properties":
@@ -295,13 +664,6 @@ repository:
     ]
   number:
     name: "constant.numeric.edgeql"
-    patterns: [
-      {
-        include: "#number-dec"
-      }
-    ]
-  "number-dec":
-    name: "constant.numeric.dec.edgeql"
     match: '''
       (?x)
           (?:
@@ -364,107 +726,34 @@ repository:
   "string-escapes":
     name: "constant.character.escape.edgeql"
     match: "(\\\\['\"])"
-  links:
-    name: "variable.parameter.shape.edgeql"
-    begin: "(?=[[:alpha:]_]|`)"
-    end: "(?=[\\s,:{})])"
-    patterns: [
-      {
-        include: "#identifier"
-      }
-      {
-        include: "#quoted-name"
-      }
-    ]
-  queries:
-    patterns: [
-      {
-        name: "meta.query.edgeql"
-        begin: '''
-          (?ix) \\b(?<![:\\.])(
-            SELECT | INSERT | DELETE
-          )\\b
-          
-        '''
-        end: '''
-          (?x)
-            (?=FILTER | ORDER | LIMIT | OFFSET | ; | :=\\s*\\( )
-            |
-            (?<=\\})(?!\\s*\\{)
-            |
-            (?<=\\))
-          
-        '''
-        beginCaptures:
-          "1":
-            name: "keyword.other.query.edgeql"
-        patterns: [
-          {
-            include: "#keywords"
-          }
-          {
-            include: "#path"
-          }
-          {
-            include: "#shape"
-          }
-        ]
-      }
-      {
-        name: "meta.query.edgeql"
-        begin: '''
-          (?ix) \\b(?<![:\\.])(
-            SET
-          )\\b (?=\\s*\\{)
-          
-        '''
-        end: "(?=;)|(?<=\\})(?!\\s*\\{)|(?<=\\))"
-        beginCaptures:
-          "1":
-            name: "keyword.other.query.edgeql"
-        patterns: [
-          {
-            include: "#shape"
-          }
-        ]
-      }
-    ]
-  path:
-    contentName: "entity.name.function.path.edgeql"
-    begin: "(?=[[:alpha:]_]|`)"
-    end: "(?<=[[:alnum:]_`])"
-    patterns: [
-      {
-        include: "#identifier"
-      }
-      {
-        include: "#quoted-name"
-      }
-    ]
-  shape:
-    name: "meta.shape.edgeql"
-    begin: "(\\{)"
-    end: "(\\})"
+  casts:
+    begin: '''
+      (?xi)
+        (?:
+          (?<= ^ | [@~+\\-*/%^<>=?,:(\\[{])
+          |
+          (?<=
+            AND | OR | NOT | LIKE | ILIKE | IS | IN | IF | ELSE |
+            UNION | INTERSECT | EXCEPT | EXISTS |
+      
+            SELECT | GROUP | UPDATE | BY | THEN | FILTER | OFFSET | LIMIT
+          )
+        ) \\s* (\\<)
+      
+    '''
+    end: "(\\>)"
     beginCaptures:
       "1":
-        name: "punctuation.definition.shape.begin.edgeql"
+        name: "keyword.operator.cast.begin.edgeql"
     endCaptures:
       "1":
-        name: "punctuation.definition.shape.end.edgeql"
+        name: "keyword.operator.cast.end.edgeql"
+    contentName: "meta.typecast.edgeql"
     patterns: [
       {
-        include: "#links"
+        include: "#types"
       }
       {
-        include: "#link-properties"
-      }
-      {
-        include: "#variables"
-      }
-      {
-        include: "#shape"
-      }
-      {
-        include: "#expressions"
+        include: "#types-common"
       }
     ]

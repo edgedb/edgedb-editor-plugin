@@ -8,6 +8,7 @@ $q123$this is a \"string\"$q123$
 
 
 
+
 $$            : punctuation.definition.string.begin.edgeql, source.edgeql, string.dollar.edgeql
 this is a string : source.edgeql, string.dollar.edgeql
 $$            : punctuation.definition.string.end.edgeql, source.edgeql, string.dollar.edgeql

@@ -3,31 +3,32 @@ CREATE AGGREGATE std::array_agg(std::any) RETURNING array<std::any>
 
 
 
-CREATE        : keyword.other.declaration.edgeql, source.edgeql
+
+CREATE        : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-AGGREGATE     : keyword.other.declaration.edgeql, source.edgeql
+AGGREGATE     : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-std           : source.edgeql, support.other.module.builtin.edgeql
+std           : source.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 array_agg     : source.edgeql
-(             : meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
-std           : meta.shape.edgeql, source.edgeql, support.other.module.builtin.edgeql
-::            : keyword.operator.namespace.edgeql, meta.shape.edgeql, source.edgeql
-any           : meta.shape.edgeql, source.edgeql
-)             : meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
-              : source.edgeql
-RETURNING     : keyword.other.declaration.edgeql, source.edgeql
-              : source.edgeql
-array         : source.edgeql, storage.type.edgeql
-<             : keyword.operator.edgeql, source.edgeql
+(             : punctuation.parenthesis.begin.edgeql, source.edgeql
 std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 any           : source.edgeql
->             : keyword.operator.edgeql, source.edgeql
+)             : punctuation.parenthesis.end.edgeql, source.edgeql
               : source.edgeql
-FROM          : keyword.other.declaration.edgeql, source.edgeql
+RETURNING     : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+array         : source.edgeql, storage.type.edgeql
+<             : source.edgeql, storage.type.placeholder.begin.edgeql
+std           : source.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+any           : source.edgeql
+>             : source.edgeql, storage.type.placeholder.end.edgeql
+              : source.edgeql
+FROM          : keyword.declaration.edgeql, source.edgeql
  SQL          : source.edgeql
-AGGREGATE     : keyword.other.declaration.edgeql, source.edgeql
+AGGREGATE     : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 '             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
 array_agg     : source.edgeql, string.quoted.edgeql

@@ -9,38 +9,32 @@ SELECT Foo {
 
 
 
-SELECT        : keyword.other.query.edgeql, meta.query.edgeql, source.edgeql
-              : meta.query.edgeql, source.edgeql
-Foo           : entity.name.function.path.edgeql, meta.query.edgeql, source.edgeql
-              : meta.query.edgeql, source.edgeql
-{             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.begin.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-<             : keyword.operator.edgeql, meta.query.edgeql, meta.shape.edgeql, source.edgeql
-bar           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
-:             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-{             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.begin.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-baz           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
-:=            : keyword.operator.edgeql, meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-(             : meta.query.edgeql, meta.shape.edgeql, punctuation.parenthesis.begin.edgeql, source.edgeql
-SELECT        : keyword.other.query.edgeql, meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-Doo           : entity.name.function.path.edgeql, meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-{             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.begin.edgeql, source.edgeql
-foo           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
-}             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
-)             : meta.query.edgeql, meta.shape.edgeql, punctuation.parenthesis.end.edgeql, source.edgeql
-,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-spam          : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
-,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-}             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
-,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-              : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-ham           : meta.query.edgeql, meta.shape.edgeql, source.edgeql, variable.parameter.shape.edgeql
-,             : meta.query.edgeql, meta.shape.edgeql, source.edgeql
-}             : meta.query.edgeql, meta.shape.edgeql, punctuation.definition.shape.end.edgeql, source.edgeql
+
+SELECT        : keyword.declaration.edgeql, source.edgeql
+ Foo          : source.edgeql
+{             : punctuation.parenthesis.begin.edgeql, source.edgeql
+              : source.edgeql
+<             : keyword.operator.edgeql, source.edgeql
+bar:          : source.edgeql
+{             : punctuation.parenthesis.begin.edgeql, source.edgeql
+              : source.edgeql
+baz           : source.edgeql, variable.parameter.definition.edgeql
+:=            : keyword.operator.edgeql, source.edgeql
+              : source.edgeql
+(             : punctuation.parenthesis.begin.edgeql, source.edgeql
+SELECT        : keyword.declaration.edgeql, source.edgeql
+ Doo          : source.edgeql
+{             : punctuation.parenthesis.begin.edgeql, source.edgeql
+foo           : source.edgeql
+}             : punctuation.parenthesis.end.edgeql, source.edgeql
+)             : punctuation.parenthesis.end.edgeql, source.edgeql
+,             : punctuation.separator.element.edgeql, source.edgeql
+        spam  : source.edgeql
+,             : punctuation.separator.element.edgeql, source.edgeql
+              : source.edgeql
+}             : punctuation.parenthesis.end.edgeql, source.edgeql
+,             : punctuation.separator.element.edgeql, source.edgeql
+    ham       : source.edgeql
+,             : punctuation.separator.element.edgeql, source.edgeql
+}             : punctuation.parenthesis.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql

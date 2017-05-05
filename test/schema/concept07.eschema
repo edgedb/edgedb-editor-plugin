@@ -11,6 +11,7 @@ concept Issue extends foo.bar::NamedObject, Text:
 
 
 
+
 concept       : keyword.other.declaration.eschema, source.eschema
  Issue        : source.eschema
 extends       : keyword.other.declaration.eschema, source.eschema
