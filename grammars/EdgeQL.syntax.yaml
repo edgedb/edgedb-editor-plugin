@@ -253,7 +253,7 @@ repository:
             DESC | EVENT | FINAL | FIRST | FOR | FROM | INDEX |
             INHERIT | INHERITING | INITIAL | LAST | LINK |
             MIGRATION | OF | POLICY | PROPERTY | REQUIRED | RENAME |
-            TARGET | THEN | TO | TRANSACTION | VALUE |
+            TARGET | THEN | TO | TRANSACTION | VALUE | VIEW |
 
             (?# reserved)
             AGGREGATE | ALL | ALTER | AND | COMMIT | CREATE |

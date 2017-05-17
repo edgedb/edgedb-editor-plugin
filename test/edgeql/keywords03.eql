@@ -69,7 +69,7 @@ UNION
 UPDATE
 WITH
 VALUE
-
+VIEW
 
 
 
@@ -145,3 +145,4 @@ UNION         : keyword.declaration.edgeql, source.edgeql
 UPDATE        : keyword.declaration.edgeql, source.edgeql
 WITH          : keyword.declaration.edgeql, source.edgeql
 VALUE         : keyword.declaration.edgeql, source.edgeql
+VIEW          : keyword.declaration.edgeql, source.edgeql

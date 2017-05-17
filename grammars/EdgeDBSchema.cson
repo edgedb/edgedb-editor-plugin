@@ -70,7 +70,7 @@ repository:
           (?x) \\b(
             action | atom | attribute | concept | constraint | event |
             extends | index | initial | link | linkproperty | properties |
-            value
+            value | view
           )\\b
           
         '''
