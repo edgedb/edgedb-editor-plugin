@@ -1,6 +1,6 @@
 SELECT Foo {
     <bar: {
-        baz:= (SELECT Doo {foo}),
+        baz := (SELECT Doo {foo}),
         spam,
     },
     ham,

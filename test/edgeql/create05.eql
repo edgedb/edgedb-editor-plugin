@@ -1,5 +1,5 @@
 CREATE FUNCTION test::my_edgeql_func2(std::str)
-    RETURNING schema::Concept
+        -> schema::Concept
     FROM EdgeQL $$
         SELECT
             schema::Concept
@@ -22,7 +22,7 @@ std           : source.edgeql, support.other.module.builtin.edgeql
 str           : source.edgeql, support.type.builtin.edgeql
 )             : punctuation.parenthesis.end.edgeql, source.edgeql
               : source.edgeql
-RETURNING     : keyword.declaration.edgeql, source.edgeql
+->            : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 schema        : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql

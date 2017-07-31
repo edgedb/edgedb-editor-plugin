@@ -66,11 +66,12 @@ repository:
           - include: 'source.edgeql'
 
   fnstatement:
-    begin: (?ix) \b(?<![:\.])(FUNCTION|AGGREGATE)\b
-    end: (?=[^\s\w:]|$)
+    begin: (?ix) \b(?<![:\.])(FUNCTION|AGGREGATE|CONSTRAINT)\b
+    end: (?=[^\s\w:]|\bEXTENDING\b|$)
     beginCaptures:
       '1': {name: keyword.declaration.edgeql}
     patterns:
+      - include: '#builtins'
       - include: '#identifier'
       - name: keyword.operator.namespace.edgeql
         match: (::)
@@ -248,21 +249,22 @@ repository:
         match: |
           (?ix) \b(?<![:\.])(
             (?# unreserved)
-            ABSTRACT | ACTION | AFTER | AS | ASC | ATOM |
-            ATTRIBUTE | BEFORE | BY | CONCEPT | CONSTRAINT | DATABASE |
-            DESC | EVENT | FINAL | FIRST | FOR | FROM | INDEX |
-            INHERIT | INHERITING | INITIAL | LAST | LINK |
-            MIGRATION | OF | POLICY | PROPERTY | REQUIRED | RENAME |
-            TARGET | THEN | TO | TRANSACTION | VALUE | VIEW |
+
+            abstract | action | after | as | asc | atom |
+            attribute | before | by | concept | constraint |
+            database | delegated | desc | event | extending | final |
+            first | for | from | index | initial | last | link |
+            migration | of | policy | property | required | rename |
+            target | then | to | transaction | value | view |
 
             (?# reserved)
-            AGGREGATE | ALL | ALTER | AND | COMMIT | CREATE |
-            DELETE | DISTINCT | DROP | ELSE | EXCEPT | EXISTS |
-            FILTER | FUNCTION | GET | GROUP | IF | ILIKE |
-            IN | INSERT | INTERSECT | IS | LIKE | LIMIT | MODULE | NOT |
-            OFFSET | OR | ORDER | OVER | PARTITION | RETURNING |
-            ROLLBACK | SELECT | SET | SINGLETON | START |
-            UPDATE | UNION | WITH
+
+            aggregate | all | alter | and | commit | create | delete |
+            distinct | drop | else | exists | filter |
+            function | get | group | if | ilike | in | insert | is |
+            like | limit | module | not | offset | or | order | over |
+            partition | rollback | select | set | singleton | start |
+            update | union | with
           )\b
 
       - name: constant.language.boolean.true.edgeql
@@ -278,13 +280,13 @@ repository:
     patterns:
       - name: keyword.operator.namespace.edgeql
         match: (::)
-      - name: invalid.illegal.operator.edgeql
-        match: (->)
+      - name: keyword.declaration.edgeql
+        match: ->
       - name: keyword.operator.edgeql
         match: |
           (?x)
             # EdgeQL-specific multi-char ops
-            @@ | >= | <= | != | ~\* | ~ | \?= | \?!= | := |
+            >= | <= | != | \?= | \?!= | := |
 
             # single char operators
             [+\-*/%^<>=]
@@ -294,8 +296,13 @@ repository:
       - name: support.function.builtin.edgeql
         match: |
           (?x) \b(?<!\.) (
-            lower | sum | count | array_agg | is_distinct | array_unpack |
-            array_enumerate | len | random | to_tsquery | to_tsvector
+            len |
+            array_agg | array_contains | array_enumerate | array_unpack |
+            lower |
+            re_match | re_match_all | re_test |
+            count | sum |
+            current_date | current_datetime | current_time |
+            random | uuid_generate_v1mc
           )(?=\s*\()\b
 
       - name: support.function.constraint.builtin.edgeql
@@ -354,27 +361,17 @@ repository:
           - include: '#array-dimensions'
           - include: '#types-common'
 
-      - begin: \b(?<!::|\.)(any)\s*(<)
-        end: (>)
-        beginCaptures:
-          '1': {name: storage.type.edgeql}
-          '2': {name: storage.type.placeholder.begin.edgeql}
-        endCaptures:
-          '1': {name: storage.type.placeholder.end.edgeql}
-        patterns:
-          - include: '#types-common'
-
       - name: storage.type.edgeql
         match: |
           (?x) \b(?<!::|\.)(
-            array | map | tuple | any
+            array | map | tuple
           )\b
 
       - name: support.type.builtin.edgeql
         match: |
           (?x) \b(?<!\.) (
             bytes | datetime | uuid | str | json | timedelta | date |
-            time | int | float | bool | auto
+            time | int | float | bool | auto | any
           )\b
 
   types-common:
@@ -481,7 +478,7 @@ repository:
           |
           (?<=
             AND | OR | NOT | LIKE | ILIKE | IS | IN | IF | ELSE |
-            UNION | INTERSECT | EXCEPT | EXISTS |
+            UNION | ALL | EXISTS |
 
             SELECT | GROUP | UPDATE | BY | THEN | FILTER | OFFSET | LIMIT
           )

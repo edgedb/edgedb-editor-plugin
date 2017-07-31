@@ -193,9 +193,9 @@
       <key>fnstatement</key>
       <dict>
         <key>begin</key>
-        <string>(?ix) \b(?&lt;![:\.])(FUNCTION|AGGREGATE)\b</string>
+        <string>(?ix) \b(?&lt;![:\.])(FUNCTION|AGGREGATE|CONSTRAINT)\b</string>
         <key>end</key>
-        <string>(?=[^\s\w:]|$)</string>
+        <string>(?=[^\s\w:]|\bEXTENDING\b|$)</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
@@ -206,6 +206,10 @@
         </dict>
         <key>patterns</key>
         <array>
+          <dict>
+            <key>include</key>
+            <string>#builtins</string>
+          </dict>
           <dict>
             <key>include</key>
             <string>#identifier</string>
@@ -647,21 +651,22 @@
             <key>match</key>
             <string>(?ix) \b(?&lt;![:\.])(
   (?# unreserved)
-  ABSTRACT | ACTION | AFTER | AS | ASC | ATOM |
-  ATTRIBUTE | BEFORE | BY | CONCEPT | CONSTRAINT | DATABASE |
-  DESC | EVENT | FINAL | FIRST | FOR | FROM | INDEX |
-  INHERIT | INHERITING | INITIAL | LAST | LINK |
-  MIGRATION | OF | POLICY | PROPERTY | REQUIRED | RENAME |
-  TARGET | THEN | TO | TRANSACTION | VALUE | VIEW |
+
+  abstract | action | after | as | asc | atom |
+  attribute | before | by | concept | constraint |
+  database | delegated | desc | event | extending | final |
+  first | for | from | index | initial | last | link |
+  migration | of | policy | property | required | rename |
+  target | then | to | transaction | value | view |
 
   (?# reserved)
-  AGGREGATE | ALL | ALTER | AND | COMMIT | CREATE |
-  DELETE | DISTINCT | DROP | ELSE | EXCEPT | EXISTS |
-  FILTER | FUNCTION | GET | GROUP | IF | ILIKE |
-  IN | INSERT | INTERSECT | IS | LIKE | LIMIT | MODULE | NOT |
-  OFFSET | OR | ORDER | OVER | PARTITION | RETURNING |
-  ROLLBACK | SELECT | SET | SINGLETON | START |
-  UPDATE | UNION | WITH
+
+  aggregate | all | alter | and | commit | create | delete |
+  distinct | drop | else | exists | filter |
+  function | get | group | if | ilike | in | insert | is |
+  like | limit | module | not | offset | or | order | over |
+  partition | rollback | select | set | singleton | start |
+  update | union | with
 )\b
 </string>
           </dict>
@@ -697,9 +702,9 @@
           </dict>
           <dict>
             <key>name</key>
-            <string>invalid.illegal.operator.edgeql</string>
+            <string>keyword.declaration.edgeql</string>
             <key>match</key>
-            <string>(-&gt;)</string>
+            <string>-&gt;</string>
           </dict>
           <dict>
             <key>name</key>
@@ -707,7 +712,7 @@
             <key>match</key>
             <string>(?x)
   # EdgeQL-specific multi-char ops
-  @@ | &gt;= | &lt;= | != | ~\* | ~ | \?= | \?!= | := |
+  &gt;= | &lt;= | != | \?= | \?!= | := |
 
   # single char operators
   [+\-*/%^&lt;&gt;=]
@@ -724,8 +729,13 @@
             <string>support.function.builtin.edgeql</string>
             <key>match</key>
             <string>(?x) \b(?&lt;!\.) (
-  lower | sum | count | array_agg | is_distinct | array_unpack |
-  array_enumerate | len | random | to_tsquery | to_tsvector
+  len |
+  array_agg | array_contains | array_enumerate | array_unpack |
+  lower |
+  re_match | re_match_all | re_test |
+  count | sum |
+  current_date | current_datetime | current_time |
+  random | uuid_generate_v1mc
 )(?=\s*\()\b
 </string>
           </dict>
@@ -895,45 +905,11 @@
             </array>
           </dict>
           <dict>
-            <key>begin</key>
-            <string>\b(?&lt;!::|\.)(any)\s*(&lt;)</string>
-            <key>end</key>
-            <string>(&gt;)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>storage.type.edgeql</string>
-              </dict>
-              <key>2</key>
-              <dict>
-                <key>name</key>
-                <string>storage.type.placeholder.begin.edgeql</string>
-              </dict>
-            </dict>
-            <key>endCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>storage.type.placeholder.end.edgeql</string>
-              </dict>
-            </dict>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#types-common</string>
-              </dict>
-            </array>
-          </dict>
-          <dict>
             <key>name</key>
             <string>storage.type.edgeql</string>
             <key>match</key>
             <string>(?x) \b(?&lt;!::|\.)(
-  array | map | tuple | any
+  array | map | tuple
 )\b
 </string>
           </dict>
@@ -943,7 +919,7 @@
             <key>match</key>
             <string>(?x) \b(?&lt;!\.) (
   bytes | datetime | uuid | str | json | timedelta | date |
-  time | int | float | bool | auto
+  time | int | float | bool | auto | any
 )\b
 </string>
           </dict>
@@ -1203,7 +1179,7 @@
     |
     (?&lt;=
       AND | OR | NOT | LIKE | ILIKE | IS | IN | IF | ELSE |
-      UNION | INTERSECT | EXCEPT | EXISTS |
+      UNION | ALL | EXISTS |
 
       SELECT | GROUP | UPDATE | BY | THEN | FILTER | OFFSET | LIMIT
     )

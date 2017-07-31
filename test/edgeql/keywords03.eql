@@ -1,50 +1,61 @@
 ABSTRACT
 ACTION
 AFTER
-AGGREGATE
-ALL
-ALTER
-AND
 AS
 ASC
 ATOM
 ATTRIBUTE
 BEFORE
 BY
-COMMIT
 CONCEPT
 CONSTRAINT
-CREATE
 DATABASE
+DELEGATED
 DESC
-DISTINCT
-DROP
-ELSE
-EXCEPT
-EXISTS
 EVENT
-FILTER
+EXTENDING
 FINAL
 FIRST
 FOR
 FROM
+INDEX
+INITIAL
+LAST
+LINK
+MIGRATION
+OF
+POLICY
+PROPERTY
+REQUIRED
+RENAME
+TARGET
+THEN
+TO
+TRANSACTION
+VALUE
+VIEW
+AGGREGATE
+ALL
+ALTER
+AND
+COMMIT
+CREATE
+DELETE
+DISTINCT
+DROP
+ELSE
+EXISTS
+FILTER
 FUNCTION
 GET
 GROUP
 IF
 ILIKE
 IN
-INDEX
-INHERIT
-INHERITING
-INITIAL
-INTERSECT
+INSERT
 IS
-LAST
 LIKE
 LIMIT
-LINK
-MIGRATION
 MODULE
 NOT
 OFFSET
@@ -52,75 +63,75 @@ OR
 ORDER
 OVER
 PARTITION
-POLICY
-PROPERTY
-REQUIRED
-RENAME
-RETURNING
 ROLLBACK
+SELECT
 SET
 SINGLETON
 START
-TARGET
-THEN
-TO
-TRANSACTION
-UNION
 UPDATE
+UNION
 WITH
-VALUE
-VIEW
-
 
 
 
 ABSTRACT      : keyword.declaration.edgeql, source.edgeql
 ACTION        : keyword.declaration.edgeql, source.edgeql
 AFTER         : keyword.declaration.edgeql, source.edgeql
-AGGREGATE     : keyword.declaration.edgeql, source.edgeql
-ALL           : keyword.declaration.edgeql, source.edgeql
-ALTER         : keyword.declaration.edgeql, source.edgeql
-AND           : keyword.declaration.edgeql, source.edgeql
 AS            : keyword.declaration.edgeql, source.edgeql
 ASC           : keyword.declaration.edgeql, source.edgeql
 ATOM          : keyword.declaration.edgeql, source.edgeql
 ATTRIBUTE     : keyword.declaration.edgeql, source.edgeql
 BEFORE        : keyword.declaration.edgeql, source.edgeql
 BY            : keyword.declaration.edgeql, source.edgeql
-COMMIT        : keyword.declaration.edgeql, source.edgeql
 CONCEPT       : keyword.declaration.edgeql, source.edgeql
 CONSTRAINT    : keyword.declaration.edgeql, source.edgeql
-CREATE        : keyword.declaration.edgeql, source.edgeql
 DATABASE      : keyword.declaration.edgeql, source.edgeql
+DELEGATED     : keyword.declaration.edgeql, source.edgeql
 DESC          : keyword.declaration.edgeql, source.edgeql
-DISTINCT      : keyword.declaration.edgeql, source.edgeql
-DROP          : keyword.declaration.edgeql, source.edgeql
-ELSE          : keyword.declaration.edgeql, source.edgeql
-EXCEPT        : keyword.declaration.edgeql, source.edgeql
-EXISTS        : keyword.declaration.edgeql, source.edgeql
 EVENT         : keyword.declaration.edgeql, source.edgeql
-FILTER        : keyword.declaration.edgeql, source.edgeql
+EXTENDING     : keyword.declaration.edgeql, source.edgeql
 FINAL         : keyword.declaration.edgeql, source.edgeql
 FIRST         : keyword.declaration.edgeql, source.edgeql
 FOR           : keyword.declaration.edgeql, source.edgeql
 FROM          : keyword.declaration.edgeql, source.edgeql
+INDEX         : keyword.declaration.edgeql, source.edgeql
+INITIAL       : keyword.declaration.edgeql, source.edgeql
+LAST          : keyword.declaration.edgeql, source.edgeql
+LINK          : keyword.declaration.edgeql, source.edgeql
+MIGRATION     : keyword.declaration.edgeql, source.edgeql
+OF            : keyword.declaration.edgeql, source.edgeql
+POLICY        : keyword.declaration.edgeql, source.edgeql
+PROPERTY      : keyword.declaration.edgeql, source.edgeql
+REQUIRED      : keyword.declaration.edgeql, source.edgeql
+RENAME        : keyword.declaration.edgeql, source.edgeql
+TARGET        : keyword.declaration.edgeql, source.edgeql
+THEN          : keyword.declaration.edgeql, source.edgeql
+TO            : keyword.declaration.edgeql, source.edgeql
+TRANSACTION   : keyword.declaration.edgeql, source.edgeql
+VALUE         : keyword.declaration.edgeql, source.edgeql
+VIEW          : keyword.declaration.edgeql, source.edgeql
+AGGREGATE     : keyword.declaration.edgeql, source.edgeql
+ALL           : keyword.declaration.edgeql, source.edgeql
+ALTER         : keyword.declaration.edgeql, source.edgeql
+AND           : keyword.declaration.edgeql, source.edgeql
+COMMIT        : keyword.declaration.edgeql, source.edgeql
+CREATE        : keyword.declaration.edgeql, source.edgeql
+DELETE        : keyword.declaration.edgeql, source.edgeql
+DISTINCT      : keyword.declaration.edgeql, source.edgeql
+DROP          : keyword.declaration.edgeql, source.edgeql
+ELSE          : keyword.declaration.edgeql, source.edgeql
+EXISTS        : keyword.declaration.edgeql, source.edgeql
+FILTER        : keyword.declaration.edgeql, source.edgeql
 FUNCTION      : keyword.declaration.edgeql, source.edgeql
 GET           : keyword.declaration.edgeql, source.edgeql
 GROUP         : keyword.declaration.edgeql, source.edgeql
 IF            : keyword.declaration.edgeql, source.edgeql
 ILIKE         : keyword.declaration.edgeql, source.edgeql
 IN            : keyword.declaration.edgeql, source.edgeql
-INDEX         : keyword.declaration.edgeql, source.edgeql
-INHERIT       : keyword.declaration.edgeql, source.edgeql
-INHERITING    : keyword.declaration.edgeql, source.edgeql
-INITIAL       : keyword.declaration.edgeql, source.edgeql
-INTERSECT     : keyword.declaration.edgeql, source.edgeql
+INSERT        : keyword.declaration.edgeql, source.edgeql
 IS            : keyword.declaration.edgeql, source.edgeql
-LAST          : keyword.declaration.edgeql, source.edgeql
 LIKE          : keyword.declaration.edgeql, source.edgeql
 LIMIT         : keyword.declaration.edgeql, source.edgeql
-LINK          : keyword.declaration.edgeql, source.edgeql
-MIGRATION     : keyword.declaration.edgeql, source.edgeql
 MODULE        : keyword.declaration.edgeql, source.edgeql
 NOT           : keyword.declaration.edgeql, source.edgeql
 OFFSET        : keyword.declaration.edgeql, source.edgeql
@@ -128,21 +139,11 @@ OR            : keyword.declaration.edgeql, source.edgeql
 ORDER         : keyword.declaration.edgeql, source.edgeql
 OVER          : keyword.declaration.edgeql, source.edgeql
 PARTITION     : keyword.declaration.edgeql, source.edgeql
-POLICY        : keyword.declaration.edgeql, source.edgeql
-PROPERTY      : keyword.declaration.edgeql, source.edgeql
-REQUIRED      : keyword.declaration.edgeql, source.edgeql
-RENAME        : keyword.declaration.edgeql, source.edgeql
-RETURNING     : keyword.declaration.edgeql, source.edgeql
 ROLLBACK      : keyword.declaration.edgeql, source.edgeql
+SELECT        : keyword.declaration.edgeql, source.edgeql
 SET           : keyword.declaration.edgeql, source.edgeql
 SINGLETON     : keyword.declaration.edgeql, source.edgeql
 START         : keyword.declaration.edgeql, source.edgeql
-TARGET        : keyword.declaration.edgeql, source.edgeql
-THEN          : keyword.declaration.edgeql, source.edgeql
-TO            : keyword.declaration.edgeql, source.edgeql
-TRANSACTION   : keyword.declaration.edgeql, source.edgeql
-UNION         : keyword.declaration.edgeql, source.edgeql
 UPDATE        : keyword.declaration.edgeql, source.edgeql
+UNION         : keyword.declaration.edgeql, source.edgeql
 WITH          : keyword.declaration.edgeql, source.edgeql
-VALUE         : keyword.declaration.edgeql, source.edgeql
-VIEW          : keyword.declaration.edgeql, source.edgeql

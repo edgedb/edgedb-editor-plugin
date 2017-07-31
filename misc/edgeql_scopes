@@ -11,7 +11,6 @@ entity.name.function.edgeql
 invalid.illegal.dec.edgeql
 invalid.illegal.definition.edgeql
 invalid.illegal.delimiter.edgeql
-invalid.illegal.operator.edgeql
 invalid.illegal.type.edgeql
 keyword.declaration.edgeql
 keyword.operator.cast.begin.edgeql

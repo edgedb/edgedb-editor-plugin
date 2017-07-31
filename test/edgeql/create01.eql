@@ -1,6 +1,6 @@
-CreatE CONSTRAINT std::regexp INHERITING std::constraint {
+CreatE CONSTRAINT std::regexp EXTENDING std::constraint {
     SET errmessage := 'invalid {subject}';
-    SET expr := ((subject ~ $param));
+    SET expr := re_test(subject, $0);
 };
 
 
@@ -14,7 +14,7 @@ std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 regexp        : source.edgeql, support.function.constraint.builtin.edgeql
               : source.edgeql
-INHERITING    : keyword.declaration.edgeql, source.edgeql
+EXTENDING     : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
@@ -35,15 +35,14 @@ SET           : keyword.declaration.edgeql, source.edgeql
  expr         : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-(             : punctuation.parenthesis.begin.edgeql, source.edgeql
-(             : punctuation.parenthesis.begin.edgeql, source.edgeql
-subject       : source.edgeql
-~             : keyword.operator.edgeql, source.edgeql
-              : source.edgeql
-$             : constant.language.variable.edgeql, source.edgeql
-param         : constant.language.variable.edgeql, source.edgeql
-)             : punctuation.parenthesis.end.edgeql, source.edgeql
-)             : punctuation.parenthesis.end.edgeql, source.edgeql
+re_test       : entity.name.function.edgeql, meta.function-call.edgeql, source.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+subject       : meta.function-call.edgeql, source.edgeql
+,             : meta.function-call.edgeql, punctuation.separator.arguments.edgeql, source.edgeql
+              : meta.function-call.edgeql, source.edgeql
+$             : constant.language.variable.edgeql, meta.function-call.edgeql, source.edgeql
+0             : constant.language.variable.edgeql, meta.function-call.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
 }             : punctuation.parenthesis.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
