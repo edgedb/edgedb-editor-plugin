@@ -1,7 +1,7 @@
 abstract concept Text:
     required link body to std::str:
-        constraint maxlength:
-            10000
+        constraint maxlength(10000)
+
 
 
 
@@ -16,12 +16,12 @@ link          : keyword.other.declaration.eschema, source.eschema
  body         : source.eschema
 to            : keyword.operator.eschema, source.eschema
               : source.eschema
-std           : source.eschema, support.type.builtin.eschema
-::            : keyword.operator.namespace.eschema, source.eschema
-str           : source.eschema, support.type.builtin.eschema
+std::str      : source.eschema
 :             : source.eschema
               : source.eschema
 constraint    : keyword.other.declaration.eschema, source.eschema
- maxlength:   : source.eschema
               : source.eschema
-10000         : constant.numeric.dec.eschema, source.eschema
+maxlength     : source.eschema, support.function.constraint.builtin.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+10000         : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema

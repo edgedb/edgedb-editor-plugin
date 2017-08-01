@@ -17,6 +17,9 @@ repository:
         include: "#comments"
       }
       {
+        include: "#import-parentheses"
+      }
+      {
         include: "#keywords"
       }
       {
@@ -29,10 +32,10 @@ repository:
         include: "#names"
       }
       {
-        include: "#values"
+        include: "#eql-parentheses"
       }
       {
-        include: "#eql"
+        include: "#eql-to-logical-eol"
       }
     ]
   comments:
@@ -58,225 +61,193 @@ repository:
     patterns: [
       {
         name: "support.type.abstract.eschema"
-        match: "\\b(abstract|final)\\b"
+        match: "(?i)\\b(abstract|final)\\b"
       }
       {
         name: "support.type.required.eschema"
-        match: "\\b(required)\\b"
+        match: "(?i)\\b(required)\\b"
       }
       {
         name: "keyword.other.declaration.eschema"
         match: '''
-          (?x) \\b(
-            action | atom | attribute | concept | constraint | event |
-            extends | index | initial | link | linkproperty | properties |
-            value | view
+          (?ix) \\b(
+            (?# schema-scpecific)
+            linkproperty |
+          
+            (?# from EdgeQL)
+            action | after | asc | atom |
+            attribute | before | by | concept | constraint |
+            database | delegated | desc | event | extending |
+            first | for | from | index | initial | last | link |
+            migration | of | policy | property | rename |
+            target | then | transaction | value | view |
+          
+            aggregate | all | alter | and | commit | create | delete |
+            distinct | drop | else | exists | filter |
+            function | get | group | if | ilike | in | insert | is |
+            like | limit | module | not | offset | or | order | over |
+            partition | rollback | select | set | singleton | start |
+            update | union | with
           )\\b
           
         '''
       }
       {
         name: "keyword.operator.eschema"
-        match: "\\b(as|import|on|to)\\b"
+        match: "(?i)\\b(as|import|on|to)\\b"
       }
       {
         name: "constant.language.boolean.true.eschema"
-        match: "\\b(true)\\b"
+        match: "(?i)\\b(true)\\b"
       }
       {
         name: "constant.language.boolean.false.eschema"
-        match: "\\b(false)\\b"
+        match: "(?i)\\b(false)\\b"
       }
     ]
   attributes:
-    patterns: [
-      {
-        name: "meta.attribute.eschema"
-        match: '''
-          (?x)
-            ^\\s+
-              ([[:alpha:]_][[:alnum:]_]*)
-                (?=\\s*:([^=]|\\n))
-          
-        '''
-        captures:
-          "1":
-            name: "variable.parameter.attribute.eschema"
-      }
-      {
-        name: "meta.attributes.eschema"
-        match: '''
-          (?x)
-            ^\\s+
-              ([[:alpha:]_][[:alnum:]_]*)
-                (?=\\s*:=)
-          
-        '''
-        captures:
-          "1":
-            name: "constant.language.computable.eschema"
-      }
-    ]
+    name: "meta.attribute.eschema"
+    match: '''
+      (?x)
+        ^\\s+
+          ([[:alpha:]_][[:alnum:]_]*)
+            (?=\\s*:=)
+      
+    '''
+    captures:
+      "1":
+        name: "variable.parameter.attribute.eschema"
   operators:
     patterns: [
       {
         name: "keyword.operator.namespace.eschema"
         match: "(::)"
       }
+      {
+        name: "keyword.declaration.eschema"
+        match: "(->)"
+      }
+      {
+        name: "keyword.declaration.eschema"
+        match: "(:=)"
+      }
     ]
   names:
     patterns: [
       {
-        name: "support.type.builtin.eschema"
+        name: "support.function.builtin.eschema"
         match: '''
-          (?x) \\b(
-            std | any | typeref | atomref | conceptref | bytes |
-            datetime | uuid | str | timedelta | date | time | int | none |
-            float | bool | pattern | sequence
+          (?x) \\b(?<!\\.) (
+            len |
+            array_agg | array_contains | array_enumerate | array_unpack |
+            lower |
+            re_match | re_match_all | re_test |
+            count | sum |
+            current_date | current_datetime | current_time |
+            random | uuid_generate_v1mc
+          )(?=\\s*\\()\\b
+          
+        '''
+      }
+      {
+        name: "support.function.constraint.builtin.eschema"
+        match: '''
+          (?x) \\b(?<!\\.) (
+            constraint | max | enum | min | minexclusive | length |
+            minlength | regexp | maxlength | maxexclusive | unique
           )\\b
           
         '''
       }
-    ]
-  values:
-    patterns: [
       {
-        name: "constant.language.mapping.eschema"
-        match: "(11|1\\*|\\*1|\\*\\*)"
+        name: "support.other.module.builtin.eschema"
+        match: '''
+          (?x) \\b(?<!::|\\.)(
+            std | stdattrs | schema
+          )\\b
+          
+        '''
       }
       {
-        include: "#list"
+        name: "support.type.builtin.eschema"
+        match: '''
+          (?x) \\b(
+            array | map | tuple |
+          
+            bytes | datetime | uuid | str | json | timedelta | date |
+            time | int | float | bool | auto | any
+          )\\b
+          
+        '''
       }
       {
-        include: "#number"
-      }
-      {
-        include: "#string"
-      }
-      {
-        include: "#eql-string-oneline"
-      }
-      {
-        include: "#eql-string"
-      }
-    ]
-  number:
-    name: "constant.numeric.eschema"
-    patterns: [
-      {
-        include: "#number-dec"
+        include: "#quoted-name"
       }
     ]
-  "number-dec":
-    name: "constant.numeric.dec.eschema"
-    match: '''
-      (?x)
-          (?:
-            #decimal part
-            \\.(_*)(?:[0-9](?:[0-9_]*[0-9])?)
-            |
-            # integer part
-            \\b(?:[1-9](?:[0-9_]*[0-9])?|0)
-              (?:\\.(_*)[0-9](?:[0-9_]*[0-9])?)?
-          )
-          ((_*)([eE][\\+\\-]?)(_*)[0-9](?:[0-9_]*[0-9])?)?
-      
-        (_*)
-        \\b
-      
-    '''
-    captures:
+  "quoted-name":
+    name: "string.interpolated.eschema"
+    match: "(`.*?`)"
+  "import-parentheses":
+    begin: "(?i)(?<=import)\\s*(\\()"
+    end: "(\\))"
+    beginCaptures:
       "1":
-        name: "invalid.illegal.dec.eschema"
-      "2":
-        name: "invalid.illegal.dec.eschema"
-      "4":
-        name: "invalid.illegal.dec.eschema"
-      "5":
-        name: "storage.type.number.eschema"
-      "6":
-        name: "invalid.illegal.dec.eschema"
-      "7":
-        name: "invalid.illegal.dec.eschema"
-  string:
+        name: "punctuation.parenthesis.begin.eschema"
+    endCaptures:
+      "1":
+        name: "punctuation.parenthesis.end.eschema"
     patterns: [
       {
-        name: "string.quoted.eschema"
-        begin: "(['\"])"
-        end: "(\\1)"
-        beginCaptures:
-          "1":
-            name: "punctuation.definition.string.begin.eschema"
-        endCaptures:
-          "1":
-            name: "punctuation.definition.string.end.eschema"
+        include: "#comments"
+      }
+      {
+        include: "#keywords"
+      }
+      {
+        include: "#names"
+      }
+    ]
+  "eql-parentheses":
+    begin: "(\\()"
+    end: "(\\))"
+    beginCaptures:
+      "1":
+        name: "punctuation.parenthesis.begin.eschema"
+    endCaptures:
+      "1":
+        name: "punctuation.parenthesis.end.eschema"
+    patterns: [
+      {
+        include: "source.edgeql"
+      }
+    ]
+  "eql-to-logical-eol":
+    patterns: [
+      {
+        begin: "(?i)(?<=->|to|extending)\\s*(?!\\()"
+        end: "(?=$)|(?<!:)(?=:(?!:))"
         patterns: [
           {
-            include: "#string-escapes"
+            include: "source.edgeql"
           }
         ]
       }
       {
-        name: "string.dollar.eschema"
-        begin: "(\\$([[:alpha:]_][[:alnum:]]*)*\\$)"
-        end: "(\\1)"
-        beginCaptures:
-          "1":
-            name: "punctuation.definition.string.begin.eschema"
-        endCaptures:
-          "1":
-            name: "punctuation.definition.string.end.eschema"
+        begin: "(?<=:=)\\s*(?=\\S.*$)"
+        end: "(\\s*$\\n)"
+        patterns: [
+          {
+            include: "source.edgeql"
+          }
+        ]
       }
-    ]
-  "string-escapes":
-    name: "constant.character.escape.eschema"
-    match: "(\\\\['\"])"
-  list:
-    begin: "\\["
-    end: "\\]"
-    beginCaptures:
-      "0":
-        name: "punctuation.definition.list.begin.eschema"
-    endCaptures:
-      "0":
-        name: "punctuation.definition.list.end.eschema"
-    patterns: [
       {
-        include: "#values"
-      }
-    ]
-  "eql-string-oneline":
-    name: "meta.raw.oneline.eschema"
-    begin: "(:=)\\s*(?=\\S)"
-    end: "$"
-    beginCaptures:
-      "1":
-        name: "keyword.operator.eschema"
-    patterns: [
-      {
-        include: "source.edgeql"
-      }
-    ]
-  "eql-string":
-    begin: "(:=)"
-    end: "(?<!,=)(\\s*$)"
-    beginCaptures:
-      "1":
-        name: "keyword.operator.eschema"
-    patterns: [
-      {
-        include: "source.edgeql"
-      }
-    ]
-  eql:
-    name: "meta.raw.oneline.eschema"
-    begin: "(?=SELECT)"
-    end: "(^\\s*$)|(?=\\s*)(?!SELECT)"
-    beginCaptures:
-      "1":
-        name: "keyword.operator.eschema"
-    patterns: [
-      {
-        include: "source.edgeql"
+        begin: "(?<=:=)\\s*$\\n"
+        end: "(\\s*$\\n)"
+        patterns: [
+          {
+            include: "source.edgeql"
+          }
+        ]
       }
     ]

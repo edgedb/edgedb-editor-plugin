@@ -1,0 +1,10 @@
+import mylib.util.foo as foo, mylib.special.foo as sfoo
+
+
+
+import        : keyword.operator.eschema, source.eschema
+ mylib.util.foo  : source.eschema
+as            : keyword.operator.eschema, source.eschema
+ foo, mylib.special.foo  : source.eschema
+as            : keyword.operator.eschema, source.eschema
+ sfoo         : source.eschema

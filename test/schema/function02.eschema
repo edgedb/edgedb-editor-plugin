@@ -1,0 +1,23 @@
+function some_func($foo: std::int = 42) -> std::str:
+    from sql := "SELECT 'life';"
+
+
+
+
+function      : keyword.other.declaration.eschema, source.eschema
+ some_func    : source.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+$foo: std::int = 42 : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema
+              : source.eschema
+->            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+std::str      : source.eschema
+:             : source.eschema
+              : source.eschema
+from          : keyword.other.declaration.eschema, source.eschema
+ sql          : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+"SELECT 'life';" : source.eschema
+              : source.eschema

@@ -1,0 +1,43 @@
+function myfunc($arg1: str, $arg2: str = 'DEFAULT',
+                *$arg3:std::int) -> set of int:
+    volatile := true
+    description :=
+        'myfunc sample'
+    from sql :=
+        'SELECT blarg;'
+
+
+
+
+function      : keyword.other.declaration.eschema, source.eschema
+ myfunc       : source.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+$arg1: str, $arg2: str = 'DEFAULT', : source.eschema
+                *$arg3:std::int : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema
+              : source.eschema
+->            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+set of int    : source.eschema
+:             : source.eschema
+              : meta.attribute.eschema, source.eschema
+volatile      : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+true          : source.eschema
+              : source.eschema
+              : meta.attribute.eschema, source.eschema
+description   : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+        'myfunc sample' : source.eschema
+              : source.eschema
+              : source.eschema
+from          : keyword.other.declaration.eschema, source.eschema
+ sql          : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+        'SELECT blarg;' : source.eschema
+              : source.eschema

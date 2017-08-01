@@ -1,0 +1,23 @@
+constraint maxlength($param:any) extending max, length:
+    errmessage := '{$subject} must be no longer than {$param} characters.'
+
+
+
+constraint    : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+maxlength     : source.eschema, support.function.constraint.builtin.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+$param:any    : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema
+              : source.eschema
+extending     : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+max, length   : source.eschema
+:             : source.eschema
+              : meta.attribute.eschema, source.eschema
+errmessage    : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+'{$subject} must be no longer than {$param} characters.' : source.eschema
+              : source.eschema

@@ -1,8 +1,0 @@
-concept LogEntry extends OwnedObject, Text:
-    link start_date to datetime:
-       default:=
-            SELECT datetime::current_datetime()
-       title: 'Start Date'
-
-
-

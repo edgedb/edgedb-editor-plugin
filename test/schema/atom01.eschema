@@ -1,0 +1,57 @@
+atom basic extending int:
+
+    title := 'Basic Atom'
+    default := 2
+
+    constraint min(0)
+    constraint max(123456)
+    delegated constraint expr on (subject % 2 = 0)
+
+
+
+atom          : keyword.other.declaration.eschema, source.eschema
+ basic        : source.eschema
+extending     : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+int           : source.eschema
+:             : source.eschema
+              : source.eschema
+              : meta.attribute.eschema, source.eschema
+title         : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+'Basic Atom'  : source.eschema
+              : source.eschema
+              : meta.attribute.eschema, source.eschema
+default       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+2             : source.eschema
+              : source.eschema
+              : source.eschema
+              : source.eschema
+constraint    : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+min           : source.eschema, support.function.constraint.builtin.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+0             : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema
+              : source.eschema
+constraint    : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+max           : source.eschema, support.function.constraint.builtin.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+123456        : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema
+              : source.eschema
+delegated     : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+constraint    : keyword.other.declaration.eschema, source.eschema
+ expr         : source.eschema
+on            : keyword.operator.eschema, source.eschema
+              : source.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+subject % 2 = 0 : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema

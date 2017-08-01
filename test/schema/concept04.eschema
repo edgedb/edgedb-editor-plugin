@@ -1,15 +1,15 @@
-concept LogEntry extends OwnedObject, Text:
+concept LogEntry extending OwnedObject, Text:
     required link spent_time to int
-
-
 
 
 
 
 concept       : keyword.other.declaration.eschema, source.eschema
  LogEntry     : source.eschema
-extends       : keyword.other.declaration.eschema, source.eschema
- OwnedObject, Text: : source.eschema
+extending     : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+OwnedObject, Text : source.eschema
+:             : source.eschema
               : source.eschema
 required      : source.eschema, support.type.required.eschema
               : source.eschema
@@ -17,4 +17,4 @@ link          : keyword.other.declaration.eschema, source.eschema
  spent_time   : source.eschema
 to            : keyword.operator.eschema, source.eschema
               : source.eschema
-int           : source.eschema, support.type.builtin.eschema
+int           : source.eschema

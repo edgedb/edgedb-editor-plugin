@@ -1,49 +1,63 @@
-concept Issue extends foo.bar::NamedObject, Text:
+concept Issue extending foo.bar::NamedObject, Text:
     link watchers to User:
-        mapping: **
+        mapping := '**'
 
     link time_spent_log to LogEntry:
-        mapping: 1*
+        mapping := '1*'
 
     link owner to User:
-        mapping: *1
-
+        mapping := '*1'
 
 
 
 
 concept       : keyword.other.declaration.eschema, source.eschema
  Issue        : source.eschema
-extends       : keyword.other.declaration.eschema, source.eschema
- foo.bar      : source.eschema
-::            : keyword.operator.namespace.eschema, source.eschema
-NamedObject, Text: : source.eschema
+extending     : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+foo.bar::NamedObject, Text : source.eschema
+:             : source.eschema
               : source.eschema
 link          : keyword.other.declaration.eschema, source.eschema
  watchers     : source.eschema
 to            : keyword.operator.eschema, source.eschema
- User:        : source.eschema
+              : source.eschema
+User          : source.eschema
+:             : source.eschema
               : meta.attribute.eschema, source.eschema
 mapping       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-:             : source.eschema
-**            : constant.language.mapping.eschema, source.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+'**'          : source.eschema
+              : source.eschema
               : source.eschema
               : source.eschema
 link          : keyword.other.declaration.eschema, source.eschema
  time_spent_log  : source.eschema
 to            : keyword.operator.eschema, source.eschema
- LogEntry:    : source.eschema
+              : source.eschema
+LogEntry      : source.eschema
+:             : source.eschema
               : meta.attribute.eschema, source.eschema
 mapping       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-:             : source.eschema
-1*            : constant.language.mapping.eschema, source.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+'1*'          : source.eschema
+              : source.eschema
               : source.eschema
               : source.eschema
 link          : keyword.other.declaration.eschema, source.eschema
  owner        : source.eschema
 to            : keyword.operator.eschema, source.eschema
- User:        : source.eschema
+              : source.eschema
+User          : source.eschema
+:             : source.eschema
               : meta.attribute.eschema, source.eschema
 mapping       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-:             : source.eschema
-*1            : constant.language.mapping.eschema, source.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+'*1'          : source.eschema
+              : source.eschema

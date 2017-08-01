@@ -1,17 +1,19 @@
-concept LogEntry extends OwnedObject, Text:
-   link start_date:= SELECT datetime::current_datetime()
-
+concept LogEntry extending OwnedObject, Text:
+   link start_date := SELECT datetime::current_datetime()
 
 
 
 
 concept       : keyword.other.declaration.eschema, source.eschema
  LogEntry     : source.eschema
-extends       : keyword.other.declaration.eschema, source.eschema
- OwnedObject, Text: : source.eschema
+extending     : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+OwnedObject, Text : source.eschema
+:             : source.eschema
               : source.eschema
 link          : keyword.other.declaration.eschema, source.eschema
  start_date   : source.eschema
-:=            : keyword.operator.eschema, meta.raw.oneline.eschema, source.eschema
-              : meta.raw.oneline.eschema, source.eschema
-SELECT datetime::current_datetime() : meta.raw.oneline.eschema, source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+SELECT datetime::current_datetime() : source.eschema
+              : source.eschema

@@ -1,0 +1,21 @@
+    import (
+        # ignore indentation because of parentheses
+otherlib.bar as bar,
+otherlib.ham as spam)
+
+
+
+              : source.eschema
+import        : keyword.operator.eschema, source.eschema
+              : source.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+              : source.eschema
+#             : comment.line.number-sign.eschema, punctuation.definition.comment.eschema, source.eschema
+ ignore indentation because of parentheses : comment.line.number-sign.eschema, source.eschema
+otherlib.bar  : source.eschema
+as            : keyword.operator.eschema, source.eschema
+ bar,         : source.eschema
+otherlib.ham  : source.eschema
+as            : keyword.operator.eschema, source.eschema
+ spam         : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema

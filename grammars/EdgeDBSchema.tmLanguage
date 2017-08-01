@@ -32,6 +32,10 @@
           </dict>
           <dict>
             <key>include</key>
+            <string>#import-parentheses</string>
+          </dict>
+          <dict>
+            <key>include</key>
             <string>#keywords</string>
           </dict>
           <dict>
@@ -48,11 +52,11 @@
           </dict>
           <dict>
             <key>include</key>
-            <string>#values</string>
+            <string>#eql-parentheses</string>
           </dict>
           <dict>
             <key>include</key>
-            <string>#eql</string>
+            <string>#eql-to-logical-eol</string>
           </dict>
         </array>
       </dict>
@@ -103,22 +107,36 @@
             <key>name</key>
             <string>support.type.abstract.eschema</string>
             <key>match</key>
-            <string>\b(abstract|final)\b</string>
+            <string>(?i)\b(abstract|final)\b</string>
           </dict>
           <dict>
             <key>name</key>
             <string>support.type.required.eschema</string>
             <key>match</key>
-            <string>\b(required)\b</string>
+            <string>(?i)\b(required)\b</string>
           </dict>
           <dict>
             <key>name</key>
             <string>keyword.other.declaration.eschema</string>
             <key>match</key>
-            <string>(?x) \b(
-  action | atom | attribute | concept | constraint | event |
-  extends | index | initial | link | linkproperty | properties |
-  value | view
+            <string>(?ix) \b(
+  (?# schema-scpecific)
+  linkproperty |
+
+  (?# from EdgeQL)
+  action | after | asc | atom |
+  attribute | before | by | concept | constraint |
+  database | delegated | desc | event | extending |
+  first | for | from | index | initial | last | link |
+  migration | of | policy | property | rename |
+  target | then | transaction | value | view |
+
+  aggregate | all | alter | and | commit | create | delete |
+  distinct | drop | else | exists | filter |
+  function | get | group | if | ilike | in | insert | is |
+  like | limit | module | not | offset | or | order | over |
+  partition | rollback | select | set | singleton | start |
+  update | union | with
 )\b
 </string>
           </dict>
@@ -126,63 +144,40 @@
             <key>name</key>
             <string>keyword.operator.eschema</string>
             <key>match</key>
-            <string>\b(as|import|on|to)\b</string>
+            <string>(?i)\b(as|import|on|to)\b</string>
           </dict>
           <dict>
             <key>name</key>
             <string>constant.language.boolean.true.eschema</string>
             <key>match</key>
-            <string>\b(true)\b</string>
+            <string>(?i)\b(true)\b</string>
           </dict>
           <dict>
             <key>name</key>
             <string>constant.language.boolean.false.eschema</string>
             <key>match</key>
-            <string>\b(false)\b</string>
+            <string>(?i)\b(false)\b</string>
           </dict>
         </array>
       </dict>
       <key>attributes</key>
       <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>name</key>
-            <string>meta.attribute.eschema</string>
-            <key>match</key>
-            <string>(?x)
-  ^\s+
-    ([[:alpha:]_][[:alnum:]_]*)
-      (?=\s*:([^=]|\n))
-</string>
-            <key>captures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>variable.parameter.attribute.eschema</string>
-              </dict>
-            </dict>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>meta.attributes.eschema</string>
-            <key>match</key>
-            <string>(?x)
+        <key>name</key>
+        <string>meta.attribute.eschema</string>
+        <key>match</key>
+        <string>(?x)
   ^\s+
     ([[:alpha:]_][[:alnum:]_]*)
       (?=\s*:=)
 </string>
-            <key>captures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>constant.language.computable.eschema</string>
-              </dict>
-            </dict>
+        <key>captures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>variable.parameter.attribute.eschema</string>
           </dict>
-        </array>
+        </dict>
       </dict>
       <key>operators</key>
       <dict>
@@ -194,6 +189,18 @@
             <key>match</key>
             <string>(::)</string>
           </dict>
+          <dict>
+            <key>name</key>
+            <string>keyword.declaration.eschema</string>
+            <key>match</key>
+            <string>(-&gt;)</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>keyword.declaration.eschema</string>
+            <key>match</key>
+            <string>(:=)</string>
+          </dict>
         </array>
       </dict>
       <key>names</key>
@@ -202,226 +209,121 @@
         <array>
           <dict>
             <key>name</key>
-            <string>support.type.builtin.eschema</string>
+            <string>support.function.builtin.eschema</string>
             <key>match</key>
-            <string>(?x) \b(
-  std | any | typeref | atomref | conceptref | bytes |
-  datetime | uuid | str | timedelta | date | time | int | none |
-  float | bool | pattern | sequence
+            <string>(?x) \b(?&lt;!\.) (
+  len |
+  array_agg | array_contains | array_enumerate | array_unpack |
+  lower |
+  re_match | re_match_all | re_test |
+  count | sum |
+  current_date | current_datetime | current_time |
+  random | uuid_generate_v1mc
+)(?=\s*\()\b
+</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>support.function.constraint.builtin.eschema</string>
+            <key>match</key>
+            <string>(?x) \b(?&lt;!\.) (
+  constraint | max | enum | min | minexclusive | length |
+  minlength | regexp | maxlength | maxexclusive | unique
 )\b
 </string>
           </dict>
-        </array>
-      </dict>
-      <key>values</key>
-      <dict>
-        <key>patterns</key>
-        <array>
           <dict>
             <key>name</key>
-            <string>constant.language.mapping.eschema</string>
+            <string>support.other.module.builtin.eschema</string>
             <key>match</key>
-            <string>(11|1\*|\*1|\*\*)</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#list</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#number</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#string</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#eql-string-oneline</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#eql-string</string>
-          </dict>
-        </array>
-      </dict>
-      <key>number</key>
-      <dict>
-        <key>name</key>
-        <string>constant.numeric.eschema</string>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#number-dec</string>
-          </dict>
-        </array>
-      </dict>
-      <key>number-dec</key>
-      <dict>
-        <key>name</key>
-        <string>constant.numeric.dec.eschema</string>
-        <key>match</key>
-        <string>(?x)
-    (?:
-      #decimal part
-      \.(_*)(?:[0-9](?:[0-9_]*[0-9])?)
-      |
-      # integer part
-      \b(?:[1-9](?:[0-9_]*[0-9])?|0)
-        (?:\.(_*)[0-9](?:[0-9_]*[0-9])?)?
-    )
-    ((_*)([eE][\+\-]?)(_*)[0-9](?:[0-9_]*[0-9])?)?
-
-  (_*)
-  \b
+            <string>(?x) \b(?&lt;!::|\.)(
+  std | stdattrs | schema
+)\b
 </string>
-        <key>captures</key>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>support.type.builtin.eschema</string>
+            <key>match</key>
+            <string>(?x) \b(
+  array | map | tuple |
+
+  bytes | datetime | uuid | str | json | timedelta | date |
+  time | int | float | bool | auto | any
+)\b
+</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#quoted-name</string>
+          </dict>
+        </array>
+      </dict>
+      <key>quoted-name</key>
+      <dict>
+        <key>name</key>
+        <string>string.interpolated.eschema</string>
+        <key>match</key>
+        <string>(`.*?`)</string>
+      </dict>
+      <key>import-parentheses</key>
+      <dict>
+        <key>begin</key>
+        <string>(?i)(?&lt;=import)\s*(\()</string>
+        <key>end</key>
+        <string>(\))</string>
+        <key>beginCaptures</key>
         <dict>
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>invalid.illegal.dec.eschema</string>
-          </dict>
-          <key>2</key>
-          <dict>
-            <key>name</key>
-            <string>invalid.illegal.dec.eschema</string>
-          </dict>
-          <key>4</key>
-          <dict>
-            <key>name</key>
-            <string>invalid.illegal.dec.eschema</string>
-          </dict>
-          <key>5</key>
-          <dict>
-            <key>name</key>
-            <string>storage.type.number.eschema</string>
-          </dict>
-          <key>6</key>
-          <dict>
-            <key>name</key>
-            <string>invalid.illegal.dec.eschema</string>
-          </dict>
-          <key>7</key>
-          <dict>
-            <key>name</key>
-            <string>invalid.illegal.dec.eschema</string>
-          </dict>
-        </dict>
-      </dict>
-      <key>string</key>
-      <dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>name</key>
-            <string>string.quoted.eschema</string>
-            <key>begin</key>
-            <string>(['"])</string>
-            <key>end</key>
-            <string>(\1)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>punctuation.definition.string.begin.eschema</string>
-              </dict>
-            </dict>
-            <key>endCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>punctuation.definition.string.end.eschema</string>
-              </dict>
-            </dict>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#string-escapes</string>
-              </dict>
-            </array>
-          </dict>
-          <dict>
-            <key>name</key>
-            <string>string.dollar.eschema</string>
-            <key>begin</key>
-            <string>(\$([[:alpha:]_][[:alnum:]]*)*\$)</string>
-            <key>end</key>
-            <string>(\1)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>punctuation.definition.string.begin.eschema</string>
-              </dict>
-            </dict>
-            <key>endCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>punctuation.definition.string.end.eschema</string>
-              </dict>
-            </dict>
-          </dict>
-        </array>
-      </dict>
-      <key>string-escapes</key>
-      <dict>
-        <key>name</key>
-        <string>constant.character.escape.eschema</string>
-        <key>match</key>
-        <string>(\\['"])</string>
-      </dict>
-      <key>list</key>
-      <dict>
-        <key>begin</key>
-        <string>\[</string>
-        <key>end</key>
-        <string>\]</string>
-        <key>beginCaptures</key>
-        <dict>
-          <key>0</key>
-          <dict>
-            <key>name</key>
-            <string>punctuation.definition.list.begin.eschema</string>
+            <string>punctuation.parenthesis.begin.eschema</string>
           </dict>
         </dict>
         <key>endCaptures</key>
         <dict>
-          <key>0</key>
+          <key>1</key>
           <dict>
             <key>name</key>
-            <string>punctuation.definition.list.end.eschema</string>
+            <string>punctuation.parenthesis.end.eschema</string>
           </dict>
         </dict>
         <key>patterns</key>
         <array>
           <dict>
             <key>include</key>
-            <string>#values</string>
+            <string>#comments</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#keywords</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#names</string>
           </dict>
         </array>
       </dict>
-      <key>eql-string-oneline</key>
+      <key>eql-parentheses</key>
       <dict>
-        <key>name</key>
-        <string>meta.raw.oneline.eschema</string>
         <key>begin</key>
-        <string>(:=)\s*(?=\S)</string>
+        <string>(\()</string>
         <key>end</key>
-        <string>$</string>
+        <string>(\))</string>
         <key>beginCaptures</key>
         <dict>
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>keyword.operator.eschema</string>
+            <string>punctuation.parenthesis.begin.eschema</string>
+          </dict>
+        </dict>
+        <key>endCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>punctuation.parenthesis.end.eschema</string>
           </dict>
         </dict>
         <key>patterns</key>
@@ -432,49 +334,48 @@
           </dict>
         </array>
       </dict>
-      <key>eql-string</key>
+      <key>eql-to-logical-eol</key>
       <dict>
-        <key>begin</key>
-        <string>(:=)</string>
-        <key>end</key>
-        <string>(?&lt;!,=)(\s*$)</string>
-        <key>beginCaptures</key>
-        <dict>
-          <key>1</key>
-          <dict>
-            <key>name</key>
-            <string>keyword.operator.eschema</string>
-          </dict>
-        </dict>
         <key>patterns</key>
         <array>
           <dict>
-            <key>include</key>
-            <string>source.edgeql</string>
+            <key>begin</key>
+            <string>(?i)(?&lt;=-&gt;|to|extending)\s*(?!\()</string>
+            <key>end</key>
+            <string>(?=$)|(?&lt;!:)(?=:(?!:))</string>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>source.edgeql</string>
+              </dict>
+            </array>
           </dict>
-        </array>
-      </dict>
-      <key>eql</key>
-      <dict>
-        <key>name</key>
-        <string>meta.raw.oneline.eschema</string>
-        <key>begin</key>
-        <string>(?=SELECT)</string>
-        <key>end</key>
-        <string>(^\s*$)|(?=\s*)(?!SELECT)</string>
-        <key>beginCaptures</key>
-        <dict>
-          <key>1</key>
           <dict>
-            <key>name</key>
-            <string>keyword.operator.eschema</string>
+            <key>begin</key>
+            <string>(?&lt;=:=)\s*(?=\S.*$)</string>
+            <key>end</key>
+            <string>(\s*$\n)</string>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>source.edgeql</string>
+              </dict>
+            </array>
           </dict>
-        </dict>
-        <key>patterns</key>
-        <array>
           <dict>
-            <key>include</key>
-            <string>source.edgeql</string>
+            <key>begin</key>
+            <string>(?&lt;=:=)\s*$\n</string>
+            <key>end</key>
+            <string>(\s*$\n)</string>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>source.edgeql</string>
+              </dict>
+            </array>
           </dict>
         </array>
       </dict>

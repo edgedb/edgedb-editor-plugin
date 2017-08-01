@@ -1,0 +1,34 @@
+constraint max($param:any) on (()):
+    expr := subject <= $param
+    errmessage := 'Maximum allowed value for {subject} is {param}.'
+
+
+
+
+constraint    : keyword.other.declaration.eschema, source.eschema
+              : source.eschema
+max           : source.eschema, support.function.constraint.builtin.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+$param:any    : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema
+              : source.eschema
+on            : keyword.operator.eschema, source.eschema
+              : source.eschema
+(             : punctuation.parenthesis.begin.eschema, source.eschema
+(             : source.eschema
+)             : punctuation.parenthesis.end.eschema, source.eschema
+):            : source.eschema
+              : meta.attribute.eschema, source.eschema
+expr          : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+subject <= $param : source.eschema
+              : source.eschema
+              : meta.attribute.eschema, source.eschema
+errmessage    : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
+              : source.eschema
+:=            : keyword.declaration.eschema, source.eschema
+              : source.eschema
+'Maximum allowed value for {subject} is {param}.' : source.eschema
+              : source.eschema
