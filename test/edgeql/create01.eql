@@ -35,7 +35,7 @@ SET           : keyword.declaration.edgeql, source.edgeql
  expr         : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-re_test       : entity.name.function.edgeql, meta.function-call.edgeql, source.edgeql
+re_test       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 subject       : meta.function-call.edgeql, source.edgeql
 ,             : meta.function-call.edgeql, punctuation.separator.arguments.edgeql, source.edgeql

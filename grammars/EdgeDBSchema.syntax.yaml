@@ -107,8 +107,8 @@ repository:
     - name: support.function.constraint.builtin.eschema
       match: |
         (?x) \b(?<!\.) (
-          constraint | max | enum | min | minexclusive | length |
-          minlength | regexp | maxlength | maxexclusive | unique
+          constraint | max | enum | expression | min | minexclusive |
+          length | minlength | regexp | maxlength | maxexclusive | unique
         )\b
 
     - name: support.other.module.builtin.eschema

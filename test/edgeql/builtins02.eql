@@ -1,0 +1,67 @@
+len()
+array_agg()
+array_contains()
+array_enumerate()
+array_unpack()
+lower()
+re_match()
+re_match_all()
+re_test()
+count()
+sum()
+current_date()
+current_datetime()
+current_time()
+random()
+uuid_generate_v1mc()
+
+
+
+len           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+array_agg     : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+array_contains : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+array_enumerate : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+array_unpack  : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+lower         : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+re_match      : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+re_match_all  : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+re_test       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+count         : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+sum           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+current_date  : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+current_datetime : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+current_time  : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+random        : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+uuid_generate_v1mc : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql

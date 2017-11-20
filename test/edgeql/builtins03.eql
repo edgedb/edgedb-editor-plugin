@@ -1,0 +1,29 @@
+std::constraint
+max
+enum
+expression
+min
+minexclusive
+length
+minlength
+regexp
+maxlength
+maxexclusive
+unique
+
+
+
+std           : source.edgeql, support.other.module.builtin.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+constraint    : source.edgeql, support.function.constraint.builtin.edgeql
+max           : source.edgeql, support.function.constraint.builtin.edgeql
+enum          : source.edgeql, support.function.constraint.builtin.edgeql
+expression    : source.edgeql, support.function.constraint.builtin.edgeql
+min           : source.edgeql, support.function.constraint.builtin.edgeql
+minexclusive  : source.edgeql, support.function.constraint.builtin.edgeql
+length        : source.edgeql, support.function.constraint.builtin.edgeql
+minlength     : source.edgeql, support.function.constraint.builtin.edgeql
+regexp        : source.edgeql, support.function.constraint.builtin.edgeql
+maxlength     : source.edgeql, support.function.constraint.builtin.edgeql
+maxexclusive  : source.edgeql, support.function.constraint.builtin.edgeql
+unique        : source.edgeql, support.function.constraint.builtin.edgeql

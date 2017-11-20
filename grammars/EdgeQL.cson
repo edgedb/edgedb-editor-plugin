@@ -149,8 +149,13 @@ repository:
             # function name
             (?:
               (
-                lower | sum | count | array_agg | is_distinct | array_unpack |
-                array_enumerate | len | random | to_tsquery | to_tsvector
+                len |
+                array_agg | array_contains | array_enumerate | array_unpack |
+                lower |
+                re_match | re_match_all | re_test |
+                count | sum |
+                current_date | current_datetime | current_time |
+                random | uuid_generate_v1mc
               )
               |
               ([[:alpha:]_][[:alnum:]_]*)
@@ -191,8 +196,13 @@ repository:
               |
               (?# masking built-ins in odd ways)
               (
-                lower | sum | count | array_agg | is_distinct | array_unpack |
-                array_enumerate | len | random | to_tsquery | to_tsvector
+                len |
+                array_agg | array_contains | array_enumerate | array_unpack |
+                lower |
+                re_match | re_match_all | re_test |
+                count | sum |
+                current_date | current_datetime | current_time |
+                random | uuid_generate_v1mc
               )
               |
               ([[:alpha:]_][[:alnum:]_]*)
@@ -205,8 +215,13 @@ repository:
             # function name
             (?:
               (
-                lower | sum | count | array_agg | is_distinct | array_unpack |
-                array_enumerate | len | random | to_tsquery | to_tsvector
+                len |
+                array_agg | array_contains | array_enumerate | array_unpack |
+                lower |
+                re_match | re_match_all | re_test |
+                count | sum |
+                current_date | current_datetime | current_time |
+                random | uuid_generate_v1mc
               )
               |
               ([[:alpha:]_][[:alnum:]_]*)
@@ -468,8 +483,8 @@ repository:
         name: "support.function.constraint.builtin.edgeql"
         match: '''
           (?x) \\b(?<!\\.) (
-            constraint | max | enum | min | minexclusive | length |
-            minlength | regexp | maxlength | maxexclusive | unique
+          constraint | max | enum | expression | min | minexclusive |
+          length | minlength | regexp | maxlength | maxexclusive | unique
           )\\b
           
         '''
