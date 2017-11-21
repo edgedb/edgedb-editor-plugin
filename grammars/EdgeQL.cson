@@ -743,7 +743,9 @@ repository:
             AND | OR | NOT | LIKE | ILIKE | IS | IN | IF | ELSE |
             UNION | ALL | EXISTS |
       
-            SELECT | GROUP | UPDATE | BY | THEN | FILTER | OFFSET | LIMIT
+            SELECT | GROUP | UPDATE | BY | THEN | LIMIT |
+            # there are some ligature-related issues with "fi" and "ff"
+            F[Ii]LTER | OF[Ff]SET
           )
         ) \\s* (\\<)
       
