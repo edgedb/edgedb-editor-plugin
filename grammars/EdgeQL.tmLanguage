@@ -671,7 +671,7 @@
   attribute | before | by | constraint |
   database | delegated | desc | event | extending | final |
   first | for | from | index | initial | last | link |
-  migration | of | policy | property | required | rename |
+  migration | of | override | policy | property | required | rename |
   scalar | target | then | to | transaction | type | value | view |
 
   (?# reserved)
