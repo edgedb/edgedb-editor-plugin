@@ -128,7 +128,7 @@
   attribute | before | by | constraint |
   database | delegated | desc | event | extending |
   first | for | from | index | initial | last | link |
-  migration | of | policy | property | rename | scalar |
+  migration | of | override | policy | property | rename | scalar |
   target | then | transaction | type | value | view |
 
   aggregate | all | alter | and | commit | create | delete |
