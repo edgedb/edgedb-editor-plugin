@@ -75,12 +75,12 @@ repository:
             linkproperty |
           
             (?# from EdgeQL)
-            action | after | asc | atom |
-            attribute | before | by | concept | constraint |
+            action | after | asc |
+            attribute | before | by | constraint |
             database | delegated | desc | event | extending |
             first | for | from | index | initial | last | link |
-            migration | of | policy | property | rename |
-            target | then | transaction | value | view |
+            migration | of | policy | property | rename | scalar |
+            target | then | transaction | type | value | view |
           
             aggregate | all | alter | and | commit | create | delete |
             distinct | drop | else | exists | filter |
