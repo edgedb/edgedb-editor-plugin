@@ -667,12 +667,12 @@
             <string>(?ix) \b(?&lt;![:\.])(
   (?# unreserved)
 
-  abstract | action | after | as | asc | atom |
-  attribute | before | by | concept | constraint |
+  abstract | action | after | as | asc |
+  attribute | before | by | constraint |
   database | delegated | desc | event | extending | final |
   first | for | from | index | initial | last | link |
   migration | of | policy | property | required | rename |
-  target | then | to | transaction | value | view |
+  scalar | target | then | to | transaction | type | value | view |
 
   (?# reserved)
 
