@@ -608,6 +608,12 @@
         <key>patterns</key>
         <array>
           <dict>
+            <key>name</key>
+            <string>punctuation.statement.delimiter.edgeql</string>
+            <key>match</key>
+            <string>(;)</string>
+          </dict>
+          <dict>
             <key>include</key>
             <string>#expressions</string>
           </dict>
@@ -668,19 +674,23 @@
   (?# unreserved)
 
   abstract | action | after | as | asc |
-  attribute | before | by | constraint |
-  database | delegated | desc | event | extending | final |
-  first | for | from | index | initial | last | link |
-  migration | of | policy | property | required | rename |
-  scalar | target | then | to | transaction | type | value | view |
+  attribute | before | by | cardinality | constraint |
+  database | delegated | desc |
+  event | final | first | from | index | initial |
+  into | last | link | migration | of | on |
+  policy | property | required | rename | scalar | target |
+  then | to | transaction | type | using | value |
+  view |
 
   (?# reserved)
 
-  aggregate | all | alter | and | commit | create | delete |
-  distinct | drop | else | exists | filter |
-  function | get | group | if | ilike | in | insert | is |
-  like | limit | module | not | offset | or | order | over |
-  partition | rollback | select | set | singleton | start |
+  aggregate | all | alter | and | commit | create |
+  delete | detached | distinct | drop | each | else |
+  exists | explain | extending | filter |
+  for | function | get | group | if | ilike | in |
+  insert | is | like | limit | module | not | offset |
+  optional | or | order | over | partition |
+  rollback | select | set | start |
   update | union | with
 )\b
 </string>
@@ -770,6 +780,15 @@ length | minlength | regexp | maxlength | maxexclusive | unique
             <key>match</key>
             <string>(?x) \b(?&lt;!::|\.)(
   std | stdattrs | schema
+)\b
+</string>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>support.other.link.builtin.edgeql</string>
+            <key>match</key>
+            <string>(?x) \b(
+  __class__ | __subject__ | __self__
 )\b
 </string>
           </dict>

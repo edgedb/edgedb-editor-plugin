@@ -38,6 +38,7 @@ string.interpolated.edgeql
 string.quoted.edgeql
 support.function.builtin.edgeql
 support.function.constraint.builtin.edgeql
+support.other.link.builtin.edgeql
 support.other.linkproperty.edgeql
 support.other.module.builtin.edgeql
 support.type.builtin.edgeql

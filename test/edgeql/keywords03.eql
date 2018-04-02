@@ -3,11 +3,10 @@ ACTION
 AFTER
 AS
 ASC
-ATOM
 ATTRIBUTE
 BEFORE
 BY
-CONCEPT
+CARDINALITY
 CONSTRAINT
 DATABASE
 DELEGATED
@@ -28,10 +27,12 @@ POLICY
 PROPERTY
 REQUIRED
 RENAME
+SCALAR
 TARGET
 THEN
 TO
 TRANSACTION
+TYPE
 VALUE
 VIEW
 AGGREGATE
@@ -66,7 +67,6 @@ PARTITION
 ROLLBACK
 SELECT
 SET
-SINGLETON
 START
 UPDATE
 UNION
@@ -79,11 +79,10 @@ ACTION        : keyword.declaration.edgeql, source.edgeql
 AFTER         : keyword.declaration.edgeql, source.edgeql
 AS            : keyword.declaration.edgeql, source.edgeql
 ASC           : keyword.declaration.edgeql, source.edgeql
-ATOM          : keyword.declaration.edgeql, source.edgeql
 ATTRIBUTE     : keyword.declaration.edgeql, source.edgeql
 BEFORE        : keyword.declaration.edgeql, source.edgeql
 BY            : keyword.declaration.edgeql, source.edgeql
-CONCEPT       : keyword.declaration.edgeql, source.edgeql
+CARDINALITY   : keyword.declaration.edgeql, source.edgeql
 CONSTRAINT    : keyword.declaration.edgeql, source.edgeql
 DATABASE      : keyword.declaration.edgeql, source.edgeql
 DELEGATED     : keyword.declaration.edgeql, source.edgeql
@@ -104,10 +103,12 @@ POLICY        : keyword.declaration.edgeql, source.edgeql
 PROPERTY      : keyword.declaration.edgeql, source.edgeql
 REQUIRED      : keyword.declaration.edgeql, source.edgeql
 RENAME        : keyword.declaration.edgeql, source.edgeql
+SCALAR        : keyword.declaration.edgeql, source.edgeql
 TARGET        : keyword.declaration.edgeql, source.edgeql
 THEN          : keyword.declaration.edgeql, source.edgeql
 TO            : keyword.declaration.edgeql, source.edgeql
 TRANSACTION   : keyword.declaration.edgeql, source.edgeql
+TYPE          : keyword.declaration.edgeql, source.edgeql
 VALUE         : keyword.declaration.edgeql, source.edgeql
 VIEW          : keyword.declaration.edgeql, source.edgeql
 AGGREGATE     : keyword.declaration.edgeql, source.edgeql
@@ -142,7 +143,6 @@ PARTITION     : keyword.declaration.edgeql, source.edgeql
 ROLLBACK      : keyword.declaration.edgeql, source.edgeql
 SELECT        : keyword.declaration.edgeql, source.edgeql
 SET           : keyword.declaration.edgeql, source.edgeql
-SINGLETON     : keyword.declaration.edgeql, source.edgeql
 START         : keyword.declaration.edgeql, source.edgeql
 UPDATE        : keyword.declaration.edgeql, source.edgeql
 UNION         : keyword.declaration.edgeql, source.edgeql
