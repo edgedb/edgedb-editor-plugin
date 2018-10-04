@@ -9,7 +9,7 @@
     <string>source.edgeschema</string>
     <key>fileTypes</key>
     <array>
-      <string>edgeschema</string>
+      <string>eschema</string>
     </array>
     <key>uuid</key>
     <string>a560aad6-9c13-49c5-a369-5fb272c8ec1a</string>

@@ -2,7 +2,7 @@
 ---
 name: EdgeDBSchema
 scopeName: source.edgeschema
-fileTypes: ['edgeschema']
+fileTypes: ['eschema']
 uuid: a560aad6-9c13-49c5-a369-5fb272c8ec1a
 
 patterns:

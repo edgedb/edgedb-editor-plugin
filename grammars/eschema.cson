@@ -2,7 +2,7 @@
 name: "EdgeDBSchema"
 scopeName: "source.edgeschema"
 fileTypes: [
-  "edgeschema"
+  "eschema"
 ]
 uuid: "a560aad6-9c13-49c5-a369-5fb272c8ec1a"
 patterns: [
@@ -80,9 +80,9 @@ repository:
             policy | property | required | rename | scalar | target |
             then | transaction | type | using | value |
             view |
-
+          
             (?# reserved)
-
+          
             aggregate | all | alter | and | commit | create |
             delete | detached | distinct | drop | each | else |
             exists | explain | extending | filter |
@@ -92,7 +92,7 @@ repository:
             rollback | select | set | start |
             update | union | with
           )\\b
-
+          
         '''
       }
       {
@@ -115,7 +115,7 @@ repository:
         ^\\s+
           ([[:alpha:]_][[:alnum:]_]*)
             (?=\\s*:=)
-
+      
     '''
     captures:
       "1":
@@ -149,7 +149,7 @@ repository:
             current_date | current_datetime | current_time |
             random | uuid_generate_v1mc
           )(?=\\s*\\()\\b
-
+          
         '''
       }
       {
@@ -159,7 +159,7 @@ repository:
             constraint | max | enum | expression | min | minexclusive |
             length | minlength | regexp | maxlength | maxexclusive | unique
           )\\b
-
+          
         '''
       }
       {
@@ -168,7 +168,7 @@ repository:
           (?x) \\b(?<!::|\\.)(
             std | stdattrs | schema
           )\\b
-
+          
         '''
       }
       {
@@ -176,11 +176,11 @@ repository:
         match: '''
           (?x) \\b(
             array | map | tuple |
-
+          
             bytes | datetime | uuid | str | json | timedelta | date |
             time | int | float | bool | auto | any
           )\\b
-
+          
         '''
       }
       {
