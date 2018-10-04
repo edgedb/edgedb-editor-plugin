@@ -2,9 +2,9 @@ import mylib.util.foo as foo, mylib.special.foo as sfoo
 
 
 
-import        : keyword.operator.eschema, source.eschema
- mylib.util.foo  : source.eschema
-as            : keyword.operator.eschema, source.eschema
- foo, mylib.special.foo  : source.eschema
-as            : keyword.operator.eschema, source.eschema
- sfoo         : source.eschema
+import        : keyword.operator.edgeschema, source.edgeschema
+ mylib.util.foo  : source.edgeschema
+as            : keyword.operator.edgeschema, source.edgeschema
+ foo, mylib.special.foo  : source.edgeschema
+as            : keyword.operator.edgeschema, source.edgeschema
+ sfoo         : source.edgeschema

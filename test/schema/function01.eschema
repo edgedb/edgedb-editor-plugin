@@ -4,19 +4,19 @@ function len() -> std::int:
 
 
 
-function      : keyword.other.declaration.eschema, source.eschema
-              : source.eschema
-len           : source.eschema, support.function.builtin.eschema
-(             : punctuation.parenthesis.begin.eschema, source.eschema
-)             : punctuation.parenthesis.end.eschema, source.eschema
-              : source.eschema
-->            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-std::int      : source.eschema
-:             : source.eschema
-              : source.eschema
-from          : keyword.other.declaration.eschema, source.eschema
- sql          : source.eschema
-function      : keyword.other.declaration.eschema, source.eschema
-:             : source.eschema
-length        : source.eschema, support.function.constraint.builtin.eschema
+function      : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+len           : source.edgeschema, support.function.builtin.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
+              : source.edgeschema
+->            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+std::int      : source.edgeschema
+:             : source.edgeschema
+              : source.edgeschema
+from          : keyword.other.declaration.edgeschema, source.edgeschema
+ sql          : source.edgeschema
+function      : keyword.other.declaration.edgeschema, source.edgeschema
+:             : source.edgeschema
+length        : source.edgeschema, support.function.constraint.builtin.edgeschema

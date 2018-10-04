@@ -5,30 +5,30 @@ constraint max($param:any) on (()):
 
 
 
-constraint    : keyword.other.declaration.eschema, source.eschema
-              : source.eschema
-max           : source.eschema, support.function.constraint.builtin.eschema
-(             : punctuation.parenthesis.begin.eschema, source.eschema
-$param:any    : source.eschema
-)             : punctuation.parenthesis.end.eschema, source.eschema
-              : source.eschema
-on            : keyword.operator.eschema, source.eschema
-              : source.eschema
-(             : punctuation.parenthesis.begin.eschema, source.eschema
-(             : source.eschema
-)             : punctuation.parenthesis.end.eschema, source.eschema
-):            : source.eschema
-              : meta.attribute.eschema, source.eschema
-expr          : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-              : source.eschema
-:=            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-subject <= $param : source.eschema
-              : source.eschema
-              : meta.attribute.eschema, source.eschema
-errmessage    : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-              : source.eschema
-:=            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-'Maximum allowed value for {subject} is {param}.' : source.eschema
-              : source.eschema
+constraint    : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+max           : source.edgeschema, support.function.constraint.builtin.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+$param:any    : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
+              : source.edgeschema
+on            : keyword.operator.edgeschema, source.edgeschema
+              : source.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+(             : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
+):            : source.edgeschema
+              : meta.attribute.edgeschema, source.edgeschema
+expr          : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
+              : source.edgeschema
+:=            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+subject <= $param : source.edgeschema
+              : source.edgeschema
+              : meta.attribute.edgeschema, source.edgeschema
+errmessage    : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
+              : source.edgeschema
+:=            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+'Maximum allowed value for {subject} is {param}.' : source.edgeschema
+              : source.edgeschema

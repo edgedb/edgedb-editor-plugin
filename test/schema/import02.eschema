@@ -5,17 +5,17 @@ otherlib.ham as spam)
 
 
 
-              : source.eschema
-import        : keyword.operator.eschema, source.eschema
-              : source.eschema
-(             : punctuation.parenthesis.begin.eschema, source.eschema
-              : source.eschema
-#             : comment.line.number-sign.eschema, punctuation.definition.comment.eschema, source.eschema
- ignore indentation because of parentheses : comment.line.number-sign.eschema, source.eschema
-otherlib.bar  : source.eschema
-as            : keyword.operator.eschema, source.eschema
- bar,         : source.eschema
-otherlib.ham  : source.eschema
-as            : keyword.operator.eschema, source.eschema
- spam         : source.eschema
-)             : punctuation.parenthesis.end.eschema, source.eschema
+              : source.edgeschema
+import        : keyword.operator.edgeschema, source.edgeschema
+              : source.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+              : source.edgeschema
+#             : comment.line.number-sign.edgeschema, punctuation.definition.comment.edgeschema, source.edgeschema
+ ignore indentation because of parentheses : comment.line.number-sign.edgeschema, source.edgeschema
+otherlib.bar  : source.edgeschema
+as            : keyword.operator.edgeschema, source.edgeschema
+ bar,         : source.edgeschema
+otherlib.ham  : source.edgeschema
+as            : keyword.operator.edgeschema, source.edgeschema
+ spam         : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema

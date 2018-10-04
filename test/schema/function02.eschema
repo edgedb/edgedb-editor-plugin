@@ -4,20 +4,20 @@ function some_func($foo: std::int = 42) -> std::str:
 
 
 
-function      : keyword.other.declaration.eschema, source.eschema
- some_func    : source.eschema
-(             : punctuation.parenthesis.begin.eschema, source.eschema
-$foo: std::int = 42 : source.eschema
-)             : punctuation.parenthesis.end.eschema, source.eschema
-              : source.eschema
-->            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-std::str      : source.eschema
-:             : source.eschema
-              : source.eschema
-from          : keyword.other.declaration.eschema, source.eschema
- sql          : source.eschema
-:=            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-"SELECT 'life';" : source.eschema
-              : source.eschema
+function      : keyword.other.declaration.edgeschema, source.edgeschema
+ some_func    : source.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+$foo: std::int = 42 : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
+              : source.edgeschema
+->            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+std::str      : source.edgeschema
+:             : source.edgeschema
+              : source.edgeschema
+from          : keyword.other.declaration.edgeschema, source.edgeschema
+ sql          : source.edgeschema
+:=            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+"SELECT 'life';" : source.edgeschema
+              : source.edgeschema

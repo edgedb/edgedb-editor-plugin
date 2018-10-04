@@ -5,23 +5,23 @@ abstract concept Text:
 
 
 
-abstract      : source.eschema, support.type.abstract.eschema
-              : source.eschema
-concept       : keyword.other.declaration.eschema, source.eschema
- Text:        : source.eschema
-              : source.eschema
-required      : source.eschema, support.type.required.eschema
-              : source.eschema
-link          : keyword.other.declaration.eschema, source.eschema
- body         : source.eschema
-to            : keyword.operator.eschema, source.eschema
-              : source.eschema
-std::str      : source.eschema
-:             : source.eschema
-              : source.eschema
-constraint    : keyword.other.declaration.eschema, source.eschema
-              : source.eschema
-maxlength     : source.eschema, support.function.constraint.builtin.eschema
-(             : punctuation.parenthesis.begin.eschema, source.eschema
-10000         : source.eschema
-)             : punctuation.parenthesis.end.eschema, source.eschema
+abstract      : source.edgeschema, support.type.abstract.edgeschema
+              : source.edgeschema
+concept       : keyword.other.declaration.edgeschema, source.edgeschema
+ Text:        : source.edgeschema
+              : source.edgeschema
+required      : source.edgeschema, support.type.required.edgeschema
+              : source.edgeschema
+link          : keyword.other.declaration.edgeschema, source.edgeschema
+ body         : source.edgeschema
+to            : keyword.operator.edgeschema, source.edgeschema
+              : source.edgeschema
+std::str      : source.edgeschema
+:             : source.edgeschema
+              : source.edgeschema
+constraint    : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+maxlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+10000         : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema

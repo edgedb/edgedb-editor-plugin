@@ -3,16 +3,16 @@ abstract constraint length:
 
 
 
-abstract      : source.eschema, support.type.abstract.eschema
-              : source.eschema
-constraint    : keyword.other.declaration.eschema, source.eschema
-              : source.eschema
-length        : source.eschema, support.function.constraint.builtin.eschema
-:             : source.eschema
-              : meta.attribute.eschema, source.eschema
-subject       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-              : source.eschema
-:=            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-str::len(<str>subject) : source.eschema
-              : source.eschema
+abstract      : source.edgeschema, support.type.abstract.edgeschema
+              : source.edgeschema
+constraint    : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+length        : source.edgeschema, support.function.constraint.builtin.edgeschema
+:             : source.edgeschema
+              : meta.attribute.edgeschema, source.edgeschema
+subject       : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
+              : source.edgeschema
+:=            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+str::len(<str>subject) : source.edgeschema
+              : source.edgeschema

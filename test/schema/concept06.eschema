@@ -6,30 +6,30 @@ concept LogEntry extending OwnedObject, Text:
 
 
 
-concept       : keyword.other.declaration.eschema, source.eschema
- LogEntry     : source.eschema
-extending     : keyword.other.declaration.eschema, source.eschema
-              : source.eschema
-OwnedObject, Text : source.eschema
-:             : source.eschema
-              : source.eschema
-link          : keyword.other.declaration.eschema, source.eschema
- start_date   : source.eschema
-to            : keyword.operator.eschema, source.eschema
-              : source.eschema
-datetime      : source.eschema
-:             : source.eschema
-              : meta.attribute.eschema, source.eschema
-default       : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-              : source.eschema
-:=            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-            SELECT datetime::current_datetime() : source.eschema
-              : source.eschema
-              : meta.attribute.eschema, source.eschema
-title         : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-              : source.eschema
-:=            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-'Start Date'  : source.eschema
-              : source.eschema
+concept       : keyword.other.declaration.edgeschema, source.edgeschema
+ LogEntry     : source.edgeschema
+extending     : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+OwnedObject, Text : source.edgeschema
+:             : source.edgeschema
+              : source.edgeschema
+link          : keyword.other.declaration.edgeschema, source.edgeschema
+ start_date   : source.edgeschema
+to            : keyword.operator.edgeschema, source.edgeschema
+              : source.edgeschema
+datetime      : source.edgeschema
+:             : source.edgeschema
+              : meta.attribute.edgeschema, source.edgeschema
+default       : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
+              : source.edgeschema
+:=            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+            SELECT datetime::current_datetime() : source.edgeschema
+              : source.edgeschema
+              : meta.attribute.edgeschema, source.edgeschema
+title         : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
+              : source.edgeschema
+:=            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+'Start Date'  : source.edgeschema
+              : source.edgeschema

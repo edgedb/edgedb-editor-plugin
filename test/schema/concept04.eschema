@@ -4,17 +4,17 @@ concept LogEntry extending OwnedObject, Text:
 
 
 
-concept       : keyword.other.declaration.eschema, source.eschema
- LogEntry     : source.eschema
-extending     : keyword.other.declaration.eschema, source.eschema
-              : source.eschema
-OwnedObject, Text : source.eschema
-:             : source.eschema
-              : source.eschema
-required      : source.eschema, support.type.required.eschema
-              : source.eschema
-link          : keyword.other.declaration.eschema, source.eschema
- spent_time   : source.eschema
-to            : keyword.operator.eschema, source.eschema
-              : source.eschema
-int           : source.eschema
+concept       : keyword.other.declaration.edgeschema, source.edgeschema
+ LogEntry     : source.edgeschema
+extending     : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+OwnedObject, Text : source.edgeschema
+:             : source.edgeschema
+              : source.edgeschema
+required      : source.edgeschema, support.type.required.edgeschema
+              : source.edgeschema
+link          : keyword.other.declaration.edgeschema, source.edgeschema
+ spent_time   : source.edgeschema
+to            : keyword.operator.edgeschema, source.edgeschema
+              : source.edgeschema
+int           : source.edgeschema

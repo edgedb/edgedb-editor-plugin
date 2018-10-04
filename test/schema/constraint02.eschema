@@ -3,21 +3,21 @@ constraint maxlength($param:any) extending max, length:
 
 
 
-constraint    : keyword.other.declaration.eschema, source.eschema
-              : source.eschema
-maxlength     : source.eschema, support.function.constraint.builtin.eschema
-(             : punctuation.parenthesis.begin.eschema, source.eschema
-$param:any    : source.eschema
-)             : punctuation.parenthesis.end.eschema, source.eschema
-              : source.eschema
-extending     : keyword.other.declaration.eschema, source.eschema
-              : source.eschema
-max, length   : source.eschema
-:             : source.eschema
-              : meta.attribute.eschema, source.eschema
-errmessage    : meta.attribute.eschema, source.eschema, variable.parameter.attribute.eschema
-              : source.eschema
-:=            : keyword.declaration.eschema, source.eschema
-              : source.eschema
-'{$subject} must be no longer than {$param} characters.' : source.eschema
-              : source.eschema
+constraint    : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+maxlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+$param:any    : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
+              : source.edgeschema
+extending     : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+max, length   : source.edgeschema
+:             : source.edgeschema
+              : meta.attribute.edgeschema, source.edgeschema
+errmessage    : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
+              : source.edgeschema
+:=            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+'{$subject} must be no longer than {$param} characters.' : source.edgeschema
+              : source.edgeschema
