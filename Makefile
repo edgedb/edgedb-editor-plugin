@@ -8,10 +8,10 @@ PLISTS = $(addprefix grammars/,$(addsuffix .tmLanguage,$(SYNTAXES)))
 build: $(CSONS) $(PLISTS)
 
 
-test:
+test: build
 	#	Run tests
-	./node_modules/.bin/syntaxdev test --tests test/**/*.eschema --syntax grammars/eschema.syntax.yaml
 	./node_modules/.bin/syntaxdev test --tests test/**/*.eql --syntax grammars/edgeql.syntax.yaml
+	./node_modules/.bin/syntaxdev test --tests test/**/*.eschema --syntax grammars/eschema.syntax.yaml
 
 
 devenv:

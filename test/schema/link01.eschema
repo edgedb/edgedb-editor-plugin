@@ -1,0 +1,26 @@
+abstract link todo:
+    property rank -> int64:
+        default := 42
+
+
+
+
+abstract      : source.edgeschema, support.type.abstract.edgeschema
+              : source.edgeschema
+link          : keyword.other.declaration.edgeschema, source.edgeschema
+ to           : source.edgeschema
+do            : source.edgeschema
+:             : source.edgeschema
+              : source.edgeschema
+property      : keyword.other.declaration.edgeschema, source.edgeschema
+ rank         : source.edgeschema
+->            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+int64         : source.edgeschema
+:             : source.edgeschema
+              : meta.attribute.edgeschema, source.edgeschema
+default       : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
+              : source.edgeschema
+:=            : keyword.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+42            : source.edgeschema

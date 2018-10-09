@@ -1,9 +1,9 @@
-concept User extending std::NamedObject
+type User extending std::NamedObject
 
 
 
 
-concept       : keyword.other.declaration.edgeschema, source.edgeschema
+type          : keyword.other.declaration.edgeschema, source.edgeschema
  User         : source.edgeschema
 extending     : keyword.other.declaration.edgeschema, source.edgeschema
               : source.edgeschema

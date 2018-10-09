@@ -1,19 +1,18 @@
-concept LogEntry extending OwnedObject, Text:
-   link start_date := SELECT datetime::current_datetime()
+type LogEntry extending OwnedObject, Text:
+   property start_date := SELECT datetime::current_datetime()
 
 
 
 
-concept       : keyword.other.declaration.edgeschema, source.edgeschema
+type          : keyword.other.declaration.edgeschema, source.edgeschema
  LogEntry     : source.edgeschema
 extending     : keyword.other.declaration.edgeschema, source.edgeschema
               : source.edgeschema
 OwnedObject, Text : source.edgeschema
 :             : source.edgeschema
               : source.edgeschema
-link          : keyword.other.declaration.edgeschema, source.edgeschema
+property      : keyword.other.declaration.edgeschema, source.edgeschema
  start_date   : source.edgeschema
 :=            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
 SELECT datetime::current_datetime() : source.edgeschema
-              : source.edgeschema

@@ -40,4 +40,3 @@ from          : keyword.other.declaration.edgeschema, source.edgeschema
 :=            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
         'SELECT blarg;' : source.edgeschema
-              : source.edgeschema

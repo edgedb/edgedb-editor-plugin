@@ -68,34 +68,6 @@ repository:
         match: "(?i)\\b(required)\\b"
       }
       {
-        name: "keyword.other.declaration.edgeschema"
-        match: '''
-          (?ix) \\b(
-            (?# from EdgeQL)
-            action | after | asc |
-            attribute | before | by | cardinality |
-            constraint | database | delegated | desc |
-            event | first | from | index | initial |
-            into | last | link | migration | of |
-            policy | property | required | rename | scalar | target |
-            then | transaction | type | using | value |
-            view |
-          
-            (?# reserved)
-          
-            aggregate | all | alter | and | commit | create |
-            delete | detached | distinct | drop | each | else |
-            exists | explain | extending | filter |
-            for | function | get | group | if | ilike | in |
-            insert | is | like | limit | module | not | offset |
-            optional | or | order | over | partition |
-            rollback | select | set | start |
-            update | union | with
-          )\\b
-          
-        '''
-      }
-      {
         name: "keyword.operator.edgeschema"
         match: "(?i)\\b(as|import|on|to)\\b"
       }
@@ -106,6 +78,34 @@ repository:
       {
         name: "constant.language.boolean.false.edgeschema"
         match: "(?i)\\b(false)\\b"
+      }
+      {
+        name: "keyword.other.declaration.edgeschema"
+        match: '''
+          (?ix) \\b(
+            (?# from EdgeQL)
+          
+            abstract | action | after | any | as | asc | attribute |
+            before | by | cardinality | constraint | database |
+            default | deferred | delegated | desc | event | final |
+            first | from | index | inherited | initial | into |
+            last | link | migration | of | on | policy | property |
+            rename | restrict | role | scalar | source | target |
+            then | to | transaction | type | using | value | view |
+          
+            (?# reserved)
+          
+            aggregate | all | alter | and | commit | create |
+            delete | detached | distinct | drop | each | else |
+            exists | explain | extending | filter | for | function |
+            get | group | if | ilike | in | insert | introspect |
+            is | like | limit | module | not | offset | optional |
+            or | order | over | partition | required | rollback |
+            select | set | start | typeof | union | update |
+            variadic | with
+          )\\b
+          
+        '''
       }
     ]
   attributes:

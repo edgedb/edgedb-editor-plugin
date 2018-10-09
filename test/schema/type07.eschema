@@ -1,4 +1,4 @@
-concept Issue extending foo.bar::NamedObject, Text:
+type Issue extending foo.bar::NamedObject, Text:
     link watchers to User:
         mapping := '**'
 
@@ -11,7 +11,7 @@ concept Issue extending foo.bar::NamedObject, Text:
 
 
 
-concept       : keyword.other.declaration.edgeschema, source.edgeschema
+type          : keyword.other.declaration.edgeschema, source.edgeschema
  Issue        : source.edgeschema
 extending     : keyword.other.declaration.edgeschema, source.edgeschema
               : source.edgeschema
@@ -60,4 +60,3 @@ mapping       : meta.attribute.edgeschema, source.edgeschema, variable.parameter
 :=            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
 '*1'          : source.edgeschema
-              : source.edgeschema

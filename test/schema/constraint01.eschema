@@ -15,4 +15,3 @@ subject       : meta.attribute.edgeschema, source.edgeschema, variable.parameter
 :=            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
 str::len(<str>subject) : source.edgeschema
-              : source.edgeschema

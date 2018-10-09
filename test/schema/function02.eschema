@@ -20,4 +20,3 @@ from          : keyword.other.declaration.edgeschema, source.edgeschema
 :=            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
 "SELECT 'life';" : source.edgeschema
-              : source.edgeschema

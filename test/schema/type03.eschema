@@ -1,5 +1,5 @@
-abstract concept Text:
-    required link body to std::str:
+abstract type Text:
+    required property body to std::str:
         constraint maxlength(10000)
 
 
@@ -7,12 +7,12 @@ abstract concept Text:
 
 abstract      : source.edgeschema, support.type.abstract.edgeschema
               : source.edgeschema
-concept       : keyword.other.declaration.edgeschema, source.edgeschema
+type          : keyword.other.declaration.edgeschema, source.edgeschema
  Text:        : source.edgeschema
               : source.edgeschema
 required      : source.edgeschema, support.type.required.edgeschema
               : source.edgeschema
-link          : keyword.other.declaration.edgeschema, source.edgeschema
+property      : keyword.other.declaration.edgeschema, source.edgeschema
  body         : source.edgeschema
 to            : keyword.operator.edgeschema, source.edgeschema
               : source.edgeschema

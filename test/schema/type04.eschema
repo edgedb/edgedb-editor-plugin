@@ -1,10 +1,10 @@
-concept LogEntry extending OwnedObject, Text:
-    required link spent_time to int
+type LogEntry extending OwnedObject, Text:
+    required property spent_time to int
 
 
 
 
-concept       : keyword.other.declaration.edgeschema, source.edgeschema
+type          : keyword.other.declaration.edgeschema, source.edgeschema
  LogEntry     : source.edgeschema
 extending     : keyword.other.declaration.edgeschema, source.edgeschema
               : source.edgeschema
@@ -13,7 +13,7 @@ OwnedObject, Text : source.edgeschema
               : source.edgeschema
 required      : source.edgeschema, support.type.required.edgeschema
               : source.edgeschema
-link          : keyword.other.declaration.edgeschema, source.edgeschema
+property      : keyword.other.declaration.edgeschema, source.edgeschema
  spent_time   : source.edgeschema
 to            : keyword.operator.edgeschema, source.edgeschema
               : source.edgeschema

@@ -31,4 +31,3 @@ errmessage    : meta.attribute.edgeschema, source.edgeschema, variable.parameter
 :=            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
 'Maximum allowed value for {subject} is {param}.' : source.edgeschema
-              : source.edgeschema

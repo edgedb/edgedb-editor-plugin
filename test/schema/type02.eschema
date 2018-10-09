@@ -1,11 +1,11 @@
-abstract concept OwnedObject:
+abstract type OwnedObject:
     required link owner to User
 
 
 
 abstract      : source.edgeschema, support.type.abstract.edgeschema
               : source.edgeschema
-concept       : keyword.other.declaration.edgeschema, source.edgeschema
+type          : keyword.other.declaration.edgeschema, source.edgeschema
  OwnedObject: : source.edgeschema
               : source.edgeschema
 required      : source.edgeschema, support.type.required.edgeschema

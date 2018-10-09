@@ -20,4 +20,3 @@ errmessage    : meta.attribute.edgeschema, source.edgeschema, variable.parameter
 :=            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
 '{$subject} must be no longer than {$param} characters.' : source.edgeschema
-              : source.edgeschema

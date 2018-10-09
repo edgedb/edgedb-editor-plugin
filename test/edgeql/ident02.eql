@@ -1,9 +1,11 @@
-INSERT std::delete_pointer;
+CREATE TYPE std::delete_pointer;
 
 
 
 
-INSERT        : keyword.declaration.edgeql, source.edgeql
+CREATE        : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+TYPE          : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql

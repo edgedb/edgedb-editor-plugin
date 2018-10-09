@@ -1,0 +1,45 @@
+scalar type constraint_length extending str:
+    constraint maxlength(16)
+    constraint maxlength(10)
+    constraint minlength(5)
+    constraint minlength(8)
+
+
+
+
+scalar        : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+type          : keyword.other.declaration.edgeschema, source.edgeschema
+ constraint_length  : source.edgeschema
+extending     : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+str           : source.edgeschema
+:             : source.edgeschema
+              : source.edgeschema
+constraint    : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+maxlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+16            : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
+              : source.edgeschema
+constraint    : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+maxlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+10            : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
+              : source.edgeschema
+constraint    : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+minlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+5             : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
+              : source.edgeschema
+constraint    : keyword.other.declaration.edgeschema, source.edgeschema
+              : source.edgeschema
+minlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
+(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
+8             : source.edgeschema
+)             : punctuation.parenthesis.end.edgeschema, source.edgeschema

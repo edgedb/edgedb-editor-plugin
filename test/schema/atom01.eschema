@@ -1,5 +1,4 @@
-atom basic extending int:
-
+scalar basic extending int:
     title := 'Basic Atom'
     default := 2
 
@@ -9,13 +8,12 @@ atom basic extending int:
 
 
 
-atom          : keyword.other.declaration.edgeschema, source.edgeschema
+scalar        : keyword.other.declaration.edgeschema, source.edgeschema
  basic        : source.edgeschema
 extending     : keyword.other.declaration.edgeschema, source.edgeschema
               : source.edgeschema
 int           : source.edgeschema
 :             : source.edgeschema
-              : source.edgeschema
               : meta.attribute.edgeschema, source.edgeschema
 title         : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
               : source.edgeschema
