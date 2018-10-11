@@ -40,7 +40,7 @@ UNION         : keyword.declaration.edgeql, source.edgeql
 sum           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 <             : keyword.operator.edgeql, meta.function-call.edgeql, source.edgeql
-int64         : meta.function-call.edgeql, source.edgeql
+int64         : meta.function-call.edgeql, source.edgeql, support.type.builtin.edgeql
 >             : keyword.operator.edgeql, meta.function-call.edgeql, source.edgeql
 Issue.number  : meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql

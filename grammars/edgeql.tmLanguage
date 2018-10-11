@@ -951,8 +951,15 @@ length | minlength | regexp | maxlength | maxexclusive | unique
             <string>support.type.builtin.edgeql</string>
             <key>match</key>
             <string>(?x) \b(?&lt;!\.) (
-  bytes | datetime | uuid | str | json | timedelta | date |
-  time | int | float | bool | auto | any
+  any | anyreal | anyint | anyfloat | auto |
+  bytes |
+  datetime | timedelta | date | time |
+  uuid |
+  str |
+  json |
+  int16 | int32 | int64 |
+  float32 | float64 | decimal |
+  bool
 )\b
 </string>
           </dict>

@@ -45,7 +45,7 @@ number        : source.edgeql
 FILTER        : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 <             : keyword.operator.cast.begin.edgeql, source.edgeql
-int64         : meta.typecast.edgeql, source.edgeql
+int64         : meta.typecast.edgeql, source.edgeql, support.type.builtin.edgeql
 >             : keyword.operator.cast.end.edgeql, source.edgeql
 (             : punctuation.parenthesis.begin.edgeql, source.edgeql
 .number       : source.edgeql

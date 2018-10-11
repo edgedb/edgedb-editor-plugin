@@ -396,8 +396,15 @@ repository:
       - name: support.type.builtin.edgeql
         match: |
           (?x) \b(?<!\.) (
-            bytes | datetime | uuid | str | json | timedelta | date |
-            time | int | float | bool | auto | any
+            any | anyreal | anyint | anyfloat | auto |
+            bytes |
+            datetime | timedelta | date | time |
+            uuid |
+            str |
+            json |
+            int16 | int32 | int64 |
+            float32 | float64 | decimal |
+            bool
           )\b
 
   types-common:
