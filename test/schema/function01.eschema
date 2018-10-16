@@ -1,4 +1,4 @@
-function len() -> std::int:
+function len() -> std::int64:
     from sql function: length
 
 
@@ -12,7 +12,7 @@ len           : source.edgeschema, support.function.builtin.edgeschema
               : source.edgeschema
 ->            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
-std::int      : source.edgeschema
+std::int64    : source.edgeschema
 :             : source.edgeschema
               : source.edgeschema
 from          : keyword.other.declaration.edgeschema, source.edgeschema

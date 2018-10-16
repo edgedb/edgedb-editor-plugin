@@ -427,7 +427,8 @@ repository:
             before | by | cardinality | constraint | database |
             default | deferred | delegated | desc | event | final |
             first | from | index | inherited | initial | into |
-            last | link | migration | of | on | policy | property |
+            last | link | migration | named | of | on | only | policy |
+            property |
             rename | restrict | role | scalar | source | target |
             then | to | transaction | type | using | value | view |
           

@@ -1,4 +1,4 @@
-CREATE AGGREGATE std::array_agg(std::any) -> array<std::any>
+CREATE AGGREGATE std::array_agg(SET OF std::any) -> array<std::any>
     FROM SQL AGGREGATE 'array_agg';
 
 
@@ -12,6 +12,10 @@ std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 array_agg     : source.edgeql, support.function.builtin.edgeql
 (             : punctuation.parenthesis.begin.edgeql, source.edgeql
+SET           : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+OF            : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
 std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 any           : source.edgeql, support.type.builtin.edgeql

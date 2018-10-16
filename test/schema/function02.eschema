@@ -1,4 +1,4 @@
-function some_func($foo: std::int = 42) -> std::str:
+function some_func($foo: std::int64 = 42) -> std::str:
     from sql := "SELECT 'life';"
 
 
@@ -7,7 +7,7 @@ function some_func($foo: std::int = 42) -> std::str:
 function      : keyword.other.declaration.edgeschema, source.edgeschema
  some_func    : source.edgeschema
 (             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
-$foo: std::int = 42 : source.edgeschema
+$foo: std::int64 = 42 : source.edgeschema
 )             : punctuation.parenthesis.end.edgeschema, source.edgeschema
               : source.edgeschema
 ->            : keyword.declaration.edgeschema, source.edgeschema

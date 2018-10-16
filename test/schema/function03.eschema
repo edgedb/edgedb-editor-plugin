@@ -1,5 +1,5 @@
 function myfunc($arg1: str, $arg2: str = 'DEFAULT',
-                *$arg3:std::int) -> set of int:
+                variadic $arg3:std::int64) -> set of int64:
     volatile := true
     description :=
         'myfunc sample'
@@ -13,12 +13,12 @@ function      : keyword.other.declaration.edgeschema, source.edgeschema
  myfunc       : source.edgeschema
 (             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
 $arg1: str, $arg2: str = 'DEFAULT', : source.edgeschema
-                *$arg3:std::int : source.edgeschema
+                variadic $arg3:std::int64 : source.edgeschema
 )             : punctuation.parenthesis.end.edgeschema, source.edgeschema
               : source.edgeschema
 ->            : keyword.declaration.edgeschema, source.edgeschema
               : source.edgeschema
-set of int    : source.edgeschema
+set of int64  : source.edgeschema
 :             : source.edgeschema
               : meta.attribute.edgeschema, source.edgeschema
 volatile      : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
