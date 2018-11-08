@@ -11,7 +11,7 @@ count()
 sum()
 current_date()
 current_datetime()
-current_time()
+local_time()
 random()
 uuid_generate_v1mc()
 
@@ -56,7 +56,7 @@ current_date  : meta.function-call.edgeql, source.edgeql, support.function.built
 current_datetime : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
-current_time  : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+local_time    : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 random        : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql

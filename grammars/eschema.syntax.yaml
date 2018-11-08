@@ -52,27 +52,25 @@ repository:
     - name: keyword.other.declaration.edgeschema
       match: |
         (?ix) \b(
+          (?# unreserved)
+          abstract | as | attribute | constraint | default |
+          deferred | delegated | final | from | index | inherited |
+          link | multi | of | on | property | required | restrict |
+          scalar | single | source | target | type | view |
+
           (?# from EdgeQL)
-
-          abstract | action | after | any | as | asc | attribute |
-          before | by | cardinality | constraint | database |
-          default | deferred | delegated | desc | event | final |
-          first | from | index | inherited | initial | into |
-          last | link | migration | named | of | on | only | policy |
-          property |
-          rename | restrict | role | scalar | source | target |
-          then | to | transaction | type | using | value | view |
-
           (?# reserved)
-
-          aggregate | all | alter | and | commit | create |
-          delete | detached | distinct | drop | each | else |
-          exists | explain | extending | filter | for | function |
-          get | group | if | ilike | in | insert | introspect |
-          is | like | limit | module | not | offset | optional |
-          or | order | over | partition | required | rollback |
-          select | set | start | typeof | union | update |
-          variadic | with
+          all | alter | analyze | and | anytype | begin | case |
+          commit | create | deallocate | declare | delete |
+          detached | discard | distinct | do | drop | else | end |
+          execute | exists | explain | extending | fetch | filter |
+          for | function | get | global | grant | group | if |
+          ilike | import | in | insert | introspect | is | like |
+          limit | listen | load | lock | match | module | move |
+          not | notify | offset | optional | or | order | over |
+          partition | prepare | refresh | reindex | reset |
+          revoke | rollback | savepoint | select | set | start |
+          typeof | union | update | variadic | when | with
         )\b
 
   attributes:

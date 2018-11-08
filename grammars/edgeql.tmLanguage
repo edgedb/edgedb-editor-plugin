@@ -240,7 +240,7 @@
       lower |
       re_match | re_match_all | re_test |
       count | sum |
-      current_date | current_datetime | current_time |
+      current_date | current_datetime | local_time |
       random | uuid_generate_v1mc
     )
     |
@@ -689,27 +689,29 @@
             <string>keyword.declaration.edgeql</string>
             <key>match</key>
             <string>(?ix) \b(?&lt;![:\.])(
-  (?# unreserved)
 
-  abstract | action | after | any | as | asc | attribute |
-  before | by | cardinality | constraint | database |
-  default | deferred | delegated | desc | event | final |
-  first | from | index | inherited | initial | into |
-  last | link | migration | named | of | on | only | policy |
-  property |
-  rename | restrict | role | scalar | source | target |
-  then | to | transaction | type | using | value | view |
+  (?# unreserved)
+  abstract | after | as | asc | attribute | before | by |
+  cardinality | constraint | database | default |
+  deferred | delegated | desc | final | first | from |
+  index | infix | inherited | into | last | link |
+  migration | multi | named | of | on | only | operator |
+  postfix | prefix | property | rename | required |
+  restrict | role | scalar | single | source | target |
+  then | to | transaction | type | using | view |
 
   (?# reserved)
-
-  aggregate | all | alter | and | commit | create |
-  delete | detached | distinct | drop | each | else |
-  exists | explain | extending | filter | for | function |
-  get | group | if | ilike | in | insert | introspect |
-  is | like | limit | module | not | offset | optional |
-  or | order | over | partition | required | rollback |
-  select | set | start | typeof | union | update |
-  variadic | with
+  all | alter | analyze | and | anytype | begin | case |
+  commit | create | deallocate | declare | delete |
+  detached | discard | distinct | do | drop | else | end |
+  execute | exists | explain | extending | fetch | filter |
+  for | function | get | global | grant | group | if |
+  ilike | import | in | insert | introspect | is | like |
+  limit | listen | load | lock | match | module | move |
+  not | notify | offset | optional | or | order | over |
+  partition | prepare | refresh | reindex | reset |
+  revoke | rollback | savepoint | select | set | start |
+  typeof | union | update | variadic | when | with
 )\b
 </string>
           </dict>
@@ -745,6 +747,16 @@
           </dict>
         </array>
       </dict>
+      <key>builtin-modules</key>
+      <dict>
+        <key>name</key>
+        <string>support.other.module.builtin.edgeql</string>
+        <key>match</key>
+        <string>(?x) \b(?&lt;!::|\.)(
+  std | stdattrs | schema
+)\b
+</string>
+      </dict>
       <key>builtins</key>
       <dict>
         <key>patterns</key>
@@ -775,13 +787,8 @@ length | minlength | regexp | maxlength | maxexclusive | unique
 </string>
           </dict>
           <dict>
-            <key>name</key>
-            <string>support.other.module.builtin.edgeql</string>
-            <key>match</key>
-            <string>(?x) \b(?&lt;!::|\.)(
-  std | stdattrs | schema
-)\b
-</string>
+            <key>include</key>
+            <string>#builtin-modules</string>
           </dict>
           <dict>
             <key>name</key>
@@ -798,50 +805,6 @@ length | minlength | regexp | maxlength | maxexclusive | unique
       <dict>
         <key>patterns</key>
         <array>
-          <dict>
-            <key>begin</key>
-            <string>\b(?&lt;!::|\.)(map)\s*(&lt;)</string>
-            <key>end</key>
-            <string>(&gt;)</string>
-            <key>beginCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>storage.type.edgeql</string>
-              </dict>
-              <key>2</key>
-              <dict>
-                <key>name</key>
-                <string>storage.type.placeholder.begin.edgeql</string>
-              </dict>
-            </dict>
-            <key>endCaptures</key>
-            <dict>
-              <key>1</key>
-              <dict>
-                <key>name</key>
-                <string>storage.type.placeholder.end.edgeql</string>
-              </dict>
-            </dict>
-            <key>patterns</key>
-            <array>
-              <dict>
-                <key>include</key>
-                <string>#types</string>
-              </dict>
-              <dict>
-                <key>name</key>
-                <string>punctuation.separator.type.edgeql</string>
-                <key>match</key>
-                <string>(,)</string>
-              </dict>
-              <dict>
-                <key>include</key>
-                <string>#types-common</string>
-              </dict>
-            </array>
-          </dict>
           <dict>
             <key>begin</key>
             <string>\b(?&lt;!::|\.)(tuple)\s*(&lt;)</string>
@@ -943,18 +906,23 @@ length | minlength | regexp | maxlength | maxexclusive | unique
             <string>storage.type.edgeql</string>
             <key>match</key>
             <string>(?x) \b(?&lt;!::|\.)(
-  array | map | tuple
+  array | tuple
 )\b
 </string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#builtin-modules</string>
           </dict>
           <dict>
             <key>name</key>
             <string>support.type.builtin.edgeql</string>
             <key>match</key>
             <string>(?x) \b(?&lt;!\.) (
-  any | anyreal | anyint | anyfloat | auto |
+  anytype | anyscalar |
+  anyreal | anyint | anyfloat | auto |
   bytes |
-  datetime | timedelta | date | time |
+  datetime | timedelta | date | naivetime |
   uuid |
   str |
   json |
