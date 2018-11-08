@@ -41,13 +41,15 @@ repository:
   comments:
     patterns: [
       {
-        name: "comment.line.note.edgeschema"
-        match: "(#)\\s*(BUG|FIXME|TODO|XXX).*$\\n?"
+        name: "comment.line.number-sign.edgeschema"
+        match: "(#)\\s*((BUG|FIXME|TODO|XXX)).*$\\n?"
         captures:
           "1":
             name: "punctuation.definition.comment.edgeschema"
           "2":
             name: "comment.line.note.notation.edgeschema"
+          "3":
+            name: "comment.line.note.edgeschema"
       }
       {
         name: "comment.line.number-sign.edgeschema"
