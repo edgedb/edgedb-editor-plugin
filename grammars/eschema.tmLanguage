@@ -224,7 +224,8 @@
   lower |
   re_match | re_match_all | re_test |
   count | sum |
-  current_date | current_datetime | current_time |
+  datetime_now |
+  datetime_get | time_get | date_get | timedelta_get |
   random | uuid_generate_v1mc
 )(?=\s*\()\b
 </string>
@@ -257,7 +258,9 @@
 
   any | anyreal | anyint | anyfloat | auto |
   bytes |
-  datetime | timedelta | date | time |
+  datetime |
+  naivedatetime | naivedate | naivetime |
+  timedelta |
   uuid |
   str |
   json |

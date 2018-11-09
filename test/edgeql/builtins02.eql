@@ -9,9 +9,11 @@ re_match_all()
 re_test()
 count()
 sum()
-current_date()
-current_datetime()
-local_time()
+datetime_now()
+datetime_get()
+date_get()
+time_get()
+timedelta_get()
 random()
 uuid_generate_v1mc()
 
@@ -50,13 +52,19 @@ count         : meta.function-call.edgeql, source.edgeql, support.function.built
 sum           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
-current_date  : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+datetime_now  : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
-current_datetime : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+datetime_get  : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
-local_time    : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+date_get      : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+time_get      : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+timedelta_get : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 random        : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
