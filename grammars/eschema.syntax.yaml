@@ -54,24 +54,27 @@ repository:
       match: |
         (?ix) \b(
           (?# unreserved)
-          abstract | as | attribute | constraint | default |
-          deferred | delegated | final | from | index | inherited |
-          link | multi | of | on | property | required | restrict |
-          scalar | single | source | target | type | view |
+          abstract | all | allow | as | attribute | constraint |
+          default | deferred | delegated | final | from | index |
+          inheritable | inherited | link | multi | of | on | property |
+          required | restrict | scalar | single | source | target |
+          type | view |
 
           (?# from EdgeQL)
           (?# reserved)
-          all | alter | analyze | and | anytype | begin | case |
-          commit | create | deallocate | declare | delete |
-          detached | discard | distinct | do | drop | else | end |
-          execute | exists | explain | extending | fetch | filter |
-          for | function | get | global | grant | group | if |
-          ilike | import | in | insert | introspect | is | like |
-          limit | listen | load | lock | match | module | move |
-          not | notify | offset | optional | or | order | over |
-          partition | prepare | refresh | reindex | reset |
-          revoke | rollback | savepoint | select | set | start |
-          typeof | union | update | variadic | when | with
+          analyze | anyarray | begin | case | deallocate |
+          discard | do | end | execute | explain | fetch | get |
+          global | grant | import | listen | load | lock | match |
+          move | notify | prepare | partition | raise |
+          refresh | reindex | revoke | over | when | alter | and |
+          anytuple | anytype | commit | create | declare |
+          delete | detached | distinct | drop | else | empty |
+          exists | extending | filter | for | function |
+          group | if | ilike | in | insert | introspect | is |
+          like | limit | module | not | offset | optional | or |
+          order | release | reset | rollback | select | set |
+          start | typeof | update | union | variadic |
+          with
         )\b
 
   attributes:
