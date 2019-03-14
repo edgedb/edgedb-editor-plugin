@@ -10,6 +10,7 @@
     <key>fileTypes</key>
     <array>
       <string>eql</string>
+      <string>eschema</string>
     </array>
     <key>uuid</key>
     <string>a560aad6-9c13-49c5-a369-5fb272c8ec1a</string>
@@ -750,14 +751,13 @@
           <dict>
             <key>name</key>
             <string>keyword.operator.edgeql</string>
-            <key>match</key>
-            <string>(?x)
-  # EdgeQL-specific multi-char ops
-  &gt;= | &lt;= | != | \?= | \?!= | := |
-
-  # single char operators
-  [+\-*/%^&lt;&gt;=]
-</string>
+            <key>$apply</key>
+            <array>
+              <dict>
+                <key>file</key>
+                <string>operators.inc.syntax.yaml</string>
+              </dict>
+            </array>
           </dict>
         </array>
       </dict>

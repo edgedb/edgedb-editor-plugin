@@ -3,6 +3,7 @@ name: "EdgeQL"
 scopeName: "source.edgeql"
 fileTypes: [
   "eql"
+  "eschema"
 ]
 uuid: "a560aad6-9c13-49c5-a369-5fb272c8ec1a"
 patterns: [
@@ -472,15 +473,11 @@ repository:
       }
       {
         name: "keyword.operator.edgeql"
-        match: '''
-          (?x)
-            # EdgeQL-specific multi-char ops
-            >= | <= | != | \\?= | \\?!= | := |
-          
-            # single char operators
-            [+\\-*/%^<>=]
-          
-        '''
+        $apply: [
+          {
+            file: "operators.inc.syntax.yaml"
+          }
+        ]
       }
     ]
   "builtin-modules":
