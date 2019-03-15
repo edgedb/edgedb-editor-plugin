@@ -1,33 +1,46 @@
-constraint max($param:any) on (()):
-    expr := subject <= $param
-    errmessage := 'Maximum allowed value for {subject} is {param}.'
+abstract constraint max($param:any) on (()) {
+    expr := __subject__ <= $param;
+    errmessage := 'Maximum allowed value for {subject} is {param}.';
+}
 
 
 
 
-constraint    : keyword.other.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-max           : source.edgeschema, support.function.constraint.builtin.edgeschema
-(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
-$param:any    : source.edgeschema
-)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
-              : source.edgeschema
-on            : keyword.operator.edgeschema, source.edgeschema
-              : source.edgeschema
-(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
-(             : source.edgeschema
-)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
-):            : source.edgeschema
-              : meta.attribute.edgeschema, source.edgeschema
-expr          : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
-              : source.edgeschema
-:=            : keyword.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-subject <= $param : source.edgeschema
-              : source.edgeschema
-              : meta.attribute.edgeschema, source.edgeschema
-errmessage    : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
-              : source.edgeschema
-:=            : keyword.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-'Maximum allowed value for {subject} is {param}.' : source.edgeschema
+abstract      : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+constraint    : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+max           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+$             : constant.language.variable.edgeql, meta.function-call.edgeql, source.edgeql
+param         : constant.language.variable.edgeql, meta.function-call.edgeql, source.edgeql
+:any          : meta.function-call.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+              : source.edgeql
+on            : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+(             : punctuation.parenthesis.begin.edgeql, source.edgeql
+(             : punctuation.parenthesis.begin.edgeql, source.edgeql
+)             : punctuation.parenthesis.end.edgeql, source.edgeql
+)             : punctuation.parenthesis.end.edgeql, source.edgeql
+              : source.edgeql
+{             : punctuation.parenthesis.begin.edgeql, source.edgeql
+              : source.edgeql
+expr          : source.edgeql
+:=            : keyword.operator.edgeql, source.edgeql
+              : source.edgeql
+__subject__   : source.edgeql, support.other.link.builtin.edgeql
+              : source.edgeql
+<=            : keyword.operator.edgeql, source.edgeql
+              : source.edgeql
+$             : constant.language.variable.edgeql, source.edgeql
+param         : constant.language.variable.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+    errmessage  : source.edgeql
+:=            : keyword.operator.edgeql, source.edgeql
+              : source.edgeql
+'             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
+Maximum allowed value for {subject} is {param}. : source.edgeql, string.quoted.edgeql
+'             : punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+}             : punctuation.parenthesis.end.edgeql, source.edgeql

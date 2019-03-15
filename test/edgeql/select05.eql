@@ -28,8 +28,8 @@ name          : source.edgeql
 (             : punctuation.parenthesis.begin.edgeql, source.edgeql
               : source.edgeql
 SELECT        : keyword.declaration.edgeql, source.edgeql
- User.        : source.edgeql
-<             : keyword.operator.edgeql, source.edgeql
+ User         : source.edgeql
+.<            : keyword.operator.navigation.edgeql, source.edgeql
 owner         : source.edgeql
 [             : punctuation.parenthesis.begin.edgeql, source.edgeql
 IS            : keyword.declaration.edgeql, source.edgeql

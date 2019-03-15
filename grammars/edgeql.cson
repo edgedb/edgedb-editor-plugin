@@ -76,6 +76,18 @@ repository:
   code:
     patterns: [
       {
+        match: '''
+          (?xi)
+            \\b(FROM) \\s+ (EDGEQL | SQL) \\s+ (EXPRESSION)
+          
+        '''
+        captures:
+          "1":
+            name: "keyword.declaration.edgeql"
+          "3":
+            name: "keyword.declaration.edgeql"
+      }
+      {
         begin: '''
           (?xi)
             \\b(FROM) \\s+
@@ -123,7 +135,7 @@ repository:
       }
     ]
   fnstatement:
-    begin: "(?ix) \\b(?<![:\\.])(FUNCTION|AGGREGATE|CONSTRAINT)\\b"
+    begin: "(?ix) \\b(?<![:\\.])(FUNCTION|AGGREGATE|ABSTRACT CONSTRAINT)\\b"
     end: "(?=[^\\s\\w:]|\\bEXTENDING\\b|$)"
     beginCaptures:
       "1":
@@ -138,130 +150,6 @@ repository:
       {
         name: "keyword.operator.namespace.edgeql"
         match: "(::)"
-      }
-    ]
-  fncalls:
-    patterns: [
-      {
-        name: "meta.function-call.edgeql"
-        begin: '''
-          (?x)
-            \\b(?<!\\.)
-            # function name
-            (?:
-              (
-                len |
-                array_agg | array_contains | array_enumerate | array_unpack |
-                lower |
-                re_match | re_match_all | re_test |
-                count | sum |
-                datetime_now |
-                datetime_get | time_get | date_get | timedelta_get |
-                random | uuid_generate_v1mc
-              )
-              |
-              ([[:alpha:]_][[:alnum:]_]*)
-              |
-              (`.*?`)
-            ) \\s*(\\()
-          
-        '''
-        end: "(\\))"
-        beginCaptures:
-          "1":
-            name: "support.function.builtin.edgeql"
-          "2":
-            name: "entity.name.function.edgeql"
-          "3":
-            name: "string.interpolated.edgeql"
-          "4":
-            name: "punctuation.definition.arguments.begin.edgeql"
-        endCaptures:
-          "1":
-            name: "punctuation.definition.arguments.end.edgeql"
-        patterns: [
-          {
-            include: "#fncallargs"
-          }
-        ]
-      }
-      {
-        name: "meta.function-call.edgeql"
-        begin: '''
-          (?x)
-            \\b(?<!\\.)
-            # module
-            (?:
-              (
-                std | stdattrs | schema
-              )
-              |
-              (?# masking built-ins in odd ways)
-              (
-                len |
-                array_agg | array_contains | array_enumerate | array_unpack |
-                lower |
-                re_match | re_match_all | re_test |
-                count | sum |
-                datetime_now |
-                datetime_get | time_get | date_get | timedelta_get |
-                random | uuid_generate_v1mc
-              )
-              |
-              ([[:alpha:]_][[:alnum:]_]*)
-              |
-              (`.*?`)
-            )
-          
-            \\s*(::)\\s*
-          
-            # function name
-            (?:
-              (
-                len |
-                array_agg | array_contains | array_enumerate | array_unpack |
-                lower |
-                re_match | re_match_all | re_test |
-                count | sum |
-                datetime_now |
-                datetime_get | time_get | date_get | timedelta_get |
-                random | uuid_generate_v1mc
-              )
-              |
-              ([[:alpha:]_][[:alnum:]_]*)
-              |
-              (`.*?`)
-            ) \\s*(\\()
-          
-        '''
-        end: "(\\))"
-        beginCaptures:
-          "1":
-            name: "support.other.module.builtin.edgeql"
-          "2":
-            name: "support.function.builtin.edgeql"
-          "3":
-            name: "entity.name.function.edgeql"
-          "4":
-            name: "string.interpolated.edgeql"
-          "5":
-            name: "keyword.operator.namespace.edgeql"
-          "6":
-            name: "support.function.builtin.edgeql"
-          "7":
-            name: "entity.name.function.edgeql"
-          "8":
-            name: "string.interpolated.edgeql"
-          "9":
-            name: "punctuation.definition.arguments.begin.edgeql"
-        endCaptures:
-          "1":
-            name: "punctuation.definition.arguments.end.edgeql"
-        patterns: [
-          {
-            include: "#fncallargs"
-          }
-        ]
       }
     ]
   fncallargs:
@@ -425,37 +313,45 @@ repository:
       }
       {
         name: "keyword.declaration.edgeql"
+        match: "(?i)\\b(?<!::|\\.|\\.<|\\.>)(CONSTRAINT)\\b(?!=\\s+\\()"
+      }
+      {
+        name: "keyword.declaration.edgeql"
         match: '''
-          (?ix) \\b(?<![:\\.])(
+          (?ix) \\b(?<!::|\\.|\\.<|\\.>)(
           
             (?# unreserved)
-            abstract | after | alias | allow | all | as | asc |
-            assignment | attribute | before | by | cardinality |
-            cast | committed | config | constraint | database |
-            default | deferrable | deferred | delegated | desc |
-            explicit | final | first | from |
-            implicit | index | infix | inheritable | inherited |
-            into | isolation | last | link | migration | multi |
-            named | of | on | only | operator | postfix | prefix |
-            property | read | rename | required | repeatable |
-            restrict | role | savepoint | scalar | serializable |
-            single | source | target | ternary | then | to |
-            transaction | type | using | view | write |
-          
+            abstract | after | alias | all | allow | 
+            as | asc | assignment | attribute | before | 
+            by | cardinality | cast | committed | config | 
+            database | default | deferrable | deferred | delegated | 
+            desc | explicit | final | first | from | 
+            implicit | index | infix | inheritable | inherited | 
+            into | isolation | last | link | migration | 
+            multi | named | of | on | only | 
+            operator | postfix | prefix | property | read | 
+            rename | repeatable | required | restrict | role | 
+            savepoint | scalar | serializable | session | single | 
+            source | system | target | ternary | then | 
+            to | transaction | type | using | view | 
+            write 
+            |
             (?# reserved)
-            analyze | anyarray | begin | case | deallocate |
-            discard | do | end | execute | explain | fetch | get |
-            global | grant | import | listen | load | lock | match |
-            move | notify | prepare | partition | raise |
-            refresh | reindex | revoke | over | when | alter | and |
-            anytuple | anytype | commit | create | declare |
-            delete | detached | distinct | drop | else | empty |
-            exists | extending | filter | for | function |
-            group | if | ilike | in | insert | introspect | is |
-            like | limit | module | not | offset | optional | or |
-            order | release | reset | rollback | select | set |
-            start | typeof | update | union | variadic |
-            with
+            alter | analyze | and | anyarray | anytuple | 
+            begin | case | commit | configure | create | 
+            deallocate | declare | delete | detached | discard | 
+            distinct | do | drop | else | empty | 
+            end | execute | exists | explain | extending | 
+            fetch | filter | for | function | get | 
+            global | grant | group | if | ilike | 
+            import | in | insert | introspect | is | 
+            like | limit | listen | load | lock | 
+            match | module | move | not | notify | 
+            offset | optional | or | order | over | 
+            partition | prepare | raise | refresh | reindex | 
+            release | reset | revoke | rollback | select | 
+            set | start | typeof | union | update | 
+            variadic | when | with 
           )\\b
           
         '''
@@ -463,6 +359,10 @@ repository:
     ]
   operators:
     patterns: [
+      {
+        name: "keyword.operator.navigation.edgeql"
+        match: "(\\.[<>])"
+      }
       {
         name: "keyword.operator.namespace.edgeql"
         match: "(::)"
@@ -475,57 +375,9 @@ repository:
         name: "keyword.operator.edgeql"
         match: '''
           (?x)
-            # EdgeQL-specific multi-char ops
-            \\?\\!\\= | \\?\\? | \\?\\= | \\>\\= | \\<\\= | \\:\\= | \\:\\= | \\/\\/ | \\+\\+ | \\!\\= | \\^ | \\> | \\= | \\< | \\/ | \\- | \\+ | \\* | \\%
-          
-        '''
-      }
-    ]
-  "builtin-modules":
-    name: "support.other.module.builtin.edgeql"
-    match: '''
-      (?x) \\b(?<!::|\\.)(
-        std | stdattrs | schema
-      )\\b
-      
-    '''
-  builtins:
-    patterns: [
-      {
-        name: "support.function.builtin.edgeql"
-        match: '''
-          (?x) \\b(?<!\\.) (
-            len |
-            array_agg | array_contains | array_enumerate | array_unpack |
-            lower |
-            re_match | re_match_all | re_test |
-            count | sum |
-            datetime_now |
-            datetime_get | time_get | date_get | timedelta_get |
-            random | uuid_generate_v1mc
-          )(?=\\s*\\()\\b
-          
-        '''
-      }
-      {
-        name: "support.function.constraint.builtin.edgeql"
-        match: '''
-          (?x) \\b(?<!\\.) (
-          constraint | max | enum | expression | min | minexclusive |
-          length | minlength | regexp | maxlength | maxexclusive | unique
-          )\\b
-          
-        '''
-      }
-      {
-        include: "#builtin-modules"
-      }
-      {
-        name: "support.other.link.builtin.edgeql"
-        match: '''
-          (?x) \\b(
-            __source__ | __subject__ | __type__
-          )\\b
+            \\?\\!\\= | \\?\\? | \\?\\= | \\>\\= | \\<\\= | \\:\\= | \\/\\/ | \\+\\+ | 
+            \\!\\= | \\^ | \\> | \\= | \\< | \\/ | \\- | \\+ | 
+            \\* | \\% 
           
         '''
       }
@@ -599,24 +451,7 @@ repository:
         include: "#builtin-modules"
       }
       {
-        name: "support.type.builtin.edgeql"
-        match: '''
-          (?x) \\b(?<!\\.) (
-            anytype | anyscalar |
-            anyreal | anyint | anyfloat | auto |
-            bytes |
-            datetime |
-            naivedatetime | naivedate | naivetime |
-            timedelta |
-            uuid |
-            str |
-            json |
-            int16 | int32 | int64 |
-            float32 | float64 | decimal |
-            bool
-          )\\b
-          
-        '''
+        include: "#builtin-types"
       }
     ]
   "types-common":
@@ -784,5 +619,280 @@ repository:
       }
       {
         include: "#types-common"
+      }
+    ]
+  fncalls:
+    patterns: [
+      {
+        name: "meta.function-call.edgeql"
+        begin: '''
+          (?x)
+            \\b(?<!\\.|\\.<|\\.>)
+            # function name
+            (?:
+              (
+                # functions
+                abs | advisory_lock | advisory_unlock | 
+                advisory_unlock_all | all | any | 
+                array_agg | array_get | array_unpack | 
+                bytes_get_bit | ceil | contains | 
+                count | date_get | datetime_current | 
+                datetime_get | datetime_of_statement | datetime_of_transaction | 
+                datetime_trunc | enumerate | find | 
+                floor | json_array_unpack | json_get | 
+                json_object_unpack | json_typeof | len | 
+                lg | ln | log | 
+                max | mean | min | 
+                random | re_match | re_match_all | 
+                re_replace | re_test | round | 
+                sleep | stddev | stddev_pop | 
+                str_lower | str_lpad | str_ltrim | 
+                str_repeat | str_rpad | str_rtrim | 
+                str_title | str_trim | str_upper | 
+                sum | time_get | timedelta_get | 
+                timedelta_trunc | to_datetime | to_decimal | 
+                to_float32 | to_float64 | to_int16 | 
+                to_int32 | to_int64 | to_json | 
+                to_naive_date | to_naive_datetime | to_naive_time | 
+                to_str | to_timedelta | uuid_generate_v1mc | 
+                var | var_pop 
+              |
+                # constraints
+                constraint | enum | exclusive | 
+                expression | len_constraint | max | 
+                max_ex | max_len | min | 
+                min_ex | min_len | regexp 
+              )
+              |
+              ([[:alpha:]_][[:alnum:]_]*)
+              |
+              (`.*?`)
+            ) \\s*(\\()
+          
+        '''
+        end: "(\\))"
+        beginCaptures:
+          "1":
+            name: "support.function.builtin.edgeql"
+          "2":
+            name: "entity.name.function.edgeql"
+          "3":
+            name: "string.interpolated.edgeql"
+          "4":
+            name: "punctuation.definition.arguments.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "punctuation.definition.arguments.end.edgeql"
+        patterns: [
+          {
+            include: "#fncallargs"
+          }
+        ]
+      }
+      {
+        name: "meta.function-call.edgeql"
+        begin: '''
+          (?x)
+            \\b(?<!\\.|\\.<|\\.>)
+            # module
+            (?:
+              (
+                std | stdattrs | schema
+              )
+              |
+              (?# masking built-ins in odd ways)
+              (
+                #functions
+                abs | advisory_lock | advisory_unlock | 
+                advisory_unlock_all | all | any | 
+                array_agg | array_get | array_unpack | 
+                bytes_get_bit | ceil | contains | 
+                count | date_get | datetime_current | 
+                datetime_get | datetime_of_statement | datetime_of_transaction | 
+                datetime_trunc | enumerate | find | 
+                floor | json_array_unpack | json_get | 
+                json_object_unpack | json_typeof | len | 
+                lg | ln | log | 
+                max | mean | min | 
+                random | re_match | re_match_all | 
+                re_replace | re_test | round | 
+                sleep | stddev | stddev_pop | 
+                str_lower | str_lpad | str_ltrim | 
+                str_repeat | str_rpad | str_rtrim | 
+                str_title | str_trim | str_upper | 
+                sum | time_get | timedelta_get | 
+                timedelta_trunc | to_datetime | to_decimal | 
+                to_float32 | to_float64 | to_int16 | 
+                to_int32 | to_int64 | to_json | 
+                to_naive_date | to_naive_datetime | to_naive_time | 
+                to_str | to_timedelta | uuid_generate_v1mc | 
+                var | var_pop 
+                |
+                #constraints
+                constraint | enum | exclusive | 
+                expression | len_constraint | max | 
+                max_ex | max_len | min | 
+                min_ex | min_len | regexp 
+              )
+              |
+              ([[:alpha:]_][[:alnum:]_]*)
+              |
+              (`.*?`)
+            )
+          
+            \\s*(::)\\s*
+          
+            # function name
+            (?:
+              (
+                #functions
+                abs | advisory_lock | advisory_unlock | 
+                advisory_unlock_all | all | any | 
+                array_agg | array_get | array_unpack | 
+                bytes_get_bit | ceil | contains | 
+                count | date_get | datetime_current | 
+                datetime_get | datetime_of_statement | datetime_of_transaction | 
+                datetime_trunc | enumerate | find | 
+                floor | json_array_unpack | json_get | 
+                json_object_unpack | json_typeof | len | 
+                lg | ln | log | 
+                max | mean | min | 
+                random | re_match | re_match_all | 
+                re_replace | re_test | round | 
+                sleep | stddev | stddev_pop | 
+                str_lower | str_lpad | str_ltrim | 
+                str_repeat | str_rpad | str_rtrim | 
+                str_title | str_trim | str_upper | 
+                sum | time_get | timedelta_get | 
+                timedelta_trunc | to_datetime | to_decimal | 
+                to_float32 | to_float64 | to_int16 | 
+                to_int32 | to_int64 | to_json | 
+                to_naive_date | to_naive_datetime | to_naive_time | 
+                to_str | to_timedelta | uuid_generate_v1mc | 
+                var | var_pop 
+                |
+                #constraints
+                constraint | enum | exclusive | 
+                expression | len_constraint | max | 
+                max_ex | max_len | min | 
+                min_ex | min_len | regexp 
+              )
+              |
+              ([[:alpha:]_][[:alnum:]_]*)
+              |
+              (`.*?`)
+            ) \\s*(\\()
+          
+        '''
+        end: "(\\))"
+        beginCaptures:
+          "1":
+            name: "support.other.module.builtin.edgeql"
+          "2":
+            name: "support.function.builtin.edgeql"
+          "3":
+            name: "entity.name.function.edgeql"
+          "4":
+            name: "string.interpolated.edgeql"
+          "5":
+            name: "keyword.operator.namespace.edgeql"
+          "6":
+            name: "support.function.builtin.edgeql"
+          "7":
+            name: "entity.name.function.edgeql"
+          "8":
+            name: "string.interpolated.edgeql"
+          "9":
+            name: "punctuation.definition.arguments.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "punctuation.definition.arguments.end.edgeql"
+        patterns: [
+          {
+            include: "#fncallargs"
+          }
+        ]
+      }
+    ]
+  "builtin-modules":
+    name: "support.other.module.builtin.edgeql"
+    match: '''
+      (?x) \\b(?<!::|\\.|\\.<|\\.>)(
+        cfg | math | schema | std | 
+        stdgraphql | sys 
+      )\\b
+      
+    '''
+  "builtin-types":
+    name: "support.type.builtin.edgeql"
+    match: '''
+      (?x) \\b(?<!\\.|\\.<|\\.>) (
+        Object | anyfloat | anyint | anyreal | 
+        anyscalar | anytype | array | bool | 
+        bytes | datetime | decimal | float32 | 
+        float64 | int16 | int32 | int64 | 
+        json | naive_date | naive_datetime | naive_time | 
+        sequence | str | timedelta | tuple | 
+        uuid 
+      )\\b
+      
+    '''
+  builtins:
+    patterns: [
+      {
+        name: "support.function.builtin.edgeql"
+        match: '''
+          (?x) \\b(?<!\\.|\\.<|\\.>) (
+            abs | advisory_lock | advisory_unlock | 
+            advisory_unlock_all | all | any | 
+            array_agg | array_get | array_unpack | 
+            bytes_get_bit | ceil | contains | 
+            count | date_get | datetime_current | 
+            datetime_get | datetime_of_statement | datetime_of_transaction | 
+            datetime_trunc | enumerate | find | 
+            floor | json_array_unpack | json_get | 
+            json_object_unpack | json_typeof | len | 
+            lg | ln | log | 
+            max | mean | min | 
+            random | re_match | re_match_all | 
+            re_replace | re_test | round | 
+            sleep | stddev | stddev_pop | 
+            str_lower | str_lpad | str_ltrim | 
+            str_repeat | str_rpad | str_rtrim | 
+            str_title | str_trim | str_upper | 
+            sum | time_get | timedelta_get | 
+            timedelta_trunc | to_datetime | to_decimal | 
+            to_float32 | to_float64 | to_int16 | 
+            to_int32 | to_int64 | to_json | 
+            to_naive_date | to_naive_datetime | to_naive_time | 
+            to_str | to_timedelta | uuid_generate_v1mc | 
+            var | var_pop 
+          )(?=\\s*\\()\\b
+          
+        '''
+      }
+      {
+        name: "support.function.constraint.builtin.edgeql"
+        match: '''
+          (?x) \\b(?<!\\.|\\.<|\\.>) (
+            constraint | enum | exclusive | 
+            expression | len_constraint | max | 
+            max_ex | max_len | min | 
+            min_ex | min_len | regexp 
+          )\\b
+          
+        '''
+      }
+      {
+        include: "#builtin-modules"
+      }
+      {
+        name: "support.other.link.builtin.edgeql"
+        match: '''
+          (?x) \\b(
+            __source__ | __subject__ | __type__ 
+          )\\b
+          
+        '''
       }
     ]

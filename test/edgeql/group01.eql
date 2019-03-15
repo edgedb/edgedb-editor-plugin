@@ -26,8 +26,8 @@ UNION         : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 count         : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
-User.         : meta.function-call.edgeql, source.edgeql
-<             : keyword.operator.edgeql, meta.function-call.edgeql, source.edgeql
+User          : meta.function-call.edgeql, source.edgeql
+.<            : keyword.operator.navigation.edgeql, meta.function-call.edgeql, source.edgeql
 owner         : meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql

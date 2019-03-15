@@ -16,18 +16,20 @@ describe("Grammar Tests", function() {
 
   it("test/edgeql/builtins01.eql", 
     function() {
-      tokens = grammar.tokenizeLines("std\nstdattrs\nschema")
+      tokens = grammar.tokenizeLines("std\nstdgraphql\nschema\nmath")
       expect(tokens[0][0].value).toBe("std");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
-      expect(tokens[1][0].value).toBe("stdattrs");
+      expect(tokens[1][0].value).toBe("stdgraphql");
       expect(tokens[1][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
       expect(tokens[2][0].value).toBe("schema");
       expect(tokens[2][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
+      expect(tokens[3][0].value).toBe("math");
+      expect(tokens[3][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
     });
 
   it("test/edgeql/builtins02.eql", 
     function() {
-      tokens = grammar.tokenizeLines("len()\narray_agg()\narray_contains()\narray_enumerate()\narray_unpack()\nlower()\nre_match()\nre_match_all()\nre_test()\ncount()\nsum()\ndatetime_now()\ndatetime_get()\ndate_get()\ntime_get()\ntimedelta_get()\nrandom()\nuuid_generate_v1mc()")
+      tokens = grammar.tokenizeLines("len()\narray_agg()\narray_unpack()\nre_match()\nre_test()\ncount()\nsum()\nrandom()\nuuid_generate_v1mc()")
       expect(tokens[0][0].value).toBe("len");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[0][1].value).toBe("(");
@@ -40,107 +42,53 @@ describe("Grammar Tests", function() {
       expect(tokens[1][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[1][2].value).toBe(")");
       expect(tokens[1][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[2][0].value).toBe("array_contains");
+      expect(tokens[2][0].value).toBe("array_unpack");
       expect(tokens[2][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[2][1].value).toBe("(");
       expect(tokens[2][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[2][2].value).toBe(")");
       expect(tokens[2][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[3][0].value).toBe("array_enumerate");
+      expect(tokens[3][0].value).toBe("re_match");
       expect(tokens[3][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[3][1].value).toBe("(");
       expect(tokens[3][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[3][2].value).toBe(")");
       expect(tokens[3][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[4][0].value).toBe("array_unpack");
+      expect(tokens[4][0].value).toBe("re_test");
       expect(tokens[4][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[4][1].value).toBe("(");
       expect(tokens[4][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[4][2].value).toBe(")");
       expect(tokens[4][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[5][0].value).toBe("lower");
+      expect(tokens[5][0].value).toBe("count");
       expect(tokens[5][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[5][1].value).toBe("(");
       expect(tokens[5][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[5][2].value).toBe(")");
       expect(tokens[5][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[6][0].value).toBe("re_match");
+      expect(tokens[6][0].value).toBe("sum");
       expect(tokens[6][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[6][1].value).toBe("(");
       expect(tokens[6][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[6][2].value).toBe(")");
       expect(tokens[6][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[7][0].value).toBe("re_match_all");
+      expect(tokens[7][0].value).toBe("random");
       expect(tokens[7][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[7][1].value).toBe("(");
       expect(tokens[7][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[7][2].value).toBe(")");
       expect(tokens[7][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[8][0].value).toBe("re_test");
+      expect(tokens[8][0].value).toBe("uuid_generate_v1mc");
       expect(tokens[8][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[8][1].value).toBe("(");
       expect(tokens[8][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[8][2].value).toBe(")");
       expect(tokens[8][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[9][0].value).toBe("count");
-      expect(tokens[9][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[9][1].value).toBe("(");
-      expect(tokens[9][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[9][2].value).toBe(")");
-      expect(tokens[9][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[10][0].value).toBe("sum");
-      expect(tokens[10][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[10][1].value).toBe("(");
-      expect(tokens[10][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[10][2].value).toBe(")");
-      expect(tokens[10][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[11][0].value).toBe("datetime_now");
-      expect(tokens[11][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[11][1].value).toBe("(");
-      expect(tokens[11][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[11][2].value).toBe(")");
-      expect(tokens[11][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[12][0].value).toBe("datetime_get");
-      expect(tokens[12][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[12][1].value).toBe("(");
-      expect(tokens[12][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[12][2].value).toBe(")");
-      expect(tokens[12][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[13][0].value).toBe("date_get");
-      expect(tokens[13][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[13][1].value).toBe("(");
-      expect(tokens[13][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[13][2].value).toBe(")");
-      expect(tokens[13][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[14][0].value).toBe("time_get");
-      expect(tokens[14][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[14][1].value).toBe("(");
-      expect(tokens[14][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[14][2].value).toBe(")");
-      expect(tokens[14][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[15][0].value).toBe("timedelta_get");
-      expect(tokens[15][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[15][1].value).toBe("(");
-      expect(tokens[15][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[15][2].value).toBe(")");
-      expect(tokens[15][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[16][0].value).toBe("random");
-      expect(tokens[16][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[16][1].value).toBe("(");
-      expect(tokens[16][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[16][2].value).toBe(")");
-      expect(tokens[16][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
-      expect(tokens[17][0].value).toBe("uuid_generate_v1mc");
-      expect(tokens[17][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
-      expect(tokens[17][1].value).toBe("(");
-      expect(tokens[17][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[17][2].value).toBe(")");
-      expect(tokens[17][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
     });
 
   it("test/edgeql/builtins03.eql", 
     function() {
-      tokens = grammar.tokenizeLines("std::constraint\nmax\nenum\nexpression\nmin\nminexclusive\nlength\nminlength\nregexp\nmaxlength\nmaxexclusive\nunique")
+      tokens = grammar.tokenizeLines("std::constraint\nmax\nenum\nexpression\nmin\nregexp\nexclusive")
       expect(tokens[0][0].value).toBe("std");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
       expect(tokens[0][1].value).toBe("::");
@@ -155,20 +103,10 @@ describe("Grammar Tests", function() {
       expect(tokens[3][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
       expect(tokens[4][0].value).toBe("min");
       expect(tokens[4][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[5][0].value).toBe("minexclusive");
+      expect(tokens[5][0].value).toBe("regexp");
       expect(tokens[5][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[6][0].value).toBe("length");
+      expect(tokens[6][0].value).toBe("exclusive");
       expect(tokens[6][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[7][0].value).toBe("minlength");
-      expect(tokens[7][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[8][0].value).toBe("regexp");
-      expect(tokens[8][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[9][0].value).toBe("maxlength");
-      expect(tokens[9][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[10][0].value).toBe("maxexclusive");
-      expect(tokens[10][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[11][0].value).toBe("unique");
-      expect(tokens[11][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
     });
 
   it("test/edgeql/cast01.eql", 
@@ -869,10 +807,10 @@ describe("Grammar Tests", function() {
       expect(tokens[5][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[5][3].value).toBe("(");
       expect(tokens[5][3].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
-      expect(tokens[5][4].value).toBe("User.");
+      expect(tokens[5][4].value).toBe("User");
       expect(tokens[5][4].scopes).toEqual(["source.edgeql","meta.function-call.edgeql"]);
-      expect(tokens[5][5].value).toBe("<");
-      expect(tokens[5][5].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","keyword.operator.edgeql"]);
+      expect(tokens[5][5].value).toBe(".<");
+      expect(tokens[5][5].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","keyword.operator.navigation.edgeql"]);
       expect(tokens[5][6].value).toBe("owner");
       expect(tokens[5][6].scopes).toEqual(["source.edgeql","meta.function-call.edgeql"]);
       expect(tokens[5][7].value).toBe(")");
@@ -1587,6 +1525,51 @@ describe("Grammar Tests", function() {
       expect(tokens[2][5].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
+  it("test/edgeql/names03.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("foo::std\nFoo.std\nFoo.<std\nFoo.>std\nfoo::select\nFoo.select\nFoo.<select\nFoo.>select")
+      expect(tokens[0][0].value).toBe("foo");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[0][1].value).toBe("::");
+      expect(tokens[0][1].scopes).toEqual(["source.edgeql","keyword.operator.namespace.edgeql"]);
+      expect(tokens[0][2].value).toBe("std");
+      expect(tokens[0][2].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[1][0].value).toBe("Foo.std");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[2][0].value).toBe("Foo");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[2][1].value).toBe(".<");
+      expect(tokens[2][1].scopes).toEqual(["source.edgeql","keyword.operator.navigation.edgeql"]);
+      expect(tokens[2][2].value).toBe("std");
+      expect(tokens[2][2].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[3][0].value).toBe("Foo");
+      expect(tokens[3][0].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[3][1].value).toBe(".>");
+      expect(tokens[3][1].scopes).toEqual(["source.edgeql","keyword.operator.navigation.edgeql"]);
+      expect(tokens[3][2].value).toBe("std");
+      expect(tokens[3][2].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[4][0].value).toBe("foo");
+      expect(tokens[4][0].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[4][1].value).toBe("::");
+      expect(tokens[4][1].scopes).toEqual(["source.edgeql","keyword.operator.namespace.edgeql"]);
+      expect(tokens[4][2].value).toBe("select");
+      expect(tokens[4][2].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[5][0].value).toBe("Foo.select");
+      expect(tokens[5][0].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[6][0].value).toBe("Foo");
+      expect(tokens[6][0].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[6][1].value).toBe(".<");
+      expect(tokens[6][1].scopes).toEqual(["source.edgeql","keyword.operator.navigation.edgeql"]);
+      expect(tokens[6][2].value).toBe("select");
+      expect(tokens[6][2].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[7][0].value).toBe("Foo");
+      expect(tokens[7][0].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[7][1].value).toBe(".>");
+      expect(tokens[7][1].scopes).toEqual(["source.edgeql","keyword.operator.navigation.edgeql"]);
+      expect(tokens[7][2].value).toBe("select");
+      expect(tokens[7][2].scopes).toEqual(["source.edgeql"]);
+    });
+
   it("test/edgeql/select01.eql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT\n    test::NamedObject {\n        abc,\n        defd,\n        name: {\n            @lang\n        }\n    }\nFILTER\n    test::`NamedObject`.name = 'Test';")
@@ -1805,10 +1788,10 @@ describe("Grammar Tests", function() {
       expect(tokens[5][0].scopes).toEqual(["source.edgeql"]);
       expect(tokens[5][1].value).toBe(":=");
       expect(tokens[5][1].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
-      expect(tokens[5][2].value).toBe(" Foo.");
+      expect(tokens[5][2].value).toBe(" Foo");
       expect(tokens[5][2].scopes).toEqual(["source.edgeql"]);
-      expect(tokens[5][3].value).toBe("<");
-      expect(tokens[5][3].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
+      expect(tokens[5][3].value).toBe(".<");
+      expect(tokens[5][3].scopes).toEqual(["source.edgeql","keyword.operator.navigation.edgeql"]);
       expect(tokens[5][4].value).toBe("foo");
       expect(tokens[5][4].scopes).toEqual(["source.edgeql"]);
       expect(tokens[5][5].value).toBe(",");
@@ -1858,10 +1841,10 @@ describe("Grammar Tests", function() {
       expect(tokens[4][0].scopes).toEqual(["source.edgeql"]);
       expect(tokens[4][1].value).toBe("SELECT");
       expect(tokens[4][1].scopes).toEqual(["source.edgeql","keyword.declaration.edgeql"]);
-      expect(tokens[4][2].value).toBe(" User.");
+      expect(tokens[4][2].value).toBe(" User");
       expect(tokens[4][2].scopes).toEqual(["source.edgeql"]);
-      expect(tokens[4][3].value).toBe("<");
-      expect(tokens[4][3].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
+      expect(tokens[4][3].value).toBe(".<");
+      expect(tokens[4][3].scopes).toEqual(["source.edgeql","keyword.operator.navigation.edgeql"]);
       expect(tokens[4][4].value).toBe("owner");
       expect(tokens[4][4].scopes).toEqual(["source.edgeql"]);
       expect(tokens[4][5].value).toBe("[");

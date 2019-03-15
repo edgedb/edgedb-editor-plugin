@@ -1,62 +1,34 @@
-type Issue extending foo.bar::NamedObject, Text:
-    link watchers to User:
-        mapping := '**'
-
-    link time_spent_log to LogEntry:
-        mapping := '1*'
-
-    link owner to User:
-        mapping := '*1'
+type Issue extending foo.bar::NamedObject, Text {
+    multi link watchers to User;
+    required single link owner to User;
+}
 
 
 
 
-type          : keyword.other.declaration.edgeschema, source.edgeschema
- Issue        : source.edgeschema
-extending     : keyword.other.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-foo.bar::NamedObject, Text : source.edgeschema
-:             : source.edgeschema
-              : source.edgeschema
-link          : keyword.other.declaration.edgeschema, source.edgeschema
- watchers     : source.edgeschema
-to            : keyword.operator.edgeschema, source.edgeschema
-              : source.edgeschema
-User          : source.edgeschema
-:             : source.edgeschema
-              : meta.attribute.edgeschema, source.edgeschema
-mapping       : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
-              : source.edgeschema
-:=            : keyword.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-'**'          : source.edgeschema
-              : source.edgeschema
-              : source.edgeschema
-              : source.edgeschema
-link          : keyword.other.declaration.edgeschema, source.edgeschema
- time_spent_log  : source.edgeschema
-to            : keyword.operator.edgeschema, source.edgeschema
-              : source.edgeschema
-LogEntry      : source.edgeschema
-:             : source.edgeschema
-              : meta.attribute.edgeschema, source.edgeschema
-mapping       : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
-              : source.edgeschema
-:=            : keyword.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-'1*'          : source.edgeschema
-              : source.edgeschema
-              : source.edgeschema
-              : source.edgeschema
-link          : keyword.other.declaration.edgeschema, source.edgeschema
- owner        : source.edgeschema
-to            : keyword.operator.edgeschema, source.edgeschema
-              : source.edgeschema
-User          : source.edgeschema
-:             : source.edgeschema
-              : meta.attribute.edgeschema, source.edgeschema
-mapping       : meta.attribute.edgeschema, source.edgeschema, variable.parameter.attribute.edgeschema
-              : source.edgeschema
-:=            : keyword.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-'*1'          : source.edgeschema
+type          : keyword.declaration.edgeql, source.edgeql
+ Issue        : source.edgeql
+extending     : keyword.declaration.edgeql, source.edgeql
+ foo.bar      : source.edgeql
+::            : keyword.operator.namespace.edgeql, source.edgeql
+NamedObject, Text  : source.edgeql
+{             : punctuation.parenthesis.begin.edgeql, source.edgeql
+              : source.edgeql
+multi         : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+link          : keyword.declaration.edgeql, source.edgeql
+ watchers     : source.edgeql
+to            : keyword.declaration.edgeql, source.edgeql
+ User         : source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+              : source.edgeql
+required      : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+single        : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+link          : keyword.declaration.edgeql, source.edgeql
+ owner        : source.edgeql
+to            : keyword.declaration.edgeql, source.edgeql
+ User         : source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+}             : punctuation.parenthesis.end.edgeql, source.edgeql

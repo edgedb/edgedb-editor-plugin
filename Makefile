@@ -11,6 +11,8 @@ test: ci-test
 ci-test: build
 	./node_modules/.bin/syntaxdev test \
 		--tests test/**/*.eql --syntax grammars/src/edgeql.syntax.yaml
+	./node_modules/.bin/syntaxdev test \
+		--tests test/**/*.eschema --syntax grammars/src/edgeql.syntax.yaml
 
 
 build:
@@ -33,7 +35,10 @@ devenv:
 	npm install --dev
 
 
-regen-grammar:
+fetch-metagrammar:
 	out=$$(edb gen-meta-grammars edgeql) && \
 		echo "$$out" > generator/meta.py
+
+
+regen-grammar:
 	PYHTONPATH=$(shell pwd) python -m generator.gen_grammar

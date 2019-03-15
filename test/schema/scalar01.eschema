@@ -1,45 +1,52 @@
-scalar type constraint_length extending str:
-    constraint maxlength(16)
-    constraint maxlength(10)
-    constraint minlength(5)
-    constraint minlength(8)
+scalar type constraint_length extending str {
+    constraint max_len(16);
+    constraint max_len(10);
+    constraint min_len(5);
+    constraint min_len(8);
+}
 
 
 
+scalar        : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+type          : keyword.declaration.edgeql, source.edgeql
+ constraint_length  : source.edgeql
+extending     : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+str           : source.edgeql, support.type.builtin.edgeql
+              : source.edgeql
+{             : punctuation.parenthesis.begin.edgeql, source.edgeql
+              : source.edgeql
+constraint    : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+max_len       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+16            : constant.numeric.edgeql, meta.function-call.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+              : source.edgeql
+constraint    : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+max_len       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+10            : constant.numeric.edgeql, meta.function-call.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+              : source.edgeql
+constraint    : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+min_len       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+5             : constant.numeric.edgeql, meta.function-call.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+              : source.edgeql
+constraint    : keyword.declaration.edgeql, source.edgeql
+              : source.edgeql
+min_len       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+8             : constant.numeric.edgeql, meta.function-call.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+;             : punctuation.statement.delimiter.edgeql, source.edgeql
+}             : punctuation.parenthesis.end.edgeql, source.edgeql
 
-scalar        : keyword.other.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-type          : keyword.other.declaration.edgeschema, source.edgeschema
- constraint_length  : source.edgeschema
-extending     : keyword.other.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-str           : source.edgeschema
-:             : source.edgeschema
-              : source.edgeschema
-constraint    : keyword.other.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-maxlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
-(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
-16            : source.edgeschema
-)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
-              : source.edgeschema
-constraint    : keyword.other.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-maxlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
-(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
-10            : source.edgeschema
-)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
-              : source.edgeschema
-constraint    : keyword.other.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-minlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
-(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
-5             : source.edgeschema
-)             : punctuation.parenthesis.end.edgeschema, source.edgeschema
-              : source.edgeschema
-constraint    : keyword.other.declaration.edgeschema, source.edgeschema
-              : source.edgeschema
-minlength     : source.edgeschema, support.function.constraint.builtin.edgeschema
-(             : punctuation.parenthesis.begin.edgeschema, source.edgeschema
-8             : source.edgeschema
-)             : punctuation.parenthesis.end.edgeschema, source.edgeschema

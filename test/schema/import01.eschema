@@ -2,9 +2,9 @@ import mylib.util.foo as foo, mylib.special.foo as sfoo
 
 
 
-import        : keyword.operator.edgeschema, source.edgeschema
- mylib.util.foo  : source.edgeschema
-as            : keyword.operator.edgeschema, source.edgeschema
- foo, mylib.special.foo  : source.edgeschema
-as            : keyword.operator.edgeschema, source.edgeschema
- sfoo         : source.edgeschema
+import        : keyword.declaration.edgeql, source.edgeql
+ mylib.util.foo  : source.edgeql
+as            : keyword.declaration.edgeql, source.edgeql
+ foo, mylib.special.foo  : source.edgeql
+as            : keyword.declaration.edgeql, source.edgeql
+ sfoo         : source.edgeql

@@ -3,13 +3,8 @@ max
 enum
 expression
 min
-minexclusive
-length
-minlength
 regexp
-maxlength
-maxexclusive
-unique
+exclusive
 
 
 
@@ -20,10 +15,5 @@ max           : source.edgeql, support.function.constraint.builtin.edgeql
 enum          : source.edgeql, support.function.constraint.builtin.edgeql
 expression    : source.edgeql, support.function.constraint.builtin.edgeql
 min           : source.edgeql, support.function.constraint.builtin.edgeql
-minexclusive  : source.edgeql, support.function.constraint.builtin.edgeql
-length        : source.edgeql, support.function.constraint.builtin.edgeql
-minlength     : source.edgeql, support.function.constraint.builtin.edgeql
 regexp        : source.edgeql, support.function.constraint.builtin.edgeql
-maxlength     : source.edgeql, support.function.constraint.builtin.edgeql
-maxexclusive  : source.edgeql, support.function.constraint.builtin.edgeql
-unique        : source.edgeql, support.function.constraint.builtin.edgeql
+exclusive     : source.edgeql, support.function.constraint.builtin.edgeql
