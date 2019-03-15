@@ -316,17 +316,8 @@ repository:
       - name: keyword.declaration.edgeql
         match: ->
       - name: keyword.operator.edgeql
-
         $apply:
           - file: 'operators.inc.syntax.yaml'
-
-        # match: |
-        #   (?x)
-        #     # EdgeQL-specific multi-char ops
-        #     >= | <= | != | \?= | \?!= | := |
-
-        #     # single char operators
-        #     [+\-*/%^<>=]
 
   builtin-modules:
     name: support.other.module.builtin.edgeql

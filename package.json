@@ -51,6 +51,6 @@
         ]
     },
     "devDependencies": {
-        "syntaxdev": "0.0.16"
+        "syntaxdev": "^0.1.0"
     }
 }
