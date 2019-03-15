@@ -29,7 +29,7 @@ constraint    : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 maxlength     : entity.name.function.edgeql, meta.function-call.edgeql, source.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
-10000         : constant.numeric.edgeql, meta.function-call.edgeql, source.edgeql
+10000         : constant.numeric.integer.edgeql, meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
               : source.edgeql

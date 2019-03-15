@@ -31,7 +31,7 @@ insert nested 2 : source.edgeql, string.quoted.edgeql
     l2        : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-0             : constant.numeric.edgeql, source.edgeql
+0             : constant.numeric.integer.edgeql, source.edgeql
 ,             : punctuation.separator.element.edgeql, source.edgeql
     subordinates  : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql

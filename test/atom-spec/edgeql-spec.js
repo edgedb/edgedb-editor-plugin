@@ -901,7 +901,7 @@ describe("Grammar Tests", function() {
       expect(tokens[10][2].value).toBe(" ");
       expect(tokens[10][2].scopes).toEqual(["source.edgeql"]);
       expect(tokens[10][3].value).toBe("5");
-      expect(tokens[10][3].scopes).toEqual(["source.edgeql","constant.numeric.edgeql"]);
+      expect(tokens[10][3].scopes).toEqual(["source.edgeql","constant.numeric.integer.edgeql"]);
       expect(tokens[11][0].value).toBe("ORDER");
       expect(tokens[11][0].scopes).toEqual(["source.edgeql","keyword.declaration.edgeql"]);
       expect(tokens[11][1].value).toBe(" ");
@@ -1021,7 +1021,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][2].value).toBe(" ");
       expect(tokens[2][2].scopes).toEqual(["source.edgeql"]);
       expect(tokens[2][3].value).toBe("0");
-      expect(tokens[2][3].scopes).toEqual(["source.edgeql","constant.numeric.edgeql"]);
+      expect(tokens[2][3].scopes).toEqual(["source.edgeql","constant.numeric.integer.edgeql"]);
       expect(tokens[2][4].value).toBe(",");
       expect(tokens[2][4].scopes).toEqual(["source.edgeql","punctuation.separator.element.edgeql"]);
       expect(tokens[3][0].value).toBe("    subordinates ");
@@ -1112,7 +1112,7 @@ describe("Grammar Tests", function() {
       expect(tokens[3][2].value).toBe(" ");
       expect(tokens[3][2].scopes).toEqual(["source.edgeql"]);
       expect(tokens[3][3].value).toBe("0");
-      expect(tokens[3][3].scopes).toEqual(["source.edgeql","constant.numeric.edgeql"]);
+      expect(tokens[3][3].scopes).toEqual(["source.edgeql","constant.numeric.integer.edgeql"]);
       expect(tokens[3][4].value).toBe(",");
       expect(tokens[3][4].scopes).toEqual(["source.edgeql","punctuation.separator.element.edgeql"]);
       expect(tokens[4][0].value).toBe("    subordinates ");
@@ -1570,6 +1570,118 @@ describe("Grammar Tests", function() {
       expect(tokens[7][2].scopes).toEqual(["source.edgeql"]);
     });
 
+  it("test/edgeql/number01.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("123\n123_456\n1_2_3_4_5_6")
+      expect(tokens[0][0].value).toBe("123");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql","constant.numeric.integer.edgeql"]);
+      expect(tokens[1][0].value).toBe("123_456");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql","constant.numeric.integer.edgeql"]);
+      expect(tokens[2][0].value).toBe("1_2_3_4_5_6");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql","constant.numeric.integer.edgeql"]);
+    });
+
+  it("test/edgeql/number02.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("123.456\n0.456\n.01234\n123e5\n123e-5\n123.456e+5\n0.456e-5")
+      expect(tokens[0][0].value).toBe("123.456");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[1][0].value).toBe("0.456");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[2][0].value).toBe(".01234");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[3][0].value).toBe("123");
+      expect(tokens[3][0].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[3][1].value).toBe("e");
+      expect(tokens[3][1].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[3][2].value).toBe("5");
+      expect(tokens[3][2].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[4][0].value).toBe("123");
+      expect(tokens[4][0].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[4][1].value).toBe("e-");
+      expect(tokens[4][1].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[4][2].value).toBe("5");
+      expect(tokens[4][2].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[5][0].value).toBe("123.456");
+      expect(tokens[5][0].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[5][1].value).toBe("e+");
+      expect(tokens[5][1].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[5][2].value).toBe("5");
+      expect(tokens[5][2].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[6][0].value).toBe("0.456");
+      expect(tokens[6][0].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+      expect(tokens[6][1].value).toBe("e-");
+      expect(tokens[6][1].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[6][2].value).toBe("5");
+      expect(tokens[6][2].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
+    });
+
+  it("test/edgeql/number03.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("123n\n123_456n\n1_2_3_4_5_6n")
+      expect(tokens[0][0].value).toBe("123");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[0][1].value).toBe("n");
+      expect(tokens[0][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[1][0].value).toBe("123_456");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[1][1].value).toBe("n");
+      expect(tokens[1][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[2][0].value).toBe("1_2_3_4_5_6");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[2][1].value).toBe("n");
+      expect(tokens[2][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+    });
+
+  it("test/edgeql/number04.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("123.456n\n0.456n\n.01234n\n123e5n\n123e-5n\n123.456e+5n\n0.456e-5n")
+      expect(tokens[0][0].value).toBe("123.456");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[0][1].value).toBe("n");
+      expect(tokens[0][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[1][0].value).toBe("0.456");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[1][1].value).toBe("n");
+      expect(tokens[1][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[2][0].value).toBe(".01234");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[2][1].value).toBe("n");
+      expect(tokens[2][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[3][0].value).toBe("123");
+      expect(tokens[3][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[3][1].value).toBe("e");
+      expect(tokens[3][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[3][2].value).toBe("5");
+      expect(tokens[3][2].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[3][3].value).toBe("n");
+      expect(tokens[3][3].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[4][0].value).toBe("123");
+      expect(tokens[4][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[4][1].value).toBe("e-");
+      expect(tokens[4][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[4][2].value).toBe("5");
+      expect(tokens[4][2].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[4][3].value).toBe("n");
+      expect(tokens[4][3].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[5][0].value).toBe("123.456");
+      expect(tokens[5][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[5][1].value).toBe("e+");
+      expect(tokens[5][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[5][2].value).toBe("5");
+      expect(tokens[5][2].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[5][3].value).toBe("n");
+      expect(tokens[5][3].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[6][0].value).toBe("0.456");
+      expect(tokens[6][0].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[6][1].value).toBe("e-");
+      expect(tokens[6][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+      expect(tokens[6][2].value).toBe("5");
+      expect(tokens[6][2].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql"]);
+      expect(tokens[6][3].value).toBe("n");
+      expect(tokens[6][3].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
+    });
+
   it("test/edgeql/select01.eql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT\n    test::NamedObject {\n        abc,\n        defd,\n        name: {\n            @lang\n        }\n    }\nFILTER\n    test::`NamedObject`.name = 'Test';")
@@ -1892,7 +2004,7 @@ describe("Grammar Tests", function() {
       expect(tokens[6][13].value).toBe(" ");
       expect(tokens[6][13].scopes).toEqual(["source.edgeql"]);
       expect(tokens[6][14].value).toBe("3");
-      expect(tokens[6][14].scopes).toEqual(["source.edgeql","constant.numeric.edgeql"]);
+      expect(tokens[6][14].scopes).toEqual(["source.edgeql","constant.numeric.integer.edgeql"]);
       expect(tokens[7][0].value).toBe("    ");
       expect(tokens[7][0].scopes).toEqual(["source.edgeql"]);
       expect(tokens[7][1].value).toBe(")");

@@ -30,7 +30,7 @@ default       : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-2             : constant.numeric.edgeql, source.edgeql
+2             : constant.numeric.integer.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
               : source.edgeql
               : source.edgeql
@@ -38,7 +38,7 @@ constraint    : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 min           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
-0             : constant.numeric.edgeql, meta.function-call.edgeql, source.edgeql
+0             : constant.numeric.integer.edgeql, meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
               : source.edgeql
@@ -46,7 +46,7 @@ constraint    : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 max           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
-123456        : constant.numeric.edgeql, meta.function-call.edgeql, source.edgeql
+123456        : constant.numeric.integer.edgeql, meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
               : source.edgeql
@@ -61,11 +61,11 @@ __subject__   : source.edgeql, support.other.link.builtin.edgeql
               : source.edgeql
 %             : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-2             : constant.numeric.edgeql, source.edgeql
+2             : constant.numeric.integer.edgeql, source.edgeql
               : source.edgeql
 =             : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-0             : constant.numeric.edgeql, source.edgeql
+0             : constant.numeric.integer.edgeql, source.edgeql
 )             : punctuation.parenthesis.end.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
 }             : punctuation.parenthesis.end.edgeql, source.edgeql

@@ -525,36 +525,116 @@ repository:
       }
     ]
   number:
-    name: "constant.numeric.edgeql"
-    match: '''
-      (?x)
-          (?:
-            #decimal part
-            \\.(_*)(?:[0-9](?:[0-9_]*[0-9])?)
-            |
-            # integer part
-            \\b(?:[1-9](?:[0-9_]*[0-9])?|0)
-              (?:\\.(_*)[0-9](?:[0-9_]*[0-9])?)?
-          )
-          ((_*)([eE][\\+\\-]?)(_*)[0-9](?:[0-9_]*[0-9])?)?
-      
-        (_*)
-        \\b
-      
-    '''
-    captures:
-      "1":
-        name: "invalid.illegal.dec.edgeql"
-      "2":
-        name: "invalid.illegal.dec.edgeql"
-      "4":
-        name: "invalid.illegal.dec.edgeql"
-      "5":
-        name: "storage.type.number.edgeql"
-      "6":
-        name: "invalid.illegal.dec.edgeql"
-      "7":
-        name: "invalid.illegal.dec.edgeql"
+    patterns: [
+      {
+        name: "constant.numeric.float.edgeql"
+        match: '''
+          (?x)
+            (?:
+              #decimal part
+              \\.(_*)(?:[0-9](?:[0-9_]*[0-9])?)
+              |
+              # integer part
+              \\b(?: [1-9](?: [0-9_]*[0-9] )? | 0 )
+                (?:\\.(_*)[0-9](?:[0-9_]*[0-9])?)
+            )
+            ((_*)([eE][\\+\\-]?)(_*)[0-9](?:[0-9_]*[0-9])?)?
+          
+            (_*)
+            \\b
+          
+        '''
+        captures:
+          "1":
+            name: "invalid.illegal.dec.edgeql"
+          "2":
+            name: "invalid.illegal.dec.edgeql"
+          "4":
+            name: "invalid.illegal.dec.edgeql"
+          "5":
+            name: "storage.type.number.edgeql"
+          "6":
+            name: "invalid.illegal.dec.edgeql"
+          "7":
+            name: "invalid.illegal.dec.edgeql"
+      }
+      {
+        name: "constant.numeric.float.edgeql"
+        match: '''
+          (?x)
+            (?:
+              # integer part
+              \\b(?:[1-9](?:[0-9_]*[0-9])?|0)
+            )
+            ((_*)([eE][\\+\\-]?)(_*)[0-9](?:[0-9_]*[0-9])?)
+          
+            (_*)
+            \\b
+          
+        '''
+        captures:
+          "2":
+            name: "invalid.illegal.dec.edgeql"
+          "3":
+            name: "storage.type.number.edgeql"
+          "4":
+            name: "invalid.illegal.dec.edgeql"
+          "5":
+            name: "invalid.illegal.dec.edgeql"
+      }
+      {
+        name: "constant.numeric.decimal.edgeql"
+        match: '''
+          (?x)
+            (?:
+              #decimal part
+              \\.(_*)(?:[0-9](?:[0-9_]*[0-9])?)
+              |
+              # integer part
+              \\b(?:[1-9](?:[0-9_]*[0-9])?|0)
+                (?:\\.(_*)[0-9](?:[0-9_]*[0-9])?)?
+            )
+            ((_*)([eE][\\+\\-]?)(_*)[0-9](?:[0-9_]*[0-9])?)?
+          
+            (_*)
+            (n)
+          
+        '''
+        captures:
+          "1":
+            name: "invalid.illegal.dec.edgeql"
+          "2":
+            name: "invalid.illegal.dec.edgeql"
+          "4":
+            name: "invalid.illegal.dec.edgeql"
+          "5":
+            name: "storage.type.number.edgeql"
+          "6":
+            name: "invalid.illegal.dec.edgeql"
+          "7":
+            name: "invalid.illegal.dec.edgeql"
+          "8":
+            name: "storage.type.number.edgeql"
+      }
+      {
+        name: "constant.numeric.integer.edgeql"
+        match: '''
+          (?x)
+            (?:
+              # integer part
+              \\b(?:[1-9](?:[0-9_]*[0-9])?|0)
+            )
+            (_*)
+            \\b
+          
+        '''
+        captures:
+          "1":
+            name: "invalid.illegal.dec.edgeql"
+          "2":
+            name: "invalid.illegal.dec.edgeql"
+      }
+    ]
   string:
     patterns: [
       {

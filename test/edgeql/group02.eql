@@ -54,7 +54,7 @@ FILTER        : keyword.declaration.edgeql, source.edgeql
     _.sum     : source.edgeql
 >             : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-5             : constant.numeric.edgeql, source.edgeql
+5             : constant.numeric.integer.edgeql, source.edgeql
 ORDER         : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 BY            : keyword.declaration.edgeql, source.edgeql

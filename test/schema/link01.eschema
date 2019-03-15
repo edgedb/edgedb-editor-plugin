@@ -25,7 +25,7 @@ default       : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 :=            : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-42            : constant.numeric.edgeql, source.edgeql
+42            : constant.numeric.integer.edgeql, source.edgeql
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
               : source.edgeql
 }             : punctuation.parenthesis.end.edgeql, source.edgeql

@@ -53,7 +53,7 @@ int64         : meta.typecast.edgeql, source.edgeql, support.type.builtin.edgeql
               : source.edgeql
 <             : keyword.operator.edgeql, source.edgeql
               : source.edgeql
-3             : constant.numeric.edgeql, source.edgeql
+3             : constant.numeric.integer.edgeql, source.edgeql
               : source.edgeql
 )             : punctuation.parenthesis.end.edgeql, source.edgeql
 ,             : punctuation.separator.element.edgeql, source.edgeql
