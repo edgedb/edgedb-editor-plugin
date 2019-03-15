@@ -109,6 +109,204 @@ describe("Grammar Tests", function() {
       expect(tokens[6][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
     });
 
+  it("test/edgeql/bytes01.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("b'this is a bytestring'\nb'this is a \"bytestring\"'\nb'this is a \\'bytestring\\''\nb'this is a \\\"bytestring\\\"'\nb'this \\n is \\\\ a \\xbb bytestring'\nb'this is a bad \\xqq \\a bytestring я'\nb'this is a bad bytestring \\\n'")
+      expect(tokens[0][0].value).toBe("b");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[0][1].value).toBe("'");
+      expect(tokens[0][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[0][2].value).toBe("this is a bytestring");
+      expect(tokens[0][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[0][3].value).toBe("'");
+      expect(tokens[0][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[1][0].value).toBe("b");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[1][1].value).toBe("'");
+      expect(tokens[1][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[1][2].value).toBe("this is a \"bytestring\"");
+      expect(tokens[1][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[1][3].value).toBe("'");
+      expect(tokens[1][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[2][0].value).toBe("b");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[2][1].value).toBe("'");
+      expect(tokens[2][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[2][2].value).toBe("this is a ");
+      expect(tokens[2][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[2][3].value).toBe("\\'");
+      expect(tokens[2][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[2][4].value).toBe("bytestring");
+      expect(tokens[2][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[2][5].value).toBe("\\'");
+      expect(tokens[2][5].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[2][6].value).toBe("'");
+      expect(tokens[2][6].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[3][0].value).toBe("b");
+      expect(tokens[3][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[3][1].value).toBe("'");
+      expect(tokens[3][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[3][2].value).toBe("this is a ");
+      expect(tokens[3][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[3][3].value).toBe("\\\"");
+      expect(tokens[3][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[3][4].value).toBe("bytestring");
+      expect(tokens[3][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[3][5].value).toBe("\\\"");
+      expect(tokens[3][5].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[3][6].value).toBe("'");
+      expect(tokens[3][6].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[4][0].value).toBe("b");
+      expect(tokens[4][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[4][1].value).toBe("'");
+      expect(tokens[4][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[4][2].value).toBe("this ");
+      expect(tokens[4][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[4][3].value).toBe("\\n");
+      expect(tokens[4][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[4][4].value).toBe(" is ");
+      expect(tokens[4][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[4][5].value).toBe("\\\\");
+      expect(tokens[4][5].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[4][6].value).toBe(" a ");
+      expect(tokens[4][6].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[4][7].value).toBe("\\xbb");
+      expect(tokens[4][7].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[4][8].value).toBe(" bytestring");
+      expect(tokens[4][8].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[4][9].value).toBe("'");
+      expect(tokens[4][9].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[5][0].value).toBe("b");
+      expect(tokens[5][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[5][1].value).toBe("'");
+      expect(tokens[5][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[5][2].value).toBe("this is a bad ");
+      expect(tokens[5][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[5][3].value).toBe("\\xqq");
+      expect(tokens[5][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","invalid.illegal.bytes.edgeql"]);
+      expect(tokens[5][4].value).toBe(" ");
+      expect(tokens[5][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[5][5].value).toBe("\\a");
+      expect(tokens[5][5].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","invalid.illegal.bytes.edgeql"]);
+      expect(tokens[5][6].value).toBe(" bytestring ");
+      expect(tokens[5][6].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[5][7].value).toBe("я");
+      expect(tokens[5][7].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","invalid.illegal.bytes.edgeql"]);
+      expect(tokens[5][8].value).toBe("'");
+      expect(tokens[5][8].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[6][0].value).toBe("b");
+      expect(tokens[6][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[6][1].value).toBe("'");
+      expect(tokens[6][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[6][2].value).toBe("this is a bad bytestring ");
+      expect(tokens[6][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[6][3].value).toBe("\\");
+      expect(tokens[6][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","invalid.illegal.bytes.edgeql"]);
+      expect(tokens[6][4].value).toBe("");
+      expect(tokens[6][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[7][0].value).toBe("'");
+      expect(tokens[7][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+    });
+
+  it("test/edgeql/bytes02.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("b\"this is a bytestring\"\nb\"this is a 'bytestring'\"\nb\"this is a \\'bytestring\\'\"\nb\"this is a \\\"bytestring\\\"\"\nb\"this \\n is \\\\ a \\xbb bytestring\"\nb\"this is a bad \\xqq \\a bytestring я\"\nb\"this is a bad bytestring \\\n\"")
+      expect(tokens[0][0].value).toBe("b");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[0][1].value).toBe("\"");
+      expect(tokens[0][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[0][2].value).toBe("this is a bytestring");
+      expect(tokens[0][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[0][3].value).toBe("\"");
+      expect(tokens[0][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[1][0].value).toBe("b");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[1][1].value).toBe("\"");
+      expect(tokens[1][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[1][2].value).toBe("this is a 'bytestring'");
+      expect(tokens[1][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[1][3].value).toBe("\"");
+      expect(tokens[1][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[2][0].value).toBe("b");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[2][1].value).toBe("\"");
+      expect(tokens[2][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[2][2].value).toBe("this is a ");
+      expect(tokens[2][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[2][3].value).toBe("\\'");
+      expect(tokens[2][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[2][4].value).toBe("bytestring");
+      expect(tokens[2][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[2][5].value).toBe("\\'");
+      expect(tokens[2][5].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[2][6].value).toBe("\"");
+      expect(tokens[2][6].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[3][0].value).toBe("b");
+      expect(tokens[3][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[3][1].value).toBe("\"");
+      expect(tokens[3][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[3][2].value).toBe("this is a ");
+      expect(tokens[3][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[3][3].value).toBe("\\\"");
+      expect(tokens[3][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[3][4].value).toBe("bytestring");
+      expect(tokens[3][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[3][5].value).toBe("\\\"");
+      expect(tokens[3][5].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[3][6].value).toBe("\"");
+      expect(tokens[3][6].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[4][0].value).toBe("b");
+      expect(tokens[4][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[4][1].value).toBe("\"");
+      expect(tokens[4][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[4][2].value).toBe("this ");
+      expect(tokens[4][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[4][3].value).toBe("\\n");
+      expect(tokens[4][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[4][4].value).toBe(" is ");
+      expect(tokens[4][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[4][5].value).toBe("\\\\");
+      expect(tokens[4][5].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[4][6].value).toBe(" a ");
+      expect(tokens[4][6].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[4][7].value).toBe("\\xbb");
+      expect(tokens[4][7].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","constant.character.escape.edgeql"]);
+      expect(tokens[4][8].value).toBe(" bytestring");
+      expect(tokens[4][8].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[4][9].value).toBe("\"");
+      expect(tokens[4][9].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[5][0].value).toBe("b");
+      expect(tokens[5][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[5][1].value).toBe("\"");
+      expect(tokens[5][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[5][2].value).toBe("this is a bad ");
+      expect(tokens[5][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[5][3].value).toBe("\\xqq");
+      expect(tokens[5][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","invalid.illegal.bytes.edgeql"]);
+      expect(tokens[5][4].value).toBe(" ");
+      expect(tokens[5][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[5][5].value).toBe("\\a");
+      expect(tokens[5][5].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","invalid.illegal.bytes.edgeql"]);
+      expect(tokens[5][6].value).toBe(" bytestring ");
+      expect(tokens[5][6].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[5][7].value).toBe("я");
+      expect(tokens[5][7].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","invalid.illegal.bytes.edgeql"]);
+      expect(tokens[5][8].value).toBe("\"");
+      expect(tokens[5][8].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[6][0].value).toBe("b");
+      expect(tokens[6][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[6][1].value).toBe("\"");
+      expect(tokens[6][1].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[6][2].value).toBe("this is a bad bytestring ");
+      expect(tokens[6][2].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[6][3].value).toBe("\\");
+      expect(tokens[6][3].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","invalid.illegal.bytes.edgeql"]);
+      expect(tokens[6][4].value).toBe("");
+      expect(tokens[6][4].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql"]);
+      expect(tokens[7][0].value).toBe("\"");
+      expect(tokens[7][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
+    });
+
   it("test/edgeql/cast01.eql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT NOT <bool>Foo.baz;")
@@ -2035,7 +2233,7 @@ describe("Grammar Tests", function() {
 
   it("test/edgeql/string01.eql", 
     function() {
-      tokens = grammar.tokenizeLines("'this is a string'\n'this is a \"string\"'\n'this is a \\'string\\''\n'this is a \\\"string\\\"'")
+      tokens = grammar.tokenizeLines("'this is a string'\n'this is a \"string\"'\n'this is a \\'string\\''\n'this is a \\\"string\\\"'\n'this is \\a string'")
       expect(tokens[0][0].value).toBe("'");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.begin.edgeql"]);
       expect(tokens[0][1].value).toBe("this is a string");
@@ -2072,11 +2270,21 @@ describe("Grammar Tests", function() {
       expect(tokens[3][4].scopes).toEqual(["source.edgeql","string.quoted.edgeql","constant.character.escape.edgeql"]);
       expect(tokens[3][5].value).toBe("'");
       expect(tokens[3][5].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[4][0].value).toBe("'");
+      expect(tokens[4][0].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[4][1].value).toBe("this is ");
+      expect(tokens[4][1].scopes).toEqual(["source.edgeql","string.quoted.edgeql"]);
+      expect(tokens[4][2].value).toBe("\\a");
+      expect(tokens[4][2].scopes).toEqual(["source.edgeql","string.quoted.edgeql","invalid.illegal.escapes.edgeql"]);
+      expect(tokens[4][3].value).toBe(" string");
+      expect(tokens[4][3].scopes).toEqual(["source.edgeql","string.quoted.edgeql"]);
+      expect(tokens[4][4].value).toBe("'");
+      expect(tokens[4][4].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
   it("test/edgeql/string02.eql", 
     function() {
-      tokens = grammar.tokenizeLines("\"this is a string\"\n\"this is a 'string'\"\n\"this is a \\'string\\'\"\n\"this is a \\\"string\\\"\"")
+      tokens = grammar.tokenizeLines("\"this is a string\"\n\"this is a 'string'\"\n\"this is a \\'string\\'\"\n\"this is a \\\"string\\\"\"\n\"this is \\a string\"")
       expect(tokens[0][0].value).toBe("\"");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.begin.edgeql"]);
       expect(tokens[0][1].value).toBe("this is a string");
@@ -2113,6 +2321,16 @@ describe("Grammar Tests", function() {
       expect(tokens[3][4].scopes).toEqual(["source.edgeql","string.quoted.edgeql","constant.character.escape.edgeql"]);
       expect(tokens[3][5].value).toBe("\"");
       expect(tokens[3][5].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[4][0].value).toBe("\"");
+      expect(tokens[4][0].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[4][1].value).toBe("this is ");
+      expect(tokens[4][1].scopes).toEqual(["source.edgeql","string.quoted.edgeql"]);
+      expect(tokens[4][2].value).toBe("\\a");
+      expect(tokens[4][2].scopes).toEqual(["source.edgeql","string.quoted.edgeql","invalid.illegal.escapes.edgeql"]);
+      expect(tokens[4][3].value).toBe(" string");
+      expect(tokens[4][3].scopes).toEqual(["source.edgeql","string.quoted.edgeql"]);
+      expect(tokens[4][4].value).toBe("\"");
+      expect(tokens[4][4].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
   it("test/edgeql/string03.eql", 
@@ -2148,6 +2366,80 @@ describe("Grammar Tests", function() {
       expect(tokens[6][1].scopes).toEqual(["source.edgeql","string.dollar.edgeql"]);
       expect(tokens[6][2].value).toBe("$q123$");
       expect(tokens[6][2].scopes).toEqual(["source.edgeql","string.dollar.edgeql","punctuation.definition.string.end.edgeql"]);
+    });
+
+  it("test/edgeql/string04.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("r'this is a raw string'\nr'this is a raw \"string\"'\nr'this is a raw \\rstring\\r'\nr'this is a raw \\rstring\\r'")
+      expect(tokens[0][0].value).toBe("r");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[0][1].value).toBe("'");
+      expect(tokens[0][1].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[0][2].value).toBe("this is a raw string");
+      expect(tokens[0][2].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql"]);
+      expect(tokens[0][3].value).toBe("'");
+      expect(tokens[0][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[1][0].value).toBe("r");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[1][1].value).toBe("'");
+      expect(tokens[1][1].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[1][2].value).toBe("this is a raw \"string\"");
+      expect(tokens[1][2].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql"]);
+      expect(tokens[1][3].value).toBe("'");
+      expect(tokens[1][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[2][0].value).toBe("r");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[2][1].value).toBe("'");
+      expect(tokens[2][1].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[2][2].value).toBe("this is a raw \\rstring\\r");
+      expect(tokens[2][2].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql"]);
+      expect(tokens[2][3].value).toBe("'");
+      expect(tokens[2][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[3][0].value).toBe("r");
+      expect(tokens[3][0].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[3][1].value).toBe("'");
+      expect(tokens[3][1].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[3][2].value).toBe("this is a raw \\rstring\\r");
+      expect(tokens[3][2].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql"]);
+      expect(tokens[3][3].value).toBe("'");
+      expect(tokens[3][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
+    });
+
+  it("test/edgeql/string05.eql", 
+    function() {
+      tokens = grammar.tokenizeLines("r\"this is a raw string\"\nr\"this is a raw 'string'\"\nr\"this is a raw \\rstring\\r\"\nr\"this is a raw \\rstring\\r\"")
+      expect(tokens[0][0].value).toBe("r");
+      expect(tokens[0][0].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[0][1].value).toBe("\"");
+      expect(tokens[0][1].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[0][2].value).toBe("this is a raw string");
+      expect(tokens[0][2].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql"]);
+      expect(tokens[0][3].value).toBe("\"");
+      expect(tokens[0][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[1][0].value).toBe("r");
+      expect(tokens[1][0].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[1][1].value).toBe("\"");
+      expect(tokens[1][1].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[1][2].value).toBe("this is a raw 'string'");
+      expect(tokens[1][2].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql"]);
+      expect(tokens[1][3].value).toBe("\"");
+      expect(tokens[1][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[2][0].value).toBe("r");
+      expect(tokens[2][0].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[2][1].value).toBe("\"");
+      expect(tokens[2][1].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[2][2].value).toBe("this is a raw \\rstring\\r");
+      expect(tokens[2][2].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql"]);
+      expect(tokens[2][3].value).toBe("\"");
+      expect(tokens[2][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[3][0].value).toBe("r");
+      expect(tokens[3][0].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","storage.type.string.edgeql"]);
+      expect(tokens[3][1].value).toBe("\"");
+      expect(tokens[3][1].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[3][2].value).toBe("this is a raw \\rstring\\r");
+      expect(tokens[3][2].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql"]);
+      expect(tokens[3][3].value).toBe("\"");
+      expect(tokens[3][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
   it("test/edgeql/update01.eql", 

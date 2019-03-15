@@ -848,6 +848,10 @@
           </dict>
           <dict>
             <key>include</key>
+            <string>#bytes</string>
+          </dict>
+          <dict>
+            <key>include</key>
             <string>#string</string>
           </dict>
         </array>
@@ -1037,6 +1041,35 @@
         <array>
           <dict>
             <key>name</key>
+            <string>string.quoted.raw.edgeql</string>
+            <key>begin</key>
+            <string>(r)(['"])</string>
+            <key>end</key>
+            <string>(\2)</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>storage.type.string.edgeql</string>
+              </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.string.begin.edgeql</string>
+              </dict>
+            </dict>
+            <key>endCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.string.end.edgeql</string>
+              </dict>
+            </dict>
+          </dict>
+          <dict>
+            <key>name</key>
             <string>string.quoted.edgeql</string>
             <key>begin</key>
             <string>(['"])</string>
@@ -1063,6 +1096,10 @@
               <dict>
                 <key>include</key>
                 <string>#string-escapes</string>
+              </dict>
+              <dict>
+                <key>include</key>
+                <string>#string-invalid-escapes</string>
               </dict>
             </array>
           </dict>
@@ -1097,7 +1134,132 @@
         <key>name</key>
         <string>constant.character.escape.edgeql</string>
         <key>match</key>
-        <string>(\\['"])</string>
+        <string>(?x)
+  (
+    \\(?=\s*\n) |
+    \\[\\'"bfnrt] |
+    \\x[0-7][0-9a-fA-F] |
+    \\u[0-9a-fA-F]{4} |
+    \\U[0-9a-fA-F]{8}
+  )
+</string>
+      </dict>
+      <key>string-invalid-escapes</key>
+      <dict>
+        <key>name</key>
+        <string>invalid.illegal.escapes.edgeql</string>
+        <key>match</key>
+        <string>(\\.)</string>
+      </dict>
+      <key>bytes</key>
+      <dict>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>name</key>
+            <string>string.quoted.bytes.edgeql</string>
+            <key>begin</key>
+            <string>(b)(')</string>
+            <key>end</key>
+            <string>(\2)</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>storage.type.string.edgeql</string>
+              </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.string.begin.edgeql</string>
+              </dict>
+            </dict>
+            <key>endCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.string.end.edgeql</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#bytes-escapes</string>
+              </dict>
+              <dict>
+                <key>match</key>
+                <string>([\n -&amp;(-\[\]-~])+</string>
+              </dict>
+              <dict>
+                <key>name</key>
+                <string>invalid.illegal.bytes.edgeql</string>
+                <key>match</key>
+                <string>(\\x.{1,2})|(\\.)|(.)</string>
+              </dict>
+            </array>
+          </dict>
+          <dict>
+            <key>name</key>
+            <string>string.quoted.bytes.edgeql</string>
+            <key>begin</key>
+            <string>(b)(")</string>
+            <key>end</key>
+            <string>(\2)</string>
+            <key>beginCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>storage.type.string.edgeql</string>
+              </dict>
+              <key>2</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.string.begin.edgeql</string>
+              </dict>
+            </dict>
+            <key>endCaptures</key>
+            <dict>
+              <key>1</key>
+              <dict>
+                <key>name</key>
+                <string>punctuation.definition.string.end.edgeql</string>
+              </dict>
+            </dict>
+            <key>patterns</key>
+            <array>
+              <dict>
+                <key>include</key>
+                <string>#bytes-escapes</string>
+              </dict>
+              <dict>
+                <key>match</key>
+                <string>([\n -!#-\[\]-~])+</string>
+              </dict>
+              <dict>
+                <key>name</key>
+                <string>invalid.illegal.bytes.edgeql</string>
+                <key>match</key>
+                <string>(\\x.{1,2})|(\\.)|(.)</string>
+              </dict>
+            </array>
+          </dict>
+        </array>
+      </dict>
+      <key>bytes-escapes</key>
+      <dict>
+        <key>name</key>
+        <string>constant.character.escape.edgeql</string>
+        <key>match</key>
+        <string>(?x)
+  (
+    \\[\\'"bfnrt] |
+    \\x[0-9a-fA-F]{2}
+  )
+</string>
       </dict>
       <key>casts</key>
       <dict>

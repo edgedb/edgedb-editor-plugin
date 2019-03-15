@@ -521,6 +521,9 @@ repository:
         include: "#number"
       }
       {
+        include: "#bytes"
+      }
+      {
         include: "#string"
       }
     ]
@@ -638,6 +641,19 @@ repository:
   string:
     patterns: [
       {
+        name: "string.quoted.raw.edgeql"
+        begin: "(r)(['\"])"
+        end: "(\\2)"
+        beginCaptures:
+          "1":
+            name: "storage.type.string.edgeql"
+          "2":
+            name: "punctuation.definition.string.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "punctuation.definition.string.end.edgeql"
+      }
+      {
         name: "string.quoted.edgeql"
         begin: "(['\"])"
         end: "(\\1)"
@@ -650,6 +666,9 @@ repository:
         patterns: [
           {
             include: "#string-escapes"
+          }
+          {
+            include: "#string-invalid-escapes"
           }
         ]
       }
@@ -667,7 +686,83 @@ repository:
     ]
   "string-escapes":
     name: "constant.character.escape.edgeql"
-    match: "(\\\\['\"])"
+    match: '''
+      (?x)
+        (
+          \\\\(?=\\s*\\n) |
+          \\\\[\\\\'"bfnrt] |
+          \\\\x[0-7][0-9a-fA-F] |
+          \\\\u[0-9a-fA-F]{4} |
+          \\\\U[0-9a-fA-F]{8}
+        )
+      
+    '''
+  "string-invalid-escapes":
+    name: "invalid.illegal.escapes.edgeql"
+    match: "(\\\\.)"
+  bytes:
+    patterns: [
+      {
+        name: "string.quoted.bytes.edgeql"
+        begin: "(b)(')"
+        end: "(\\2)"
+        beginCaptures:
+          "1":
+            name: "storage.type.string.edgeql"
+          "2":
+            name: "punctuation.definition.string.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "punctuation.definition.string.end.edgeql"
+        patterns: [
+          {
+            include: "#bytes-escapes"
+          }
+          {
+            match: "([\\n -&(-\\[\\]-~])+"
+          }
+          {
+            name: "invalid.illegal.bytes.edgeql"
+            match: "(\\\\x.{1,2})|(\\\\.)|(.)"
+          }
+        ]
+      }
+      {
+        name: "string.quoted.bytes.edgeql"
+        begin: "(b)(\")"
+        end: "(\\2)"
+        beginCaptures:
+          "1":
+            name: "storage.type.string.edgeql"
+          "2":
+            name: "punctuation.definition.string.begin.edgeql"
+        endCaptures:
+          "1":
+            name: "punctuation.definition.string.end.edgeql"
+        patterns: [
+          {
+            include: "#bytes-escapes"
+          }
+          {
+            match: "([\\n -!#-\\[\\]-~])+"
+          }
+          {
+            name: "invalid.illegal.bytes.edgeql"
+            match: "(\\\\x.{1,2})|(\\\\.)|(.)"
+          }
+        ]
+      }
+    ]
+  "bytes-escapes":
+    name: "constant.character.escape.edgeql"
+    match: '''
+      (?x)
+        (
+          \\\\[\\\\'"bfnrt] |
+          \\\\x[0-9a-fA-F]{2}
+        )
+      
+    '''
   casts:
     begin: '''
       (?xi)
