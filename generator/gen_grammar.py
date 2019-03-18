@@ -181,7 +181,7 @@ def main():
                   # module
                   (?:
                     (
-                      std | stdattrs | schema
+                      {pretty_join(' | ', stdmodules, 3, indent=22)}
                     )
                     |
                     (?# masking built-ins in odd ways)

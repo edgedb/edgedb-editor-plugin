@@ -872,7 +872,8 @@ repository:
             # module
             (?:
               (
-                std | stdattrs | schema
+                cfg | math | schema | 
+                std | stdgraphql | sys 
               )
               |
               (?# masking built-ins in odd ways)
