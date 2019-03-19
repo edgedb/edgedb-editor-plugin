@@ -9,8 +9,8 @@
     <string>source.edgeql</string>
     <key>fileTypes</key>
     <array>
-      <string>eql</string>
-      <string>eschema</string>
+      <string>edgeql</string>
+      <string>esdl</string>
     </array>
     <key>uuid</key>
     <string>a560aad6-9c13-49c5-a369-5fb272c8ec1a</string>

@@ -2,8 +2,8 @@
 name: "EdgeQL"
 scopeName: "source.edgeql"
 fileTypes: [
-  "eql"
-  "eschema"
+  "edgeql"
+  "esdl"
 ]
 uuid: "a560aad6-9c13-49c5-a369-5fb272c8ec1a"
 patterns: [
