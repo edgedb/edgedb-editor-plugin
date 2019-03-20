@@ -1,4 +1,4 @@
-.PHONY: all build test devenv release regen-grammar ci-test
+.PHONY: all build test devenv release regen-grammar ci-test publish
 
 
 all: devenv build
@@ -42,3 +42,8 @@ fetch-metagrammar:
 
 regen-grammar:
 	PYHTONPATH=$(shell pwd) python -m generator.gen_grammar
+
+
+publish: test
+	apm publish patch
+	vsce publish
