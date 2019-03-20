@@ -39,7 +39,8 @@ fetch-metagrammar:
 	out=$$(edb gen-meta-grammars edgeql) && \
 		echo "$$out" > generator/meta
 	mv generator/meta generator/meta~
-	echo "#!/usr/bin/env python\n$$(cat generator/meta~)" > generator/meta
+	echo "#!/usr/bin/env python" > generator/meta
+	echo "$$(cat generator/meta~)" >> generator/meta
 	rm generator/meta~
 
 

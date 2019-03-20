@@ -21,7 +21,7 @@ INTO
 LAST
 LINK
 MIGRATION
-NAMED
+NAMED ONLY
 OF
 ON
 ONLY
@@ -109,7 +109,7 @@ INTO          : keyword.declaration.edgeql, source.edgeql
 LAST          : keyword.declaration.edgeql, source.edgeql
 LINK          : keyword.declaration.edgeql, source.edgeql
 MIGRATION     : keyword.declaration.edgeql, source.edgeql
-NAMED         : keyword.declaration.edgeql, source.edgeql
+NAMED ONLY    : keyword.declaration.edgeql, source.edgeql
 OF            : keyword.declaration.edgeql, source.edgeql
 ON            : keyword.declaration.edgeql, source.edgeql
 ONLY          : keyword.declaration.edgeql, source.edgeql

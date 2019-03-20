@@ -319,6 +319,9 @@ repository:
         name: "keyword.declaration.edgeql"
         match: '''
           (?ix) \\b(?<!::|\\.|\\.<|\\.>)(
+            (?# special case)
+            named \\s+ only
+            |
           
             (?# unreserved)
             abstract | after | alias | all | allow | 
@@ -328,13 +331,12 @@ repository:
             desc | explicit | final | first | from | 
             implicit | index | infix | inheritable | inherited | 
             into | isolation | last | link | migration | 
-            multi | named | of | on | only | 
-            operator | postfix | prefix | property | read | 
-            rename | repeatable | required | restrict | role | 
-            savepoint | scalar | serializable | session | single | 
-            source | system | target | ternary | then | 
-            to | transaction | type | using | view | 
-            write 
+            multi | of | on | only | operator | 
+            postfix | prefix | property | read | rename | 
+            repeatable | required | restrict | role | savepoint | 
+            scalar | serializable | session | single | source | 
+            system | target | ternary | then | to | 
+            transaction | type | using | view | write 
             |
             (?# reserved)
             alter | analyze | and | anyarray | anytuple | 

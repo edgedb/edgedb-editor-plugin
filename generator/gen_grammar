@@ -10,6 +10,9 @@ FILE_PREFIX = '''\
 '''
 NOT_PATH = r'\b(?<!\.|\.<|\.>)'
 NOT_FQPATH = r'\b(?<!::|\.|\.<|\.>)'
+# some unreserved keywords have special handling because they clash
+# with builtins
+EXCEPTION_KW = {'named'}
 
 
 def pretty_join(sep, it, chunk=4, indent=12):
@@ -53,6 +56,7 @@ def main():
       - set(dunder_builtins)
       - set(type_builtins)
       - set(constraint_builtins)
+      - EXCEPTION_KW
     )
     reserved_keywords = sorted(
       set(EdgeQL.reserved_keywords)
@@ -96,6 +100,9 @@ def main():
         ---
         match: |
           (?ix) {NOT_FQPATH}(
+            (?# special case)
+            named \s+ only
+            |
 
             (?# unreserved)
             {pretty_join(' | ', unreserved_keywords, 5, indent=12)}
