@@ -10,9 +10,9 @@ test: ci-test
 
 ci-test: build
 	./node_modules/.bin/syntaxdev test \
-		--tests test/**/*.eql --syntax grammars/src/edgeql.syntax.yaml
+		--tests test/**/*.edgeql --syntax grammars/src/edgeql.syntax.yaml
 	./node_modules/.bin/syntaxdev test \
-		--tests test/**/*.eschema --syntax grammars/src/edgeql.syntax.yaml
+		--tests test/**/*.esdl --syntax grammars/src/edgeql.syntax.yaml
 
 
 build:
@@ -26,7 +26,7 @@ build:
 
 	./node_modules/.bin/syntaxdev atom-spec \
 		--package-name edgedb \
-		--tests test/**/*.eql \
+		--tests test/**/*.edgeql \
 		--syntax grammars/src/edgeql.syntax.yaml \
 		--out test/atom-spec/edgeql-spec.js
 

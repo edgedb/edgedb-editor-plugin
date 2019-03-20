@@ -14,7 +14,7 @@ describe("Grammar Tests", function() {
   });
 
 
-  it("test/edgeql/builtins01.eql", 
+  it("test/edgeql/builtins01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("std\nstdgraphql\nschema\nmath")
       expect(tokens[0][0].value).toBe("std");
@@ -27,7 +27,7 @@ describe("Grammar Tests", function() {
       expect(tokens[3][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
     });
 
-  it("test/edgeql/builtins02.eql", 
+  it("test/edgeql/builtins02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("len()\narray_agg()\narray_unpack()\nre_match()\nre_test()\ncount()\nsum()\nrandom()\nuuid_generate_v1mc()")
       expect(tokens[0][0].value).toBe("len");
@@ -86,7 +86,7 @@ describe("Grammar Tests", function() {
       expect(tokens[8][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
     });
 
-  it("test/edgeql/builtins03.eql", 
+  it("test/edgeql/builtins03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("std::constraint\nmax\nenum\nexpression\nmin\nregexp\nexclusive")
       expect(tokens[0][0].value).toBe("std");
@@ -109,7 +109,7 @@ describe("Grammar Tests", function() {
       expect(tokens[6][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
     });
 
-  it("test/edgeql/bytes01.eql", 
+  it("test/edgeql/bytes01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("b'this is a bytestring'\nb'this is a \"bytestring\"'\nb'this is a \\'bytestring\\''\nb'this is a \\\"bytestring\\\"'\nb'this \\n is \\\\ a \\xbb bytestring'\nb'this is a bad \\xqq \\a bytestring я'\nb'this is a bad bytestring \\\n'")
       expect(tokens[0][0].value).toBe("b");
@@ -208,7 +208,7 @@ describe("Grammar Tests", function() {
       expect(tokens[7][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
-  it("test/edgeql/bytes02.eql", 
+  it("test/edgeql/bytes02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("b\"this is a bytestring\"\nb\"this is a 'bytestring'\"\nb\"this is a \\'bytestring\\'\"\nb\"this is a \\\"bytestring\\\"\"\nb\"this \\n is \\\\ a \\xbb bytestring\"\nb\"this is a bad \\xqq \\a bytestring я\"\nb\"this is a bad bytestring \\\n\"")
       expect(tokens[0][0].value).toBe("b");
@@ -307,7 +307,7 @@ describe("Grammar Tests", function() {
       expect(tokens[7][0].scopes).toEqual(["source.edgeql","string.quoted.bytes.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
-  it("test/edgeql/cast01.eql", 
+  it("test/edgeql/cast01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT NOT <bool>Foo.baz;")
       expect(tokens[0][0].value).toBe("SELECT");
@@ -330,7 +330,7 @@ describe("Grammar Tests", function() {
       expect(tokens[0][8].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/cast02.eql", 
+  it("test/edgeql/cast02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT Foo.bar LIKE <str>Foo.baz;")
       expect(tokens[0][0].value).toBe("SELECT");
@@ -353,7 +353,7 @@ describe("Grammar Tests", function() {
       expect(tokens[0][8].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/cast03.eql", 
+  it("test/edgeql/cast03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT Foo.bar LIMIT <int64>'42';")
       expect(tokens[0][0].value).toBe("SELECT");
@@ -380,7 +380,7 @@ describe("Grammar Tests", function() {
       expect(tokens[0][10].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/cast04.eql", 
+  it("test/edgeql/cast04.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT Foo.bar OFFSET <int64>'42';")
       expect(tokens[0][0].value).toBe("SELECT");
@@ -407,7 +407,7 @@ describe("Grammar Tests", function() {
       expect(tokens[0][10].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/create01.eql", 
+  it("test/edgeql/create01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("CreatE CONSTRAINT std::regexp EXTENDING std::constraint {\n    SET errmessage := 'invalid {subject}';\n    SET expr := re_test(subject, $0);\n};")
       expect(tokens[0][0].value).toBe("CreatE");
@@ -492,7 +492,7 @@ describe("Grammar Tests", function() {
       expect(tokens[3][1].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/create02.eql", 
+  it("test/edgeql/create02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("CREATE AGGREGATE std::array_agg(SET OF std::anytype) -> array<std::anytype>\n    FROM SQL AGGREGATE 'array_agg';")
       expect(tokens[0][0].value).toBe("CREATE");
@@ -565,7 +565,7 @@ describe("Grammar Tests", function() {
       expect(tokens[1][8].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/create03.eql", 
+  it("test/edgeql/create03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("CREATE FUNCTION std::len(array<std::anytype>) -> std::int64\n    FROM SQL $$\n        SELECT array_length($1, 1)::bigint\n    $$;\narray<std::anytype>  # back to edgeql")
       expect(tokens[0][0].value).toBe("CREATE");
@@ -646,7 +646,7 @@ describe("Grammar Tests", function() {
       expect(tokens[4][8].scopes).toEqual(["source.edgeql","comment.line.number-sign.edgeql"]);
     });
 
-  it("test/edgeql/create04.eql", 
+  it("test/edgeql/create04.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("CREATE FUNCTION std::len(array<std::anytype>) -> std::int64\n    FROm Sql $a$\n        SELECT array_length($1, 1)::bigint\n    $a$;\narray<std::anytype>  # back to edgeql")
       expect(tokens[0][0].value).toBe("CREATE");
@@ -727,7 +727,7 @@ describe("Grammar Tests", function() {
       expect(tokens[4][8].scopes).toEqual(["source.edgeql","comment.line.number-sign.edgeql"]);
     });
 
-  it("test/edgeql/create05.eql", 
+  it("test/edgeql/create05.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("CREATE FUNCTION test::my_edgeql_func2(std::str)\n        -> schema::Concept\n    FROM EdgeQL $$\n        SELECT\n            schema::Concept\n        FILTER schema::Concept.name = $1\n    $$;")
       expect(tokens[0][0].value).toBe("CREATE");
@@ -814,7 +814,7 @@ describe("Grammar Tests", function() {
       expect(tokens[6][2].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/delete01.eql", 
+  it("test/edgeql/delete01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("DELETE test::DeleteTest;")
       expect(tokens[0][0].value).toBe("DELETE");
@@ -829,7 +829,7 @@ describe("Grammar Tests", function() {
       expect(tokens[0][4].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/delete02.eql", 
+  it("test/edgeql/delete02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("WITH MODULE test\nDELETE (SELECT DeleteTest\n        FILTER DeleteTest.name = 'bad name');")
       expect(tokens[0][0].value).toBe("WITH");
@@ -872,7 +872,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][9].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/for01.eql", 
+  it("test/edgeql/for01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("WITH MODULE test\nFOR C IN {Card}\nUNION (C.name, Card.name);")
       expect(tokens[0][0].value).toBe("WITH");
@@ -915,7 +915,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][7].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/for02.eql", 
+  it("test/edgeql/for02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("WITH MODULE test\nFOR X IN {Card.name, User.name}\nUNION X\nFILTER Card.element = 'Air';")
       expect(tokens[0][0].value).toBe("WITH");
@@ -966,7 +966,7 @@ describe("Grammar Tests", function() {
       expect(tokens[3][7].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/group01.eql", 
+  it("test/edgeql/group01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("WITH MODULE test\nGROUP User\nUSING _ := User.name\nBY _\nINTO User\nUNION count(User.<owner);")
       expect(tokens[0][0].value).toBe("WITH");
@@ -1017,7 +1017,7 @@ describe("Grammar Tests", function() {
       expect(tokens[5][8].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/group02.eql", 
+  it("test/edgeql/group02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("WITH MODULE test\nGROUP Issue\nUSING B :=  Issue.status.name\nBY B\nINTO Issue\nUNION _ := (\n    sum := sum(<int64>Issue.number),\n    status := B,\n)\nFILTER\n    _.sum > 5\nORDER BY\n    B;")
       expect(tokens[0][0].value).toBe("WITH");
@@ -1112,7 +1112,7 @@ describe("Grammar Tests", function() {
       expect(tokens[12][1].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/ident01.eql", 
+  it("test/edgeql/ident01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("INSERT std::delete_pointer;")
       expect(tokens[0][0].value).toBe("INSERT");
@@ -1129,7 +1129,7 @@ describe("Grammar Tests", function() {
       expect(tokens[0][5].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/ident02.eql", 
+  it("test/edgeql/ident02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("CREATE TYPE std::delete_pointer;")
       expect(tokens[0][0].value).toBe("CREATE");
@@ -1150,7 +1150,7 @@ describe("Grammar Tests", function() {
       expect(tokens[0][7].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/insert01.eql", 
+  it("test/edgeql/insert01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("INSERT test::Subordinate {\n    name := 'subtest 1'\n};")
       expect(tokens[0][0].value).toBe("INSERT");
@@ -1183,7 +1183,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][1].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/insert02.eql", 
+  it("test/edgeql/insert02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("INSERT test::InsertTest {\n    name := 'insert nested',\n    l2 := 0,\n    subordinates := (\n        SELECT test::Subordinate\n        FILTER test::Subordinate.name LIKE 'subtest%'\n    )\n};")
       expect(tokens[0][0].value).toBe("INSERT");
@@ -1270,7 +1270,7 @@ describe("Grammar Tests", function() {
       expect(tokens[7][1].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/insert03.eql", 
+  it("test/edgeql/insert03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("WITH MODULE test\nINSERT InsertTest {\n    name := 'insert nested 2',\n    l2 := 0,\n    subordinates := (\n        SELECT Subordinate {\n            @comment := (SELECT 'comment ' + Subordinate.name)\n        }\n        FILTER Subordinate.name IN {'subtest 3', 'subtest 4'}\n    )\n};")
       expect(tokens[0][0].value).toBe("WITH");
@@ -1405,7 +1405,7 @@ describe("Grammar Tests", function() {
       expect(tokens[10][1].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/keywords01.eql", 
+  it("test/edgeql/keywords01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("FALSE\nEMPTY\nTRUE")
       expect(tokens[0][0].value).toBe("FALSE");
@@ -1416,7 +1416,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][0].scopes).toEqual(["source.edgeql","constant.language.boolean.true.edgeql"]);
     });
 
-  it("test/edgeql/keywords02.eql", 
+  it("test/edgeql/keywords02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("FOR;\nSELECT;\nGROUP;\nINSERT;\nUPDATE;\nDELETE;")
       expect(tokens[0][0].value).toBe("FOR");
@@ -1445,7 +1445,7 @@ describe("Grammar Tests", function() {
       expect(tokens[5][1].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/keywords03.eql", 
+  it("test/edgeql/keywords03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("ABSTRACT\nAFTER\nAS\nASC\nATTRIBUTE\nBEFORE\nBY\nCARDINALITY\nCONSTRAINT\nDATABASE\nDEFAULT\nDEFERRED\nDELEGATED\nDESC\nFINAL\nFIRST\nFROM\nINDEX\nINHERITED\nINTO\nLAST\nLINK\nMIGRATION\nNAMED\nOF\nON\nONLY\nPROPERTY\nRENAME\nRESTRICT\nROLE\nSCALAR\nSOURCE\nTARGET\nTHEN\nTO\nTRANSACTION\nTYPE\nUSING\nVIEW\nAGGREGATE\nALL\nALTER\nAND\nCOMMIT\nCREATE\nDELETE\nDETACHED\nDISTINCT\nDROP\nELSE\nEXISTS\nEXPLAIN\nEXTENDING\nFILTER\nFOR\nFUNCTION\nGET\nGROUP\nIF\nILIKE\nIN\nINSERT\nINTROSPECT\nIS\nLIKE\nLIMIT\nMODULE\nNOT\nOFFSET\nOPTIONAL\nOR\nORDER\nOVER\nPARTITION\nREQUIRED\nROLLBACK\nSELECT\nSET\nSTART\nTYPEOF\nUNION\nUPDATE\nVARIADIC\nWITH")
       expect(tokens[0][0].value).toBe("ABSTRACT");
@@ -1620,7 +1620,7 @@ describe("Grammar Tests", function() {
       expect(tokens[84][0].scopes).toEqual(["source.edgeql","keyword.declaration.edgeql"]);
     });
 
-  it("test/edgeql/keywords04.eql", 
+  it("test/edgeql/keywords04.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("__source__\n__subject__\n__type__")
       expect(tokens[0][0].value).toBe("__source__");
@@ -1631,7 +1631,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][0].scopes).toEqual(["source.edgeql","support.other.link.builtin.edgeql"]);
     });
 
-  it("test/edgeql/names01.eql", 
+  it("test/edgeql/names01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("CREATE DATABASE mytestdb;\nCREATE DATABASE `mytestdb`;\nCREATE DATABASE `SET`;\nCREATE DATABASE `CREATE`;")
       expect(tokens[0][0].value).toBe("CREATE");
@@ -1682,7 +1682,7 @@ describe("Grammar Tests", function() {
       expect(tokens[3][5].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/names02.eql", 
+  it("test/edgeql/names02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("CREATE DATABASE `mytest\\\"db\\\"`;\nCREATE DATABASE `mytest\\'db\\'`;\nCREATE DATABASE `some.db`;")
       expect(tokens[0][0].value).toBe("CREATE");
@@ -1723,7 +1723,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][5].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/names03.eql", 
+  it("test/edgeql/names03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("foo::std\nFoo.std\nFoo.<std\nFoo.>std\nfoo::select\nFoo.select\nFoo.<select\nFoo.>select")
       expect(tokens[0][0].value).toBe("foo");
@@ -1768,7 +1768,7 @@ describe("Grammar Tests", function() {
       expect(tokens[7][2].scopes).toEqual(["source.edgeql"]);
     });
 
-  it("test/edgeql/number01.eql", 
+  it("test/edgeql/number01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("123\n123_456\n1_2_3_4_5_6")
       expect(tokens[0][0].value).toBe("123");
@@ -1779,7 +1779,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][0].scopes).toEqual(["source.edgeql","constant.numeric.integer.edgeql"]);
     });
 
-  it("test/edgeql/number02.eql", 
+  it("test/edgeql/number02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("123.456\n0.456\n.01234\n123e5\n123e-5\n123.456e+5\n0.456e-5")
       expect(tokens[0][0].value).toBe("123.456");
@@ -1814,7 +1814,7 @@ describe("Grammar Tests", function() {
       expect(tokens[6][2].scopes).toEqual(["source.edgeql","constant.numeric.float.edgeql"]);
     });
 
-  it("test/edgeql/number03.eql", 
+  it("test/edgeql/number03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("123n\n123_456n\n1_2_3_4_5_6n")
       expect(tokens[0][0].value).toBe("123");
@@ -1831,7 +1831,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][1].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
     });
 
-  it("test/edgeql/number04.eql", 
+  it("test/edgeql/number04.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("123.456n\n0.456n\n.01234n\n123e5n\n123e-5n\n123.456e+5n\n0.456e-5n")
       expect(tokens[0][0].value).toBe("123.456");
@@ -1880,7 +1880,7 @@ describe("Grammar Tests", function() {
       expect(tokens[6][3].scopes).toEqual(["source.edgeql","constant.numeric.decimal.edgeql","storage.type.number.edgeql"]);
     });
 
-  it("test/edgeql/select01.eql", 
+  it("test/edgeql/select01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT\n    test::NamedObject {\n        abc,\n        defd,\n        name: {\n            @lang\n        }\n    }\nFILTER\n    test::`NamedObject`.name = 'Test';")
       expect(tokens[0][0].value).toBe("SELECT");
@@ -1945,7 +1945,7 @@ describe("Grammar Tests", function() {
       expect(tokens[9][9].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/select02.eql", 
+  it("test/edgeql/select02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT\n    test::User {\n        id,\n    }\nFILTER\n    ((test::User).score = $val)")
       expect(tokens[0][0].value).toBe("SELECT");
@@ -1998,7 +1998,7 @@ describe("Grammar Tests", function() {
       expect(tokens[5][12].scopes).toEqual(["source.edgeql","punctuation.parenthesis.end.edgeql"]);
     });
 
-  it("test/edgeql/select03.eql", 
+  it("test/edgeql/select03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT\n    mod2::Person {\n        id,\n        name,\n        groups: {\n            id,\n            name,\n        }\n    }")
       expect(tokens[0][0].value).toBe("SELECT");
@@ -2045,7 +2045,7 @@ describe("Grammar Tests", function() {
       expect(tokens[8][1].scopes).toEqual(["source.edgeql","punctuation.parenthesis.end.edgeql"]);
     });
 
-  it("test/edgeql/select04.eql", 
+  it("test/edgeql/select04.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("SELECT Foo {\n    bar: {\n        baz := (SELECT Doo {foo}),\n        spam,\n    },\n    back_foo := Foo.<foo,\n    ham,\n};")
       expect(tokens[0][0].value).toBe("SELECT");
@@ -2116,7 +2116,7 @@ describe("Grammar Tests", function() {
       expect(tokens[7][1].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/select05.eql", 
+  it("test/edgeql/select05.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("WITH MODULE test\nSELECT User{\n    name,\n    owner_of := (\n        SELECT User.<owner[IS Issue] {\n            number\n        } FILTER <int64>(.number) < 3\n    ),\n} FILTER User.name = 'Elvis';")
       expect(tokens[0][0].value).toBe("WITH");
@@ -2231,7 +2231,7 @@ describe("Grammar Tests", function() {
       expect(tokens[8][9].scopes).toEqual(["source.edgeql","punctuation.statement.delimiter.edgeql"]);
     });
 
-  it("test/edgeql/string01.eql", 
+  it("test/edgeql/string01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("'this is a string'\n'this is a \"string\"'\n'this is a \\'string\\''\n'this is a \\\"string\\\"'\n'this is \\a string'")
       expect(tokens[0][0].value).toBe("'");
@@ -2282,7 +2282,7 @@ describe("Grammar Tests", function() {
       expect(tokens[4][4].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
-  it("test/edgeql/string02.eql", 
+  it("test/edgeql/string02.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("\"this is a string\"\n\"this is a 'string'\"\n\"this is a \\'string\\'\"\n\"this is a \\\"string\\\"\"\n\"this is \\a string\"")
       expect(tokens[0][0].value).toBe("\"");
@@ -2333,7 +2333,7 @@ describe("Grammar Tests", function() {
       expect(tokens[4][4].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
-  it("test/edgeql/string03.eql", 
+  it("test/edgeql/string03.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("$$this is a string$$\n\n$a$this is a \"string\"$a$\n\n$w__2$this is a \\'string\\'$w__2$\n\n$q123$this is a \\\"string\\\"$q123$")
       expect(tokens[0][0].value).toBe("$$");
@@ -2368,7 +2368,7 @@ describe("Grammar Tests", function() {
       expect(tokens[6][2].scopes).toEqual(["source.edgeql","string.dollar.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
-  it("test/edgeql/string04.eql", 
+  it("test/edgeql/string04.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("r'this is a raw string'\nr'this is a raw \"string\"'\nr'this is a raw \\rstring\\r'\nr'this is a raw \\rstring\\r'")
       expect(tokens[0][0].value).toBe("r");
@@ -2405,7 +2405,7 @@ describe("Grammar Tests", function() {
       expect(tokens[3][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
-  it("test/edgeql/string05.eql", 
+  it("test/edgeql/string05.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("r\"this is a raw string\"\nr\"this is a raw 'string'\"\nr\"this is a raw \\rstring\\r\"\nr\"this is a raw \\rstring\\r\"")
       expect(tokens[0][0].value).toBe("r");
@@ -2442,7 +2442,7 @@ describe("Grammar Tests", function() {
       expect(tokens[3][3].scopes).toEqual(["source.edgeql","string.quoted.raw.edgeql","punctuation.definition.string.end.edgeql"]);
     });
 
-  it("test/edgeql/update01.eql", 
+  it("test/edgeql/update01.edgeql", 
     function() {
       tokens = grammar.tokenizeLines("WITH MODULE test\nUPDATE UpdateTest\nFILTER UpdateTest.name = 'update-test1'\nSET {\n    status := (SELECT Status FILTER Status.name = 'Closed')\n};")
       expect(tokens[0][0].value).toBe("WITH");
