@@ -1,4 +1,4 @@
-'.source.eschema':
+'.source.edgeql':
   'editor':
     'autoIndentOnPaste': false
     'softTabs': true
