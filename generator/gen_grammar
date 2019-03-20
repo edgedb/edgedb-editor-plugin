@@ -1,7 +1,8 @@
+#!/usr/bin/env python
+
+
 import pathlib
 import textwrap
-
-from . import meta
 
 
 FILE_PREFIX = '''\
@@ -25,42 +26,52 @@ def pretty_join(sep, it, chunk=4, indent=12):
 
 
 def main():
-    eql_templ = pathlib.Path(__file__).parent / 'edgeql-template.syntax.yaml'
+    cur_path = pathlib.Path(__file__).resolve().parent
+
+    with open(cur_path / 'meta') as f:
+        # All this dance is needed because ST package repo refuses
+        # to accept packages with *.py files in them (unless they
+        # are actually an editor plugin.)
+        meta_cnt = f.read()
+        ns = {}
+        exec(meta_cnt, globals(), ns)
+        EdgeQL = ns['EdgeQL']
+
     eql_base_path = (
-        pathlib.Path(__file__).resolve().parent.parent / 'grammars' / 'src'
+        cur_path.parent / 'grammars' / 'src'
     )
 
-    dunder_builtins = [kw for kw in meta.EdgeQL.reserved_keywords
+    dunder_builtins = [kw for kw in EdgeQL.reserved_keywords
                        if kw[:2] == '__']
-    fn_builtins = sorted(meta.EdgeQL.fn_builtins)
-    constraint_builtins = sorted(meta.EdgeQL.constraint_builtins)
-    type_builtins = sorted(set(meta.EdgeQL.type_builtins) | {'anytype'})
+    fn_builtins = sorted(EdgeQL.fn_builtins)
+    constraint_builtins = sorted(EdgeQL.constraint_builtins)
+    type_builtins = sorted(set(EdgeQL.type_builtins) | {'anytype'})
 
     unreserved_keywords = sorted(
-      set(meta.EdgeQL.unreserved_keywords)
+      set(EdgeQL.unreserved_keywords)
       # special keywords that have other meaning
       - set(dunder_builtins)
       - set(type_builtins)
       - set(constraint_builtins)
     )
     reserved_keywords = sorted(
-      set(meta.EdgeQL.reserved_keywords)
+      set(EdgeQL.reserved_keywords)
       # special keywords that have other meaning
       - set(dunder_builtins)
       - set(type_builtins)
     )
 
-    stdmodules = meta.EdgeQL.module_builtins
+    stdmodules = EdgeQL.module_builtins
     # Operators need to be sorted from longest to shortest to match
     # correctly. Lexicographical sort is added on top of that for
     # stability, but is not itself important.
-    operators = sorted(meta.EdgeQL.operators,
+    operators = sorted(EdgeQL.operators,
                        key=lambda x: (len(x), x), reverse=True)
     # the operator symbols need to be escaped
     operators = ['\\' + '\\'.join(op) for op in operators]
 
     # navigation punctuation needs to be processed similar to operators
-    navigation = sorted(meta.EdgeQL.navigation,
+    navigation = sorted(EdgeQL.navigation,
                         key=lambda x: (len(x), x), reverse=True)
     # the operator symbols need to be escaped
     navigation = ['\\' + '\\'.join(nav) for nav in navigation
@@ -231,6 +242,7 @@ def main():
                 - include: '#fncallargs'
         ...
         ''').strip())
+
 
 if __name__ == '__main__':
     main()

@@ -37,11 +37,14 @@ devenv:
 
 fetch-metagrammar:
 	out=$$(edb gen-meta-grammars edgeql) && \
-		echo "$$out" > generator/meta.py
+		echo "$$out" > generator/meta
+	mv generator/meta generator/meta~
+	echo "#!/usr/bin/env python\n$$(cat generator/meta~)" > generator/meta
+	rm generator/meta~
 
 
 regen-grammar:
-	PYHTONPATH=$(shell pwd) python -m generator.gen_grammar
+	PYHTONPATH=$(shell pwd) python generator/gen_grammar
 
 
 publish: test
