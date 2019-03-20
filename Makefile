@@ -1,7 +1,7 @@
 .PHONY: all build test devenv release regen-grammar ci-test
 
 
-all: devenv build test
+all: devenv build
 
 
 test: ci-test
