@@ -2,7 +2,7 @@
   "name": "edgedb",
   "displayName": "edgedb",
   "description": "EdgeDB plugin for Sublime Text, Atom, and VSCode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "magicstack",
   "engines": {
     "atom": "*",
