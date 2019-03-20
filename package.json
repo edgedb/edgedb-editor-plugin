@@ -1,42 +1,56 @@
 {
-    "name": "edgedb",
-    "displayName": "edgedb",
-    "description": "Grammars for the EdgeQL and ESchema languages in EdgeDB",
-    "version": "0.0.1",
-    "publisher": "magicstack",
-    "engines": {
-        "atom": ">=1.0.0 <2.0.0",
-        "vscode": ">=1.19.0,<=2.0.0"
-    },
-    "categories": [
-        "Programming Languages",
-        "Other"
-    ],
-    "contributes": {
-        "languages": [
-            {
-                "id": "edgeql",
-                "aliases": [
-                    "EdgeQL",
-                    "edgeql",
-                    "esdl"
-                ],
-                "extensions": [
-                    ".edgeql",
-                    ".esdl"
-                ],
-                "configuration": "./settings/vscode/edgeql.json"
-            }
+  "name": "edgedb",
+  "displayName": "edgedb",
+  "description": "EdgeDB plugin for Sublime Text, Atom, and VSCode",
+  "version": "0.1.0",
+  "publisher": "magicstack",
+  "engines": {
+    "atom": "*",
+    "node": "*",
+    "vscode": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edgedb/edgedb-editor-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/edgedb/edgedb-editor-plugin/issues"
+  },
+  "keywords": [
+    "edgedb",
+    "edgeql",
+    "highlighter",
+    "syntax"
+  ],
+  "categories": [
+    "Languages",
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "edgeql",
+        "aliases": [
+          "EdgeQL",
+          "edgeql",
+          "esdl"
         ],
-        "grammars": [
-            {
-                "language": "edgeql",
-                "scopeName": "source.edgeql",
-                "path": "./grammars/edgeql.tmLanguage"
-            }
-        ]
-    },
-    "devDependencies": {
-        "syntaxdev": "^0.1.1"
-    }
+        "extensions": [
+          ".edgeql",
+          ".esdl"
+        ],
+        "configuration": "./settings/vscode/edgeql.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "edgeql",
+        "scopeName": "source.edgeql",
+        "path": "./grammars/edgeql.tmLanguage"
+      }
+    ]
+  },
+  "devDependencies": {
+    "syntaxdev": "^0.1.1"
+  }
 }
