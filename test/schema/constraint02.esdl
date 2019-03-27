@@ -1,4 +1,4 @@
-abstract constraint maxlength($param:any) extending max, len_constraint {
+abstract constraint maxlength($param:any) extending max_value, len_value {
     errmessage := '{$subject} must be no longer than {$param} characters.';
 }
 
@@ -17,9 +17,9 @@ param         : constant.language.variable.edgeql, meta.function-call.edgeql, so
               : source.edgeql
 extending     : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-max           : source.edgeql, support.function.constraint.builtin.edgeql
+max_value     : source.edgeql, support.function.constraint.builtin.edgeql
 ,             : source.edgeql
-len_constraint : source.edgeql, support.function.constraint.builtin.edgeql
+len_value     : source.edgeql, support.function.constraint.builtin.edgeql
               : source.edgeql
 {             : punctuation.parenthesis.begin.edgeql, source.edgeql
               : source.edgeql

@@ -1,8 +1,8 @@
 scalar type constraint_length extending str {
-    constraint max_len(16);
-    constraint max_len(10);
-    constraint min_len(5);
-    constraint min_len(8);
+    constraint max_len_value(16);
+    constraint max_len_value(10);
+    constraint min_len_value(5);
+    constraint min_len_value(8);
 }
 
 
@@ -19,7 +19,7 @@ str           : source.edgeql, support.type.builtin.edgeql
               : source.edgeql
 constraint    : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-max_len       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+max_len_value : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 16            : constant.numeric.integer.edgeql, meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
@@ -27,7 +27,7 @@ max_len       : meta.function-call.edgeql, source.edgeql, support.function.built
               : source.edgeql
 constraint    : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-max_len       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+max_len_value : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 10            : constant.numeric.integer.edgeql, meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
@@ -35,7 +35,7 @@ max_len       : meta.function-call.edgeql, source.edgeql, support.function.built
               : source.edgeql
 constraint    : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-min_len       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+min_len_value : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 5             : constant.numeric.integer.edgeql, meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
@@ -43,7 +43,7 @@ min_len       : meta.function-call.edgeql, source.edgeql, support.function.built
               : source.edgeql
 constraint    : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-min_len       : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+min_len_value : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 8             : constant.numeric.integer.edgeql, meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql

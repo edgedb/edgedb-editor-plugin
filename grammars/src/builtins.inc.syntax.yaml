@@ -56,10 +56,10 @@ builtins:
     - name: support.function.constraint.builtin.edgeql
       match: |
         (?x) \b(?<!\.|\.<|\.>) (
-          constraint | enum | exclusive | 
-          expression | len_constraint | max | 
-          max_ex | max_len | min | 
-          min_ex | min_len | regexp 
+          constraint | exclusive | expression | 
+          len_value | max_ex_value | max_len_value | 
+          max_value | min_ex_value | min_len_value | 
+          min_value | one_of | regexp 
         )\b
 
     - include: '#builtin-modules'

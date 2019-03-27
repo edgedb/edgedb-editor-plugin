@@ -88,20 +88,20 @@ describe("Grammar Tests", function() {
 
   it("test/edgeql/builtins03.edgeql", 
     function() {
-      tokens = grammar.tokenizeLines("std::constraint\nmax\nenum\nexpression\nmin\nregexp\nexclusive")
+      tokens = grammar.tokenizeLines("std::constraint\nmax_value\none_of\nexpression\nmin_value\nregexp\nexclusive")
       expect(tokens[0][0].value).toBe("std");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
       expect(tokens[0][1].value).toBe("::");
       expect(tokens[0][1].scopes).toEqual(["source.edgeql","keyword.operator.namespace.edgeql"]);
       expect(tokens[0][2].value).toBe("constraint");
       expect(tokens[0][2].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[1][0].value).toBe("max");
+      expect(tokens[1][0].value).toBe("max_value");
       expect(tokens[1][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[2][0].value).toBe("enum");
+      expect(tokens[2][0].value).toBe("one_of");
       expect(tokens[2][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
       expect(tokens[3][0].value).toBe("expression");
       expect(tokens[3][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
-      expect(tokens[4][0].value).toBe("min");
+      expect(tokens[4][0].value).toBe("min_value");
       expect(tokens[4][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
       expect(tokens[5][0].value).toBe("regexp");
       expect(tokens[5][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
