@@ -19,7 +19,7 @@ def pretty_join(sep, it, chunk=4, indent=12):
     out = []
     it = list(it)
     while it:
-        out.append(sep.join(it[:chunk] + ['\n']))
+        out.append(sep.join(it[:chunk] + ['']).rstrip() + '\n')
         it = it[chunk:]
 
     # drop the last 3 characters ("| \n")

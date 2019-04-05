@@ -88,7 +88,7 @@ describe("Grammar Tests", function() {
 
   it("test/edgeql/builtins03.edgeql", 
     function() {
-      tokens = grammar.tokenizeLines("std::constraint\nmax_value\none_of\nexpression\nmin_value\nregexp\nexclusive")
+      tokens = grammar.tokenizeLines("std::constraint\nmax_value\none_of\nexpression\nmin_value\nregexp\nexclusive\nenum<'aaa', 'bbb'>")
       expect(tokens[0][0].value).toBe("std");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
       expect(tokens[0][1].value).toBe("::");
@@ -107,6 +107,26 @@ describe("Grammar Tests", function() {
       expect(tokens[5][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
       expect(tokens[6][0].value).toBe("exclusive");
       expect(tokens[6][0].scopes).toEqual(["source.edgeql","support.function.constraint.builtin.edgeql"]);
+      expect(tokens[7][0].value).toBe("enum");
+      expect(tokens[7][0].scopes).toEqual(["source.edgeql","support.type.builtin.edgeql"]);
+      expect(tokens[7][1].value).toBe("<");
+      expect(tokens[7][1].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
+      expect(tokens[7][2].value).toBe("'");
+      expect(tokens[7][2].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[7][3].value).toBe("aaa");
+      expect(tokens[7][3].scopes).toEqual(["source.edgeql","string.quoted.edgeql"]);
+      expect(tokens[7][4].value).toBe("'");
+      expect(tokens[7][4].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[7][5].value).toBe(", ");
+      expect(tokens[7][5].scopes).toEqual(["source.edgeql"]);
+      expect(tokens[7][6].value).toBe("'");
+      expect(tokens[7][6].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.begin.edgeql"]);
+      expect(tokens[7][7].value).toBe("bbb");
+      expect(tokens[7][7].scopes).toEqual(["source.edgeql","string.quoted.edgeql"]);
+      expect(tokens[7][8].value).toBe("'");
+      expect(tokens[7][8].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
+      expect(tokens[7][9].value).toBe(">");
+      expect(tokens[7][9].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
     });
 
   it("test/edgeql/bytes01.edgeql", 
@@ -1548,7 +1568,7 @@ describe("Grammar Tests", function() {
 
   it("test/edgeql/keywords03.edgeql", 
     function() {
-      tokens = grammar.tokenizeLines("ABSTRACT\nAFTER\nAS\nASC\nATTRIBUTE\nBEFORE\nBY\nCARDINALITY\nCONSTRAINT\nDATABASE\nDEFAULT\nDEFERRED\nDELEGATED\nDESC\nFINAL\nFIRST\nFROM\nINDEX\nINHERITED\nINTO\nLAST\nLINK\nMIGRATION\nNAMED ONLY\nOF\nON\nONLY\nPROPERTY\nRENAME\nRESTRICT\nROLE\nSCALAR\nSOURCE\nTARGET\nTHEN\nTO\nTRANSACTION\nTYPE\nUSING\nVIEW\nAGGREGATE\nALL\nALTER\nAND\nCOMMIT\nCREATE\nDELETE\nDETACHED\nDISTINCT\nDROP\nELSE\nEXISTS\nEXPLAIN\nEXTENDING\nFILTER\nFOR\nFUNCTION\nGET\nGROUP\nIF\nILIKE\nIN\nINSERT\nINTROSPECT\nIS\nLIKE\nLIMIT\nMODULE\nNOT\nOFFSET\nOPTIONAL\nOR\nORDER\nOVER\nPARTITION\nREQUIRED\nROLLBACK\nSELECT\nSET\nSTART\nTYPEOF\nUNION\nUPDATE\nVARIADIC\nWITH")
+      tokens = grammar.tokenizeLines("ABSTRACT\nAFTER\nAS\nASC\nANNOTATION\nBEFORE\nBY\nCARDINALITY\nCONSTRAINT\nDATABASE\nDEFAULT\nDEFERRED\nDELEGATED\nDESC\nFINAL\nFIRST\nFROM\nINDEX\nINHERITED\nINTO\nLAST\nLINK\nMIGRATION\nNAMED ONLY\nOF\nON\nONLY\nPROPERTY\nRENAME\nRESTRICT\nROLE\nSCALAR\nSOURCE\nTARGET\nTHEN\nTO\nTRANSACTION\nTYPE\nUSING\nVIEW\nAGGREGATE\nALL\nALTER\nAND\nCOMMIT\nCREATE\nDELETE\nDETACHED\nDISTINCT\nDROP\nELSE\nEXISTS\nEXPLAIN\nEXTENDING\nFILTER\nFOR\nFUNCTION\nGET\nGROUP\nIF\nILIKE\nIN\nINSERT\nINTROSPECT\nIS\nLIKE\nLIMIT\nMODULE\nNOT\nOFFSET\nOPTIONAL\nOR\nORDER\nOVER\nPARTITION\nREQUIRED\nROLLBACK\nSELECT\nSET\nSTART\nTYPEOF\nUNION\nUPDATE\nVARIADIC\nWITH")
       expect(tokens[0][0].value).toBe("ABSTRACT");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","keyword.declaration.edgeql"]);
       expect(tokens[1][0].value).toBe("AFTER");
@@ -1557,7 +1577,7 @@ describe("Grammar Tests", function() {
       expect(tokens[2][0].scopes).toEqual(["source.edgeql","keyword.declaration.edgeql"]);
       expect(tokens[3][0].value).toBe("ASC");
       expect(tokens[3][0].scopes).toEqual(["source.edgeql","keyword.declaration.edgeql"]);
-      expect(tokens[4][0].value).toBe("ATTRIBUTE");
+      expect(tokens[4][0].value).toBe("ANNOTATION");
       expect(tokens[4][0].scopes).toEqual(["source.edgeql","keyword.declaration.edgeql"]);
       expect(tokens[5][0].value).toBe("BEFORE");
       expect(tokens[5][0].scopes).toEqual(["source.edgeql","keyword.declaration.edgeql"]);

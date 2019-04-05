@@ -5,6 +5,7 @@ expression
 min_value
 regexp
 exclusive
+enum<'aaa', 'bbb'>
 
 
 
@@ -17,3 +18,13 @@ expression    : source.edgeql, support.function.constraint.builtin.edgeql
 min_value     : source.edgeql, support.function.constraint.builtin.edgeql
 regexp        : source.edgeql, support.function.constraint.builtin.edgeql
 exclusive     : source.edgeql, support.function.constraint.builtin.edgeql
+enum          : source.edgeql, support.type.builtin.edgeql
+<             : keyword.operator.edgeql, source.edgeql
+'             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
+aaa           : source.edgeql, string.quoted.edgeql
+'             : punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
+,             : source.edgeql
+'             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
+bbb           : source.edgeql, string.quoted.edgeql
+'             : punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
+>             : keyword.operator.edgeql, source.edgeql

@@ -2,7 +2,7 @@ ABSTRACT
 AFTER
 AS
 ASC
-ATTRIBUTE
+ANNOTATION
 BEFORE
 BY
 CARDINALITY
@@ -90,7 +90,7 @@ ABSTRACT      : keyword.declaration.edgeql, source.edgeql
 AFTER         : keyword.declaration.edgeql, source.edgeql
 AS            : keyword.declaration.edgeql, source.edgeql
 ASC           : keyword.declaration.edgeql, source.edgeql
-ATTRIBUTE     : keyword.declaration.edgeql, source.edgeql
+ANNOTATION    : keyword.declaration.edgeql, source.edgeql
 BEFORE        : keyword.declaration.edgeql, source.edgeql
 BY            : keyword.declaration.edgeql, source.edgeql
 CARDINALITY   : keyword.declaration.edgeql, source.edgeql

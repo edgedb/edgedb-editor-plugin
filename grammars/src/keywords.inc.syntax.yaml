@@ -8,35 +8,35 @@ match: |
     |
 
     (?# unreserved)
-    abstract | after | alias | all | allow | 
-    as | asc | assignment | attribute | before | 
-    by | cardinality | cast | committed | config | 
-    database | default | deferrable | deferred | delegated | 
-    desc | explicit | final | first | from | 
-    implicit | index | infix | inheritable | inherited | 
-    into | isolation | last | link | migration | 
-    multi | of | on | only | operator | 
-    postfix | prefix | property | read | rename | 
-    repeatable | required | restrict | role | savepoint | 
-    scalar | serializable | session | single | source | 
-    system | target | ternary | then | to | 
-    transaction | type | using | view | write 
+    abstract | after | alias | all | allow |
+    annotation | as | asc | assignment | before |
+    by | cardinality | cast | config | database |
+    default | deferrable | deferred | delegated | desc |
+    explicit | final | first | from | implicit |
+    index | infix | inheritable | inherited | into |
+    isolation | last | link | migration | multi |
+    of | on | only | operator | postfix |
+    prefix | property | read | rename | repeatable |
+    required | restrict | role | savepoint | scalar |
+    serializable | session | single | source | system |
+    target | ternary | then | to | transaction |
+    type | using | view | write
     |
     (?# reserved)
-    alter | analyze | and | anyarray | anytuple | 
-    begin | case | commit | configure | create | 
-    deallocate | declare | delete | detached | discard | 
-    distinct | do | drop | else | empty | 
-    end | execute | exists | explain | extending | 
-    fetch | filter | for | function | get | 
-    global | grant | group | if | ilike | 
-    import | in | insert | introspect | is | 
-    like | limit | listen | load | lock | 
-    match | module | move | not | notify | 
-    offset | optional | or | order | over | 
-    partition | prepare | raise | refresh | reindex | 
-    release | reset | revoke | rollback | select | 
-    set | start | typeof | union | update | 
-    variadic | when | with 
+    alter | analyze | and | anyarray | anytuple |
+    begin | case | commit | configure | create |
+    deallocate | declare | delete | detached | discard |
+    distinct | do | drop | else | empty |
+    end | execute | exists | explain | extending |
+    fetch | filter | for | function | get |
+    global | grant | group | if | ilike |
+    import | in | insert | introspect | is |
+    like | limit | listen | load | lock |
+    match | module | move | not | notify |
+    offset | optional | or | order | over |
+    partition | prepare | raise | refresh | reindex |
+    release | reset | revoke | rollback | select |
+    set | start | typeof | union | update |
+    variadic | when | with
   )\b
 ...

@@ -11,36 +11,37 @@ fncalls:
           (?:
             (
               # functions
-              abs | advisory_lock | advisory_unlock | 
-              advisory_unlock_all | all | any | 
-              array_agg | array_get | array_unpack | 
-              bytes_get_bit | ceil | contains | 
-              count | date_get | datetime_current | 
-              datetime_get | datetime_of_statement | datetime_of_transaction | 
-              datetime_trunc | enumerate | find | 
-              floor | json_array_unpack | json_get | 
-              json_object_unpack | json_typeof | len | 
-              lg | ln | log | 
-              max | mean | min | 
-              random | re_match | re_match_all | 
-              re_replace | re_test | round | 
-              sleep | stddev | stddev_pop | 
-              str_lower | str_lpad | str_ltrim | 
-              str_repeat | str_rpad | str_rtrim | 
-              str_title | str_trim | str_upper | 
-              sum | time_get | timedelta_get | 
-              timedelta_trunc | to_datetime | to_decimal | 
-              to_float32 | to_float64 | to_int16 | 
-              to_int32 | to_int64 | to_json | 
-              to_naive_date | to_naive_datetime | to_naive_time | 
-              to_str | to_timedelta | uuid_generate_v1mc | 
-              var | var_pop 
+              abs | advisory_lock | advisory_unlock |
+              advisory_unlock_all | all | any |
+              array_agg | array_get | array_unpack |
+              bytes_get_bit | ceil | contains |
+              count | date_get | datetime_current |
+              datetime_get | datetime_of_statement | datetime_of_transaction |
+              datetime_trunc | duration_get | duration_trunc |
+              enumerate | find | floor |
+              get_version | get_version_as_str | json_array_unpack |
+              json_get | json_object_unpack | json_typeof |
+              len | lg | ln |
+              log | max | mean |
+              min | random | re_match |
+              re_match_all | re_replace | re_test |
+              round | sleep | stddev |
+              stddev_pop | str_lower | str_lpad |
+              str_ltrim | str_repeat | str_rpad |
+              str_rtrim | str_title | str_trim |
+              str_upper | sum | time_get |
+              to_datetime | to_decimal | to_duration |
+              to_float32 | to_float64 | to_int16 |
+              to_int32 | to_int64 | to_json |
+              to_local_date | to_local_datetime | to_local_time |
+              to_str | uuid_generate_v1mc | var |
+              var_pop
             |
               # constraints
-              constraint | exclusive | expression | 
-              len_value | max_ex_value | max_len_value | 
-              max_value | min_ex_value | min_len_value | 
-              min_value | one_of | regexp 
+              constraint | exclusive | expression |
+              len_value | max_ex_value | max_len_value |
+              max_value | min_ex_value | min_len_value |
+              min_value | one_of | regexp
             )
             |
             ([[:alpha:]_][[:alnum:]_]*)
@@ -65,43 +66,44 @@ fncalls:
           # module
           (?:
             (
-              cfg | math | schema | 
-              std | stdgraphql | sys 
+              cfg | math | schema |
+              std | stdgraphql | sys
             )
             |
             (?# masking built-ins in odd ways)
             (
               #functions
-              abs | advisory_lock | advisory_unlock | 
-              advisory_unlock_all | all | any | 
-              array_agg | array_get | array_unpack | 
-              bytes_get_bit | ceil | contains | 
-              count | date_get | datetime_current | 
-              datetime_get | datetime_of_statement | datetime_of_transaction | 
-              datetime_trunc | enumerate | find | 
-              floor | json_array_unpack | json_get | 
-              json_object_unpack | json_typeof | len | 
-              lg | ln | log | 
-              max | mean | min | 
-              random | re_match | re_match_all | 
-              re_replace | re_test | round | 
-              sleep | stddev | stddev_pop | 
-              str_lower | str_lpad | str_ltrim | 
-              str_repeat | str_rpad | str_rtrim | 
-              str_title | str_trim | str_upper | 
-              sum | time_get | timedelta_get | 
-              timedelta_trunc | to_datetime | to_decimal | 
-              to_float32 | to_float64 | to_int16 | 
-              to_int32 | to_int64 | to_json | 
-              to_naive_date | to_naive_datetime | to_naive_time | 
-              to_str | to_timedelta | uuid_generate_v1mc | 
-              var | var_pop 
+              abs | advisory_lock | advisory_unlock |
+              advisory_unlock_all | all | any |
+              array_agg | array_get | array_unpack |
+              bytes_get_bit | ceil | contains |
+              count | date_get | datetime_current |
+              datetime_get | datetime_of_statement | datetime_of_transaction |
+              datetime_trunc | duration_get | duration_trunc |
+              enumerate | find | floor |
+              get_version | get_version_as_str | json_array_unpack |
+              json_get | json_object_unpack | json_typeof |
+              len | lg | ln |
+              log | max | mean |
+              min | random | re_match |
+              re_match_all | re_replace | re_test |
+              round | sleep | stddev |
+              stddev_pop | str_lower | str_lpad |
+              str_ltrim | str_repeat | str_rpad |
+              str_rtrim | str_title | str_trim |
+              str_upper | sum | time_get |
+              to_datetime | to_decimal | to_duration |
+              to_float32 | to_float64 | to_int16 |
+              to_int32 | to_int64 | to_json |
+              to_local_date | to_local_datetime | to_local_time |
+              to_str | uuid_generate_v1mc | var |
+              var_pop
               |
               #constraints
-              constraint | exclusive | expression | 
-              len_value | max_ex_value | max_len_value | 
-              max_value | min_ex_value | min_len_value | 
-              min_value | one_of | regexp 
+              constraint | exclusive | expression |
+              len_value | max_ex_value | max_len_value |
+              max_value | min_ex_value | min_len_value |
+              min_value | one_of | regexp
             )
             |
             ([[:alpha:]_][[:alnum:]_]*)
@@ -115,36 +117,37 @@ fncalls:
           (?:
             (
               #functions
-              abs | advisory_lock | advisory_unlock | 
-              advisory_unlock_all | all | any | 
-              array_agg | array_get | array_unpack | 
-              bytes_get_bit | ceil | contains | 
-              count | date_get | datetime_current | 
-              datetime_get | datetime_of_statement | datetime_of_transaction | 
-              datetime_trunc | enumerate | find | 
-              floor | json_array_unpack | json_get | 
-              json_object_unpack | json_typeof | len | 
-              lg | ln | log | 
-              max | mean | min | 
-              random | re_match | re_match_all | 
-              re_replace | re_test | round | 
-              sleep | stddev | stddev_pop | 
-              str_lower | str_lpad | str_ltrim | 
-              str_repeat | str_rpad | str_rtrim | 
-              str_title | str_trim | str_upper | 
-              sum | time_get | timedelta_get | 
-              timedelta_trunc | to_datetime | to_decimal | 
-              to_float32 | to_float64 | to_int16 | 
-              to_int32 | to_int64 | to_json | 
-              to_naive_date | to_naive_datetime | to_naive_time | 
-              to_str | to_timedelta | uuid_generate_v1mc | 
-              var | var_pop 
+              abs | advisory_lock | advisory_unlock |
+              advisory_unlock_all | all | any |
+              array_agg | array_get | array_unpack |
+              bytes_get_bit | ceil | contains |
+              count | date_get | datetime_current |
+              datetime_get | datetime_of_statement | datetime_of_transaction |
+              datetime_trunc | duration_get | duration_trunc |
+              enumerate | find | floor |
+              get_version | get_version_as_str | json_array_unpack |
+              json_get | json_object_unpack | json_typeof |
+              len | lg | ln |
+              log | max | mean |
+              min | random | re_match |
+              re_match_all | re_replace | re_test |
+              round | sleep | stddev |
+              stddev_pop | str_lower | str_lpad |
+              str_ltrim | str_repeat | str_rpad |
+              str_rtrim | str_title | str_trim |
+              str_upper | sum | time_get |
+              to_datetime | to_decimal | to_duration |
+              to_float32 | to_float64 | to_int16 |
+              to_int32 | to_int64 | to_json |
+              to_local_date | to_local_datetime | to_local_time |
+              to_str | uuid_generate_v1mc | var |
+              var_pop
               |
               #constraints
-              constraint | exclusive | expression | 
-              len_value | max_ex_value | max_len_value | 
-              max_value | min_ex_value | min_len_value | 
-              min_value | one_of | regexp 
+              constraint | exclusive | expression |
+              len_value | max_ex_value | max_len_value |
+              max_value | min_ex_value | min_len_value |
+              min_value | one_of | regexp
             )
             |
             ([[:alpha:]_][[:alnum:]_]*)
