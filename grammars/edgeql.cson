@@ -817,23 +817,23 @@ repository:
                 datetime_get | datetime_of_statement | datetime_of_transaction |
                 datetime_trunc | duration_get | duration_trunc |
                 enumerate | find | floor |
-                get_version | get_version_as_str | json_array_unpack |
-                json_get | json_object_unpack | json_typeof |
-                len | lg | ln |
-                log | max | mean |
-                min | random | re_match |
-                re_match_all | re_replace | re_test |
-                round | sleep | stddev |
-                stddev_pop | str_lower | str_lpad |
-                str_ltrim | str_repeat | str_rpad |
-                str_rtrim | str_title | str_trim |
-                str_upper | sum | time_get |
-                to_datetime | to_decimal | to_duration |
-                to_float32 | to_float64 | to_int16 |
-                to_int32 | to_int64 | to_json |
-                to_local_date | to_local_datetime | to_local_time |
-                to_str | uuid_generate_v1mc | var |
-                var_pop
+                get_transaction_isolation | get_version | get_version_as_str |
+                json_array_unpack | json_get | json_object_unpack |
+                json_typeof | len | lg |
+                ln | log | max |
+                mean | min | random |
+                re_match | re_match_all | re_replace |
+                re_test | round | sleep |
+                stddev | stddev_pop | str_lower |
+                str_lpad | str_ltrim | str_repeat |
+                str_rpad | str_rtrim | str_title |
+                str_trim | str_upper | sum |
+                time_get | to_datetime | to_decimal |
+                to_duration | to_float32 | to_float64 |
+                to_int16 | to_int32 | to_int64 |
+                to_json | to_local_date | to_local_datetime |
+                to_local_time | to_str | uuid_generate_v1mc |
+                var | var_pop
               |
                 # constraints
                 constraint | exclusive | expression |
@@ -890,23 +890,23 @@ repository:
                 datetime_get | datetime_of_statement | datetime_of_transaction |
                 datetime_trunc | duration_get | duration_trunc |
                 enumerate | find | floor |
-                get_version | get_version_as_str | json_array_unpack |
-                json_get | json_object_unpack | json_typeof |
-                len | lg | ln |
-                log | max | mean |
-                min | random | re_match |
-                re_match_all | re_replace | re_test |
-                round | sleep | stddev |
-                stddev_pop | str_lower | str_lpad |
-                str_ltrim | str_repeat | str_rpad |
-                str_rtrim | str_title | str_trim |
-                str_upper | sum | time_get |
-                to_datetime | to_decimal | to_duration |
-                to_float32 | to_float64 | to_int16 |
-                to_int32 | to_int64 | to_json |
-                to_local_date | to_local_datetime | to_local_time |
-                to_str | uuid_generate_v1mc | var |
-                var_pop
+                get_transaction_isolation | get_version | get_version_as_str |
+                json_array_unpack | json_get | json_object_unpack |
+                json_typeof | len | lg |
+                ln | log | max |
+                mean | min | random |
+                re_match | re_match_all | re_replace |
+                re_test | round | sleep |
+                stddev | stddev_pop | str_lower |
+                str_lpad | str_ltrim | str_repeat |
+                str_rpad | str_rtrim | str_title |
+                str_trim | str_upper | sum |
+                time_get | to_datetime | to_decimal |
+                to_duration | to_float32 | to_float64 |
+                to_int16 | to_int32 | to_int64 |
+                to_json | to_local_date | to_local_datetime |
+                to_local_time | to_str | uuid_generate_v1mc |
+                var | var_pop
                 |
                 #constraints
                 constraint | exclusive | expression |
@@ -934,23 +934,23 @@ repository:
                 datetime_get | datetime_of_statement | datetime_of_transaction |
                 datetime_trunc | duration_get | duration_trunc |
                 enumerate | find | floor |
-                get_version | get_version_as_str | json_array_unpack |
-                json_get | json_object_unpack | json_typeof |
-                len | lg | ln |
-                log | max | mean |
-                min | random | re_match |
-                re_match_all | re_replace | re_test |
-                round | sleep | stddev |
-                stddev_pop | str_lower | str_lpad |
-                str_ltrim | str_repeat | str_rpad |
-                str_rtrim | str_title | str_trim |
-                str_upper | sum | time_get |
-                to_datetime | to_decimal | to_duration |
-                to_float32 | to_float64 | to_int16 |
-                to_int32 | to_int64 | to_json |
-                to_local_date | to_local_datetime | to_local_time |
-                to_str | uuid_generate_v1mc | var |
-                var_pop
+                get_transaction_isolation | get_version | get_version_as_str |
+                json_array_unpack | json_get | json_object_unpack |
+                json_typeof | len | lg |
+                ln | log | max |
+                mean | min | random |
+                re_match | re_match_all | re_replace |
+                re_test | round | sleep |
+                stddev | stddev_pop | str_lower |
+                str_lpad | str_ltrim | str_repeat |
+                str_rpad | str_rtrim | str_title |
+                str_trim | str_upper | sum |
+                time_get | to_datetime | to_decimal |
+                to_duration | to_float32 | to_float64 |
+                to_int16 | to_int32 | to_int64 |
+                to_json | to_local_date | to_local_datetime |
+                to_local_time | to_str | uuid_generate_v1mc |
+                var | var_pop
                 |
                 #constraints
                 constraint | exclusive | expression |
@@ -1032,23 +1032,23 @@ repository:
             datetime_get | datetime_of_statement | datetime_of_transaction |
             datetime_trunc | duration_get | duration_trunc |
             enumerate | find | floor |
-            get_version | get_version_as_str | json_array_unpack |
-            json_get | json_object_unpack | json_typeof |
-            len | lg | ln |
-            log | max | mean |
-            min | random | re_match |
-            re_match_all | re_replace | re_test |
-            round | sleep | stddev |
-            stddev_pop | str_lower | str_lpad |
-            str_ltrim | str_repeat | str_rpad |
-            str_rtrim | str_title | str_trim |
-            str_upper | sum | time_get |
-            to_datetime | to_decimal | to_duration |
-            to_float32 | to_float64 | to_int16 |
-            to_int32 | to_int64 | to_json |
-            to_local_date | to_local_datetime | to_local_time |
-            to_str | uuid_generate_v1mc | var |
-            var_pop
+            get_transaction_isolation | get_version | get_version_as_str |
+            json_array_unpack | json_get | json_object_unpack |
+            json_typeof | len | lg |
+            ln | log | max |
+            mean | min | random |
+            re_match | re_match_all | re_replace |
+            re_test | round | sleep |
+            stddev | stddev_pop | str_lower |
+            str_lpad | str_ltrim | str_repeat |
+            str_rpad | str_rtrim | str_title |
+            str_trim | str_upper | sum |
+            time_get | to_datetime | to_decimal |
+            to_duration | to_float32 | to_float64 |
+            to_int16 | to_int32 | to_int64 |
+            to_json | to_local_date | to_local_datetime |
+            to_local_time | to_str | uuid_generate_v1mc |
+            var | var_pop
           )(?=\\s*\\()\\b
           
         '''
