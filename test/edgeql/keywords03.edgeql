@@ -16,7 +16,6 @@ FINAL
 FIRST
 FROM
 INDEX
-INHERITED
 INTO
 LAST
 LINK
@@ -25,11 +24,13 @@ NAMED ONLY
 OF
 ON
 ONLY
+OVERLOADED
 PROPERTY
 RENAME
 RESTRICT
 ROLE
 SCALAR
+SCHEMA
 SOURCE
 TARGET
 THEN
@@ -104,7 +105,6 @@ FINAL         : keyword.declaration.edgeql, source.edgeql
 FIRST         : keyword.declaration.edgeql, source.edgeql
 FROM          : keyword.declaration.edgeql, source.edgeql
 INDEX         : keyword.declaration.edgeql, source.edgeql
-INHERITED     : keyword.declaration.edgeql, source.edgeql
 INTO          : keyword.declaration.edgeql, source.edgeql
 LAST          : keyword.declaration.edgeql, source.edgeql
 LINK          : keyword.declaration.edgeql, source.edgeql
@@ -113,11 +113,13 @@ NAMED ONLY    : keyword.declaration.edgeql, source.edgeql
 OF            : keyword.declaration.edgeql, source.edgeql
 ON            : keyword.declaration.edgeql, source.edgeql
 ONLY          : keyword.declaration.edgeql, source.edgeql
+OVERLOADED    : keyword.declaration.edgeql, source.edgeql
 PROPERTY      : keyword.declaration.edgeql, source.edgeql
 RENAME        : keyword.declaration.edgeql, source.edgeql
 RESTRICT      : keyword.declaration.edgeql, source.edgeql
 ROLE          : keyword.declaration.edgeql, source.edgeql
 SCALAR        : keyword.declaration.edgeql, source.edgeql
+SCHEMA        : keyword.declaration.edgeql, source.edgeql
 SOURCE        : keyword.declaration.edgeql, source.edgeql
 TARGET        : keyword.declaration.edgeql, source.edgeql
 THEN          : keyword.declaration.edgeql, source.edgeql

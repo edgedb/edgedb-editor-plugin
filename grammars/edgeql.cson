@@ -320,40 +320,45 @@ repository:
         match: '''
           (?ix) \\b(?<!::|\\.|\\.<|\\.>)(
             (?# special case)
-            named \\s+ only
+            (named \\s+ only)
+            |
+            (as \\s+ text)
             |
           
             (?# unreserved)
             abstract | after | alias | all | allow |
             annotation | as | asc | assignment | before |
             by | cardinality | cast | config | database |
-            default | deferrable | deferred | delegated | desc |
-            explicit | final | first | from | implicit |
-            index | infix | inheritable | inherited | into |
-            isolation | last | link | migration | multi |
-            of | on | only | operator | postfix |
-            prefix | property | read | rename | repeatable |
-            required | restrict | role | savepoint | scalar |
-            serializable | session | single | source | system |
-            target | ternary | then | to | transaction |
-            type | using | view | write
+            ddl | default | deferrable | deferred | delegated |
+            desc | emit | explicit | final | first |
+            from | implicit | index | infix | inheritable |
+            into | isolation | last | link | migration |
+            multi | object | of | oids | on |
+            only | operator | overloaded | postfix | prefix |
+            property | read | rename | repeatable | required |
+            restrict | role | savepoint | scalar | schema |
+            sdl | serializable | session | single | source |
+            system | target | ternary | then | to |
+            transaction | type | using | verbose | view |
+            write
             |
             (?# reserved)
             alter | analyze | and | anyarray | anytuple |
-            begin | case | commit | configure | create |
-            deallocate | declare | delete | detached | discard |
-            distinct | do | drop | else | empty |
-            end | execute | exists | explain | extending |
-            fetch | filter | for | function | get |
-            global | grant | group | if | ilike |
-            import | in | insert | introspect | is |
-            like | limit | listen | load | lock |
-            match | module | move | not | notify |
-            offset | optional | or | order | over |
-            partition | prepare | raise | refresh | reindex |
-            release | reset | revoke | rollback | select |
-            set | start | typeof | union | update |
-            variadic | when | with
+            begin | case | check | commit | configure |
+            create | deallocate | declare | delete | describe |
+            detached | discard | distinct | do | drop |
+            else | empty | end | execute | exists |
+            explain | extending | fetch | filter | for |
+            function | get | global | grant | group |
+            if | ilike | import | in | insert |
+            introspect | is | like | limit | listen |
+            load | lock | match | module | move |
+            not | notify | offset | optional | or |
+            order | over | partition | policy | prepare |
+            raise | refresh | reindex | release | reset |
+            revoke | rollback | select | set | start |
+            typeof | union | update | variadic | when |
+            window | with
           )\\b
           
         '''
@@ -815,7 +820,7 @@ repository:
                 bytes_get_bit | ceil | contains |
                 count | date_get | datetime_current |
                 datetime_get | datetime_of_statement | datetime_of_transaction |
-                datetime_trunc | duration_get | duration_trunc |
+                datetime_truncate | duration_to_seconds | duration_truncate |
                 enumerate | find | floor |
                 get_transaction_isolation | get_version | get_version_as_str |
                 json_array_unpack | json_get | json_object_unpack |
@@ -828,12 +833,12 @@ repository:
                 str_lpad | str_ltrim | str_repeat |
                 str_rpad | str_rtrim | str_title |
                 str_trim | str_upper | sum |
-                time_get | to_datetime | to_decimal |
-                to_duration | to_float32 | to_float64 |
-                to_int16 | to_int32 | to_int64 |
-                to_json | to_local_date | to_local_datetime |
-                to_local_time | to_str | uuid_generate_v1mc |
-                var | var_pop
+                time_get | to_bigint | to_datetime |
+                to_decimal | to_duration | to_float32 |
+                to_float64 | to_int16 | to_int32 |
+                to_int64 | to_json | to_local_date |
+                to_local_datetime | to_local_time | to_str |
+                uuid_generate_v1mc | var | var_pop
               |
                 # constraints
                 constraint | exclusive | expression |
@@ -875,8 +880,9 @@ repository:
             # module
             (?:
               (
-                cfg | math | schema |
-                std | stdgraphql | sys
+                cal | cfg | math |
+                schema | std | stdgraphql |
+                sys
               )
               |
               (?# masking built-ins in odd ways)
@@ -888,7 +894,7 @@ repository:
                 bytes_get_bit | ceil | contains |
                 count | date_get | datetime_current |
                 datetime_get | datetime_of_statement | datetime_of_transaction |
-                datetime_trunc | duration_get | duration_trunc |
+                datetime_truncate | duration_to_seconds | duration_truncate |
                 enumerate | find | floor |
                 get_transaction_isolation | get_version | get_version_as_str |
                 json_array_unpack | json_get | json_object_unpack |
@@ -901,12 +907,12 @@ repository:
                 str_lpad | str_ltrim | str_repeat |
                 str_rpad | str_rtrim | str_title |
                 str_trim | str_upper | sum |
-                time_get | to_datetime | to_decimal |
-                to_duration | to_float32 | to_float64 |
-                to_int16 | to_int32 | to_int64 |
-                to_json | to_local_date | to_local_datetime |
-                to_local_time | to_str | uuid_generate_v1mc |
-                var | var_pop
+                time_get | to_bigint | to_datetime |
+                to_decimal | to_duration | to_float32 |
+                to_float64 | to_int16 | to_int32 |
+                to_int64 | to_json | to_local_date |
+                to_local_datetime | to_local_time | to_str |
+                uuid_generate_v1mc | var | var_pop
                 |
                 #constraints
                 constraint | exclusive | expression |
@@ -932,7 +938,7 @@ repository:
                 bytes_get_bit | ceil | contains |
                 count | date_get | datetime_current |
                 datetime_get | datetime_of_statement | datetime_of_transaction |
-                datetime_trunc | duration_get | duration_trunc |
+                datetime_truncate | duration_to_seconds | duration_truncate |
                 enumerate | find | floor |
                 get_transaction_isolation | get_version | get_version_as_str |
                 json_array_unpack | json_get | json_object_unpack |
@@ -945,12 +951,12 @@ repository:
                 str_lpad | str_ltrim | str_repeat |
                 str_rpad | str_rtrim | str_title |
                 str_trim | str_upper | sum |
-                time_get | to_datetime | to_decimal |
-                to_duration | to_float32 | to_float64 |
-                to_int16 | to_int32 | to_int64 |
-                to_json | to_local_date | to_local_datetime |
-                to_local_time | to_str | uuid_generate_v1mc |
-                var | var_pop
+                time_get | to_bigint | to_datetime |
+                to_decimal | to_duration | to_float32 |
+                to_float64 | to_int16 | to_int32 |
+                to_int64 | to_json | to_local_date |
+                to_local_datetime | to_local_time | to_str |
+                uuid_generate_v1mc | var | var_pop
                 |
                 #constraints
                 constraint | exclusive | expression |
@@ -999,8 +1005,8 @@ repository:
     name: "support.other.module.builtin.edgeql"
     match: '''
       (?x) \\b(?<!::|\\.|\\.<|\\.>)(
-        cfg | math | schema | std |
-        stdgraphql | sys
+        cal | cfg | math | schema |
+        std | stdgraphql | sys
       )\\b
       
     '''
@@ -1009,12 +1015,13 @@ repository:
     match: '''
       (?x) \\b(?<!\\.|\\.<|\\.>) (
         Object | anyenum | anyfloat | anyint |
-        anyreal | anyscalar | anytype | array |
-        bool | bytes | datetime | decimal |
-        duration | enum | float32 | float64 |
-        int16 | int32 | int64 | json |
-        local_date | local_datetime | local_time | sequence |
-        str | tuple | uuid
+        anynumeric | anyreal | anyscalar | anytype |
+        array | bigint | bool | bytes |
+        datetime | decimal | duration | enum |
+        float32 | float64 | int16 | int32 |
+        int64 | json | local_date | local_datetime |
+        local_time | sequence | str | tuple |
+        uuid
       )\\b
       
     '''
@@ -1030,7 +1037,7 @@ repository:
             bytes_get_bit | ceil | contains |
             count | date_get | datetime_current |
             datetime_get | datetime_of_statement | datetime_of_transaction |
-            datetime_trunc | duration_get | duration_trunc |
+            datetime_truncate | duration_to_seconds | duration_truncate |
             enumerate | find | floor |
             get_transaction_isolation | get_version | get_version_as_str |
             json_array_unpack | json_get | json_object_unpack |
@@ -1043,12 +1050,12 @@ repository:
             str_lpad | str_ltrim | str_repeat |
             str_rpad | str_rtrim | str_title |
             str_trim | str_upper | sum |
-            time_get | to_datetime | to_decimal |
-            to_duration | to_float32 | to_float64 |
-            to_int16 | to_int32 | to_int64 |
-            to_json | to_local_date | to_local_datetime |
-            to_local_time | to_str | uuid_generate_v1mc |
-            var | var_pop
+            time_get | to_bigint | to_datetime |
+            to_decimal | to_duration | to_float32 |
+            to_float64 | to_int16 | to_int32 |
+            to_int64 | to_json | to_local_date |
+            to_local_datetime | to_local_time | to_str |
+            uuid_generate_v1mc | var | var_pop
           )(?=\\s*\\()\\b
           
         '''

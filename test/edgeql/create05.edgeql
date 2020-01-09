@@ -1,9 +1,9 @@
 CREATE FUNCTION test::my_edgeql_func2(std::str)
-        -> schema::Concept
+        -> sys::Concept
     FROM EdgeQL $$
         SELECT
-            schema::Concept
-        FILTER schema::Concept.name = $1
+            sys::Concept
+        FILTER sys::Concept.name = $1
     $$;
 
 
@@ -24,7 +24,7 @@ str           : source.edgeql, support.type.builtin.edgeql
               : source.edgeql
 ->            : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-schema        : source.edgeql, support.other.module.builtin.edgeql
+sys           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 Concept       : source.edgeql
               : source.edgeql
@@ -34,13 +34,13 @@ $$            : source.edgeql, string.quoted.edgeql
               : source.edgeql
 SELECT        : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-schema        : source.edgeql, support.other.module.builtin.edgeql
+sys           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 Concept       : source.edgeql
               : source.edgeql
 FILTER        : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
-schema        : source.edgeql, support.other.module.builtin.edgeql
+sys           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 Concept.name  : source.edgeql
 =             : keyword.operator.edgeql, source.edgeql
