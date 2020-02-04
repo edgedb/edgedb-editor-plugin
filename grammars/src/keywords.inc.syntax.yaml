@@ -14,17 +14,16 @@ match: |
     annotation | as | asc | assignment | before |
     by | cardinality | cast | config | database |
     ddl | default | deferrable | deferred | delegated |
-    desc | emit | explicit | final | first |
-    from | implicit | index | infix | inheritable |
-    into | isolation | last | link | migration |
-    multi | object | of | oids | on |
-    only | operator | overloaded | postfix | prefix |
-    property | read | rename | repeatable | required |
-    restrict | role | savepoint | scalar | schema |
-    sdl | serializable | session | single | source |
-    system | target | ternary | then | to |
-    transaction | type | using | verbose | view |
-    write
+    desc | explicit | final | first | from |
+    implicit | index | infix | inheritable | into |
+    isolation | last | link | migration | multi |
+    object | of | on | only | operator |
+    overloaded | postfix | prefix | property | read |
+    rename | repeatable | required | restrict | role |
+    savepoint | scalar | schema | sdl | serializable |
+    session | single | source | superuser | system |
+    target | ternary | then | to | transaction |
+    type | using | verbose | view | write
     |
     (?# reserved)
     alter | analyze | and | anyarray | anytuple |
