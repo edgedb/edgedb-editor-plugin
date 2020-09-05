@@ -13,14 +13,14 @@ builtin-types:
   name: support.type.builtin.edgeql
   match: |
     (?x) \b(?<!\.|\.<|\.>) (
-      Object | anyenum | anyfloat | anyint |
-      anynumeric | anyreal | anyscalar | anytype |
-      array | bigint | bool | bytes |
-      datetime | decimal | duration | enum |
-      float32 | float64 | int16 | int32 |
-      int64 | json | local_date | local_datetime |
-      local_time | sequence | str | tuple |
-      uuid
+      BaseObject | Object | anyenum | anyfloat |
+      anyint | anynumeric | anyreal | anyscalar |
+      anytype | array | bigint | bool |
+      bytes | datetime | decimal | duration |
+      enum | float32 | float64 | int16 |
+      int32 | int64 | json | local_date |
+      local_datetime | local_time | sequence | str |
+      tuple | uuid
     )\b
 
 builtins:
@@ -30,29 +30,32 @@ builtins:
         (?x) \b(?<!\.|\.<|\.>) (
           abs | advisory_lock | advisory_unlock |
           advisory_unlock_all | all | any |
-          array_agg | array_get | array_unpack |
-          bytes_get_bit | ceil | contains |
-          count | date_get | datetime_current |
-          datetime_get | datetime_of_statement | datetime_of_transaction |
-          datetime_truncate | duration_to_seconds | duration_truncate |
-          enumerate | find | floor |
-          get_transaction_isolation | get_version | get_version_as_str |
-          json_array_unpack | json_get | json_object_unpack |
-          json_typeof | len | lg |
-          ln | log | max |
-          mean | min | random |
-          re_match | re_match_all | re_replace |
-          re_test | round | sleep |
-          stddev | stddev_pop | str_lower |
-          str_lpad | str_ltrim | str_repeat |
-          str_rpad | str_rtrim | str_title |
-          str_trim | str_upper | sum |
-          time_get | to_bigint | to_datetime |
-          to_decimal | to_duration | to_float32 |
-          to_float64 | to_int16 | to_int32 |
-          to_int64 | to_json | to_local_date |
-          to_local_datetime | to_local_time | to_str |
-          uuid_generate_v1mc | var | var_pop
+          array_agg | array_get | array_join |
+          array_unpack | bytes_get_bit | ceil |
+          contains | count | date_get |
+          datetime_current | datetime_get | datetime_of_statement |
+          datetime_of_transaction | datetime_truncate | duration_to_seconds |
+          duration_truncate | enumerate | find |
+          floor | get_current_database | get_transaction_isolation |
+          get_version | get_version_as_str | json_array_unpack |
+          json_get | json_object_unpack | json_typeof |
+          len | lg | ln |
+          log | max | mean |
+          min | random | re_match |
+          re_match_all | re_replace | re_test |
+          round | sleep | stddev |
+          stddev_pop | str_lower | str_lpad |
+          str_ltrim | str_pad_end | str_pad_start |
+          str_repeat | str_rpad | str_rtrim |
+          str_split | str_title | str_trim |
+          str_trim_end | str_trim_start | str_upper |
+          sum | time_get | to_bigint |
+          to_datetime | to_decimal | to_duration |
+          to_float32 | to_float64 | to_int16 |
+          to_int32 | to_int64 | to_json |
+          to_local_date | to_local_datetime | to_local_time |
+          to_str | uuid_generate_v1mc | var |
+          var_pop
         )(?=\s*\()\b
 
     - name: support.function.constraint.builtin.edgeql
@@ -69,6 +72,7 @@ builtins:
     - name: support.other.link.builtin.edgeql
       match: |
         (?x) \b(
-          __source__ | __subject__ | __type__
+          __source__ | __std__ | __subject__ |
+          __type__
         )\b
 ...
