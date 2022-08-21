@@ -1,0 +1,31 @@
+{
+  "fileTypes": ["js", "jsx", "ts", "tsx"],
+  "injectionSelector": "L:source -string -comment",
+  "patterns": [
+    {
+      "name": "commentTaggedTemplate",
+      "contentName": "meta.embedded.block.edgeql",
+      "begin": "(`)(#\\s*edgeql)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.string.template.begin.js"
+        },
+        "2": {
+          "name": "comment.line.number-sign.edgeql"
+        }
+      },
+      "end": "`",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.template.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.edgeql"
+        }
+      ]
+    }
+  ],
+  "scopeName": "inline.edgeql"
+}

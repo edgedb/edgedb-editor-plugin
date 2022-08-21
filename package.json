@@ -47,6 +47,19 @@
         "language": "edgeql",
         "scopeName": "source.edgeql",
         "path": "./grammars/edgeql.tmLanguage"
+      },
+      {
+        "injectTo": [
+          "source.js",
+          "source.ts",
+          "source.tsx",
+          "source.jsx"
+        ],
+        "scopeName": "inline.edgeql",
+        "path": "./grammars/edgeql.js.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.edgeql": "edgeql"
+        }
       }
     ]
   },
