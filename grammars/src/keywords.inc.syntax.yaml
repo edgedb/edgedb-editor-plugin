@@ -10,40 +10,41 @@ match: |
     |
 
     (?# unreserved)
-    abstract | after | alias | all | allow |
-    annotation | as | asc | assignment | before |
-    by | cardinality | cast | config | conflict |
-    current | database | ddl | default | deferrable |
-    deferred | delegated | desc | emit | explicit |
-    final | first | from | function | implicit |
-    index | infix | inheritable | into | isolation |
-    last | link | migration | multi | object |
-    of | oids | on | only | onto |
-    operator | overloaded | owned | postfix | prefix |
-    property | proposed | pseudo | read | reject |
-    rename | repeatable | required | restrict | role |
-    roles | savepoint | scalar | schema | sdl |
-    serializable | session | single | source | superuser |
-    system | target | ternary | then | to |
-    transaction | type | unless | using | verbose |
-    view | write
+    abort | abstract | access | after | alias |
+    all | allow | annotation | applied | as |
+    asc | assignment | before | cardinality | cast |
+    config | conflict | cube | current | database |
+    ddl | declare | default | deferrable | deferred |
+    delegated | deny | desc | empty | except |
+    extension | final | first | from | function |
+    implicit | index | infix | inheritable | instance |
+    into | isolation | last | link | migration |
+    multi | object | of | only | onto |
+    operator | optionality | order | orphan | overloaded |
+    owned | package | policy | populate | postfix |
+    prefix | property | proposed | pseudo | read |
+    reject | release | rename | required | reset |
+    restrict | role | roles | rollup | savepoint |
+    scalar | schema | sdl | serializable | session |
+    source | superuser | system | target | ternary |
+    then | to | transaction | type | unless |
+    using | verbose | version | view | write
     |
     (?# reserved)
-    abort | alter | analyze | and | anyarray |
-    anytuple | begin | case | check | commit |
-    configure | create | deallocate | declare | delete |
-    describe | detached | discard | distinct | do |
-    drop | else | empty | end | execute |
-    exists | explain | extending | fetch | filter |
-    for | get | global | grant | group |
-    if | ilike | import | in | insert |
-    introspect | is | like | limit | listen |
-    load | lock | match | module | move |
-    not | notify | offset | optional | or |
-    order | over | partition | policy | populate |
-    prepare | raise | refresh | reindex | release |
-    reset | revoke | rollback | select | set |
-    start | typeof | union | update | variadic |
-    when | window | with
+    alter | analyze | and | anyarray | anytuple |
+    begin | by | case | check | commit |
+    configure | create | deallocate | delete | describe |
+    detached | discard | distinct | do | drop |
+    else | end | execute | exists | explain |
+    extending | fetch | filter | for | get |
+    global | grant | group | if | ilike |
+    import | in | insert | introspect | is |
+    like | limit | listen | load | lock |
+    match | module | move | never | not |
+    notify | offset | on | optional | or |
+    over | partition | prepare | raise | refresh |
+    reindex | revoke | rollback | select | set |
+    single | start | typeof | union | update |
+    variadic | when | window | with
   )\b
 ...
