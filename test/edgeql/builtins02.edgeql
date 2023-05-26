@@ -7,6 +7,8 @@ count()
 sum()
 random()
 uuid_generate_v1mc()
+all()
+any()
 
 
 
@@ -35,5 +37,11 @@ random        : meta.function-call.edgeql, source.edgeql, support.function.built
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
 uuid_generate_v1mc : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+all           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
+(             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
+)             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
+any           : meta.function-call.edgeql, source.edgeql, support.function.builtin.edgeql
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
