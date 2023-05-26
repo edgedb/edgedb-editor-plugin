@@ -12,7 +12,7 @@ NOT_PATH = r'\b(?<!\.|\.<|\.>)'
 NOT_FQPATH = r'\b(?<!::|\.|\.<|\.>)'
 # some unreserved keywords have special handling because they clash
 # with builtins
-EXCEPTION_KW = {'named', 'text'}
+EXCEPTION_KW = {'named', 'text', 'all'}
 
 
 def pretty_join(sep, it, chunk=4, indent=12):
@@ -104,6 +104,8 @@ def main():
             (named \s+ only)
             |
             (as \s+ text)
+            |
+            (all (?!\s*\())
             |
 
             (?# unreserved)
