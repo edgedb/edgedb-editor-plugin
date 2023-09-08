@@ -35,18 +35,18 @@ match: |
     |
     (?# reserved)
     administer | alter | analyze | and | anyarray |
-    anytuple | begin | by | case | check |
-    commit | configure | create | deallocate | delete |
-    describe | detached | discard | distinct | do |
-    drop | else | end | except | exists |
-    explain | extending | fetch | filter | for |
-    get | global | grant | group | if |
-    ilike | import | in | insert | intersect |
-    introspect | is | like | limit | listen |
-    load | lock | match | module | move |
-    never | not | notify | offset | on |
-    optional | or | over | partition | prepare |
-    raise | refresh | reindex | revoke | rollback |
+    anyobject | anytuple | begin | by | case |
+    check | commit | configure | create | deallocate |
+    delete | describe | detached | discard | distinct |
+    do | drop | else | end | except |
+    exists | explain | extending | fetch | filter |
+    for | get | global | grant | group |
+    if | ilike | import | in | insert |
+    intersect | introspect | is | like | limit |
+    listen | load | lock | match | module |
+    move | never | not | notify | offset |
+    on | optional | or | over | partition |
+    prepare | raise | refresh | revoke | rollback |
     select | set | single | start | typeof |
     union | update | variadic | when | window |
     with

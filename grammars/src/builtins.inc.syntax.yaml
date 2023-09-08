@@ -5,24 +5,25 @@ builtin-modules:
   name: support.other.module.builtin.edgeql
   match: |
     (?x) \b(?<!::|\.|\.<|\.>)(
-      cal | cfg | fts | math |
-      pg | schema | std | sys
+      cal | cfg | enc | ext |
+      fts | math | pg | schema |
+      std | sys
     )\b
 
 builtin-types:
   name: support.type.builtin.edgeql
   match: |
     (?x) \b(?<!\.|\.<|\.>) (
-      BaseObject | FreeObject | JsonEmpty | Object |
-      anycontiguous | anydiscrete | anyenum | anyfloat |
-      anyint | anynumeric | anypoint | anyreal |
-      anyscalar | anytype | array | bigint |
-      bool | bytes | date_duration | datetime |
-      decimal | duration | enum | float32 |
-      float64 | int16 | int32 | int64 |
-      json | local_date | local_datetime | local_time |
-      range | relative_duration | sequence | str |
-      tuple | uuid
+      Base64Alphabet | BaseObject | FreeObject | JsonEmpty |
+      Object | anycontiguous | anydiscrete | anyenum |
+      anyfloat | anyint | anynumeric | anypoint |
+      anyreal | anyscalar | anytype | array |
+      bigint | bool | bytes | date_duration |
+      datetime | decimal | duration | enum |
+      float32 | float64 | int16 | int32 |
+      int64 | json | local_date | local_datetime |
+      local_time | multirange | range | relative_duration |
+      sequence | str | tuple | uuid
     )\b
 
 builtins:
@@ -30,13 +31,14 @@ builtins:
     - name: support.function.builtin.edgeql
       match: |
         (?x) \b(?<!\.|\.<|\.>) (
-          abs | all | any |
-          array_agg | array_fill | array_get |
-          array_join | array_replace | array_unpack |
-          assert | assert_distinct | assert_exists |
-          assert_single | bit_and | bit_lshift |
-          bit_not | bit_or | bit_rshift |
-          bit_xor | bytes_get_bit | ceil |
+          abs | adjacent | all |
+          any | array_agg | array_fill |
+          array_get | array_join | array_replace |
+          array_unpack | assert | assert_distinct |
+          assert_exists | assert_single | bit_and |
+          bit_lshift | bit_not | bit_or |
+          bit_rshift | bit_xor | bounded_above |
+          bounded_below | bytes_get_bit | ceil |
           contains | count | date_get |
           datetime_current | datetime_get | datetime_of_statement |
           datetime_of_transaction | datetime_truncate | duration_get |
@@ -48,19 +50,21 @@ builtins:
           json_object_unpack | json_set | json_typeof |
           len | lg | ln |
           log | max | mean |
-          min | overlaps | random |
-          range | range_get_lower | range_get_upper |
-          range_is_empty | range_is_inclusive_lower | range_is_inclusive_upper |
-          range_unpack | re_match | re_match_all |
-          re_replace | re_test | round |
-          sequence_next | sequence_reset | stddev |
+          min | multirange | multirange_unpack |
+          overlaps | random | range |
+          range_get_lower | range_get_upper | range_is_empty |
+          range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
+          re_match | re_match_all | re_replace |
+          re_test | round | sequence_next |
+          sequence_reset | sqrt | stddev |
           stddev_pop | str_lower | str_lpad |
           str_ltrim | str_pad_end | str_pad_start |
           str_repeat | str_replace | str_reverse |
           str_rpad | str_rtrim | str_split |
           str_title | str_trim | str_trim_end |
-          str_trim_start | str_upper | sum |
-          time_get | to_bigint | to_date_duration |
+          str_trim_start | str_upper | strictly_above |
+          strictly_below | sum | time_get |
+          to_bigint | to_bytes | to_date_duration |
           to_datetime | to_decimal | to_duration |
           to_float32 | to_float64 | to_int16 |
           to_int32 | to_int64 | to_json |

@@ -16,22 +16,30 @@ describe("Grammar Tests", function() {
 
   it("test/edgeql/builtins01.edgeql", 
     function() {
-      tokens = grammar.tokenizeLines("std\ncal\nmath\npg\nfts")
-      expect(tokens[0][0].value).toBe("std");
+      tokens = grammar.tokenizeLines("cal\ncfg\nenc\next\nfts\nmath\npg\nstd\nsys")
+      expect(tokens[0][0].value).toBe("cal");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
-      expect(tokens[1][0].value).toBe("cal");
+      expect(tokens[1][0].value).toBe("cfg");
       expect(tokens[1][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
-      expect(tokens[2][0].value).toBe("math");
+      expect(tokens[2][0].value).toBe("enc");
       expect(tokens[2][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
-      expect(tokens[3][0].value).toBe("pg");
+      expect(tokens[3][0].value).toBe("ext");
       expect(tokens[3][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
       expect(tokens[4][0].value).toBe("fts");
       expect(tokens[4][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
+      expect(tokens[5][0].value).toBe("math");
+      expect(tokens[5][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
+      expect(tokens[6][0].value).toBe("pg");
+      expect(tokens[6][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
+      expect(tokens[7][0].value).toBe("std");
+      expect(tokens[7][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
+      expect(tokens[8][0].value).toBe("sys");
+      expect(tokens[8][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
     });
 
   it("test/edgeql/builtins02.edgeql", 
     function() {
-      tokens = grammar.tokenizeLines("len()\narray_agg()\narray_unpack()\nre_match()\nre_test()\ncount()\nsum()\nrandom()\nuuid_generate_v1mc()\nall()\nany()")
+      tokens = grammar.tokenizeLines("len()\narray_agg()\narray_unpack()\nre_match()\nre_test()\ncount()\nsum()\nrandom()\nuuid_generate_v1mc()\nall()\nany()\nbounded_above()\nbounded_below()\nrange_unpack()\nmultirange_unpack()")
       expect(tokens[0][0].value).toBe("len");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
       expect(tokens[0][1].value).toBe("(");
@@ -98,11 +106,35 @@ describe("Grammar Tests", function() {
       expect(tokens[10][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
       expect(tokens[10][2].value).toBe(")");
       expect(tokens[10][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
+      expect(tokens[11][0].value).toBe("bounded_above");
+      expect(tokens[11][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
+      expect(tokens[11][1].value).toBe("(");
+      expect(tokens[11][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
+      expect(tokens[11][2].value).toBe(")");
+      expect(tokens[11][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
+      expect(tokens[12][0].value).toBe("bounded_below");
+      expect(tokens[12][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
+      expect(tokens[12][1].value).toBe("(");
+      expect(tokens[12][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
+      expect(tokens[12][2].value).toBe(")");
+      expect(tokens[12][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
+      expect(tokens[13][0].value).toBe("range_unpack");
+      expect(tokens[13][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
+      expect(tokens[13][1].value).toBe("(");
+      expect(tokens[13][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
+      expect(tokens[13][2].value).toBe(")");
+      expect(tokens[13][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
+      expect(tokens[14][0].value).toBe("multirange_unpack");
+      expect(tokens[14][0].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","support.function.builtin.edgeql"]);
+      expect(tokens[14][1].value).toBe("(");
+      expect(tokens[14][1].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.begin.edgeql"]);
+      expect(tokens[14][2].value).toBe(")");
+      expect(tokens[14][2].scopes).toEqual(["source.edgeql","meta.function-call.edgeql","punctuation.definition.arguments.end.edgeql"]);
     });
 
   it("test/edgeql/builtins03.edgeql", 
     function() {
-      tokens = grammar.tokenizeLines("std::constraint\nmax_value\none_of\nexpression\nmin_value\nregexp\nexclusive\nenum<'aaa', 'bbb'>")
+      tokens = grammar.tokenizeLines("std::constraint\nmax_value\none_of\nexpression\nmin_value\nregexp\nexclusive\nenum<'aaa', 'bbb'>\nrange<int64>\nmultirange<int64>")
       expect(tokens[0][0].value).toBe("std");
       expect(tokens[0][0].scopes).toEqual(["source.edgeql","support.other.module.builtin.edgeql"]);
       expect(tokens[0][1].value).toBe("::");
@@ -141,6 +173,22 @@ describe("Grammar Tests", function() {
       expect(tokens[7][8].scopes).toEqual(["source.edgeql","string.quoted.edgeql","punctuation.definition.string.end.edgeql"]);
       expect(tokens[7][9].value).toBe(">");
       expect(tokens[7][9].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
+      expect(tokens[8][0].value).toBe("range");
+      expect(tokens[8][0].scopes).toEqual(["source.edgeql","support.type.builtin.edgeql"]);
+      expect(tokens[8][1].value).toBe("<");
+      expect(tokens[8][1].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
+      expect(tokens[8][2].value).toBe("int64");
+      expect(tokens[8][2].scopes).toEqual(["source.edgeql","support.type.builtin.edgeql"]);
+      expect(tokens[8][3].value).toBe(">");
+      expect(tokens[8][3].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
+      expect(tokens[9][0].value).toBe("multirange");
+      expect(tokens[9][0].scopes).toEqual(["source.edgeql","support.type.builtin.edgeql"]);
+      expect(tokens[9][1].value).toBe("<");
+      expect(tokens[9][1].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
+      expect(tokens[9][2].value).toBe("int64");
+      expect(tokens[9][2].scopes).toEqual(["source.edgeql","support.type.builtin.edgeql"]);
+      expect(tokens[9][3].value).toBe(">");
+      expect(tokens[9][3].scopes).toEqual(["source.edgeql","keyword.operator.edgeql"]);
     });
 
   it("test/edgeql/bytes01.edgeql", 
