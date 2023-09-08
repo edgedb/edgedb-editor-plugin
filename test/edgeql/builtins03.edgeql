@@ -6,6 +6,8 @@ min_value
 regexp
 exclusive
 enum<'aaa', 'bbb'>
+range<int64>
+multirange<int64>
 
 
 
@@ -27,4 +29,12 @@ aaa           : source.edgeql, string.quoted.edgeql
 '             : punctuation.definition.string.begin.edgeql, source.edgeql, string.quoted.edgeql
 bbb           : source.edgeql, string.quoted.edgeql
 '             : punctuation.definition.string.end.edgeql, source.edgeql, string.quoted.edgeql
+>             : keyword.operator.edgeql, source.edgeql
+range         : source.edgeql, support.type.builtin.edgeql
+<             : keyword.operator.edgeql, source.edgeql
+int64         : source.edgeql, support.type.builtin.edgeql
+>             : keyword.operator.edgeql, source.edgeql
+multirange    : source.edgeql, support.type.builtin.edgeql
+<             : keyword.operator.edgeql, source.edgeql
+int64         : source.edgeql, support.type.builtin.edgeql
 >             : keyword.operator.edgeql, source.edgeql
