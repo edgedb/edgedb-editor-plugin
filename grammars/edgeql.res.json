@@ -1,0 +1,25 @@
+{
+  "fileTypes": ["res", "resi"],
+  "injectionSelector": "L:source -string -comment",
+  "patterns": [
+    {
+      "contentName": "meta.embedded.block.edgeql",
+      "begin": "(%edgeql\\()\\s*$",
+      "end": "(?<=\\))",
+      "patterns": [
+        {
+          "begin": "^\\s*(`)$",
+          "end": "^\\s*(`)",
+          "patterns": [{ "include": "source.edgeql" }]
+        }
+      ]
+    },
+    {
+      "contentName": "meta.embedded.block.edgeql",
+      "begin": "(%edgeql\\(`)",
+      "end": "(\\`( )?\\))",
+      "patterns": [{ "include": "source.edgeql" }]
+    }
+  ],
+  "scopeName": "inline.edgeql"
+}

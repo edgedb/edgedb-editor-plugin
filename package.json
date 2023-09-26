@@ -60,6 +60,16 @@
         "embeddedLanguages": {
           "meta.embedded.block.edgeql": "edgeql"
         }
+      },
+      {
+        "injectTo": [
+          "source.rescript"
+        ],
+        "scopeName": "inline.edgeql",
+        "path": "./grammars/edgeql.res.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.edgeql": "edgeql"
+        }
       }
     ]
   },
