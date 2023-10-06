@@ -47,6 +47,7 @@ def main():
     dunder_builtins = [kw for kw in EdgeQL.reserved_keywords
                        if kw[:2] == '__']
     fn_builtins = sorted(EdgeQL.fn_builtins)
+    index_builtins = sorted(EdgeQL.index_builtins)
     constraint_builtins = sorted(EdgeQL.constraint_builtins)
     type_builtins = sorted(set(EdgeQL.type_builtins) | {'anytype'})
 
@@ -134,6 +135,13 @@ def main():
           match: |
             (?x) {NOT_PATH} (
               {pretty_join(' | ', type_builtins, indent=14)}
+            )\b
+
+        builtin-indexes:
+          name: support.other.index.builtin.edgeql
+          match: |
+            (?x) {NOT_PATH} (
+              {pretty_join(' | ', index_builtins, indent=14)}
             )\b
 
         builtins:

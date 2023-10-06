@@ -23,7 +23,9 @@ abc           : source.edgeql
 ,             : punctuation.separator.element.edgeql, source.edgeql
         defd  : source.edgeql
 ,             : punctuation.separator.element.edgeql, source.edgeql
-        name:  : source.edgeql
+        name  : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 {             : punctuation.parenthesis.begin.edgeql, source.edgeql
               : source.edgeql
 @             : source.edgeql, support.other.linkproperty.edgeql

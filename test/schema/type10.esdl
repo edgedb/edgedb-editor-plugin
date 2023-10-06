@@ -17,7 +17,9 @@ type          : keyword.declaration.edgeql, source.edgeql
  User         : source.edgeql
 {             : punctuation.parenthesis.begin.edgeql, source.edgeql
               : source.edgeql
-created:      : source.edgeql
+created       : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 datetime      : source.edgeql, support.type.builtin.edgeql
               : source.edgeql
 {             : punctuation.parenthesis.begin.edgeql, source.edgeql
@@ -36,7 +38,9 @@ datetime_of_statement : meta.function-call.edgeql, source.edgeql, support.functi
 ;             : punctuation.statement.delimiter.edgeql, source.edgeql
               : source.edgeql
 }             : punctuation.parenthesis.end.edgeql, source.edgeql
-  modified:   : source.edgeql
+  modified    : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 datetime      : source.edgeql, support.type.builtin.edgeql
               : source.edgeql
 {             : punctuation.parenthesis.begin.edgeql, source.edgeql

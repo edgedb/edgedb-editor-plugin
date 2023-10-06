@@ -386,6 +386,10 @@ repository:
         match: "->"
       }
       {
+        name: "punctuation.declaration.delimiter.edgeql"
+        match: "(:(?!=))"
+      }
+      {
         name: "keyword.operator.edgeql"
         match: '''
           (?x)
@@ -466,6 +470,9 @@ repository:
       }
       {
         include: "#builtin-types"
+      }
+      {
+        include: "#builtin-indexes"
       }
     ]
   "types-common":
@@ -845,22 +852,23 @@ repository:
                 range_get_lower | range_get_upper | range_is_empty |
                 range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
                 re_match | re_match_all | re_replace |
-                re_test | round | sequence_next |
-                sequence_reset | sqrt | stddev |
-                stddev_pop | str_lower | str_lpad |
-                str_ltrim | str_pad_end | str_pad_start |
-                str_repeat | str_replace | str_reverse |
-                str_rpad | str_rtrim | str_split |
-                str_title | str_trim | str_trim_end |
-                str_trim_start | str_upper | strictly_above |
-                strictly_below | sum | time_get |
-                to_bigint | to_bytes | to_date_duration |
-                to_datetime | to_decimal | to_duration |
-                to_float32 | to_float64 | to_int16 |
-                to_int32 | to_int64 | to_json |
-                to_local_date | to_local_datetime | to_local_time |
-                to_relative_duration | to_str | uuid_generate_v1mc |
-                uuid_generate_v4 | var | var_pop
+                re_test | round | search |
+                sequence_next | sequence_reset | sqrt |
+                stddev | stddev_pop | str_lower |
+                str_lpad | str_ltrim | str_pad_end |
+                str_pad_start | str_repeat | str_replace |
+                str_reverse | str_rpad | str_rtrim |
+                str_split | str_title | str_trim |
+                str_trim_end | str_trim_start | str_upper |
+                strictly_above | strictly_below | sum |
+                time_get | to_bigint | to_bytes |
+                to_date_duration | to_datetime | to_decimal |
+                to_duration | to_float32 | to_float64 |
+                to_int16 | to_int32 | to_int64 |
+                to_json | to_local_date | to_local_datetime |
+                to_local_time | to_relative_duration | to_str |
+                uuid_generate_v1mc | uuid_generate_v4 | var |
+                var_pop | with_options
               |
                 # constraints
                 constraint | exclusive | expression |
@@ -935,22 +943,23 @@ repository:
                 range_get_lower | range_get_upper | range_is_empty |
                 range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
                 re_match | re_match_all | re_replace |
-                re_test | round | sequence_next |
-                sequence_reset | sqrt | stddev |
-                stddev_pop | str_lower | str_lpad |
-                str_ltrim | str_pad_end | str_pad_start |
-                str_repeat | str_replace | str_reverse |
-                str_rpad | str_rtrim | str_split |
-                str_title | str_trim | str_trim_end |
-                str_trim_start | str_upper | strictly_above |
-                strictly_below | sum | time_get |
-                to_bigint | to_bytes | to_date_duration |
-                to_datetime | to_decimal | to_duration |
-                to_float32 | to_float64 | to_int16 |
-                to_int32 | to_int64 | to_json |
-                to_local_date | to_local_datetime | to_local_time |
-                to_relative_duration | to_str | uuid_generate_v1mc |
-                uuid_generate_v4 | var | var_pop
+                re_test | round | search |
+                sequence_next | sequence_reset | sqrt |
+                stddev | stddev_pop | str_lower |
+                str_lpad | str_ltrim | str_pad_end |
+                str_pad_start | str_repeat | str_replace |
+                str_reverse | str_rpad | str_rtrim |
+                str_split | str_title | str_trim |
+                str_trim_end | str_trim_start | str_upper |
+                strictly_above | strictly_below | sum |
+                time_get | to_bigint | to_bytes |
+                to_date_duration | to_datetime | to_decimal |
+                to_duration | to_float32 | to_float64 |
+                to_int16 | to_int32 | to_int64 |
+                to_json | to_local_date | to_local_datetime |
+                to_local_time | to_relative_duration | to_str |
+                uuid_generate_v1mc | uuid_generate_v4 | var |
+                var_pop | with_options
                 |
                 #constraints
                 constraint | exclusive | expression |
@@ -994,22 +1003,23 @@ repository:
                 range_get_lower | range_get_upper | range_is_empty |
                 range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
                 re_match | re_match_all | re_replace |
-                re_test | round | sequence_next |
-                sequence_reset | sqrt | stddev |
-                stddev_pop | str_lower | str_lpad |
-                str_ltrim | str_pad_end | str_pad_start |
-                str_repeat | str_replace | str_reverse |
-                str_rpad | str_rtrim | str_split |
-                str_title | str_trim | str_trim_end |
-                str_trim_start | str_upper | strictly_above |
-                strictly_below | sum | time_get |
-                to_bigint | to_bytes | to_date_duration |
-                to_datetime | to_decimal | to_duration |
-                to_float32 | to_float64 | to_int16 |
-                to_int32 | to_int64 | to_json |
-                to_local_date | to_local_datetime | to_local_time |
-                to_relative_duration | to_str | uuid_generate_v1mc |
-                uuid_generate_v4 | var | var_pop
+                re_test | round | search |
+                sequence_next | sequence_reset | sqrt |
+                stddev | stddev_pop | str_lower |
+                str_lpad | str_ltrim | str_pad_end |
+                str_pad_start | str_repeat | str_replace |
+                str_reverse | str_rpad | str_rtrim |
+                str_split | str_title | str_trim |
+                str_trim_end | str_trim_start | str_upper |
+                strictly_above | strictly_below | sum |
+                time_get | to_bigint | to_bytes |
+                to_date_duration | to_datetime | to_decimal |
+                to_duration | to_float32 | to_float64 |
+                to_int16 | to_int32 | to_int64 |
+                to_json | to_local_date | to_local_datetime |
+                to_local_time | to_relative_duration | to_str |
+                uuid_generate_v1mc | uuid_generate_v4 | var |
+                var_pop | with_options
                 |
                 #constraints
                 constraint | exclusive | expression |
@@ -1068,16 +1078,27 @@ repository:
     name: "support.type.builtin.edgeql"
     match: '''
       (?x) \\b(?<!\\.|\\.<|\\.>) (
-        Base64Alphabet | BaseObject | FreeObject | JsonEmpty |
-        Object | anycontiguous | anydiscrete | anyenum |
-        anyfloat | anyint | anynumeric | anypoint |
-        anyreal | anyscalar | anytype | array |
-        bigint | bool | bytes | date_duration |
-        datetime | decimal | duration | enum |
-        float32 | float64 | int16 | int32 |
-        int64 | json | local_date | local_datetime |
-        local_time | multirange | range | relative_duration |
-        sequence | str | tuple | uuid
+        Base64Alphabet | BaseObject | ElasticLanguage | FreeObject |
+        JsonEmpty | Language | LuceneLanguage | Object |
+        PGLanguage | Weight | anycontiguous | anydiscrete |
+        anyenum | anyfloat | anyint | anynumeric |
+        anypoint | anyreal | anyscalar | anytype |
+        array | bigint | bool | bytes |
+        date_duration | datetime | decimal | document |
+        duration | enum | float32 | float64 |
+        int16 | int32 | int64 | json |
+        local_date | local_datetime | local_time | multirange |
+        range | relative_duration | sequence | str |
+        tuple | uuid
+      )\\b
+      
+    '''
+  "builtin-indexes":
+    name: "support.other.index.builtin.edgeql"
+    match: '''
+      (?x) \\b(?<!\\.|\\.<|\\.>) (
+        brin | btree | gin | gist |
+        hash | index | spgist
       )\\b
       
     '''
@@ -1111,22 +1132,23 @@ repository:
             range_get_lower | range_get_upper | range_is_empty |
             range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
             re_match | re_match_all | re_replace |
-            re_test | round | sequence_next |
-            sequence_reset | sqrt | stddev |
-            stddev_pop | str_lower | str_lpad |
-            str_ltrim | str_pad_end | str_pad_start |
-            str_repeat | str_replace | str_reverse |
-            str_rpad | str_rtrim | str_split |
-            str_title | str_trim | str_trim_end |
-            str_trim_start | str_upper | strictly_above |
-            strictly_below | sum | time_get |
-            to_bigint | to_bytes | to_date_duration |
-            to_datetime | to_decimal | to_duration |
-            to_float32 | to_float64 | to_int16 |
-            to_int32 | to_int64 | to_json |
-            to_local_date | to_local_datetime | to_local_time |
-            to_relative_duration | to_str | uuid_generate_v1mc |
-            uuid_generate_v4 | var | var_pop
+            re_test | round | search |
+            sequence_next | sequence_reset | sqrt |
+            stddev | stddev_pop | str_lower |
+            str_lpad | str_ltrim | str_pad_end |
+            str_pad_start | str_repeat | str_replace |
+            str_reverse | str_rpad | str_rtrim |
+            str_split | str_title | str_trim |
+            str_trim_end | str_trim_start | str_upper |
+            strictly_above | strictly_below | sum |
+            time_get | to_bigint | to_bytes |
+            to_date_duration | to_datetime | to_decimal |
+            to_duration | to_float32 | to_float64 |
+            to_int16 | to_int32 | to_int64 |
+            to_json | to_local_date | to_local_datetime |
+            to_local_time | to_relative_duration | to_str |
+            uuid_generate_v1mc | uuid_generate_v4 | var |
+            var_pop | with_options
           )(?=\\s*\\()\\b
           
         '''

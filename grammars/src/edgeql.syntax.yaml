@@ -205,6 +205,8 @@ repository:
         match: (::)
       - name: keyword.declaration.edgeql
         match: ->
+      - name: punctuation.declaration.delimiter.edgeql
+        match: (:(?!=))
       - name: keyword.operator.edgeql
         $apply:
           - file: 'operators.inc.syntax.yaml'
@@ -247,6 +249,7 @@ repository:
 
       - include: '#builtin-modules'
       - include: '#builtin-types'
+      - include: '#builtin-indexes'
 
   types-common:
     patterns:

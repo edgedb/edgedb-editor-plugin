@@ -14,7 +14,8 @@ max           : meta.function-call.edgeql, source.edgeql, support.function.built
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 $             : constant.language.variable.edgeql, meta.function-call.edgeql, source.edgeql
 param         : constant.language.variable.edgeql, meta.function-call.edgeql, source.edgeql
-:any          : meta.function-call.edgeql, source.edgeql
+:             : meta.function-call.edgeql, punctuation.declaration.delimiter.edgeql, source.edgeql
+any           : meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
               : source.edgeql
 on            : keyword.declaration.edgeql, source.edgeql

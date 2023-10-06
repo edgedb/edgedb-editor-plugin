@@ -35,22 +35,23 @@ fncalls:
               range_get_lower | range_get_upper | range_is_empty |
               range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
               re_match | re_match_all | re_replace |
-              re_test | round | sequence_next |
-              sequence_reset | sqrt | stddev |
-              stddev_pop | str_lower | str_lpad |
-              str_ltrim | str_pad_end | str_pad_start |
-              str_repeat | str_replace | str_reverse |
-              str_rpad | str_rtrim | str_split |
-              str_title | str_trim | str_trim_end |
-              str_trim_start | str_upper | strictly_above |
-              strictly_below | sum | time_get |
-              to_bigint | to_bytes | to_date_duration |
-              to_datetime | to_decimal | to_duration |
-              to_float32 | to_float64 | to_int16 |
-              to_int32 | to_int64 | to_json |
-              to_local_date | to_local_datetime | to_local_time |
-              to_relative_duration | to_str | uuid_generate_v1mc |
-              uuid_generate_v4 | var | var_pop
+              re_test | round | search |
+              sequence_next | sequence_reset | sqrt |
+              stddev | stddev_pop | str_lower |
+              str_lpad | str_ltrim | str_pad_end |
+              str_pad_start | str_repeat | str_replace |
+              str_reverse | str_rpad | str_rtrim |
+              str_split | str_title | str_trim |
+              str_trim_end | str_trim_start | str_upper |
+              strictly_above | strictly_below | sum |
+              time_get | to_bigint | to_bytes |
+              to_date_duration | to_datetime | to_decimal |
+              to_duration | to_float32 | to_float64 |
+              to_int16 | to_int32 | to_int64 |
+              to_json | to_local_date | to_local_datetime |
+              to_local_time | to_relative_duration | to_str |
+              uuid_generate_v1mc | uuid_generate_v4 | var |
+              var_pop | with_options
             |
               # constraints
               constraint | exclusive | expression |
@@ -114,22 +115,23 @@ fncalls:
               range_get_lower | range_get_upper | range_is_empty |
               range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
               re_match | re_match_all | re_replace |
-              re_test | round | sequence_next |
-              sequence_reset | sqrt | stddev |
-              stddev_pop | str_lower | str_lpad |
-              str_ltrim | str_pad_end | str_pad_start |
-              str_repeat | str_replace | str_reverse |
-              str_rpad | str_rtrim | str_split |
-              str_title | str_trim | str_trim_end |
-              str_trim_start | str_upper | strictly_above |
-              strictly_below | sum | time_get |
-              to_bigint | to_bytes | to_date_duration |
-              to_datetime | to_decimal | to_duration |
-              to_float32 | to_float64 | to_int16 |
-              to_int32 | to_int64 | to_json |
-              to_local_date | to_local_datetime | to_local_time |
-              to_relative_duration | to_str | uuid_generate_v1mc |
-              uuid_generate_v4 | var | var_pop
+              re_test | round | search |
+              sequence_next | sequence_reset | sqrt |
+              stddev | stddev_pop | str_lower |
+              str_lpad | str_ltrim | str_pad_end |
+              str_pad_start | str_repeat | str_replace |
+              str_reverse | str_rpad | str_rtrim |
+              str_split | str_title | str_trim |
+              str_trim_end | str_trim_start | str_upper |
+              strictly_above | strictly_below | sum |
+              time_get | to_bigint | to_bytes |
+              to_date_duration | to_datetime | to_decimal |
+              to_duration | to_float32 | to_float64 |
+              to_int16 | to_int32 | to_int64 |
+              to_json | to_local_date | to_local_datetime |
+              to_local_time | to_relative_duration | to_str |
+              uuid_generate_v1mc | uuid_generate_v4 | var |
+              var_pop | with_options
               |
               #constraints
               constraint | exclusive | expression |
@@ -173,22 +175,23 @@ fncalls:
               range_get_lower | range_get_upper | range_is_empty |
               range_is_inclusive_lower | range_is_inclusive_upper | range_unpack |
               re_match | re_match_all | re_replace |
-              re_test | round | sequence_next |
-              sequence_reset | sqrt | stddev |
-              stddev_pop | str_lower | str_lpad |
-              str_ltrim | str_pad_end | str_pad_start |
-              str_repeat | str_replace | str_reverse |
-              str_rpad | str_rtrim | str_split |
-              str_title | str_trim | str_trim_end |
-              str_trim_start | str_upper | strictly_above |
-              strictly_below | sum | time_get |
-              to_bigint | to_bytes | to_date_duration |
-              to_datetime | to_decimal | to_duration |
-              to_float32 | to_float64 | to_int16 |
-              to_int32 | to_int64 | to_json |
-              to_local_date | to_local_datetime | to_local_time |
-              to_relative_duration | to_str | uuid_generate_v1mc |
-              uuid_generate_v4 | var | var_pop
+              re_test | round | search |
+              sequence_next | sequence_reset | sqrt |
+              stddev | stddev_pop | str_lower |
+              str_lpad | str_ltrim | str_pad_end |
+              str_pad_start | str_repeat | str_replace |
+              str_reverse | str_rpad | str_rtrim |
+              str_split | str_title | str_trim |
+              str_trim_end | str_trim_start | str_upper |
+              strictly_above | strictly_below | sum |
+              time_get | to_bigint | to_bytes |
+              to_date_duration | to_datetime | to_decimal |
+              to_duration | to_float32 | to_float64 |
+              to_int16 | to_int32 | to_int64 |
+              to_json | to_local_date | to_local_datetime |
+              to_local_time | to_relative_duration | to_str |
+              uuid_generate_v1mc | uuid_generate_v4 | var |
+              var_pop | with_options
               |
               #constraints
               constraint | exclusive | expression |
