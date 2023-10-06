@@ -11,7 +11,8 @@ some_func     : source.edgeql
 (             : punctuation.parenthesis.begin.edgeql, source.edgeql
 $             : constant.language.variable.edgeql, source.edgeql
 foo           : constant.language.variable.edgeql, source.edgeql
-:             : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 int64         : source.edgeql, support.type.builtin.edgeql

@@ -14,13 +14,15 @@ myfunc        : source.edgeql
 (             : punctuation.parenthesis.begin.edgeql, source.edgeql
 $             : constant.language.variable.edgeql, source.edgeql
 arg1          : constant.language.variable.edgeql, source.edgeql
-:             : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 str           : source.edgeql, support.type.builtin.edgeql
 ,             : punctuation.separator.element.edgeql, source.edgeql
               : source.edgeql
 $             : constant.language.variable.edgeql, source.edgeql
 arg2          : constant.language.variable.edgeql, source.edgeql
-:             : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 str           : source.edgeql, support.type.builtin.edgeql
               : source.edgeql
 =             : keyword.operator.edgeql, source.edgeql
@@ -34,7 +36,7 @@ variadic      : keyword.declaration.edgeql, source.edgeql
               : source.edgeql
 $             : constant.language.variable.edgeql, source.edgeql
 arg3          : constant.language.variable.edgeql, source.edgeql
-:             : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
 std           : source.edgeql, support.other.module.builtin.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 int64         : source.edgeql, support.type.builtin.edgeql

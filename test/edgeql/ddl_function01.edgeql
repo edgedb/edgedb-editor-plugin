@@ -19,17 +19,23 @@ test          : source.edgeql
 ::            : keyword.operator.namespace.edgeql, source.edgeql
 call1         : source.edgeql
 (             : punctuation.parenthesis.begin.edgeql, source.edgeql
-    s:        : source.edgeql
+    s         : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 str           : source.edgeql, support.type.builtin.edgeql
 ,             : punctuation.separator.element.edgeql, source.edgeql
               : source.edgeql
 VARIADIC      : keyword.declaration.edgeql, source.edgeql
- a:           : source.edgeql
+ a            : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 int64         : source.edgeql, support.type.builtin.edgeql
 ,             : punctuation.separator.element.edgeql, source.edgeql
               : source.edgeql
 NAMED ONLY    : keyword.declaration.edgeql, source.edgeql
- suffix:      : source.edgeql
+ suffix       : source.edgeql
+:             : punctuation.declaration.delimiter.edgeql, source.edgeql
+              : source.edgeql
 str           : source.edgeql, support.type.builtin.edgeql
               : source.edgeql
 =             : keyword.operator.edgeql, source.edgeql

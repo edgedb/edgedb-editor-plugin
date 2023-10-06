@@ -12,7 +12,8 @@ maxlength     : entity.name.function.edgeql, meta.function-call.edgeql, source.e
 (             : meta.function-call.edgeql, punctuation.definition.arguments.begin.edgeql, source.edgeql
 $             : constant.language.variable.edgeql, meta.function-call.edgeql, source.edgeql
 param         : constant.language.variable.edgeql, meta.function-call.edgeql, source.edgeql
-:any          : meta.function-call.edgeql, source.edgeql
+:             : meta.function-call.edgeql, punctuation.declaration.delimiter.edgeql, source.edgeql
+any           : meta.function-call.edgeql, source.edgeql
 )             : meta.function-call.edgeql, punctuation.definition.arguments.end.edgeql, source.edgeql
               : source.edgeql
 extending     : keyword.declaration.edgeql, source.edgeql
