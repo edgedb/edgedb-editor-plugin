@@ -53,7 +53,9 @@
           "source.js",
           "source.ts",
           "source.tsx",
-          "source.jsx"
+          "source.jsx",
+          "source.cjs",
+          "source.mjs"
         ],
         "scopeName": "inline.edgeql",
         "path": "./grammars/edgeql.js.json",
