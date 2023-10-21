@@ -5,7 +5,7 @@
     {
       "name": "commentTaggedTemplate",
       "contentName": "meta.embedded.block.edgeql",
-      "begin": "(#\\s*edgeql\\s*`|edgeql\\s*`)",
+      "begin": "(`)(#\\s*edgeql)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.string.template.begin.js"
@@ -25,7 +25,56 @@
           "include": "source.edgeql"
         }
       ]
+    },
+    {
+      "name": "tagged-template.edgeql",
+      "contentName": "meta.embedded.block.edgeql",
+      "begin": "\\b(edgeql)(`)",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.function.tagged-template.js"
+        },
+        "2": {
+          "name": "punctuation.definition.string.begin.js"
+        }
+      },
+      "end": "\\2",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.edgeql"
+        }
+      ]
+    },
+    {
+      "name": "multilinecomment.edgeql",
+      "contentName": "meta.embedded.block.edgeql",
+      "begin": "(/\\**\\s*edgeql\\s*\\**/)\\s*(`|'|\")",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.comment.js"
+        },
+        "2": {
+          "name": "punctuation.definition.string.template.start.js"
+        }
+      },
+      "end": "\\2",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.template.end.js"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.edgeql"
+        }
+      ]
     }
   ],
+
   "scopeName": "inline.edgeql"
 }
