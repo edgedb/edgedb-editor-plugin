@@ -17,3 +17,18 @@ ESDL (EdgeDB Schema Definition Language).  The plugin is designed to work with
 In **Atom** and **Visual Studio Code** install the `edgedb` package.
 
 In **Sublime Text**, install the `EdgeDB` package via "Package Control".
+
+## Additional Features
+
+### Syntax Injection for Embedded Queries
+
+If you're working with embedded EdgeQL queries in a JavaScript file, syntax injection via comments is available. Simply include `# edgeql` within the backticks to enable highlighting. This will make it easier to spot syntax errors and make your embedded queries more readable.
+
+Example:
+
+```javascript
+const query = `
+  # edgeql
+  SELECT ... 
+`;
+```
