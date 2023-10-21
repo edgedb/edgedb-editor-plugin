@@ -5,7 +5,7 @@
     {
       "name": "commentTaggedTemplate",
       "contentName": "meta.embedded.block.edgeql",
-      "begin": "(`)(#\\s*edgeql)",
+      "begin": "(#\\s*edgeql\\s*`|edgeql\\s*`)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.string.template.begin.js"
