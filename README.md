@@ -17,3 +17,14 @@ ESDL (EdgeDB Schema Definition Language).  The plugin is designed to work with
 In **Atom** and **Visual Studio Code** install the `edgedb` package.
 
 In **Sublime Text**, install the `EdgeDB` package via "Package Control".
+
+
+## Syntax highlighting for embedded code blocks
+
+**Go language**
+
+```go
+query := `#edgeql
+select Example { * };
+`
+```
