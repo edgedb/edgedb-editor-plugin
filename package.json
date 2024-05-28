@@ -25,7 +25,7 @@
   "categories": [
     "Programming Languages"
   ],
-	"main": "./edgedb-ls-vscode/out/extension",
+  "main": "./edgedb-ls-vscode/out/extension",
   "contributes": {
     "languages": [
       {
@@ -83,11 +83,11 @@
     "postinstall": "cd ./edgedb-ls-vscode && npm install"
   },
   "devDependencies": {
-    "syntaxdev": "^0.1.2",
     "@types/node": "^18.14.6",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
     "eslint": "^8.57.0",
+    "syntaxdev": "^0.1.2",
     "typescript": "^5.3.3"
   }
 }

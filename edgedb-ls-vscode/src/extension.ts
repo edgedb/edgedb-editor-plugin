@@ -1,8 +1,3 @@
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-
 import { workspace, ExtensionContext, window, LogOutputChannel } from 'vscode';
 
 import {
@@ -17,17 +12,34 @@ import {
     ServerOptions,
     TransportKind
 } from 'vscode-languageclient/node';
+import { Distribution, ensureInstalled } from './install';
 
 let client: LanguageClient;
-let client_logger: LogOutputChannel;
+let clientLogger: LogOutputChannel;
 
-export function activate(context: ExtensionContext) {
-    client_logger = window.createOutputChannel('EdgeDB Language Client', { log: true })
-    client_logger.info("Extension activated.")
+export async function activate(context: ExtensionContext) {
+    clientLogger = window.createOutputChannel('EdgeDB Language Client', { log: true })
+    clientLogger.info("Extension activated.")
 
+    try {
+        const dist = await ensureInstalled(clientLogger, context);
+        await startServer(dist);
+    } catch (e) {
+        clientLogger.error(e.message);
+        window.showErrorMessage(`Cannot find edgedb-ls: ${e.message}`)
+    }
+}
+
+async function startServer(edgedb_ls_dist: Distribution) {
+    if (client?.isRunning()) {
+        clientLogger.info('Stopping server...');
+        await client.stop(5000);
+    }
+
+    clientLogger.info(`Starting edgedb-ls, version ${edgedb_ls_dist.version} with command ${edgedb_ls_dist.command}`);
     const executable: Executable = {
-        command: "python",
-        args: ["-m", "edb.language_server.main"],
+        command: edgedb_ls_dist.command,
+        args: [],
         transport: TransportKind.stdio,
     };
 
@@ -46,7 +58,7 @@ export function activate(context: ExtensionContext) {
             fileEvents: workspace.createFileSystemWatcher('dbschema/')
         },
         connectionOptions: {
-            maxRestartCount: 0, // don't restart a crashed server
+            maxRestartCount: 5,
         },
         errorHandler: new ErrorHandler(),
     };
@@ -61,12 +73,12 @@ export function activate(context: ExtensionContext) {
 
     // Start the client. This will also launch the server
     client.start();
-    client_logger.info("Client started.")
+    clientLogger.info("Client started.")
 }
 
 class ErrorHandler {
     error(error: Error, message: Message | undefined, count: number | undefined): ErrorHandlerResult {
-        client_logger.warn(`Server error [${count}]: ${error} ${message}`);
+        clientLogger.warn(`Server error [${count}]: ${error} ${message}`);
         return {
             action: ErrorAction.Continue,
             handled: true,
