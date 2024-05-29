@@ -4,17 +4,16 @@ import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import * as semver from "semver";
 import { Readable } from "node:stream";
-import { ExtensionContext, LogOutputChannel, ProgressLocation, window } from "vscode";
+import { LogOutputChannel, ProgressLocation, window } from "vscode";
 import envPaths from "env-paths";
-import { Stats, WriteStream } from "node:fs";
-import { ReadableStream, WritableStream } from "stream/web";
+import { Stats } from "node:fs";
 import { createGunzip } from 'node:zlib';
 
 let clientLogger: LogOutputChannel;
 
 const EDGEDB_PKG_ROOT = "https://packages.edgedb.com";
 
-export interface Distribution { command: string, version: string }
+export interface Distribution { command: string, version: string, args: string[] }
 
 interface Package {
     basename: string;
@@ -45,7 +44,7 @@ interface Package {
  * Search system path and edgedb data dir for a distribution of edgedb-ls.
  * If not found, download into edgedb data dir.
  */
-export async function ensureInstalled(logger: LogOutputChannel, context: ExtensionContext): Promise<Distribution> {
+export async function ensureInstalled(logger: LogOutputChannel): Promise<Distribution> {
     clientLogger = logger;
 
     // is edgedb-ls is installed in path?
@@ -53,7 +52,7 @@ export async function ensureInstalled(logger: LogOutputChannel, context: Extensi
     const inPath = await spawnForVersion('edgedb-ls');
     if (inPath) {
         clientLogger.debug('found');
-        return { command: 'edgedb-ls', version: inPath };
+        return { command: 'edgedb-ls', args: [], version: inPath };
     }
 
     // determine install path
@@ -65,7 +64,7 @@ export async function ensureInstalled(logger: LogOutputChannel, context: Extensi
         const installed = await spawnForVersion(entrypoint);
         if (installed) {
             clientLogger.debug(`found`);
-            return { command: entrypoint, version: installed };
+            return { command: entrypoint, args: [], version: installed };
         } else {
             // the dir exists, but edgedb-ls does not work?
             throw new Error(`${installDir} exists, but it does not work`)
@@ -78,7 +77,7 @@ export async function ensureInstalled(logger: LogOutputChannel, context: Extensi
 
     const installed = await spawnForVersion(entrypoint);
     if (installed) {
-        return { command: entrypoint, version: installed };
+        return { command: entrypoint, args: [], version: installed };
     } else {
         throw new Error(`installed ${entrypoint}, but it does not work`)
     }

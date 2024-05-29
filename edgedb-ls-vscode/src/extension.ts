@@ -1,4 +1,4 @@
-import { workspace, ExtensionContext, window, LogOutputChannel } from 'vscode';
+import { workspace, ExtensionContext, window, LogOutputChannel, ExtensionMode } from 'vscode';
 
 import {
     CloseAction,
@@ -16,30 +16,53 @@ import { Distribution, ensureInstalled } from './install';
 
 let client: LanguageClient;
 let clientLogger: LogOutputChannel;
+let useLocalDevServer: boolean;
 
 export async function activate(context: ExtensionContext) {
     clientLogger = window.createOutputChannel('EdgeDB Language Client', { log: true })
     clientLogger.info("Extension activated.")
 
+    useLocalDevServer = context.extensionMode == ExtensionMode.Development;    
+
+    await startClient();
+}
+
+async function getServerDistribution(): Promise<Distribution | null> {
+    if (useLocalDevServer) {
+        return {
+            command: 'python',
+            args: ['-m', 'edb.language_server.main'],
+            version: 'local dev'
+        }
+    }
+
     try {
-        const dist = await ensureInstalled(clientLogger, context);
-        await startServer(dist);
+        return await ensureInstalled(clientLogger);
     } catch (e) {
         clientLogger.error(e.message);
         window.showErrorMessage(`Cannot find edgedb-ls: ${e.message}`)
+        return null;
     }
 }
 
-async function startServer(edgedb_ls_dist: Distribution) {
+async function startClient() {
+    // stop client if it is running
+    let clientStopped = Promise.resolve();
     if (client?.isRunning()) {
         clientLogger.info('Stopping server...');
-        await client.stop(5000);
+        clientStopped = client.stop(5000);
     }
 
-    clientLogger.info(`Starting edgedb-ls, version ${edgedb_ls_dist.version} with command ${edgedb_ls_dist.command}`);
+    const dist = await getServerDistribution();
+    if (!dist) {
+        return;
+    }
+
+    await clientStopped;
+
     const executable: Executable = {
-        command: edgedb_ls_dist.command,
-        args: [],
+        command: dist.command,
+        args: dist.args,
         transport: TransportKind.stdio,
     };
 
@@ -71,9 +94,9 @@ async function startServer(edgedb_ls_dist: Distribution) {
         clientOptions
     );
 
-    // Start the client. This will also launch the server
+    clientLogger.info(`Starting edgedb-ls, version ${dist.version}, command ${dist.command} ${dist.args.join(' ')}`);
     client.start();
-    clientLogger.info("Client started.")
+    clientLogger.info(`Started.`)
 }
 
 class ErrorHandler {
