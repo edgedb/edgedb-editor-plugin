@@ -72,6 +72,16 @@
         "embeddedLanguages": {
           "meta.embedded.block.edgeql": "edgeql"
         }
+      },
+      {
+        "path": "./grammars/edgeql.go.json",
+        "scopeName": "inline.edgeql",
+        "injectTo": [
+          "source.go"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.edgeql": "edgeql"
+        }
       }
     ]
   },

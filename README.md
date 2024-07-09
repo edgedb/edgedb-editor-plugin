@@ -18,17 +18,26 @@ In **Atom** and **Visual Studio Code** install the `edgedb` package.
 
 In **Sublime Text**, install the `EdgeDB` package via "Package Control".
 
-## Additional Features
 
-### Syntax Injection for Embedded Queries
+## Syntax highlighting for embedded code blocks
 
-If you're working with embedded EdgeQL queries in a JavaScript file, syntax injection via comments is available. Simply include `# edgeql` within the backticks to enable highlighting. This will make it easier to spot syntax errors and make your embedded queries more readable.
+This extension also provides syntax highlighting within string literals of other languages such as JavaScript and Go.
+To enable the highlighting, include `# edgeql` in a backtick-quoted string.
+This will make it easier to spot syntax errors and make your embedded queries more readable.
 
-Example:
+```go
+// Go
+query := `#edgeql
+select Example { * };
+`
+```
 
 ```javascript
+// JavaScript
 const query = `
   # edgeql
   SELECT ... 
 `;
 ```
+
+Other languages are not yet implemented, but we are accepting pull requests at [edgedb-editor-plugin](https://github.com/edgedb/edgedb-editor-plugin).
