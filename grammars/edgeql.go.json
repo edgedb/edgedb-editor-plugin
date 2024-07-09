@@ -1,0 +1,21 @@
+{
+  "fileTypes": ["go"],
+  "injectionSelector": "L:source -string -comment",
+  "patterns": [
+    {
+      "name": "comment-tagged-template.edgeql",
+      "contentName": "meta.embedded.block.edgeql",
+      "begin": "(`)(#\\s*edgeql[^\n]*)",
+      "end": "(`)",
+      "beginCaptures": {
+        "1": { "name": "punctuation.definition.string.begin.go" },
+        "2": { "name": "comment.line.number-sign.edgeql" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.string.end.go" }
+      },
+      "patterns": [{ "include": "source.edgeql" }]
+    }
+  ],
+  "scopeName": "inline.edgeql"
+}
