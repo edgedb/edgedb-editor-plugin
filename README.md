@@ -12,32 +12,28 @@ ESDL (EdgeDB Schema Definition Language).  The plugin is designed to work with
 [Chromodynamics](https://github.com/MagicStack/Chromodynamics).)
 
 
-## Installation Instructions
+## Installation
 
-In **Atom** and **Visual Studio Code** install the `edgedb` package.
+In **Atom** and **Visual Studio Code** install the `EdgeDB` package.
 
 In **Sublime Text**, install the `EdgeDB` package via "Package Control".
 
+## Contributing
 
-## Syntax highlighting for embedded code blocks
+We are accepting pull requests for anything that improves this extension:
+new features, fixes or documentation. We are not accepting code refactors.
 
-This extension also provides syntax highlighting within string literals of other languages such as JavaScript and Go.
-To enable the highlighting, include `# edgeql` in a backtick-quoted string.
-This will make it easier to spot syntax errors and make your embedded queries more readable.
+## Publishing
 
-```go
-// Go
-query := `#edgeql
-select Example { * };
-`
-```
+To publish a new version:
+- increment the version number in `package.json` to e.g. `0.1.8`,
+- commit and tag the changes with tag of format `v0.1.8`,
+- push to GitHub.
 
-```javascript
-// JavaScript
-const query = `
-  # edgeql
-  SELECT ... 
-`;
-```
+This will start the GitHub Action that will publish to the Azure Marketplace.
 
-Other languages are not yet implemented, but we are accepting pull requests at [edgedb-editor-plugin](https://github.com/edgedb/edgedb-editor-plugin).
+To publish a prerelease version, tag the commit with `v0.1.8-pre`.
+Do not add `-pre` to the version in `package.json`.
+A regular release cannot have the same number as the prerelease version,
+so (at least) the patch number must be increased. For example,
+after publishing `v0.1.8-pre`, we would publish `v0.1.9`.
