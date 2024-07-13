@@ -11,14 +11,25 @@ Extension that provides support for EdgeDB query language (EdgeQL) and  EdgeDB S
 
 - syntax highlighting,
 - syntax highlighting in embedded code blocks,
+- error reporting via language server,
 
+## Language server
 
-## Installation Instructions
+When activated (when .edgeql or .esdl files are opened) this extension will
+download and start edgedb-ls, which is the language server for EdgeDB.
 
-In **Atom** and **Visual Studio Code** install the `edgedb` package.
+It will download it into `.local/share/edgedb/edgedb-ls` on Linux,
+into `Library/Application Support/edgedb/edgedb-ls` and MacOS
+or `AppData/Roaming/edgedb/Data/edgedb-ls` on Windows.
+If this installation exists or edgedb-ls is in system path,
+it will not be re-downloaded.
 
-In **Sublime Text**, install the `EdgeDB` package via "Package Control".
+Currently, edgedb-ls supports a very limited set of features, including only
+error reporting in .edgeql files.
+It will read `dbschema/` in the root of the workspace and use that schema
+to validate any queries found in the workspace.
 
+Multi-workspace projects are not yet supported.
 
 ## Syntax highlighting for embedded code blocks
 
