@@ -19,10 +19,3 @@ readmes
 edgedb-ls-vscode/package.json
 edgedb-ls-vscode/package-lock.json
 edgedb-ls-vscode/out/test
-edgedb-ls-vscode/node_modules/**
-!edgedb-ls-vscode/node_modules/vscode-jsonrpc/**
-!edgedb-ls-vscode/node_modules/vscode-languageclient/**
-!edgedb-ls-vscode/node_modules/vscode-languageserver-protocol/**
-!edgedb-ls-vscode/node_modules/vscode-languageserver-types/**
-!edgedb-ls-vscode/node_modules/{minimatch,brace-expansion,concat-map,balanced-match}/**
-!edgedb-ls-vscode/node_modules/{semver,lru-cache,yallist}/**
