@@ -13,7 +13,27 @@ let clientLogger: LogOutputChannel;
 
 const EDGEDB_PKG_ROOT = "https://packages.edgedb.com";
 
-export interface Distribution { command: string, version: string, args: string[] }
+export interface Distribution {
+    /**
+     * Path of executable to run to start the server.
+     */
+    command: string;
+
+    /**
+     * Arguments to be passed to the executable when starting the server.
+     */
+    args: string[];
+
+    /**
+     * Version string returned by `edgedb-ls --version`
+     */
+    version: string;
+
+    /**
+     * True if installation is managed (and can be updated) by this extension.
+     */
+    managed: boolean;
+}
 
 interface Package {
     basename: string;
@@ -52,7 +72,7 @@ export async function ensureInstalled(logger: LogOutputChannel): Promise<Distrib
     const inPath = await spawnForVersion('edgedb-ls');
     if (inPath) {
         clientLogger.debug('found');
-        return { command: 'edgedb-ls', args: [], version: inPath };
+        return { command: 'edgedb-ls', args: [], version: inPath, managed: false };
     }
 
     // determine install path
@@ -64,7 +84,7 @@ export async function ensureInstalled(logger: LogOutputChannel): Promise<Distrib
         const installed = await spawnForVersion(entrypoint);
         if (installed) {
             clientLogger.debug(`found`);
-            return { command: entrypoint, args: [], version: installed };
+            return { command: entrypoint, args: [], version: installed, managed: true };
         } else {
             // the dir exists, but edgedb-ls does not work?
             throw new Error(`${installDir} exists, but it does not work`)
@@ -77,10 +97,22 @@ export async function ensureInstalled(logger: LogOutputChannel): Promise<Distrib
 
     const installed = await spawnForVersion(entrypoint);
     if (installed) {
-        return { command: entrypoint, args: [], version: installed };
+        return { command: entrypoint, args: [], version: installed, managed: true };
     } else {
         throw new Error(`installed ${entrypoint}, but it does not work`)
     }
+}
+
+/**
+ * Removes distribution of edgedb-ls from the file-system.
+ */
+export async function removeInstallation(distr: Distribution): Promise<void> {
+    const chunks = distr.command.split(path.sep);
+    chunks.pop(); // edgedb-ls (the binary)
+    chunks.pop(); // bin
+
+    const installDir = chunks.join(path.sep);
+    await fs.rm(installDir, { recursive: true, force: true });
 }
 
 export async function spawnForVersion(executable_path: string): Promise<string | null> {

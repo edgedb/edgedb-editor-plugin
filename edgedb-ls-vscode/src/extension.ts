@@ -4,11 +4,16 @@ import {
   window,
   LogOutputChannel,
   ExtensionMode,
+  StatusBarItem,
+  StatusBarAlignment,
+  commands,
+  QuickPickItem,
 } from "vscode";
 
 import {
   CloseAction,
   CloseHandlerResult,
+  Command,
   ErrorAction,
   ErrorHandlerResult,
   Executable,
@@ -18,11 +23,14 @@ import {
   ServerOptions,
   TransportKind,
 } from "vscode-languageclient/node";
-import { Distribution, ensureInstalled } from "./install";
+import { Distribution, ensureInstalled, removeInstallation } from "./install";
 
 let client: LanguageClient;
 let clientLogger: LogOutputChannel;
 let useLocalDevServer: boolean;
+
+let edbStatusBarItem: StatusBarItem;
+let edgedbLsDist: Distribution;
 
 export async function activate(context: ExtensionContext) {
   clientLogger = window.createOutputChannel("EdgeDB Language Client", {
@@ -31,8 +39,70 @@ export async function activate(context: ExtensionContext) {
   clientLogger.info("Extension activated.");
 
   useLocalDevServer = context.extensionMode == ExtensionMode.Development;
+  useLocalDevServer = false;
+
+  const statusCommandId = 'edgedb.status';
+  context.subscriptions.push(commands.registerCommand(statusCommandId, statusCommand));
+
+  edbStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Left);
+  edbStatusBarItem.name = `EdgeDB`;
+  edbStatusBarItem.tooltip = "EdgeDB Language Server: click for options...";
+  edbStatusBarItem.command = statusCommandId;
+  setStatus(null);
+  context.subscriptions.push(edbStatusBarItem);
 
   await startClient();
+}
+
+function setStatus(status: string | null) {
+  if (status) {
+    edbStatusBarItem.text = `$(loading~spin) EdgeDB: ${status}`;
+  } else {
+    edbStatusBarItem.text = `$(database) EdgeDB`;
+  }
+}
+
+async function statusCommand() {
+  const options: { id: string, item: QuickPickItem }[] = [
+    { id: 'restart', item: { label: 'Restart language server', } },
+
+  ];
+
+  if (edgedbLsDist) {
+    const parts = edgedbLsDist.version.split('+');
+    let version: string;
+    if (parts.length == 2) {
+      version = parts[0] + ', date: ' + parts[1].split('.')[0];
+    } else {
+      version = edgedbLsDist.version;
+    }
+
+    options.push(
+      {
+        id: 'update', item: {
+          label: 'Update to latest version',
+          description: `Current version: ${version}`,
+        }
+      },
+    )
+  }
+
+  const selected = await window.showQuickPick(options.map(o => o.item), {
+    title: client?.name ?? 'EdgeDB Language Server',
+  });
+  const selectedId = options.find(o => o.item == selected).id;
+
+  if (selectedId == 'restart') {
+    await startClient();
+  } else if (selectedId == 'update') {
+    if (!(edgedbLsDist?.managed ?? false)) {
+      window.showErrorMessage('Cannot update edgedb-ls, because it has not been installed by this extension.')
+      return;
+    }
+    clientLogger.info(`Removing installation of edgedb-ls: ${edgedbLsDist.command}`)
+    await removeInstallation(edgedbLsDist);
+    await startClient();
+  }
 }
 
 async function getServerDistribution(): Promise<Distribution | null> {
@@ -41,15 +111,19 @@ async function getServerDistribution(): Promise<Distribution | null> {
       command: "python",
       args: ["-m", "edb.language_server.main"],
       version: "local dev",
+      managed: false,
     };
   }
 
   try {
+    setStatus('installing');
     return await ensureInstalled(clientLogger);
   } catch (e) {
     clientLogger.error(e.message);
     window.showErrorMessage(`Cannot find edgedb-ls: ${e.message}`);
     return null;
+  } finally {
+    setStatus(null);
   }
 }
 
@@ -61,16 +135,18 @@ async function startClient() {
     clientStopped = client.stop(5000);
   }
 
-  const dist = await getServerDistribution();
-  if (!dist) {
+  edbStatusBarItem.show();
+
+  edgedbLsDist = await getServerDistribution();
+  if (!edgedbLsDist) {
     return;
   }
 
   await clientStopped;
 
   const executable: Executable = {
-    command: dist.command,
-    args: dist.args,
+    command: edgedbLsDist.command,
+    args: edgedbLsDist.args,
     transport: TransportKind.stdio,
   };
 
@@ -97,18 +173,19 @@ async function startClient() {
   // Create the language client and start the client.
   client = new LanguageClient(
     "edgedb-ls-vscode",
-    "EdgeDB Language Server",
+    `EdgeDB Language Server`,
     serverOptions,
     clientOptions
   );
 
   clientLogger.info(
-    `Starting edgedb-ls, version ${dist.version}, command ${
-      dist.command
-    } ${dist.args.join(" ")}`
+    `Starting edgedb-ls, version ${edgedbLsDist.version}, command ${edgedbLsDist.command} ${edgedbLsDist.args.join(" ")}`
   );
-  client.start();
+  setStatus('starting');
+  await client.start();
+
   clientLogger.info(`Started.`);
+  setStatus(null);
 }
 
 class ErrorHandler {
@@ -139,5 +216,7 @@ export function deactivate(): Thenable<void> | undefined {
   if (!client) {
     return undefined;
   }
-  return client.stop();
+  return client.stop().then(() => {
+    edbStatusBarItem.hide();
+  });
 }
