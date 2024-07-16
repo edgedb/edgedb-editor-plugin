@@ -24,10 +24,14 @@ or `AppData/Roaming/edgedb/Data/edgedb-ls` on Windows.
 If this installation exists or edgedb-ls is in system path,
 it will not be re-downloaded.
 
+![](./readmes/vscode-status-bar.png)
+
 Currently, edgedb-ls supports a very limited set of features, including only
 error reporting in .edgeql files.
 It will read `dbschema/` in the root of the workspace and use that schema
 to validate any queries found in the workspace.
+
+![](./readmes/vscode-name-error.png)
 
 Multi-workspace projects are not yet supported.
 
