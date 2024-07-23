@@ -1,39 +1,59 @@
-# EdgeDB Editor Plugin [![Build Status](https://travis-ci.com/edgedb/edgedb-editor-plugin.svg?branch=master)](https://travis-ci.com/edgedb/edgedb-editor-plugin)
+# EdgeDB extension for Visual Studio Code
 
-This is a package with syntax highlighter for EdgeDB languages: EdgeQL and
-ESDL (EdgeDB Schema Definition Language).  The plugin is designed to work with
-[Sublime Text](https://packagecontrol.io/packages/EdgeDB),
-[Atom](https://atom.io/packages/edgedb) and
-[Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=magicstack.edgedb).
+Extension that provides support for EdgeDB query language (EdgeQL) and  EdgeDB Schema Definition Language (ESDL).
 
 ![](https://edgedb.github.io/edgedb-editor-plugin/edgedb-st.png)
 
 (The color scheme used in the screenshot is
 [Chromodynamics](https://github.com/MagicStack/Chromodynamics).)
 
+## Features
 
-## Installation
+- syntax highlighting,
+- syntax highlighting in embedded code blocks,
+- error reporting via language server,
 
-In **Atom** and **Visual Studio Code** install the `EdgeDB` package.
+## Language server
 
-In **Sublime Text**, install the `EdgeDB` package via "Package Control".
+When activated (when .edgeql or .esdl files are opened) this extension will
+download and start edgedb-ls, which is the language server for EdgeDB.
 
-## Contributing
+It will download it into `.local/share/edgedb/edgedb-ls` on Linux,
+into `Library/Application Support/edgedb/edgedb-ls` and MacOS
+or `AppData/Roaming/edgedb/Data/edgedb-ls` on Windows.
+If this installation exists or edgedb-ls is in system path,
+it will not be re-downloaded.
 
-We are accepting pull requests for anything that improves this extension:
-new features, fixes or documentation. We are not accepting code refactors.
+![](./readmes/vscode-status-bar.png)
 
-## Publishing
+Currently, edgedb-ls supports a very limited set of features, including only
+error reporting in .edgeql files.
+It will read `dbschema/` in the root of the workspace and use that schema
+to validate any queries found in the workspace.
 
-To publish a new version:
-- increment the version number in `package.json` to e.g. `0.1.8`,
-- commit and tag the changes with tag of format `v0.1.8`,
-- push to GitHub.
+![](./readmes/vscode-name-error.png)
 
-This will start the GitHub Action that will publish to the Azure Marketplace.
+Multi-workspace projects are not yet supported.
 
-To publish a prerelease version, tag the commit with `v0.1.8-pre`.
-Do not add `-pre` to the version in `package.json`.
-A regular release cannot have the same number as the prerelease version,
-so (at least) the patch number must be increased. For example,
-after publishing `v0.1.8-pre`, we would publish `v0.1.9`.
+## Syntax highlighting for embedded code blocks
+
+This extension also provides syntax highlighting within string literals of other languages such as JavaScript and Go.
+To enable the highlighting, include `# edgeql` in a backtick-quoted string.
+This will make it easier to spot syntax errors and make your embedded queries more readable.
+
+```go
+// Go
+query := `#edgeql
+select Example { * };
+`
+```
+
+```javascript
+// JavaScript
+const query = `
+  # edgeql
+  SELECT ... 
+`;
+```
+
+Other languages are not yet implemented, but we are accepting pull requests at [edgedb-editor-plugin](https://github.com/edgedb/edgedb-editor-plugin).
