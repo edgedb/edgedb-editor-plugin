@@ -3,7 +3,7 @@
   "displayName": "EdgeDB",
   "description": "EdgeDB plugin for Sublime Text, Atom, and VSCode",
   "version": "0.1.10",
-  "publisher": "magicstack",
+  "publisher": "gel",
   "icon": "icon.png",
   "engines": {
     "atom": "*",
@@ -99,6 +99,7 @@
     "@typescript-eslint/parser": "^7.1.0",
     "@vscode/vsce": "^2.30.0",
     "eslint": "^8.57.0",
+    "ovsx": "^0.9.5",
     "syntaxdev": "^0.1.2",
     "typescript": "^5.3.3"
   }
