@@ -38,7 +38,8 @@
         ],
         "extensions": [
           ".edgeql",
-          ".esdl"
+          ".esdl",
+          ".gel"
         ],
         "configuration": "./settings/vscode/edgeql.json"
       }
@@ -83,6 +84,18 @@
         "embeddedLanguages": {
           "meta.embedded.block.edgeql": "edgeql"
         }
+      }
+    ],
+    "commands": [
+      {
+        "category": "Gel Language Server",
+        "command": "gel.gel-ls.download",
+        "title": "Download latest version"
+      },
+      {
+        "category": "Gel Language Server",
+        "command": "gel.gel-ls.restart",
+        "title": "Restart"
       }
     ]
   },

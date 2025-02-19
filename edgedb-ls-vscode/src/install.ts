@@ -78,7 +78,7 @@ export async function ensureInstalled(logger: LogOutputChannel): Promise<Distrib
     }
 
     // determine install path
-    const installDir = path.join(envPaths("edgedb", { suffix: null }).data, 'gel-ls');
+    const installDir = getInstallDir();
     const entrypoint = path.join(installDir, 'bin/gel-ls');
 
     clientLogger.debug(`looking for gel-ls in ${installDir}`);
@@ -108,13 +108,18 @@ export async function ensureInstalled(logger: LogOutputChannel): Promise<Distrib
 /**
  * Removes distribution of gel-ls from the file-system.
  */
-export async function removeInstallation(distr: Distribution): Promise<void> {
-    const chunks = distr.command.split(path.sep);
-    chunks.pop(); // gel-ls (the binary)
-    chunks.pop(); // bin
+export async function removeInstallation(): Promise<void> {
+    const installDir = getInstallDir();
+    try {
+        clientLogger.info(`Removing installation dir: ${installDir}`);
+        await fs.rm(installDir, { recursive: true, force: true });
+    } catch (e) {
+        clientLogger.debug(`Cannot remove installation: ${e}`);
+    }
+}
 
-    const installDir = chunks.join(path.sep);
-    await fs.rm(installDir, { recursive: true, force: true });
+function getInstallDir(): string {
+    return path.join(envPaths("edgedb", { suffix: null }).data, "gel-ls");
 }
 
 export async function spawnForVersion(executable_path: string): Promise<string | null> {

@@ -8,6 +8,7 @@ import {
   StatusBarAlignment,
   commands,
   QuickPickItem,
+  ThemeColor,
 } from "vscode";
 
 import {
@@ -30,10 +31,10 @@ let clientLogger: LogOutputChannel;
 let useLocalDevServer: boolean;
 
 let edbStatusBarItem: StatusBarItem;
-let edgedbLsDist: Distribution;
+let gelLsDist: Distribution;
 
 export async function activate(context: ExtensionContext) {
-  clientLogger = window.createOutputChannel("EdgeDB Language Client", {
+  clientLogger = window.createOutputChannel("Gel Language Client", {
     log: true,
   });
   clientLogger.info("Extension activated.");
@@ -41,67 +42,74 @@ export async function activate(context: ExtensionContext) {
   useLocalDevServer = context.extensionMode == ExtensionMode.Development;
   useLocalDevServer = false;
 
-  const statusCommandId = 'edgedb.status';
+  const statusCommandId = 'gel.status';
   context.subscriptions.push(commands.registerCommand(statusCommandId, statusCommand));
 
   edbStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Left);
-  edbStatusBarItem.name = `EdgeDB`;
-  edbStatusBarItem.tooltip = "EdgeDB Language Server: click for options...";
+  edbStatusBarItem.name = `Gel`;
+  edbStatusBarItem.tooltip = "Gel Language Server: click for options...";
   edbStatusBarItem.command = statusCommandId;
   setStatus(null);
   context.subscriptions.push(edbStatusBarItem);
 
+  context.subscriptions.push(commands.registerCommand("gel.gel-ls.download", downloadCommand));
+  context.subscriptions.push(commands.registerCommand("gel.gel-ls.restart", restartCommand));
+
   await startClient();
 }
 
-function setStatus(status: string | null) {
+function setStatus(status: string | null, icon = 'database', tooltip: string | null = null) {
   if (status) {
-    edbStatusBarItem.text = `$(loading~spin) EdgeDB: ${status}`;
+    edbStatusBarItem.text = `$(${icon}) Gel: ${status}`;
   } else {
-    edbStatusBarItem.text = `$(database) EdgeDB`;
+    edbStatusBarItem.text = `$(${icon}) Gel`;
+  }
+  if (icon == 'error') {
+    edbStatusBarItem.color = new ThemeColor('statusBarItem.errorForeground');
+    edbStatusBarItem.backgroundColor = new ThemeColor('statusBarItem.errorBackground');
+  } else {
+    edbStatusBarItem.color = null;
+    edbStatusBarItem.backgroundColor = null;
+  }
+
+  if (tooltip) {
+    edbStatusBarItem.tooltip = tooltip;
+  } else if (gelLsDist) {
+    const parts = gelLsDist.version.split('+');
+    let version_display: string;
+    if (parts.length == 2) {
+      version_display = parts[0] + ', date: ' + parts[1].split('.')[0];
+    } else {
+      version_display = gelLsDist.version;
+    }
+    edbStatusBarItem.tooltip = `gel-ls version: ${version_display}`;
+  } else {
+    edbStatusBarItem.tooltip = null;
   }
 }
 
 async function statusCommand() {
-  const options: { id: string, item: QuickPickItem }[] = [
-    { id: 'restart', item: { label: 'Restart language server', } },
+  commands.executeCommand("workbench.action.quickOpen", ">Gel Language Server: ");
+}
 
-  ];
+async function restartCommand() {
+  await startClient();
+}
 
-  if (edgedbLsDist) {
-    const parts = edgedbLsDist.version.split('+');
-    let version: string;
-    if (parts.length == 2) {
-      version = parts[0] + ', date: ' + parts[1].split('.')[0];
-    } else {
-      version = edgedbLsDist.version;
-    }
-
-    options.push(
-      {
-        id: 'update', item: {
-          label: 'Update to latest version',
-          description: `Current version: ${version}`,
-        }
-      },
-    )
-  }
-
-  const selected = await window.showQuickPick(options.map(o => o.item), {
-    title: client?.name ?? 'EdgeDB Language Server',
-  });
-  const selectedId = options.find(o => o.item == selected).id;
-
-  if (selectedId == 'restart') {
-    await startClient();
-  } else if (selectedId == 'update') {
-    if (!(edgedbLsDist?.managed ?? false)) {
+async function downloadCommand() {
+  if (gelLsDist) {
+    if (!gelLsDist.managed) {
       window.showErrorMessage('Cannot update gel-ls, because it has not been installed by this extension.')
       return;
     }
-    clientLogger.info(`Removing installation of gel-ls: ${edgedbLsDist.command}`)
-    await removeInstallation(edgedbLsDist);
+  }
+
+  await removeInstallation();
+
+  try {
     await startClient();
+  } catch (e) {
+    clientLogger.error(`Err: ${e}`);
   }
 }
 
@@ -116,14 +124,16 @@ async function getServerDistribution(): Promise<Distribution | null> {
   }
 
   try {
-    setStatus('installing');
-    return await ensureInstalled(clientLogger);
+    setStatus('installing', 'loading~spin');
+    const r = await ensureInstalled(clientLogger);
+    setStatus(null);
+    return r;
   } catch (e) {
     clientLogger.error(e.message);
-    window.showErrorMessage(`Cannot find gel-ls: ${e.message}`);
+    const message = `Cannot start gel-ls: ${e.message}`;
+    window.showErrorMessage(message);
+    setStatus('error', 'error', message);
     return null;
-  } finally {
-    setStatus(null);
   }
 }
 
@@ -137,16 +147,16 @@ async function startClient() {
 
   edbStatusBarItem.show();
 
-  edgedbLsDist = await getServerDistribution();
-  if (!edgedbLsDist) {
+  gelLsDist = await getServerDistribution();
+  if (!gelLsDist) {
     return;
   }
 
   await clientStopped;
 
   const executable: Executable = {
-    command: edgedbLsDist.command,
-    args: edgedbLsDist.args,
+    command: gelLsDist.command,
+    args: gelLsDist.args,
     transport: TransportKind.stdio,
   };
 
@@ -179,9 +189,9 @@ async function startClient() {
   );
 
   clientLogger.info(
-    `Starting gel-ls, version ${edgedbLsDist.version}, command ${edgedbLsDist.command} ${edgedbLsDist.args.join(" ")}`
+    `Starting gel-ls, version ${gelLsDist.version}, command ${gelLsDist.command} ${gelLsDist.args.join(" ")}`
   );
-  setStatus('starting');
+  setStatus('starting', 'loading~spin');
   await client.start();
 
   clientLogger.info(`Started.`);
