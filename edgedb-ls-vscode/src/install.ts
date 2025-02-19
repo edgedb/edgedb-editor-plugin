@@ -149,9 +149,12 @@ export async function spawnForVersion(executable_path: string): Promise<string |
     // if successful
     const output: string = await stdout;
     if (child.exitCode == 0) {
-        const expected_prefix = 'edgedb-ls, version ';
-        if (output.startsWith(expected_prefix)) {
-            return output.slice(expected_prefix.length);
+        const prefix1 = 'edgedb-ls, version ';
+        const prefix2 = 'gel-ls, version ';
+        if (output.startsWith(prefix1)) {
+            return output.slice(prefix1.length);
+        } else if (output.startsWith(prefix2)) {
+            return output.slice(prefix2.length);
         } else {
             clientLogger.error(`unexpected "gel-ls --version output": ${output}`);
         }
@@ -183,7 +186,10 @@ function streamToString(stream: Readable): Promise<string> {
 }
 
 async function install(installDir: string) {
-    const pkg = await findPackage('edgedb-ls');
+    let pkg = await findPackage('gel-ls', false);
+    if (!pkg) {
+        pkg = await findPackage('edgedb-ls', true);
+    }
 
     const createDir = fs.mkdir(installDir, { recursive: true }).catch((error) => {
         if (error.code !== "EEXIST") throw error;
@@ -242,7 +248,7 @@ function downloadNotification(responseBody: Readable, totalLength: number | null
     });
 }
 
-async function findPackage(name: string): Promise<Package> {
+async function findPackage(name: string, fail: boolean): Promise<Package> {
     const arch = os.arch();
     const platform = os.platform();
     const libc = null;
@@ -257,10 +263,14 @@ async function findPackage(name: string): Promise<Package> {
         name,
         versionRequirement
     );
+
     if (!pkg) {
-        throw Error(
-            `cannot find ${name} package, version ${versionRequirement} for ${target}.${channel}`
-        );
+        if (fail) {
+            throw Error(
+                `cannot find ${name} package, version ${versionRequirement} for ${target}.${channel}`
+            );
+        }
+        return null;
     }
     clientLogger.debug(`found package ${pkg.name}, ${pkg.version}}`);
 

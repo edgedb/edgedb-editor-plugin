@@ -16,18 +16,18 @@ Extension that provides support for EdgeDB query language (EdgeQL) and  EdgeDB S
 ## Language server
 
 When activated (when .edgeql or .esdl files are opened) this extension will
-download and start edgedb-ls, which is the language server for EdgeDB.
+download and start gel-ls, which is the language server for EdgeDB.
 
-It will download it into `.local/share/edgedb/edgedb-ls` on Linux,
-into `Library/Application Support/edgedb/edgedb-ls` and MacOS
-or `AppData/Roaming/edgedb/Data/edgedb-ls` on Windows.
-If this installation exists or edgedb-ls is in system path,
+It will download it into `.local/share/edgedb/gel-ls` on Linux,
+into `Library/Application Support/edgedb/gel-ls` and MacOS
+or `AppData/Roaming/edgedb/Data/gel-ls` on Windows.
+If this installation exists or gel-ls is in system path,
 it will not be re-downloaded.
 
 ![](./readmes/vscode-status-bar.png)
 
-Currently, edgedb-ls supports a very limited set of features, including only
-error reporting in .edgeql files.
+Currently, gel-ls supports a very limited set of features, including only
+syntax, type and name error reporting.
 It will read `dbschema/` in the root of the workspace and use that schema
 to validate any queries found in the workspace.
 
