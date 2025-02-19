@@ -7,14 +7,12 @@ import {
   StatusBarItem,
   StatusBarAlignment,
   commands,
-  QuickPickItem,
   ThemeColor,
 } from "vscode";
 
 import {
   CloseAction,
   CloseHandlerResult,
-  Command,
   ErrorAction,
   ErrorHandlerResult,
   Executable,
@@ -40,7 +38,7 @@ export async function activate(context: ExtensionContext) {
   clientLogger.info("Extension activated.");
 
   useLocalDevServer = context.extensionMode == ExtensionMode.Development;
-  useLocalDevServer = false;
+  // useLocalDevServer = false;
 
   const statusCommandId = 'gel.status';
   context.subscriptions.push(commands.registerCommand(statusCommandId, statusCommand));
@@ -116,8 +114,8 @@ async function downloadCommand() {
 async function getServerDistribution(): Promise<Distribution | null> {
   if (useLocalDevServer) {
     return {
-      command: "python",
-      args: ["-m", "edb.language_server.main"],
+      command: "edb",
+      args: ["ls"],
       version: "local dev",
       managed: false,
     };
