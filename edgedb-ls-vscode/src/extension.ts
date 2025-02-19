@@ -96,10 +96,10 @@ async function statusCommand() {
     await startClient();
   } else if (selectedId == 'update') {
     if (!(edgedbLsDist?.managed ?? false)) {
-      window.showErrorMessage('Cannot update edgedb-ls, because it has not been installed by this extension.')
+      window.showErrorMessage('Cannot update gel-ls, because it has not been installed by this extension.')
       return;
     }
-    clientLogger.info(`Removing installation of edgedb-ls: ${edgedbLsDist.command}`)
+    clientLogger.info(`Removing installation of gel-ls: ${edgedbLsDist.command}`)
     await removeInstallation(edgedbLsDist);
     await startClient();
   }
@@ -120,7 +120,7 @@ async function getServerDistribution(): Promise<Distribution | null> {
     return await ensureInstalled(clientLogger);
   } catch (e) {
     clientLogger.error(e.message);
-    window.showErrorMessage(`Cannot find edgedb-ls: ${e.message}`);
+    window.showErrorMessage(`Cannot find gel-ls: ${e.message}`);
     return null;
   } finally {
     setStatus(null);
@@ -179,7 +179,7 @@ async function startClient() {
   );
 
   clientLogger.info(
-    `Starting edgedb-ls, version ${edgedbLsDist.version}, command ${edgedbLsDist.command} ${edgedbLsDist.args.join(" ")}`
+    `Starting gel-ls, version ${edgedbLsDist.version}, command ${edgedbLsDist.command} ${edgedbLsDist.args.join(" ")}`
   );
   setStatus('starting');
   await client.start();

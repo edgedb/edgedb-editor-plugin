@@ -25,7 +25,7 @@ export interface Distribution {
     args: string[];
 
     /**
-     * Version string returned by `edgedb-ls --version`
+     * Version string returned by `gel-ls --version`
      */
     version: string;
 
@@ -44,7 +44,9 @@ interface Package {
         minor: number,
         patch: number | null,
         prerelease: { phase: string, number: number }[],
-        metadata: any
+        metadata: {
+            build_revision: string | null,
+        }
     };
     revision: string;
     installref: string;
@@ -61,38 +63,38 @@ interface Package {
 }
 
 /**
- * Search system path and edgedb data dir for a distribution of edgedb-ls.
+ * Search system path and edgedb data dir for a distribution of gel-ls.
  * If not found, download into edgedb data dir.
  */
 export async function ensureInstalled(logger: LogOutputChannel): Promise<Distribution> {
     clientLogger = logger;
 
-    // is edgedb-ls is installed in path?
-    clientLogger.debug('looking for edgedb-ls in PATH');
-    const inPath = await spawnForVersion('edgedb-ls');
+    // is gel-ls is installed in path?
+    clientLogger.debug('looking for gel-ls in PATH');
+    const inPath = await spawnForVersion('gel-ls');
     if (inPath) {
         clientLogger.debug('found');
-        return { command: 'edgedb-ls', args: [], version: inPath, managed: false };
+        return { command: 'gel-ls', args: [], version: inPath, managed: false };
     }
 
     // determine install path
-    const installDir = path.join(envPaths("edgedb", { suffix: null }).data, 'edgedb-ls');
-    const entrypoint = path.join(installDir, 'bin/edgedb-ls');
+    const installDir = path.join(envPaths("edgedb", { suffix: null }).data, 'gel-ls');
+    const entrypoint = path.join(installDir, 'bin/gel-ls');
 
-    clientLogger.debug(`looking for edgedb-ls in ${installDir}`);
+    clientLogger.debug(`looking for gel-ls in ${installDir}`);
     if (await isDirectory(installDir)) {
         const installed = await spawnForVersion(entrypoint);
         if (installed) {
             clientLogger.debug(`found`);
             return { command: entrypoint, args: [], version: installed, managed: true };
         } else {
-            // the dir exists, but edgedb-ls does not work?
+            // the dir exists, but gel-ls does not work?
             throw new Error(`${installDir} exists, but it does not work`)
         }
     }
 
     // install
-    clientLogger.debug(`edgedb-ls needs to be installed`);
+    clientLogger.debug(`gel-ls needs to be installed`);
     await install(installDir);
 
     const installed = await spawnForVersion(entrypoint);
@@ -104,11 +106,11 @@ export async function ensureInstalled(logger: LogOutputChannel): Promise<Distrib
 }
 
 /**
- * Removes distribution of edgedb-ls from the file-system.
+ * Removes distribution of gel-ls from the file-system.
  */
 export async function removeInstallation(distr: Distribution): Promise<void> {
     const chunks = distr.command.split(path.sep);
-    chunks.pop(); // edgedb-ls (the binary)
+    chunks.pop(); // gel-ls (the binary)
     chunks.pop(); // bin
 
     const installDir = chunks.join(path.sep);
@@ -116,6 +118,8 @@ export async function removeInstallation(distr: Distribution): Promise<void> {
 }
 
 export async function spawnForVersion(executable_path: string): Promise<string | null> {
+    clientLogger.trace(`running ${executable_path} --version`);
+
     // spawn the process
     const child = child_process.spawn(executable_path, ['--version'], {});
     const promise = new Promise((close, error) => {
@@ -127,6 +131,7 @@ export async function spawnForVersion(executable_path: string): Promise<string |
     try {
         await promise;
     } catch (e) {
+        clientLogger.trace(`status: ${e.code}`);
         if (e.code == 'ENOENT') {
             return null;
         } else {
@@ -134,13 +139,16 @@ export async function spawnForVersion(executable_path: string): Promise<string |
         }
     }
 
-    // if successful
-    if (child.exitCode == 0) {
-        const output: string = await stdout;
+    clientLogger.trace(`status: ${child.exitCode}`);
 
+    // if successful
+    const output: string = await stdout;
+    if (child.exitCode == 0) {
         const expected_prefix = 'edgedb-ls, version ';
         if (output.startsWith(expected_prefix)) {
             return output.slice(expected_prefix.length);
+        } else {
+            clientLogger.error(`unexpected "gel-ls --version output": ${output}`);
         }
     }
 
@@ -207,7 +215,7 @@ async function install(installDir: string) {
 function downloadNotification(responseBody: Readable, totalLength: number | null) {
     window.withProgress({
         location: ProgressLocation.Notification,
-        title: 'Downloading edgedb-ls',
+        title: 'Downloading gel-ls',
         cancellable: true
     }, (progress, cancelToken) => {
         cancelToken.onCancellationRequested(() => {
@@ -249,7 +257,8 @@ async function findPackage(name: string): Promise<Package> {
             `cannot find ${name} package, version ${versionRequirement} for ${target}.${channel}`
         );
     }
-    clientLogger.debug(`found package ${pkg.name}, ${pkg.version}`);
+    clientLogger.debug(`found package ${pkg.name}, ${pkg.version}}`);
+
     return pkg;
 }
 
@@ -280,6 +289,12 @@ async function getMatchingPkg(
             const ver = semver.coerce(pkg.version); // if version does not have patch number, semver has problems
             return semver.satisfies(ver, versionRequirement, { includePrerelease: true })
         })
+
+        .map(pkg => {
+            clientLogger.trace(`pkg candidate: ${JSON.stringify(pkg.version_details)}`);
+            return pkg;
+        })
+
         // pick latest
         .reduce((best, curr) => (best == null || comparePackages(best, curr) < 0) ? curr : best, null);
 }
@@ -314,48 +329,19 @@ function getTargetName(arch: string, platform: string, libc: string | null): str
 
 function comparePackages(a: Package, b: Package): number {
     if (a.version_details.major < b.version_details.major) {
-        return 1;
+        return -1;
     }
     if (a.version_details.major > b.version_details.major) {
-        return -1;
+        return 1;
     }
     if (a.version_details.minor < b.version_details.minor) {
-        return 1;
+        return -1;
     }
     if (a.version_details.minor > b.version_details.minor) {
-        return -1;
-    }
-    if (a.version_details.patch !== null && b.version_details.patch !== null) {
-        if (a.version_details.patch < b.version_details.patch) {
-            return 1;
-        }
-        if (a.version_details.patch > b.version_details.patch) {
-            return -1;
-        }
-    }
-
-    const isPrereleaseA = a.version_details.prerelease.length > 0;
-    const isPrereleaseB = b.version_details.prerelease.length > 0;
-
-    // choose the one that is not prerelease
-    if (isPrereleaseA && !isPrereleaseB) {
         return 1;
     }
-    if (!isPrereleaseA && isPrereleaseB) {
-        return -1;
-    }
-    if (isPrereleaseA && isPrereleaseB) {
-        // if they are both prerelease, chose latest build number
-        const buildA = a.version_details.prerelease[0].number;
-        const buildB = b.version_details.prerelease[0].number;
-        if (buildA < buildB) {
-            return -1;
-        }
-        if (buildA > buildB) {
-            return 1;
-        }
-    }
 
-    // fallback: choose revision
-    return a.revision.localeCompare(b.revision);
+    const revisionA = Number.parseInt(a.version_details.metadata.build_revision ?? '0');
+    const revisionB = Number.parseInt(b.version_details.metadata.build_revision ?? '0');
+    return revisionA < revisionB ? -1 : 1;
 }
