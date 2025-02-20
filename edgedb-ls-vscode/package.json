@@ -15,6 +15,7 @@
     },
     "devDependencies": {
         "@types/vscode": "^1.75.1",
-        "@vscode/test-electron": "^2.3.9"
+        "@vscode/test-electron": "^2.3.9",
+        "esbuild": "^0.25.0"
     }
 }

@@ -26,7 +26,7 @@
   "categories": [
     "Programming Languages"
   ],
-  "main": "./edgedb-ls-vscode/out/extension",
+  "main": "./edgedb-ls-vscode/dist/extension",
   "contributes": {
     "languages": [
       {
@@ -100,11 +100,14 @@
     ]
   },
   "scripts": {
+    "postinstall": "cd ./edgedb-ls-vscode && npm install",
+    "check": "tsc --build --noEmit",
+    "compile": "npm run check && cd edgedb-ls-vscode && node esbuild.js --production",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "cd edgedb-ls-vscode && node esbuild.js --watch",
+    "watch:tsc": "tsc --build --noEmit --watch",
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -b",
-    "watch": "tsc -b -w",
-    "lint": "eslint ./edgedb-ls-vscode/src --ext .ts,.tsx",
-    "postinstall": "cd ./edgedb-ls-vscode && npm install"
+    "lint": "eslint ./edgedb-ls-vscode/src --ext .ts,.tsx"
   },
   "devDependencies": {
     "@types/node": "^18.14.6",
@@ -112,6 +115,7 @@
     "@typescript-eslint/parser": "^7.1.0",
     "@vscode/vsce": "^2.30.0",
     "eslint": "^8.57.0",
+    "npm-run-all": "^4.1.5",
     "ovsx": "^0.9.5",
     "syntaxdev": "^0.1.2",
     "typescript": "^5.3.3"
