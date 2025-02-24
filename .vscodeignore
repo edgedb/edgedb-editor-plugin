@@ -18,4 +18,6 @@ readmes
 
 edgedb-ls-vscode/package.json
 edgedb-ls-vscode/package-lock.json
-edgedb-ls-vscode/out/test
+edgedb-ls-vscode/out
+edgedb-ls-vscode/node_modules
+edgedb-ls-vscode/esbuild.js
