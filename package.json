@@ -2,8 +2,8 @@
   "name": "edgedb",
   "displayName": "Gel",
   "description": "IDE plugin for the Gel database",
-  "version": "0.2.0",
-  "publisher": "magicstack",
+  "version": "0.2.1",
+  "publisher": "gel",
   "icon": "icon.png",
   "engines": {
     "atom": "*",

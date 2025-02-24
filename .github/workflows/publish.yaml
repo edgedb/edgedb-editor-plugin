@@ -34,6 +34,10 @@ jobs:
       env:
         OPEN_VSX_TOKEN: ${{ secrets.OPEN_VSX_TOKEN }}
 
+    - name: set publisher to magicstack
+      run: |
+        sed -i 's/"publisher": "gel",/"publisher": "magicstack",/' package.json
+
     - name: Publish to Azure Marketplace --pre-release
       if: startsWith(github.ref, 'refs/tags/v') && contains(github.ref, '-')
       run: ./node_modules/.bin/vsce publish --pre-release
