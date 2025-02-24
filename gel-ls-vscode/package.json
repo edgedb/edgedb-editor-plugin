@@ -1,6 +1,6 @@
 {
-    "name": "edgedb-ls-vscode",
-    "description": "VSCode part of the EdgeDB language server",
+    "name": "gel-ls-vscode",
+    "description": "VSCode part of the Gel language server",
     "author": "Aljaž Mur Eržen <aljaz@edgedb.com>",
     "license": "MIT",
     "version": "0.0.1",

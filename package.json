@@ -1,7 +1,7 @@
 {
   "name": "edgedb",
-  "displayName": "EdgeDB",
-  "description": "EdgeDB plugin for Sublime Text, Atom, and VSCode",
+  "displayName": "Gel",
+  "description": "IDE plugin for the Gel database",
   "version": "0.1.12",
   "publisher": "gel",
   "icon": "icon.png",
@@ -12,12 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/edgedb/edgedb-editor-plugin.git"
+    "url": "https://github.com/geldata/gel-editor-plugin.git"
   },
   "bugs": {
-    "url": "https://github.com/edgedb/edgedb-editor-plugin/issues"
+    "url": "https://github.com/geldata/gel-editor-plugin/issues"
   },
   "keywords": [
+    "gel",
     "edgedb",
     "edgeql",
     "highlighter",
@@ -26,7 +27,7 @@
   "categories": [
     "Programming Languages"
   ],
-  "main": "./edgedb-ls-vscode/dist/extension",
+  "main": "./gel-ls-vscode/dist/extension",
   "contributes": {
     "languages": [
       {
@@ -100,14 +101,14 @@
     ]
   },
   "scripts": {
-    "postinstall": "cd ./edgedb-ls-vscode && npm install",
+    "postinstall": "cd ./gel-ls-vscode && npm install",
     "check": "tsc --build --noEmit",
-    "compile": "npm run check && cd edgedb-ls-vscode && node esbuild.js --production",
+    "compile": "npm run check && cd gel-ls-vscode && node esbuild.js --production",
     "watch": "npm-run-all -p watch:*",
-    "watch:esbuild": "cd edgedb-ls-vscode && node esbuild.js --watch",
+    "watch:esbuild": "cd gel-ls-vscode && node esbuild.js --watch",
     "watch:tsc": "tsc --build --noEmit --watch",
     "vscode:prepublish": "npm run compile",
-    "lint": "eslint ./edgedb-ls-vscode/src --ext .ts,.tsx"
+    "lint": "eslint ./gel-ls-vscode/src --ext .ts,.tsx"
   },
   "devDependencies": {
     "@types/node": "^18.14.6",

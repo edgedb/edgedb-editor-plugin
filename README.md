@@ -1,7 +1,7 @@
-# EdgeDB Editor Plugin [![Build Status](https://travis-ci.com/edgedb/edgedb-editor-plugin.svg?branch=master)](https://travis-ci.com/edgedb/edgedb-editor-plugin)
+# Gel Editor Plugin
 
-This is a package with syntax highlighter for EdgeDB languages: EdgeQL and
-ESDL (EdgeDB Schema Definition Language). The plugin is designed to work with
+This is a package with syntax highlighter for Gel languages: EdgeQL and
+ESDL (Gel Schema Definition Language). The plugin is designed to work with
 [Sublime Text](https://packagecontrol.io/packages/EdgeDB),
 [Atom](https://atom.io/packages/edgedb) and
 [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=magicstack.edgedb).
@@ -13,9 +13,9 @@ ESDL (EdgeDB Schema Definition Language). The plugin is designed to work with
 
 ## Installation
 
-In **Atom** and **Visual Studio Code** install the `EdgeDB` package.
+In **Atom** and **Visual Studio Code** install the `Gel` package.
 
-In **Sublime Text**, install the `EdgeDB` package via "Package Control".
+In **Sublime Text**, install the `Gel` package via "Package Control".
 
 ## Contributing
 

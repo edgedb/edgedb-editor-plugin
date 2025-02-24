@@ -25,7 +25,7 @@ build:
 		--out grammars/edgeql.tmLanguage
 
 	./node_modules/.bin/syntaxdev atom-spec \
-		--package-name edgedb \
+		--package-name gel \
 		--tests test/**/*.edgeql \
 		--syntax grammars/src/edgeql.syntax.yaml \
 		--out test/atom-spec/edgeql-spec.js

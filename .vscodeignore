@@ -16,8 +16,8 @@ generator
 misc
 readmes
 
-edgedb-ls-vscode/package.json
-edgedb-ls-vscode/package-lock.json
-edgedb-ls-vscode/out
-edgedb-ls-vscode/node_modules
-edgedb-ls-vscode/esbuild.js
+gel-ls-vscode/package.json
+gel-ls-vscode/package-lock.json
+gel-ls-vscode/out
+gel-ls-vscode/node_modules
+gel-ls-vscode/esbuild.js

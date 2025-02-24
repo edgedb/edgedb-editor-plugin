@@ -1,8 +1,8 @@
-# EdgeDB extension for Visual Studio Code
+# Gel extension for Visual Studio Code
 
-Extension that provides support for EdgeDB query language (EdgeQL) and  EdgeDB Schema Definition Language (ESDL).
+Extension that provides support for Gel query language (EdgeQL) and Gel Schema Definition Language (ESDL).
 
-![](https://edgedb.github.io/edgedb-editor-plugin/edgedb-st.png)
+![](https://geldata.github.io/gel-editor-plugin/edgedb-st.png)
 
 (The color scheme used in the screenshot is
 [Chromodynamics](https://github.com/MagicStack/Chromodynamics).)
@@ -15,8 +15,10 @@ Extension that provides support for EdgeDB query language (EdgeQL) and  EdgeDB S
 
 ## Language server
 
+![](./vscode-gel-ls.gif)
+
 When activated (when .edgeql or .esdl files are opened) this extension will
-download and start gel-ls, which is the language server for EdgeDB.
+download and start gel-ls, which is the language server for the Gel database.
 
 It will download it into `.local/share/edgedb/gel-ls` on Linux,
 into `Library/Application Support/edgedb/gel-ls` and MacOS
@@ -56,4 +58,4 @@ const query = `
 `;
 ```
 
-Other languages are not yet implemented, but we are accepting pull requests at [edgedb-editor-plugin](https://github.com/edgedb/edgedb-editor-plugin).
+Other languages are not yet implemented, but we are accepting pull requests at [gel-editor-plugin](https://github.com/gel/gel-editor-plugin).

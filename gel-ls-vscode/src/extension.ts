@@ -180,8 +180,8 @@ async function startClient() {
 
   // Create the language client and start the client.
   client = new LanguageClient(
-    "edgedb-ls-vscode",
-    `EdgeDB Language Server`,
+    "gel-ls-vscode",
+    `Gel Language Server`,
     serverOptions,
     clientOptions
   );
