@@ -8,6 +8,10 @@
 contributing.md
 .travis.yml
 Makefile
+.direnv
+.envrc
+flake.nix
+flake.lock
 
 test
 settings/sublime
