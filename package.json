@@ -3,7 +3,7 @@
   "displayName": "Gel",
   "description": "IDE plugin for the Gel database",
   "version": "0.2.0",
-  "publisher": "gel",
+  "publisher": "magicstack",
   "icon": "icon.png",
   "engines": {
     "atom": "*",

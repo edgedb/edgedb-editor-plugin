@@ -15,7 +15,7 @@ Extension that provides support for Gel query language (EdgeQL) and Gel Schema D
 
 ## Language server
 
-![](./vscode-gel-ls.gif)
+![](./readmes/vscode-gel-ls.gif)
 
 When activated (when .edgeql or .esdl files are opened) this extension will
 download and start gel-ls, which is the language server for the Gel database.
